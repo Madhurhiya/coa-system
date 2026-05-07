@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Label — {{ coa.product_name }}</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --green-dark:  #1a3c2e;
+            --green-mid:   #2e7d32;
+            --green-light: #e8f5e9;
+            --gold:        #f5c800;
+            --gold-dark:   #c8a800;
+            --border:      #d0d7de;
+            --bg:          #f6f8fa;
+            --shadow:      0 2px 8px rgba(0,0,0,0.08), 0 8px 24px rgba(0,0,0,0.06);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: #1a202c; min-height: 100vh; }
+
+        .navbar {
+            background: var(--green-dark); padding: 0 32px;
+            display: flex; align-items: center; justify-content: space-between;
+            height: 56px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+        .navbar-brand { font-size: 1.1rem; font-weight: 700; color: #fff; }
+        .navbar-brand span { color: var(--gold); }
+        .nav-link { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.88rem; }
+        .nav-link:hover { color: #fff; }
+
+        .page-wrapper {
+            max-width: 700px; margin: 0 auto; padding: 36px 16px 60px;
+            display: grid; grid-template-columns: 1fr; gap: 24px;
+        }
+
+        /* Page header */
+        .page-header h1 { font-size: 1.5rem; font-weight: 700; color: var(--green-dark); }
+        .page-header p  { color: #6b7280; font-size: 0.88rem; margin-top: 4px; }
+
+        /* COA summary pill */
+        .coa-summary {
+            background: var(--green-dark);
+            border-radius: 12px;
+            padding: 18px 22px;
+            color: white;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        .summary-item .s-label { font-size: 0.72rem; opacity: 0.65; text-transform: uppercase; letter-spacing: 0.5px; }
+        .summary-item .s-value { font-size: 0.95rem; font-weight: 600; margin-top: 2px; }
+        .summary-item .s-value.mono { font-family: monospace; color: var(--gold); }
+
+        /* Form card */
+        .card { background: #fff; border-radius: 12px; box-shadow: var(--shadow); overflow: hidden; }
+        .card-header {
+            background: var(--gold); padding: 14px 24px;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .card-header h2 { font-size: 0.95rem; font-weight: 800; color: #111; }
+        .card-body { padding: 26px; }
+
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+        .full { grid-column: span 2; }
+
+        .field-group { display: flex; flex-direction: column; gap: 5px; }
+        .field-group label {
+            font-size: 0.8rem; font-weight: 700; color: var(--green-dark);
+            text-transform: uppercase; letter-spacing: 0.3px;
+        }
+        .field-group input {
+            padding: 10px 13px;
+            border: 1.5px solid var(--border);
+            border-radius: 8px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.92rem; color: #1a202c;
+            background: #fafbfc; outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .field-group input:focus {
+            border-color: var(--green-mid);
+            box-shadow: 0 0 0 3px rgba(46,125,50,0.12);
+            background: #fff;
+        }
+        .field-hint { font-size: 0.74rem; color: #9ca3af; margin-top: 2px; }
+
+        /* Auto-filled fields */
+        .auto-field {
+            padding: 10px 13px;
+            border: 1.5px solid #e8f5e9;
+            border-radius: 8px;
+            background: #f7fdf7;
+            font-size: 0.92rem;
+            color: #2e7d32;
+            font-weight: 600;
+        }
+
+        /* Label preview card */
+        .preview-card { background: #fff; border-radius: 12px; box-shadow: var(--shadow); overflow: hidden; }
+        .preview-header { background: #f0f4f8; padding: 12px 22px; border-bottom: 1px solid var(--border); }
+        .preview-header h3 { font-size: 0.85rem; font-weight: 700; color: #555; }
+
+        /* Mini label preview */
+        .label-preview {
+            margin: 16px;
+            border: 2px solid #b0bec5;
+            border-radius: 8px;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            background: #eef2f6;
+        }
+        .lp-top { background: #fff; padding: 8px 12px; display: flex; justify-content: space-between; align-items: center; }
+        .lp-company { font-size: 9pt; font-weight: 900; }
+        .lp-logo { font-size: 11pt; font-weight: 900; color: #c8360a; }
+        .lp-banner { background: #f5c800; padding: 5px 12px; font-size: 7pt; font-weight: 900; text-align: center; letter-spacing: 1.5px; }
+        .lp-fields { padding: 8px 14px; }
+        .lp-row { display: flex; gap: 6px; font-size: 8pt; padding: 5px 0; border-bottom: 1px solid #c8d0d8; }
+        .lp-row:last-child { border-bottom: none; }
+        .lp-lbl { color: #555; min-width: 100px; }
+        .lp-val { font-weight: 700; color: #111; }
+        .lp-bottom { padding: 7px 14px; display: flex; justify-content: space-between; align-items: center; }
+        .lp-industrial { font-size: 7pt; font-weight: 900; }
+        .lp-badges { font-size: 7pt; color: #555; }
+        .lp-footer { background: #f5c800; padding: 5px 12px; font-size: 7pt; font-weight: 700; text-align: center; }
+
+        /* Submit */
+        .btn-generate {
+            width: 100%;
+            padding: 13px;
+            background: linear-gradient(135deg, #c8a800, #f5c800);
+            color: #111;
+            border: none; border-radius: 9px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1rem; font-weight: 800;
+            cursor: pointer;
+            transition: transform 0.15s, box-shadow 0.15s;
+            box-shadow: 0 4px 14px rgba(200,168,0,0.4);
+            margin-top: 8px;
+        }
+        .btn-generate:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(200,168,0,0.5); }
+
+        @media(max-width:600px) {
+            .form-grid { grid-template-columns: 1fr; }
+            .full { grid-column: span 1; }
+            .coa-summary { grid-template-columns: 1fr; }
+            .navbar { padding: 0 16px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="navbar-brand">🧪 <span>hiya</span> COA System</div>
+    <a href="{% url 'coa_detail' coa.id %}" class="nav-link">← Back to COA</a>
+</nav>
+
+<div class="page-wrapper">
+
+    <div class="page-header">
+        <h1>🏷️ Generate Product Label</h1>
+        <p>Fill in the weight details — all other info is pulled from the COA automatically.</p>
+    </div>
+
+    <!-- COA Summary (auto-filled) -->
+    <div class="coa-summary">
+        <div class="summary-item">
+            <div class="s-label">Product Name</div>
+            <div class="s-value">{{ coa.product_name }}</div>
+        </div>
+        <div class="summary-item">
+            <div class="s-label">Batch No.</div>
+            <div class="s-value mono">{{ coa.batch_no }}</div>
+        </div>
+        <div class="summary-item">
+            <div class="s-label">Mfg. Date</div>
+            <div class="s-value">{{ coa.manufacturing_date|date:"F Y" }}</div>
+        </div>
+        <div class="summary-item">
+            <div class="s-label">Exp. Date</div>
+            <div class="s-value">{{ coa.expiry_date|date:"F Y" }}</div>
+        </div>
+    </div>
+
+    <!-- Label details form -->
+    <div class="card">
+        <div class="card-header">
+            <h2>🏷️ Enter Label Details</h2>
+        </div>
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-grid">
+
+                    <div class="field-group full">
+                        <label>Invoice No.</label>
+                        <input type="text" name="invoice_no"
+                               value="{{ label.invoice_no|default:'' }}"
+                               placeholder="e.g. INV-2026-001">
+                    </div>
+
+                    <div class="field-group">
+                        <label>Gross Weight</label>
+                        <input type="text" name="gross_weight"
+                               value="{{ label.gross_weight|default:'' }}"
+                               placeholder="e.g. 25.5 kg">
+                        <span class="field-hint">Total weight including container</span>
+                    </div>
+
+                    <div class="field-group">
+                        <label>Tare Weight</label>
+                        <input type="text" name="tare_weight"
+                               value="{{ label.tare_weight|default:'' }}"
+                               placeholder="e.g. 1.2 kg">
+                        <span class="field-hint">Weight of empty container</span>
+                    </div>
+
+                    <div class="field-group full">
+                        <label>Net Weight</label>
+                        <input type="text" name="net_weight"
+                               value="{{ label.net_weight|default:'' }}"
+                               placeholder="e.g. 24.3 kg">
+                        <span class="field-hint">Gross Weight − Tare Weight</span>
+                    </div>
+
+                </div>
+
+                <button type="submit" class="btn-generate">
+                    🏷️ Generate &amp; Download Label PDF
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Live mini preview -->
+    <div class="preview-card">
+        <div class="preview-header">
+            <h3>👁️ Label Preview (approximate)</h3>
+        </div>
+        <div class="label-preview">
+            <div class="lp-top">
+                <div class="lp-company">HIYA INDIA BIOTECH PVT. LTD.</div>
+                <div class="lp-logo">hiya</div>
+            </div>
+            <div class="lp-banner">EXTRACTS &nbsp;|&nbsp; OILS &nbsp;|&nbsp; FRAGRANCES &nbsp;|&nbsp; FLAVORS</div>
+            <div class="lp-fields">
+                <div class="lp-row"><span class="lp-lbl">Invoice No. :</span><span class="lp-val" id="prev-invoice">—</span></div>
+                <div class="lp-row"><span class="lp-lbl">Name of Product :</span><span class="lp-val">{{ coa.product_name }}</span></div>
+                <div class="lp-row"><span class="lp-lbl">Batch No. :</span><span class="lp-val">{{ coa.batch_no }}</span></div>
+                <div class="lp-row"><span class="lp-lbl">Mfg. Date :</span><span class="lp-val">{{ coa.manufacturing_date|date:"F-Y" }}</span></div>
+                <div class="lp-row"><span class="lp-lbl">Exp. Date :</span><span class="lp-val">{{ coa.expiry_date|date:"F-Y" }}</span></div>
+                <div class="lp-row"><span class="lp-lbl">Gross Weight :</span><span class="lp-val" id="prev-gross">—</span></div>
+                <div class="lp-row"><span class="lp-lbl">Tare Weight :</span><span class="lp-val" id="prev-tare">—</span></div>
+                <div class="lp-row"><span class="lp-lbl">Net Weight :</span><span class="lp-val" id="prev-net">—</span></div>
+            </div>
+            <div class="lp-bottom">
+                <div class="lp-industrial">FOR INDUSTRIAL USE ONLY</div>
+                <div class="lp-badges">⬤ HALAL &nbsp; ⬤ ISO &nbsp; ⬤ GMP</div>
+            </div>
+            <div class="lp-footer">B-51, Ground Floor, Okhla Phase-1, New Delhi-110020</div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    // Live preview updates as user types
+    function bind(inputName, previewId) {
+        const input = document.querySelector(`input[name="${inputName}"]`);
+        const preview = document.getElementById(previewId);
+        if (!input || !preview) return;
+        input.addEventListener('input', () => {
+            preview.textContent = input.value || '—';
+        });
+        // Set initial value
+        if (input.value) preview.textContent = input.value;
+    }
+    bind('invoice_no',   'prev-invoice');
+    bind('gross_weight', 'prev-gross');
+    bind('tare_weight',  'prev-tare');
+    bind('net_weight',   'prev-net');
+</script>
+
+</body>
+</html>

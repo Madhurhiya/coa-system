@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Old COA — {{ old_coa.product }}</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --green-dark: #1a3c2e; --green-mid: #2e7d32; --green-light: #e8f5e9;
+            --gold: #f5c800; --border: #e0e6ed; --bg: #f6f8fa; --shadow: 0 2px 8px rgba(0,0,0,0.07);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'DM Sans', sans-serif; background: var(--bg); min-height: 100vh; }
+
+        .navbar {
+            background: var(--green-dark); height: 56px; padding: 0 32px;
+            display: flex; align-items: center; justify-content: space-between;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2); position: sticky; top: 0; z-index: 50;
+        }
+        .navbar-brand { font-size: 1.05rem; font-weight: 700; color: #fff; }
+        .navbar-brand span { color: var(--gold); }
+        .nav-link { color: rgba(255,255,255,0.7); font-size: 0.85rem; text-decoration: none; }
+        .nav-link:hover { color: #fff; }
+
+        /* ARCHIVE BANNER */
+        .archive-banner {
+            background: #f0f4ff; border-bottom: 2px solid #c7d2fe;
+            padding: 10px 32px; font-size: 0.85rem; color: #3730a3;
+            display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+        }
+        .archive-banner strong { font-weight: 700; }
+
+        .page-wrapper { max-width: 860px; margin: 0 auto; padding: 28px 16px 60px; }
+
+        /* CARD */
+        .card { background: #fff; border-radius: 14px; box-shadow: var(--shadow); margin-bottom: 20px; overflow: hidden; }
+        .card-header { background: var(--green-dark); padding: 14px 24px; display: flex; align-items: center; gap: 10px; }
+        .card-header h2 { font-size: 0.95rem; font-weight: 700; color: #fff; }
+        .card-body { padding: 22px 24px; }
+
+        /* INFO GRID */
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .info-item .label { font-size: 0.74rem; font-weight: 700; color: var(--green-mid); text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 3px; }
+        .info-item .value { font-size: 0.92rem; color: #1a202c; font-weight: 500; }
+        .info-item .value.mono { font-family: 'DM Mono', monospace; font-size: 0.85rem; color: var(--green-mid); }
+        .info-item .value em { font-style: italic; color: #555; }
+
+        /* FIELDS TABLE */
+        .fields-table { width: 100%; border-collapse: collapse; }
+        .fields-table th {
+            background: #f8f9fa; padding: 9px 14px; font-size: 0.75rem;
+            font-weight: 700; color: #555; text-align: left;
+            text-transform: uppercase; letter-spacing: 0.4px;
+        }
+        .fields-table td { padding: 10px 14px; border-bottom: 1px solid #f0f0f0; vertical-align: top; }
+        .fields-table tr:last-child td { border-bottom: none; }
+        .fields-table tr:hover td { background: #f7fdf7; }
+        .field-name { font-size: 0.88rem; color: #333; font-weight: 500; }
+        .field-value { font-size: 0.88rem; color: #1a3c2e; font-weight: 600; }
+        .field-num { font-size: 0.78rem; color: #9ca3af; }
+
+        /* ACTIONS */
+        .actions-bar {
+            display: flex; gap: 12px; flex-wrap: wrap;
+            padding: 20px 24px; background: #f8fafb;
+            border-top: 1px solid var(--border);
+        }
+        .btn { display: inline-flex; align-items: center; gap: 7px; padding: 10px 20px; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 0.88rem; font-weight: 600; text-decoration: none; border: none; cursor: pointer; transition: opacity 0.15s, transform 0.1s; }
+        .btn:hover { opacity: 0.88; transform: translateY(-1px); }
+        .btn-clone  { background: var(--gold); color: #111; font-weight: 800; }
+        .btn-back   { background: var(--green-light); color: var(--green-dark); }
+        .btn-new    { background: var(--green-dark); color: #fff; }
+
+        /* NOTE BOX */
+        .note-box {
+            background: #fff8e1; border: 1.5px solid #fcd34d;
+            border-radius: 10px; padding: 14px 18px; margin-bottom: 20px;
+            font-size: 0.85rem; color: #92400e; line-height: 1.6;
+        }
+        .note-box strong { color: #78350f; }
+
+        @media(max-width:600px) {
+            .info-grid { grid-template-columns: 1fr; }
+            .navbar { padding: 0 16px; }
+            .archive-banner { padding: 10px 16px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="navbar-brand">🧪 <span>hiya</span> COA System</div>
+    <a href="{% url 'old_coa_search' %}" class="nav-link">← Back to Archive</a>
+</nav>
+
+<div class="archive-banner">
+    📂 <strong>Old COA Archive</strong> — This is a historical record. It cannot be edited.
+    To use these standards, clone it into a new COA.
+</div>
+
+<div class="page-wrapper">
+
+    <div class="note-box">
+        <strong>ℹ️ This is an archived COA.</strong> The standards shown below are from your old files.
+        To create a new COA using these standards, click <strong>Clone to New COA</strong> below.
+        A fresh batch number and dates will be generated automatically.
+    </div>
+
+    <!-- Basic Info -->
+    <div class="card">
+        <div class="card-header"><h2>📦 Basic Information</h2></div>
+        <div class="card-body">
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="label">Product Name</div>
+                    <div class="value">{{ old_coa.product|default:"—" }}</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">Customer</div>
+                    <div class="value">{{ old_coa.customer|default:"—" }}</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">Old Batch No.</div>
+                    <div class="value mono">{{ old_coa.batch|default:"—" }}</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">Mfg. Date</div>
+                    <div class="value">{{ old_coa.mfg_date|default:"—" }}</div>
+                </div>
+                {% if old_coa.botanical %}
+                <div class="info-item">
+                    <div class="label">Botanical Name</div>
+                    <div class="value"><em>{{ old_coa.botanical }}</em></div>
+                </div>
+                {% endif %}
+                {% if old_coa.part_used %}
+                <div class="info-item">
+                    <div class="label">Part Used</div>
+                    <div class="value">{{ old_coa.part_used }}</div>
+                </div>
+                {% endif %}
+                <div class="info-item" style="grid-column:span 2">
+                    <div class="label">Source File</div>
+                    <div class="value mono" style="font-size:0.78rem;color:#6b7280;">{{ old_coa.file_name }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- All Standards / Fields -->
+    {% if fields %}
+    <div class="card">
+        <div class="card-header">
+            <h2>🔬 Standards & Parameters</h2>
+            <span style="background:rgba(255,255,255,0.2);color:#fff;font-size:0.72rem;padding:2px 8px;border-radius:20px;">
+                {{ fields|length }} fields
+            </span>
+        </div>
+        <table class="fields-table">
+            <thead>
+                <tr>
+                    <th style="width:40px">#</th>
+                    <th>Parameter / Field</th>
+                    <th>Standard / Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for key, value in fields.items %}
+                <tr>
+                    <td><span class="field-num">{{ forloop.counter }}</span></td>
+                    <td><span class="field-name">{{ key }}</span></td>
+                    <td><span class="field-value">{{ value }}</span></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="card">
+        <div class="card-body" style="text-align:center;padding:32px;color:#9ca3af;">
+            No parameter data found in this record.
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Actions -->
+    <div class="card">
+        <div class="actions-bar">
+            <a href="{% url 'clone_from_old' old_coa.id %}" class="btn btn-clone">
+                🔁 Clone to New COA
+            </a>
+            <a href="{% url 'old_coa_search' %}" class="btn btn-back">
+                ← Back to Search
+            </a>
+            <a href="{% url 'create_coa' %}" class="btn btn-new">
+                + New COA (blank)
+            </a>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

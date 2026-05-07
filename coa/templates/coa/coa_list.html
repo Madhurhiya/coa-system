@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COA List — Hiya</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=DM+Mono&display=swap" rel="stylesheet">
+    <style>
+        :root{--gd:#1a3c2e;--gm:#2e7d32;--gl:#e8f5e9;--gold:#f5c800;--bd:#e0e6ed;--bg:#f6f8fa;--sh:0 2px 8px rgba(0,0,0,0.07);}
+        *{box-sizing:border-box;margin:0;padding:0;}
+        body{font-family:'DM Sans',sans-serif;background:var(--bg);color:#1a202c;min-height:100vh;}
+        .navbar{background:var(--gd);height:56px;padding:0 32px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 8px rgba(0,0,0,0.2);position:sticky;top:0;z-index:50;}
+        .navbar-brand{font-size:1.05rem;font-weight:700;color:#fff;}
+        .navbar-brand span{color:var(--gold);}
+        .nav-actions{display:flex;align-items:center;gap:12px;}
+        .btn-new{background:var(--gold);color:#111;border:none;padding:7px 18px;border-radius:7px;font-family:'DM Sans',sans-serif;font-size:0.88rem;font-weight:700;cursor:pointer;text-decoration:none;}
+        .nav-link{color:rgba(255,255,255,0.65);font-size:0.85rem;text-decoration:none;}
+        .nav-link:hover{color:#fff;}
+        .page-wrapper{max-width:1100px;margin:0 auto;padding:28px 16px 60px;}
+        /* Filter bar — Change 4 */
+        .filter-bar{background:#fff;border-radius:12px;box-shadow:var(--sh);padding:16px 20px;margin-bottom:18px;display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap;}
+        .fg{display:flex;flex-direction:column;gap:4px;flex:1;min-width:150px;}
+        .fg label{font-size:0.72rem;font-weight:700;color:var(--gd);text-transform:uppercase;letter-spacing:0.3px;}
+        .fg input{padding:9px 12px;border:1.5px solid var(--bd);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:0.88rem;outline:none;}
+        .fg input:focus{border-color:var(--gm);}
+        .btn-search{background:var(--gm);color:#fff;border:none;padding:9px 20px;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:0.88rem;font-weight:700;cursor:pointer;}
+        .btn-clear{background:none;border:1.5px solid var(--bd);color:#6b7280;padding:9px 14px;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:0.82rem;cursor:pointer;text-decoration:none;}
+        /* Table */
+        .card{background:#fff;border-radius:14px;box-shadow:var(--sh);overflow:hidden;}
+        .top-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px;}
+        .count-chip{background:var(--gd);color:#fff;padding:7px 14px;border-radius:8px;font-size:0.82rem;font-weight:600;}
+        table{width:100%;border-collapse:collapse;}
+        thead{background:var(--gd);}
+        thead th{padding:12px 14px;text-align:left;font-size:0.76rem;font-weight:700;color:rgba(255,255,255,0.85);text-transform:uppercase;letter-spacing:0.5px;}
+        tbody tr{border-bottom:1px solid var(--bd);transition:background 0.1s;}
+        tbody tr:last-child{border-bottom:none;}
+        tbody tr:hover{background:#f7fdf7;}
+        td{padding:12px 14px;font-size:0.88rem;vertical-align:middle;}
+        .batch-no{font-family:'DM Mono',monospace;font-size:0.82rem;color:var(--gm);font-weight:600;}
+        .product-name{font-weight:600;color:#111;}
+        .customer-tag{font-size:0.78rem;color:#6b7280;margin-top:2px;}
+        .cat-badge{background:#f0f4ff;color:#3b4db8;font-size:0.72rem;font-weight:700;padding:2px 8px;border-radius:20px;}
+       /* .status-badge{font-size:0.72rem;font-weight:700;padding:3px 10px;border-radius:20px;}
+        .status-DRAFT{background:#fef3c7;color:#92400e;}
+        .status-SUBMITTED{background:#dbeafe;color:#1e40af;}
+        .status-APPROVED{background:#d1fae5;color:#065f46;}*/
+        .actions-cell{display:flex;gap:5px;flex-wrap:wrap;}
+        .btn-a{padding:5px 10px;border-radius:6px;font-size:0.76rem;font-weight:600;text-decoration:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;white-space:nowrap;}
+        .btn-view  {background:var(--gl);color:var(--gd);}
+        .btn-edit  {background:#dbeafe;color:#1e40af;}
+        .btn-pdf   {background:#e0f2fe;color:#0369a1;}
+        .btn-clone {background:#fff8e1;color:#92400e;}
+        .btn-delete{background:#fef2f2;color:#dc2626;}
+        /* Delete modal — Change 6 */
+        .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:1000;align-items:center;justify-content:center;}
+        .modal-overlay.open{display:flex;}
+        .modal-box{background:#fff;border-radius:14px;padding:28px 32px;max-width:400px;width:90%;box-shadow:0 20px 60px rgba(0,0,0,0.2);text-align:center;}
+        .modal-box h3{font-size:1.1rem;color:#dc2626;margin-bottom:10px;}
+        .modal-box p{font-size:0.88rem;color:#555;margin-bottom:22px;line-height:1.6;}
+        .modal-actions{display:flex;gap:10px;justify-content:center;}
+        .btn-cancel-m{padding:9px 22px;border-radius:8px;border:1.5px solid var(--bd);font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:600;cursor:pointer;background:#fff;color:#555;}
+        .btn-delete-m{padding:9px 22px;border-radius:8px;border:none;font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:700;cursor:pointer;background:#dc2626;color:#fff;}
+        /* Empty */
+        .empty-state{text-align:center;padding:64px 32px;}
+        .empty-state h3{font-size:1.1rem;color:var(--gd);margin-bottom:8px;}
+        .empty-state p{color:#6b7280;font-size:0.88rem;margin-bottom:20px;}
+        .btn-create{background:var(--gm);color:white;padding:11px 24px;border-radius:9px;text-decoration:none;font-weight:700;font-size:0.92rem;}
+        @media(max-width:700px){.navbar{padding:0 16px;}td,th{padding:10px 8px;}.hide-m{display:none;}}
+    </style>
+</head>
+<body>
+
+<!-- Delete confirm modal -->
+<div class="modal-overlay" id="deleteModal">
+    <div class="modal-box">
+        <h3>🗑️ Delete COA?</h3>
+        <p id="deleteModalText">This will permanently delete this COA and all its results. This cannot be undone.</p>
+        <div class="modal-actions">
+            <button class="btn-cancel-m" onclick="closeModal()">Cancel</button>
+            <form id="deleteForm" method="post" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn-delete-m">Delete Permanently</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<nav class="navbar">
+    <div class="navbar-brand">🧪 <span>hiya</span> COA System</div>
+    <div class="nav-actions">
+        <a href="{% url 'old_coa_search' %}" class="nav-link">📂 Old Archive</a>
+        {% if user.is_superuser or user.profile.role == 'admin' %}
+        <a href="{% url 'user_list' %}" class="nav-link">👤 Users</a>
+        {% endif %}
+        <a href="{% url 'create_coa' %}" class="btn-new">+ New COA</a>
+        <form method="post" action="{% url 'logout' %}" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.25);color:rgba(255,255,255,0.75);padding:6px 13px;border-radius:6px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.82rem;">🚪 Logout</button>
+        </form>
+    </div>
+</nav>
+
+<div class="page-wrapper">
+
+    <!-- DUAL FILTER BAR — Change 4 -->
+    <form method="get" class="filter-bar">
+        <div class="fg" style="flex:2;">
+            <label>Search (all fields)</label>
+            <input type="text" name="q" value="{{ query }}" placeholder="Batch, product, botanical...">
+        </div>
+        <div class="fg">
+            <label>Filter by Customer</label>
+            <input type="text" name="customer" value="{{ customer }}" placeholder="Customer name...">
+        </div>
+        <div class="fg">
+            <label>Filter by Item Name</label>
+            <input type="text" name="item" value="{{ item }}" placeholder="Product name...">
+        </div>
+        <button type="submit" class="btn-search">🔍 Search</button>
+        {% if query or customer or item %}
+        <a href="{% url 'coa_list' %}" class="btn-clear">✕ Clear</a>
+        {% endif %}
+    </form>
+
+    <div class="top-bar">
+        <div style="font-size:0.88rem;color:#6b7280;">
+            {% if query or customer or item %}Filtered results{% else %}All Certificates of Analysis{% endif %}
+        </div>
+        <div class="count-chip">📋 {{ coas.count }} COA{% if coas.count != 1 %}s{% endif %}</div>
+    </div>
+
+    <div class="card">
+        {% if coas %}
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Batch No.</th>
+                    <th>Product / Customer</th>
+                    <th class="hide-m">Category</th>
+                    <th class="hide-m">Mfg. Date</th>
+                    <th class="hide-m">Exp. Date</th>
+                   <!-- <th>Status</th>-->
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for coa in coas %}
+                <tr>
+                    <td style="color:#9ca3af;font-size:0.8rem;">{{ forloop.counter }}</td>
+                    <td><span class="batch-no">{{ coa.batch_no }}</span></td>
+                    <td>
+                        <div class="product-name">{{ coa.product_name }}</div>
+                        {% if coa.customer_name %}<div class="customer-tag">👤 {{ coa.customer_name }}</div>{% endif %}
+                    </td>
+                    <td class="hide-m"><span class="cat-badge">{{ coa.category.name }}</span></td>
+                    <td class="hide-m">{{ coa.manufacturing_date|date:"M Y" }}</td>
+                    <td class="hide-m">{{ coa.expiry_date|date:"M Y"|default:"—" }}</td>
+                   <!-- <td><span class="status-badge status-{{ coa.status }}">{{ coa.status }}</span></td>-->
+                    <td>
+                        <div class="actions-cell">
+                            <a href="{% url 'coa_detail' coa.id %}"       class="btn-a btn-view">View</a>
+                            <a href="{% url 'edit_coa' coa.id %}"          class="btn-a btn-edit">✏️ Edit</a>
+                            <a href="{% url 'download_coa_pdf' coa.id %}"  class="btn-a btn-pdf">PDF</a>
+                            <a href="{% url 'clone_coa' coa.id %}"         class="btn-a btn-clone">🔁 Clone</a>
+                            <!-- Change 6: Delete button -->
+                            <button type="button" class="btn-a btn-delete"
+                                onclick="confirmDelete('{% url 'delete_coa' coa.id %}','{{ coa.product_name|escapejs }} — {{ coa.batch_no|escapejs }}')">
+                                🗑️ Delete
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <div class="empty-state">
+            <h3>{% if query or customer or item %}No COAs found{% else %}No COAs yet{% endif %}</h3>
+            <p>{% if query or customer or item %}Try different search terms.{% else %}Create your first Certificate of Analysis.{% endif %}</p>
+            {% if not query and not customer and not item %}
+            <a href="{% url 'create_coa' %}" class="btn-create">+ Create First COA</a>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<script>
+function confirmDelete(url, name) {
+    document.getElementById('deleteModalText').textContent = `Delete "${name}" and all its results? This cannot be undone.`;
+    document.getElementById('deleteForm').action = url;
+    document.getElementById('deleteModal').classList.add('open');
+}
+function closeModal() { document.getElementById('deleteModal').classList.remove('open'); }
+document.getElementById('deleteModal').addEventListener('click', function(e) { if(e.target===this) closeModal(); });
+</script>
+</body>
+</html>

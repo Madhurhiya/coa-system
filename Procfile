@@ -1,0 +1,1 @@
+web: gunicorn coa_project.wsgi --log-file -

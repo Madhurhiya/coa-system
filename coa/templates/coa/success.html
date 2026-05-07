@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Success</title>
+</head>
+<body>
+    <h2>COA saved successfully!</h2>
+    <a href="/coa/new/">Create another COA</a>
+   <h2>COA Created Successfully ✅</h2>
+
+<a href="{% url 'coa_pdf' coa.id %}" target="_blank">
+    Download COA PDF
+</a>
+</body>
+</html>

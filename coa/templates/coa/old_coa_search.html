@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Old COA Archive — Hiya</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=DM+Mono&display=swap" rel="stylesheet">
+    <style>
+        :root{--gd:#1a3c2e;--gm:#2e7d32;--gl:#e8f5e9;--gold:#f5c800;--bd:#e0e6ed;--bg:#f6f8fa;--sh:0 2px 8px rgba(0,0,0,0.07);}
+        *{box-sizing:border-box;margin:0;padding:0;}
+        body{font-family:'DM Sans',sans-serif;background:var(--bg);min-height:100vh;}
+        .navbar{background:var(--gd);height:56px;padding:0 32px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 8px rgba(0,0,0,0.2);position:sticky;top:0;z-index:50;}
+        .navbar-brand{font-size:1.05rem;font-weight:700;color:#fff;}
+        .navbar-brand span{color:var(--gold);}
+        .nav-actions{display:flex;gap:12px;align-items:center;}
+        .nav-link{color:rgba(255,255,255,0.7);font-size:0.85rem;text-decoration:none;}
+        .nav-link:hover{color:#fff;}
+        .btn-new{background:var(--gold);color:#111;border:none;padding:7px 16px;border-radius:7px;font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:700;text-decoration:none;}
+        .page-wrapper{max-width:1000px;margin:0 auto;padding:28px 16px 60px;}
+        .page-header{margin-bottom:24px;}
+        .page-header h1{font-size:1.4rem;font-weight:800;color:var(--gd);}
+        .page-header p{color:#6b7280;font-size:0.88rem;margin-top:4px;}
+        /* Filter bar — Change 4 */
+        .filter-bar{background:#fff;border-radius:14px;box-shadow:var(--sh);padding:20px 24px;margin-bottom:24px;}
+        .filter-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px;align-items:flex-end;margin-bottom:12px;}
+        .fg{display:flex;flex-direction:column;gap:4px;}
+        .fg label{font-size:0.72rem;font-weight:700;color:var(--gd);text-transform:uppercase;letter-spacing:0.3px;}
+        .fg input{padding:10px 13px;border:1.5px solid var(--bd);border-radius:9px;font-family:'DM Sans',sans-serif;font-size:0.92rem;outline:none;}
+        .fg input:focus{border-color:var(--gm);box-shadow:0 0 0 3px rgba(46,125,50,0.1);}
+        .filter-actions{display:flex;gap:10px;}
+        .btn-search{background:var(--gm);color:#fff;border:none;padding:10px 24px;border-radius:9px;font-family:'DM Sans',sans-serif;font-size:0.92rem;font-weight:700;cursor:pointer;}
+        .btn-clear{background:none;border:1.5px solid var(--bd);color:#6b7280;padding:10px 16px;border-radius:9px;font-family:'DM Sans',sans-serif;font-size:0.85rem;cursor:pointer;text-decoration:none;}
+        .hint{font-size:0.8rem;color:#9ca3af;margin-top:8px;}
+        /* Results */
+        .results-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+        .result-card{background:#fff;border-radius:12px;box-shadow:var(--sh);margin-bottom:12px;overflow:hidden;border-left:4px solid var(--gm);transition:transform 0.1s;}
+        .result-card:hover{transform:translateX(2px);}
+        .result-body{padding:16px 20px;}
+        .result-filename{font-family:'DM Mono',monospace;font-size:0.82rem;color:#6b7280;margin-bottom:8px;}
+        .result-product{font-size:1rem;font-weight:700;color:var(--gd);margin-bottom:4px;}
+        .result-meta{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:12px;}
+        .meta-item{font-size:0.8rem;color:#555;}
+        .meta-label{font-weight:700;color:#333;}
+        .fields-preview{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;}
+        .field-chip{background:#f0f4f8;border-radius:6px;padding:3px 9px;font-size:0.74rem;color:#444;}
+        .field-chip strong{color:var(--gd);}
+        .result-actions{display:flex;gap:8px;}
+        .btn-a{padding:7px 16px;border-radius:7px;font-size:0.82rem;font-weight:600;text-decoration:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;}
+        .btn-view{background:var(--gl);color:var(--gd);}
+        .btn-clone{background:var(--gold);color:#111;}
+        .info-box{background:#fff;border-radius:14px;box-shadow:var(--sh);padding:48px 32px;text-align:center;}
+        .info-box h3{font-size:1rem;color:var(--gd);margin-bottom:6px;}
+        .info-box p{font-size:0.85rem;color:#6b7280;}
+        @media(max-width:640px){.navbar{padding:0 16px;}.filter-grid{grid-template-columns:1fr;}}
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="navbar-brand">🧪 <span>hiya</span> COA System</div>
+    <div class="nav-actions">
+        <a href="{% url 'coa_list' %}" class="nav-link">New COAs</a>
+        <a href="{% url 'create_coa' %}" class="btn-new">+ New COA</a>
+    </div>
+</nav>
+
+<div class="page-wrapper">
+    <div class="page-header">
+        <h1>📂 Old COA Archive</h1>
+        <p>Search old COAs by product, customer, file name or batch. Then view or clone into a new COA.</p>
+    </div>
+
+    <!-- Dual filter — Change 4 -->
+    <div class="filter-bar">
+        <form method="get">
+            <div class="filter-grid">
+                <div class="fg">
+                    <label>Search (all fields)</label>
+                    <input type="text" name="q" value="{{ query }}" placeholder="File name, batch no..." autofocus autocomplete="off">
+                </div>
+                <div class="fg">
+                    <label>Filter by Customer</label>
+                    <input type="text" name="customer" value="{{ customer }}" placeholder="Customer name..." autocomplete="off">
+                </div>
+                <div class="fg">
+                    <label>Filter by Item / Product</label>
+                    <input type="text" name="item" value="{{ item }}" placeholder="Product name..." autocomplete="off">
+                </div>
+            </div>
+            <div class="filter-actions">
+                <button type="submit" class="btn-search">🔍 Search</button>
+                {% if query or customer or item %}
+                <a href="{% url 'old_coa_search' %}" class="btn-clear">✕ Clear</a>
+                {% endif %}
+            </div>
+            <p class="hint">Tip: Use <strong>Customer</strong> or <strong>Item</strong> filter separately to find all COAs for that customer or product.</p>
+        </form>
+    </div>
+
+    {% if query or customer or item %}
+        <div class="results-header">
+            <span style="font-size:0.85rem;color:#6b7280;">
+                {% if results %}Found {{ results|length }} result{% if results|length != 1 %}s{% endif %}{% if results|length == 100 %} (showing first 100){% endif %}
+                {% else %}No results found{% endif %}
+            </span>
+        </div>
+
+        {% if results %}
+            {% for old in results %}
+            <div class="result-card">
+                <div class="result-body">
+                    <div class="result-filename">📄 {{ old.file_name }}</div>
+                    <div class="result-product">{{ old.product|default:"Unknown Product" }}</div>
+                    <div class="result-meta">
+                        {% if old.customer %}<div class="meta-item"><span class="meta-label">Customer:</span> {{ old.customer }}</div>{% endif %}
+                        {% if old.batch    %}<div class="meta-item"><span class="meta-label">Batch:</span> {{ old.batch }}</div>{% endif %}
+                        {% if old.mfg_date %}<div class="meta-item"><span class="meta-label">Mfg:</span> {{ old.mfg_date }}</div>{% endif %}
+                        {% if old.botanical %}<div class="meta-item"><span class="meta-label">Botanical:</span> <em>{{ old.botanical }}</em></div>{% endif %}
+                    </div>
+                    {% with fields=old.get_fields %}
+                    {% if fields %}
+                    <div class="fields-preview">
+                        {% for k,v in fields.items %}{% if forloop.counter <= 5 %}
+                        <span class="field-chip"><strong>{{ k }}:</strong> {{ v|truncatechars:30 }}</span>
+                        {% endif %}{% endfor %}
+                        {% if fields|length > 5 %}<span class="field-chip" style="color:#9ca3af;">+{{ fields|length|add:"-5" }} more</span>{% endif %}
+                    </div>
+                    {% endif %}
+                    {% endwith %}
+                    <div class="result-actions">
+                        <a href="{% url 'old_coa_detail' old.id %}" class="btn-a btn-view">👁️ View Details</a>
+                        <a href="{% url 'clone_from_old' old.id %}" class="btn-a btn-clone">🔁 Clone to New COA</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <div class="info-box"><h3>No results found</h3><p>Try different search terms or clear a filter.</p></div>
+        {% endif %}
+    {% else %}
+        <div class="info-box">
+            <h3>📂 Search the Old COA Archive</h3>
+            <p>Type a file name, product, customer or batch number above.<br>
+            Use the Customer or Item filters to narrow results.<br>
+            Example: "Nilgiri", "Clove", "HI/EO"</p>
+        </div>
+    {% endif %}
+</div>
+</body>
+</html>

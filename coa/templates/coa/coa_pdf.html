@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Certificate of Analysis - {{ coa.product_name }}</title>
+    <style>
+        @page { size: A4; margin: 0.6cm 1cm 1cm 1cm; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: Arial, Helvetica, sans-serif; font-size: 10pt; color: #1a1a1a; }
+
+        .company-top { text-align: center; font-size: 7.5pt; color: #1a5c1a; margin-bottom: 4px; line-height: 1.6; }
+        .divider      { border: none; border-top: 1.5px solid #222; margin: 5px 0; }
+        .divider-thin { border: none; border-top: 0.75px solid #999; margin: 3px 0; }
+
+        .header-table { width: 100%; border-collapse: collapse; margin-bottom: 5px; }
+        .header-table td { vertical-align: middle; }
+        .logo-cell { width: 38%; }
+        .logo-cell img { height: 55px; width: auto; }
+        .badges-cell { width: 62%; text-align: right; }
+        .badges-cell img { height: 42px; width: auto; margin-left: 6px; }
+
+        .coa-title {
+            text-align: center; font-size: 13pt; font-weight: bold;
+            text-decoration: underline; text-transform: uppercase;
+            letter-spacing: 1.5px; margin: 8px 0 10px 0;
+        }
+
+        .info-box { width: 100%; border: 1.5px solid #222; border-collapse: collapse; margin-bottom: 10px; }
+        .info-box td { padding: 6px 10px; vertical-align: top; font-size: 9.5pt; line-height: 1.9; }
+        .info-left  { width: 55%; border-right: 1px solid #444; }
+        .info-right { width: 45%; }
+        .info-label { font-weight: bold; }
+        .italic { font-style: italic; }
+
+        /* ── Results table — full width, fixed layout, all borders ── */
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 8px;
+            font-size: 9pt;
+            table-layout: fixed;
+        }
+        .results-table th,
+        .results-table td {
+            border: 1px solid #000;
+            padding: 6px 8px;
+            vertical-align: middle;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        .results-table thead th {
+            background-color: #ececec;
+            font-weight: bold;
+            text-align: center;
+            font-size: 9.5pt;
+        }
+
+        /* Column widths — no Sr.No. column */
+        .col-test     { width: 40%; text-align: left; }
+        .col-standard { width: 35%; text-align: center; }
+        .col-result   { width: 25%; text-align: center; }
+
+        /* Group header row */
+        .group-header-row td {
+            background-color: #e2e2e2;
+            font-weight: bold;
+            font-size: 9.5pt;
+            padding: 5px 8px;
+            border: 1px solid #000;
+            text-align: left;
+        }
+
+        /* Section heading row — full width, white bg, bold, proper borders */
+        .section-heading-row td {
+    background-color: #ffffff;
+    font-weight: bold;
+    font-size: 11pt;
+    color: #000000;
+    padding: 6px 8px;
+    text-align: left;
+    border: 1px solid #000;
+}
+
+        .opinion { font-size: 9pt; font-weight: bold; margin: 8px 0 4px 0; }
+
+        /* Signatures */
+        .signatures-wrapper { margin-top: 18px; }
+        .stamp-center { text-align: center; margin-bottom: 6px; }
+        .stamp-center img { height: 65px; width: auto; }
+        .signatures-table { width: 100%; border-collapse: collapse; }
+        .signatures-table td { width: 50%; text-align: center; vertical-align: bottom; padding: 0 20px; font-size: 9.5pt; font-weight: bold; }
+        .sig-line { border-top: 1px solid #333; margin-top: 28px; padding-top: 4px; }
+
+        .footer { text-align: center; font-size: 7.5pt; color: #1a5c1a; font-weight: bold; margin-top: 12px; border-top: 1px solid #bbb; padding-top: 5px; line-height: 1.6; }
+        .footer .emails { font-weight: normal; }
+        .footer-note { font-size: 7pt; color: #444; margin-top: 7px; text-align: left; line-height: 1.5; }
+    </style>
+</head>
+<body>
+
+<!-- Top company line -->
+<div class="company-top">
+    <strong>Manufactured by: Hiya India Biotech Pvt. Ltd. &amp; Supplied by: Nuplanet Ventures India Pvt. Ltd</strong><br>
+    B-51, Okhla Industrial Area, Phase -1, New Delhi – 110020<br>
+    contact@rawble.com | marketing@rawble.com | admin@rawble.com
+</div>
+
+<div class="divider-thin"></div>
+
+<!-- Header: Logo | Badges -->
+<table class="header-table">
+    <tr>
+        <td class="logo-cell">
+            <img src="{{ logo_url }}" alt="Hiya Logo">
+        </td>
+        <td class="badges-cell">
+            <img src="{{ halal_badge_url }}" alt="Halal Certified">
+            <img src="{{ iso_badge_url }}"   alt="ISO Certified">
+            <img src="{{ gmp_badge_url }}"   alt="GMP Certified">
+        </td>
+    </tr>
+</table>
+
+<div class="divider"></div>
+
+<!-- COA Title -->
+<div class="coa-title">Certificate of Analysis</div>
+
+<!-- Product Info Box -->
+<table class="info-box">
+    <tr>
+        <td class="info-left">
+            <span class="info-label">Product Name &nbsp;:</span> {{ coa.product_name }}<br>
+            <span class="info-label">Batch No. &nbsp;&nbsp;&nbsp;&nbsp;:</span> {{ coa.batch_no }}<br>
+            {% if coa.botanical_name %}
+            <span class="info-label">Botanical Name &nbsp;:</span>
+            <span class="italic">{{ coa.botanical_name }}</span><br>
+            {% endif %}
+            {% if coa.plant_part %}
+            <span class="info-label">Part of Plant Used :</span> {{ coa.plant_part }}<br>
+            {% endif %}
+        </td>
+        <td class="info-right">
+            <span class="info-label">Mfg. Date :</span> {{ coa.manufacturing_date|date:"F-Y" }}<br>
+            <span class="info-label">Exp. Date &nbsp;:</span> {{ coa.expiry_date|date:"F-Y" }}<br>
+        </td>
+    </tr>
+</table>
+
+<!-- TEST RESULTS TABLE -->
+<table class="results-table">
+    <thead>
+        <tr>
+            <th class="col-test">Tests</th>
+            <th class="col-standard">Standard</th>
+            <th class="col-result">Results</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <!-- Regular grouped test parameters -->
+        {% for section in grouped_results %}
+            {% if section.group %}
+            <tr class="group-header-row">
+                <td colspan="3">{{ section.group.name }}</td>
+            </tr>
+            {% endif %}
+
+            {% for result in section.items %}
+            <tr>
+                <td class="col-test">{{ result.parameter.name }}</td>
+                <td class="col-standard">
+                    {% if result.standard_override %}
+                        {{ result.standard_override }}
+                    {% elif result.parameter.specification %}
+                        {{ result.parameter.specification }}
+                    {% else %}
+                        —
+                    {% endif %}
+                </td>
+                <td class="col-result">{{ result.result }}</td>
+            </tr>
+            {% endfor %}
+        {% endfor %}
+
+        <!-- Custom fields:
+             is_heading=True  → full-width bold row spanning all 3 columns
+             is_heading=False → normal data row -->
+        {% if custom_fields %}
+    {% for cf in custom_fields %}
+        
+      
+{% if cf.is_heading %}
+<tr>
+    <td style="border:1px solid #000;font-weight:bold;font-size:9.5pt;color:#000;padding:6px 8px;text-align:left;background:#e2e2e2;width:40%;">{{ cf.field_name }}</td>
+    <td style="border:1px solid #000;background:#e2e2e2;width:35%;"></td>
+    <td style="border:1px solid #000;background:#e2e2e2;width:25%;"></td>
+</tr>
+        {% else %}
+        <tr>
+            <td class="col-test">{{ cf.field_name }}</td>
+            <td class="col-standard">{% if cf.specification %}{{ cf.specification }}{% else %}—{% endif %}</td>
+            <td class="col-result">{% if cf.result %}{{ cf.result }}{% else %}—{% endif %}</td>
+        </tr>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+    </tbody>
+</table>
+
+<!-- Opinion -->
+<div class="opinion">
+    OPINION OF ANALYST: The above material complies with the prescribed API standards.
+</div>
+
+<!-- Signatures — single stamp centered above both labels -->
+<div class="signatures-wrapper">
+    <div class="stamp-center">
+        <img src="{{ stamp_url }}" alt="Company Stamp">
+    </div>
+    <table class="signatures-table">
+        <tr>
+            <td>
+                <div class="sig-line">Analysed By</div>
+            </td>
+            <td>
+                <div class="sig-line">Approved By</div>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+    Hiya India Biotech Pvt. Ltd.<br>
+    B-51, Okhla Industrial Area, Phase -1, New Delhi – 110020<br>
+    <span class="emails">contact@rawble.com | marketing@rawble.com | admin@rawble.com</span>
+</div>
+
+<p class="footer-note">
+    <strong>Note :-</strong> Since it is an herbal product, there is likely to be minor colour variation
+    from batch to batch because of the seasonal variations of the raw materials.
+    Colour does not affect the quality and efficacy of the product.
+</p>
+
+</body>
+</html>

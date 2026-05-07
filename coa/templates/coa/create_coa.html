@@ -1,0 +1,418 @@
+{% load coa_extras %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if is_clone %}Clone COA{% else %}New COA{% endif %} — Hiya COA System</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --green-dark:#1a3c2e; --green-mid:#2e7d32; --green-light:#e8f5e9;
+            --gold:#f5c800; --border:#d0d7de; --bg:#f6f8fa;
+            --shadow:0 2px 8px rgba(0,0,0,0.07),0 4px 16px rgba(0,0,0,0.05);
+        }
+        *{box-sizing:border-box;margin:0;padding:0;}
+        body{font-family:'DM Sans',sans-serif;background:var(--bg);color:#1a202c;min-height:100vh;}
+        .navbar{background:var(--green-dark);height:56px;padding:0 32px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 8px rgba(0,0,0,0.2);position:sticky;top:0;z-index:100;}
+        .navbar-brand{font-size:1.05rem;font-weight:700;color:#fff;text-decoration:none;}
+        .navbar-brand span{color:var(--gold);}
+        .nav-link{color:rgba(255,255,255,0.7);text-decoration:none;font-size:0.85rem;}
+        .clone-banner{background:linear-gradient(135deg,#c8a800,#f5c800);padding:10px 32px;font-size:0.88rem;font-weight:700;color:#111;display:flex;align-items:center;gap:10px;}
+        .page-wrapper{max-width:900px;margin:0 auto;padding:28px 16px 60px;}
+        .page-header{margin-bottom:24px;}
+        .page-header h1{font-size:1.5rem;font-weight:800;color:var(--green-dark);}
+        .page-header p{color:#6b7280;font-size:0.88rem;margin-top:4px;}
+        .card{background:#fff;border-radius:14px;box-shadow:var(--shadow);margin-bottom:20px;overflow:hidden;}
+        .card-header{background:var(--green-dark);padding:14px 24px;display:flex;align-items:center;gap:10px;}
+        .card-header h2{font-size:0.95rem;font-weight:700;color:#fff;}
+        .card-header .badge{background:rgba(255,255,255,0.2);color:#fff;font-size:0.72rem;padding:2px 8px;border-radius:20px;}
+        .card-body{padding:24px;}
+        .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+        .full{grid-column:span 2;}
+        .field-group{display:flex;flex-direction:column;gap:5px;position:relative;}
+        .field-group label{font-size:0.78rem;font-weight:700;color:var(--green-dark);text-transform:uppercase;letter-spacing:0.3px;display:flex;align-items:center;gap:6px;}
+        .auto-badge{font-size:0.65rem;background:#e8f5e9;color:var(--green-mid);padding:1px 6px;border-radius:10px;font-weight:600;text-transform:none;}
+        .rec-badge{font-size:0.65rem;background:#fff3e0;color:#e65100;padding:1px 6px;border-radius:10px;font-weight:600;text-transform:none;}
+        .field-group input,.field-group select{padding:10px 13px;border:1.5px solid var(--border);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:0.92rem;color:#1a202c;background:#fafbfc;outline:none;transition:border-color 0.2s,box-shadow 0.2s;}
+        .field-group input:focus,.field-group select:focus{border-color:var(--green-mid);box-shadow:0 0 0 3px rgba(46,125,50,0.12);background:#fff;}
+        .field-group input.auto-filled{background:#f0fdf4;border-color:#86efac;color:#166534;}
+        .autocomplete-list{position:absolute;top:100%;left:0;right:0;z-index:200;background:#fff;border:1.5px solid var(--green-mid);border-radius:0 0 10px 10px;max-height:240px;overflow-y:auto;box-shadow:0 8px 24px rgba(0,0,0,0.12);display:none;}
+        .autocomplete-list.open{display:block;}
+        .ac-item{padding:9px 14px;cursor:pointer;font-size:0.88rem;border-bottom:1px solid #f0f0f0;display:flex;flex-direction:column;gap:2px;}
+        .ac-item:hover,.ac-item.selected{background:var(--green-light);}
+        .ac-item:last-child{border-bottom:none;}
+        .ac-item .ac-name{font-weight:600;color:#111;}
+        .ac-item .ac-sub{font-size:0.76rem;color:#6b7280;}
+        .ac-item .ac-cat{font-size:0.72rem;background:#f0f4ff;color:#3b4db8;padding:1px 6px;border-radius:8px;display:inline-block;}
+        .group-label{background:#f8f9fa;border-left:4px solid var(--green-mid);padding:8px 14px;font-size:0.8rem;font-weight:700;color:var(--green-dark);margin:16px 0 10px;border-radius:0 6px 6px 0;text-transform:uppercase;letter-spacing:0.5px;}
+        .param-grid{display:grid;grid-template-columns:2fr 1.5fr 1.5fr;gap:0;}
+        .param-grid-header{display:grid;grid-template-columns:2fr 1.5fr 1.5fr;gap:0;margin-bottom:6px;}
+        .param-grid-header span{font-size:0.72rem;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:0.5px;padding:0 8px;}
+        .param-row{display:contents;}
+        .param-row>div{padding:7px 8px;border-bottom:1px solid #f0f0f0;display:flex;align-items:center;gap:6px;}
+        .param-name{font-size:0.88rem;color:#333;font-weight:500;}
+        .param-row input{width:100%;padding:7px 10px;border:1.5px solid var(--border);border-radius:6px;font-family:'DM Sans',sans-serif;font-size:0.88rem;outline:none;transition:border-color 0.15s;}
+        .param-row input:focus{border-color:var(--green-mid);background:#fff;}
+        .param-row input.prefilled{background:#fffbeb;border-color:#fcd34d;}
+        .range-badge{font-size:0.7rem;font-weight:700;padding:2px 7px;border-radius:10px;white-space:nowrap;display:none;}
+        .range-badge.fail{background:#fef2f2;color:#dc2626;display:inline-block;}
+        .range-badge.pass{background:#f0fdf4;color:#16a34a;display:inline-block;}
+        input.out-of-range{border-color:#dc2626!important;background:#fff5f5!important;}
+        input.in-range{border-color:#16a34a!important;background:#f0fdf4!important;}
+
+        /* CUSTOM FIELDS */
+        .custom-table{width:100%;border-collapse:collapse;}
+        .custom-table th{background:#f8f9fa;padding:9px 12px;font-size:0.75rem;font-weight:700;color:#555;text-align:left;text-transform:uppercase;letter-spacing:0.4px;}
+        .custom-table td{padding:6px 8px;border-bottom:1px solid #f0f0f0;}
+        .custom-table input[type="text"]{width:100%;padding:7px 10px;border:1.5px solid var(--border);border-radius:6px;font-family:'DM Sans',sans-serif;font-size:0.86rem;outline:none;background:#fafbfc;}
+        .custom-table input[type="text"]:focus{border-color:var(--green-mid);background:#fff;}
+        tr.heading-row td{background:#e8f5e9;}
+        tr.heading-row input[type="text"]{background:#e8f5e9!important;border-color:#a5d6a7!important;font-weight:700;color:var(--green-dark);}
+        .heading-badge{display:inline-block;background:var(--green-mid);color:#fff;font-size:0.65rem;font-weight:700;padding:2px 7px;border-radius:10px;white-space:nowrap;}
+        .btn-remove{background:none;border:none;color:#dc2626;cursor:pointer;font-size:1rem;padding:4px 8px;border-radius:4px;}
+        .btn-remove:hover{background:#fef2f2;}
+        .add-row-group{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;}
+        .btn-add-row{background:none;border:1.5px dashed var(--border);color:var(--green-mid);font-family:'DM Sans',sans-serif;font-size:0.83rem;font-weight:600;padding:8px 14px;border-radius:8px;cursor:pointer;transition:all 0.15s;}
+        .btn-add-row:hover{border-color:var(--green-mid);background:var(--green-light);}
+        .btn-add-heading{background:none;border:1.5px dashed #a5d6a7;color:var(--green-dark);font-family:'DM Sans',sans-serif;font-size:0.83rem;font-weight:600;padding:8px 14px;border-radius:8px;cursor:pointer;transition:all 0.15s;}
+        .btn-add-heading:hover{border-color:var(--green-mid);background:var(--green-light);}
+
+        .btn-load{background:var(--green-dark);color:#fff;border:none;padding:10px 22px;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:700;cursor:pointer;transition:opacity 0.2s;}
+        .btn-load:hover{opacity:0.88;}
+        .btn-submit{background:linear-gradient(135deg,var(--green-mid),var(--green-dark));color:#fff;border:none;padding:14px 32px;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:800;cursor:pointer;width:100%;box-shadow:0 4px 14px rgba(46,125,50,0.35);transition:transform 0.15s,box-shadow 0.15s;margin-top:8px;}
+        .btn-submit:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(46,125,50,0.45);}
+        @media(max-width:640px){.form-grid{grid-template-columns:1fr;}.full{grid-column:span 1;}.param-grid,.param-grid-header{grid-template-columns:1.5fr 1fr 1fr;}.navbar{padding:0 16px;}}
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <a href="{% url 'coa_list' %}" class="navbar-brand">🧪 <span>hiya</span> COA System</a>
+    <a href="{% url 'coa_list' %}" class="nav-link">← Back to List</a>
+</nav>
+
+{% if is_clone %}
+<div class="clone-banner">
+    🔁 Cloning from: <strong>{{ original.product_name }} — {{ original.batch_no }}</strong>
+    &nbsp;·&nbsp; A new batch number and dates will be generated automatically.
+</div>
+{% endif %}
+
+<div class="page-wrapper">
+    <div class="page-header">
+        <h1>{% if is_clone %}🔁 Clone COA{% else %}➕ New Certificate of Analysis{% endif %}</h1>
+        <p>{% if is_clone %}Product info is pre-filled. Update results and save as a new batch.{% else %}Fill in product details, load test parameters, then enter results.{% endif %}</p>
+    </div>
+
+    <form method="post" id="coaForm">
+        {% csrf_token %}
+
+        <!-- PRODUCT INFO -->
+        <div class="card">
+            <div class="card-header"><h2>📦 Product Information</h2></div>
+            <div class="card-body">
+                <div class="form-grid">
+                    <div class="field-group full" id="product-name-wrapper">
+                        <label>Product Name</label>
+                        <input type="text" name="product_name" id="id_product_name"
+                               value="{{ form.product_name.value|default:'' }}"
+                               placeholder="Type product name to search database..." autocomplete="off" required>
+                        <div class="autocomplete-list" id="item-dropdown"></div>
+                    </div>
+                    <div class="field-group">
+                        <label>Category</label>
+                        <select name="category" id="id_category" required>
+                            <option value="">— Select Category —</option>
+                            {% for cat in form.fields.category.queryset %}
+                                <option value="{{ cat.id }}"
+                                    {% if form.category.value == cat.id|stringformat:"s" %}selected{% endif %}
+                                    {% if is_clone and form.initial.category.id == cat.id %}selected{% endif %}>
+                                    {{ cat.name }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="field-group">
+                        <label>Manufacturing Date</label>
+                        <input type="date" name="manufacturing_date" id="id_manufacturing_date"
+                               value="{{ form.manufacturing_date.value|date:'Y-m-d'|default:'' }}" required>
+                    </div>
+                    <div class="field-group">
+                        <label>Botanical Name <span class="auto-badge">✦ Auto-filled</span></label>
+                        <input type="text" name="botanical_name" id="id_botanical_name"
+                               value="{{ form.botanical_name.value|default:'' }}" placeholder="Auto-filled (editable)">
+                    </div>
+                    <div class="field-group">
+                        <label>Plant Part Used <span class="auto-badge">✦ Auto-filled</span></label>
+                        <input type="text" name="plant_part" id="id_plant_part"
+                               value="{{ form.plant_part.value|default:'' }}" placeholder="Auto-filled (editable)">
+                    </div>
+                    <div class="field-group full" id="customer-name-wrapper">
+                        <label>Customer Name <span class="rec-badge">Records only — not on COA</span></label>
+                        <input type="text" name="customer_name" id="id_customer_name"
+                               value="{{ form.customer_name.value|default:'' }}"
+                               placeholder="Type to search customers or enter new name..." autocomplete="off">
+                        <div class="autocomplete-list" id="customer-dropdown"></div>
+                    </div>
+                </div>
+                <div style="margin-top:20px;display:flex;align-items:center;gap:14px;">
+                    <button type="button" id="btnLoadParams" class="btn-load">⚡ Load Test Parameters</button>
+                    <span style="font-size:0.82rem;color:#6b7280;">Select a category first, then click to load parameters.</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- TEST PARAMETERS -->
+        {% if grouped_parameters %}
+        <div class="card">
+            <div class="card-header">
+                <h2>🔬 Test Parameters & Results</h2>
+                <span class="badge">Enter results in the Result column</span>
+            </div>
+            <div class="card-body param-section">
+                <div class="param-grid-header">
+                    <span>Parameter</span><span>Standard</span><span>Result</span>
+                </div>
+                {% for grp in grouped_parameters %}
+                    {% if grp.group %}<div class="group-label">{{ grp.group.name }}</div>{% endif %}
+                    {% for param in grp.params %}
+                    <div class="param-grid">
+                        <div class="param-row">
+                            <div>
+                                <div class="param-name">{{ param.name }}</div>
+                                {% if param.specification %}<div style="font-size:0.72rem;color:#9ca3af;">Default: {{ param.specification }}</div>{% endif %}
+                            </div>
+                            <div>
+                                <input type="text" name="standard_{{ param.id }}" id="std_{{ param.id }}"
+                                       value="{% if prev_results and param.id in prev_results %}{{ prev_results|get_item:param.id|get_item:'standard' }}{% else %}{{ param.specification|default:'' }}{% endif %}"
+                                       placeholder="Standard / spec">
+                            </div>
+                            <div style="flex-direction:column;align-items:flex-start;">
+                                <input type="text" name="param_{{ param.id }}" id="res_{{ param.id }}"
+                                       class="result-input" data-param-id="{{ param.id }}"
+                                       value="{% if prev_results and param.id in prev_results %}{{ prev_results|get_item:param.id|get_item:'result' }}{% endif %}"
+                                       placeholder="Enter result"
+                                       {% if prev_results and param.id in prev_results %}class="prefilled result-input"{% endif %}>
+                                <span class="range-badge" id="badge_{{ param.id }}"></span>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- CUSTOM FIELDS with heading support -->
+        <div class="card">
+            <div class="card-header">
+                <h2>➕ Additional Fields & Test Headings</h2>
+                <span class="badge">Optional</span>
+            </div>
+            <div class="card-body">
+                <table class="custom-table" id="customTable">
+                    <thead>
+                        <tr>
+                            <th style="width:34%">Field Name / Heading</th>
+                            <th style="width:29%">Standard / Specification</th>
+                            <th style="width:27%">Result</th>
+                            <th style="width:10%">Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody id="customBody">
+                        {% if prev_custom %}
+                            {% for cf in prev_custom %}
+                            <tr {% if cf.is_heading %}class="heading-row"{% endif %}>
+                                <td>
+                                    <input type="hidden" name="custom_is_heading" value="{{ cf.is_heading|yesno:'1,0' }}">
+                                    <input type="text" name="custom_field_name" value="{{ cf.field_name }}"
+                                           placeholder="{% if cf.is_heading %}Section heading text{% else %}Test name{% endif %}">
+                                </td>
+                                <td>
+                                    {% if cf.is_heading %}
+                                        <span class="heading-badge">📋 HEADING</span>
+                                        <input type="hidden" name="custom_field_spec" value="">
+                                    {% else %}
+                                        <input type="text" name="custom_field_spec" value="{{ cf.specification|default:'' }}" placeholder="Standard">
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if cf.is_heading %}
+                                        <input type="hidden" name="custom_field_result" value="">
+                                    {% else %}
+                                        <input type="text" name="custom_field_result" value="{{ cf.result|default:'' }}" placeholder="Result">
+                                    {% endif %}
+                                </td>
+                                <td style="text-align:center;">
+                                    <button type="button" class="btn-remove" onclick="removeRow(this)">🗑️</button>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        {% endif %}
+                    </tbody>
+                </table>
+                <div class="add-row-group">
+                    <button type="button" class="btn-add-row" onclick="addCustomField()">+ Add Test Field</button>
+                    <button type="button" class="btn-add-heading" onclick="addHeadingRow()">☰ Add Section Heading</button>
+                </div>
+                <p style="font-size:0.75rem;color:#9ca3af;margin-top:8px;">
+                    💡 <strong>Section Heading</strong> adds a bold header row in the PDF (e.g. "Physical Tests", "Additional Tests").
+                </p>
+            </div>
+        </div>
+
+        {% if grouped_parameters %}
+        <button type="submit" name="save_coa" class="btn-submit">✅ Save Certificate of Analysis</button>
+        {% endif %}
+
+    </form>
+</div>
+
+<script>
+// AUTOCOMPLETE
+function setupAutocomplete(inputId, dropdownId, fetchUrl, onSelect) {
+    const input = document.getElementById(inputId);
+    const dropdown = document.getElementById(dropdownId);
+    let debounce, selectedIdx = -1;
+    input.addEventListener('input', () => {
+        clearTimeout(debounce);
+        const q = input.value.trim();
+        if (q.length < 2) { dropdown.classList.remove('open'); return; }
+        debounce = setTimeout(async () => {
+            const res = await fetch(`${fetchUrl}?q=${encodeURIComponent(q)}&limit=25`);
+            const data = await res.json();
+            renderDropdown(data.results || []);
+        }, 200);
+    });
+    function renderDropdown(results) {
+        selectedIdx = -1;
+        if (!results.length) { dropdown.classList.remove('open'); return; }
+        dropdown.innerHTML = results.map((r, i) => {
+            const isObj = typeof r === 'object';
+            const name = isObj ? r.item_name : r;
+            const sub = isObj ? `<span class="ac-sub">${r.botanical_name || ''}</span>` : '';
+            const cat = isObj ? `<span class="ac-cat">${r.item_category || ''}</span>` : '';
+            return `<div class="ac-item" data-idx="${i}" data-value='${JSON.stringify(r)}'><span class="ac-name">${name}</span>${sub}${cat}</div>`;
+        }).join('');
+        dropdown.classList.add('open');
+        dropdown.querySelectorAll('.ac-item').forEach(item => {
+            item.addEventListener('mousedown', e => {
+                e.preventDefault();
+                const val = JSON.parse(item.dataset.value);
+                const name = typeof val === 'object' ? val.item_name : val;
+                input.value = name;
+                dropdown.classList.remove('open');
+                if (onSelect) onSelect(val);
+            });
+        });
+    }
+    input.addEventListener('keydown', e => {
+        const items = dropdown.querySelectorAll('.ac-item');
+        if (!items.length) return;
+        if (e.key === 'ArrowDown') { selectedIdx = Math.min(selectedIdx+1, items.length-1); highlight(items); e.preventDefault(); }
+        if (e.key === 'ArrowUp')   { selectedIdx = Math.max(selectedIdx-1, 0); highlight(items); e.preventDefault(); }
+        if (e.key === 'Enter' && selectedIdx >= 0) { items[selectedIdx].dispatchEvent(new MouseEvent('mousedown')); e.preventDefault(); }
+        if (e.key === 'Escape') dropdown.classList.remove('open');
+    });
+    function highlight(items) { items.forEach((el, i) => el.classList.toggle('selected', i === selectedIdx)); }
+    document.addEventListener('click', e => {
+        if (!input.contains(e.target) && !dropdown.contains(e.target)) dropdown.classList.remove('open');
+    });
+}
+
+setupAutocomplete('id_product_name', 'item-dropdown', '/coa/api/item-search/', function(item) {
+    if (typeof item === 'object') {
+        const bot = document.getElementById('id_botanical_name');
+        if (item.botanical_name) { bot.value = item.botanical_name; bot.classList.add('auto-filled'); }
+        const plant = document.getElementById('id_plant_part');
+        if (item.plant_part) { plant.value = item.plant_part; plant.classList.add('auto-filled'); }
+        if (item.item_category) {
+            const sel = document.getElementById('id_category');
+            for (let i = 0; i < sel.options.length; i++) {
+                if (sel.options[i].text.toLowerCase().includes(item.item_category.toLowerCase())) { sel.value = sel.options[i].value; break; }
+            }
+        }
+    }
+});
+setupAutocomplete('id_customer_name', 'customer-dropdown', '/coa/api/customer-search/', null);
+
+// LOAD PARAMS — preserve mfg date (CHANGE #7 fix)
+document.getElementById('btnLoadParams').addEventListener('click', function() {
+    const form = document.getElementById('coaForm');
+    let loadInput = document.getElementById('load_fields_input');
+    if (!loadInput) {
+        loadInput = document.createElement('input');
+        loadInput.type = 'hidden'; loadInput.name = 'load_fields';
+        loadInput.value = '1'; loadInput.id = 'load_fields_input';
+        form.appendChild(loadInput);
+    }
+    form.submit();
+});
+
+// OUT OF RANGE CHECK
+function parseRange(standard) {
+    const nums = standard.match(/[-+]?\d*\.?\d+/g);
+    if (nums && nums.length >= 2) {
+        let lo = parseFloat(nums[0]), hi = parseFloat(nums[nums.length-1]);
+        if (lo > hi) [lo, hi] = [hi, lo];
+        return { type: 'range', lo, hi };
+    }
+    const maxM = standard.match(/(?:max|nmt|not more than|≤|<)\s*([\d.]+)/i);
+    if (maxM) return { type: 'max', limit: parseFloat(maxM[1]) };
+    const minM = standard.match(/(?:min|nlt|not less than|≥|>)\s*([\d.]+)/i);
+    if (minM) return { type: 'min', limit: parseFloat(minM[1]) };
+    return null;
+}
+document.querySelectorAll('.result-input[data-param-id]').forEach(input => {
+    const paramId = input.dataset.paramId;
+    const badge = document.getElementById('badge_' + paramId);
+    const stdInput = document.getElementById('std_' + paramId);
+    function doCheck() {
+        if (!stdInput) return;
+        const spec = parseRange(stdInput.value);
+        const nums = input.value.match(/[-+]?\d*\.?\d+/);
+        if (!spec || !nums || !input.value.trim()) {
+            input.classList.remove('out-of-range', 'in-range');
+            if (badge) badge.className = 'range-badge'; return;
+        }
+        const val = parseFloat(nums[0]);
+        let pass = false;
+        if (spec.type === 'range') pass = (val >= spec.lo && val <= spec.hi);
+        if (spec.type === 'max')   pass = (val <= spec.limit);
+        if (spec.type === 'min')   pass = (val >= spec.limit);
+        input.classList.toggle('out-of-range', !pass);
+        input.classList.toggle('in-range', pass);
+        if (badge) { badge.textContent = pass ? '✓ OK' : '⚠ Out of range'; badge.className = 'range-badge ' + (pass ? 'pass' : 'fail'); }
+    }
+    input.addEventListener('input', doCheck);
+    input.addEventListener('blur',  doCheck);
+    if (input.value) doCheck();
+});
+
+// CUSTOM FIELDS
+function addCustomField() {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+        <td><input type="hidden" name="custom_is_heading" value="0"><input type="text" name="custom_field_name" placeholder="e.g. Heavy Metals"></td>
+        <td><input type="text" name="custom_field_spec" placeholder="e.g. Absent"></td>
+        <td><input type="text" name="custom_field_result" placeholder="Result"></td>
+        <td style="text-align:center;"><button type="button" class="btn-remove" onclick="removeRow(this)">🗑️</button></td>`;
+    document.getElementById('customBody').appendChild(tr);
+    tr.querySelector('input[name="custom_field_name"]').focus();
+}
+function addHeadingRow() {
+    const tr = document.createElement('tr');
+    tr.className = 'heading-row';
+    tr.innerHTML = `
+        <td><input type="hidden" name="custom_is_heading" value="1"><input type="text" name="custom_field_name" placeholder="Section heading (e.g. Physical Tests)"></td>
+        <td><span class="heading-badge">📋 HEADING</span><input type="hidden" name="custom_field_spec" value=""></td>
+        <td><input type="hidden" name="custom_field_result" value=""></td>
+        <td style="text-align:center;"><button type="button" class="btn-remove" onclick="removeRow(this)">🗑️</button></td>`;
+    document.getElementById('customBody').appendChild(tr);
+    tr.querySelector('input[name="custom_field_name"]').focus();
+}
+function removeRow(btn) { btn.closest('tr').remove(); }
+</script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create User — Hiya COA</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --gd:#1a3c2e; --gm:#2e7d32; --gl:#e8f5e9; --gold:#f5c800; --bd:#d0d7de; --bg:#f6f8fa; }
+        * { box-sizing:border-box; margin:0; padding:0; }
+        body { font-family:'DM Sans',sans-serif; background:var(--bg); min-height:100vh; }
+        .navbar { background:var(--gd); height:56px; padding:0 32px; display:flex; align-items:center; justify-content:space-between; box-shadow:0 2px 8px rgba(0,0,0,0.2); position:sticky; top:0; z-index:50; }
+        .navbar-brand { font-size:1.05rem; font-weight:700; color:#fff; text-decoration:none; }
+        .navbar-brand span { color:var(--gold); }
+        .nav-link { color:rgba(255,255,255,0.75); font-size:0.85rem; text-decoration:none; }
+        .page-wrapper { max-width:600px; margin:0 auto; padding:36px 16px 60px; }
+        .card { background:#fff; border-radius:14px; box-shadow:0 2px 8px rgba(0,0,0,0.07); overflow:hidden; }
+        .card-header { background:var(--gd); padding:14px 24px; }
+        .card-header h2 { color:#fff; font-size:0.95rem; font-weight:700; }
+        .card-body { padding:28px 24px; }
+        .field-group { display:flex; flex-direction:column; gap:5px; margin-bottom:18px; }
+        .field-group label { font-size:0.78rem; font-weight:700; color:var(--gd); text-transform:uppercase; letter-spacing:0.3px; }
+        .field-group input, .field-group select { padding:10px 13px; border:1.5px solid var(--bd); border-radius:8px; font-family:'DM Sans',sans-serif; font-size:0.92rem; background:#fafbfc; outline:none; transition:border-color 0.2s; }
+        .field-group input:focus, .field-group select:focus { border-color:var(--gm); box-shadow:0 0 0 3px rgba(46,125,50,0.12); background:#fff; }
+        .form-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+        .full { grid-column:span 2; }
+        .btn-submit { background:linear-gradient(135deg,var(--gm),var(--gd)); color:#fff; border:none; padding:13px 28px; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:1rem; font-weight:800; cursor:pointer; width:100%; margin-top:6px; transition:transform 0.15s; }
+        .btn-submit:hover { transform:translateY(-1px); }
+        .btn-back { display:inline-block; margin-top:14px; color:var(--gm); text-decoration:none; font-size:0.85rem; font-weight:600; }
+        .alert { padding:12px 18px; border-radius:8px; margin-bottom:18px; font-size:0.88rem; font-weight:600; }
+        .alert-error { background:#fee2e2; color:#b91c1c; }
+        .role-hint { font-size:0.75rem; color:#6b7280; margin-top:3px; }
+    </style>
+</head>
+<body>
+<nav class="navbar">
+    <a href="{% url 'coa_list' %}" class="navbar-brand">🧪 <span>hiya</span> COA System</a>
+    <a href="{% url 'user_list' %}" class="nav-link">← Back to Users</a>
+</nav>
+
+<div class="page-wrapper">
+    <div class="card">
+        <div class="card-header"><h2>👤 Create New User</h2></div>
+        <div class="card-body">
+            {% if messages %}
+                {% for msg in messages %}
+                <div class="alert alert-error">{{ msg }}</div>
+                {% endfor %}
+            {% endif %}
+
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-grid">
+                    <div class="field-group full">
+                        <label>Username *</label>
+                        <input type="text" name="username" placeholder="e.g. john_analyst" required autocomplete="off">
+                    </div>
+                    <div class="field-group full">
+                        <label>Password *</label>
+                        <input type="password" name="password" placeholder="Set a strong password" required autocomplete="new-password">
+                    </div>
+                    <div class="field-group">
+                        <label>First Name</label>
+                        <input type="text" name="first_name" placeholder="First name">
+                    </div>
+                    <div class="field-group">
+                        <label>Last Name</label>
+                        <input type="text" name="last_name" placeholder="Last name">
+                    </div>
+                    <div class="field-group full">
+                        <label>Email</label>
+                        <input type="email" name="email" placeholder="user@example.com">
+                    </div>
+                    <div class="field-group full">
+                        <label>Role</label>
+                        <select name="role">
+                            {% for value, label in role_choices %}
+                            <option value="{{ value }}">{{ label }}</option>
+                            {% endfor %}
+                        </select>
+                        <span class="role-hint">
+                            <strong>Admin</strong>: Can manage users + all COAs. &nbsp;
+                            <strong>Analyst</strong>: Can create/edit COAs. &nbsp;
+                            <strong>Viewer</strong>: Read-only access.
+                        </span>
+                    </div>
+                </div>
+                <button type="submit" class="btn-submit">✅ Create User</button>
+            </form>
+            <a href="{% url 'user_list' %}" class="btn-back">← Cancel</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Label - {{ coa.product_name }}</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 1.5cm 2cm;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: Arial, Helvetica, sans-serif; background: #ffffff; }
+
+        .label {
+            width: 100%;
+            border: 2px solid #b0bec5;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #eef2f6;
+        }
+
+        /* TOP HEADER */
+        .top-header { background: #ffffff; padding: 10px 16px 8px; }
+        .top-header-table { width: 100%; border-collapse: collapse; }
+        .top-header-table td { vertical-align: middle; }
+        .company-name { font-size: 14pt; font-weight: 900; color: #111; letter-spacing: 0.5px; }
+        .logo-cell { text-align: right; width: 85px; }
+        .logo-cell img { height: 36px; width: auto; }
+        .logo-fallback { font-size: 16pt; font-weight: 900; color: #c8360a; }
+
+        /* YELLOW BANNER */
+        .yellow-banner {
+            background: #f5c800;
+            padding: 7px 16px;
+            text-align: center;
+            font-size: 10.5pt;
+            font-weight: 900;
+            color: #1a1a1a;
+            letter-spacing: 2px;
+        }
+
+        /* FIELDS */
+        .content { padding: 14px 20px 8px; background: #eef2f6; }
+        .field-row {
+            font-size: 11pt;
+            color: #222;
+            padding: 10px 0 10px;
+            border-bottom: 1px solid #c0cdd8;
+        }
+        .field-row:last-child { border-bottom: none; }
+        .field-label { font-weight: 400; }
+        .field-value { font-weight: 700; }
+
+        /* BOTTOM */
+        .bottom-section { padding: 10px 20px 12px; background: #eef2f6; }
+        .bottom-table { width: 100%; border-collapse: collapse; }
+        .bottom-table td { vertical-align: middle; }
+        .industrial { font-size: 10pt; font-weight: 900; letter-spacing: 0.5px; }
+        .badges-cell { text-align: right; }
+        .badges-cell img { height: 44px; width: auto; margin-left: 5px; }
+
+        /* YELLOW FOOTER */
+        .footer-bar {
+            background: #f5c800;
+            padding: 7px 16px;
+            text-align: center;
+            font-size: 8.5pt;
+            font-weight: 700;
+            color: #111;
+        }
+    </style>
+</head>
+<body>
+<div class="label">
+
+    <!-- TOP HEADER: Company + Logo -->
+    <div class="top-header">
+        <table class="top-header-table">
+            <tr>
+                <td><div class="company-name">HIYA INDIA BIOTECH PVT. LTD.</div></td>
+                <td class="logo-cell">
+                    {% if logo_url %}
+                        <img src="{{ logo_url }}" alt="Hiya">
+                    {% else %}
+                        <span class="logo-fallback">hiya</span>
+                    {% endif %}
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- YELLOW BANNER -->
+    <div class="yellow-banner">
+        EXTRACTS &nbsp;|&nbsp; OILS &nbsp;|&nbsp; FRAGRANCES &nbsp;|&nbsp; FLAVORS
+    </div>
+
+    <!-- FIELDS -->
+    <div class="content">
+        <div class="field-row">
+            <span class="field-label">Invoice No. : </span>
+            <span class="field-value">{{ label.invoice_no|default:"" }}</span>
+        </div>
+        <div class="field-row">
+            <span class="field-label">Name of Product : </span>
+            <span class="field-value">{{ coa.product_name }}</span>
+        </div>
+        <div class="field-row">
+            <span class="field-label">Batch No. : </span>
+            <span class="field-value">{{ coa.batch_no }}</span>
+        </div>
+        <div class="field-row">
+            <span class="field-label">Mfg. Date : </span>
+            <span class="field-value">{{ coa.manufacturing_date|date:"F-Y" }}</span>
+        </div>
+        <div class="field-row">
+            <span class="field-label">Exp. Date : </span>
+            <span class="field-value">{{ coa.expiry_date|date:"F-Y" }}</span>
+        </div>
+        <div class="field-row">
+            <span class="field-label">Gross Weight : </span>
+            <span class="field-value">{{ label.gross_weight|default:"" }}</span>
+        </div>
+        <div class="field-row">
+            <span class="field-label">Tare Weight : </span>
+            <span class="field-value">{{ label.tare_weight|default:"" }}</span>
+        </div>
+        <div class="field-row">
+            <span class="field-label">Net Weight : </span>
+            <span class="field-value">{{ label.net_weight|default:"" }}</span>
+        </div>
+    </div>
+
+    <!-- BOTTOM: FOR INDUSTRIAL USE + Badges -->
+    <div class="bottom-section">
+        <table class="bottom-table">
+            <tr>
+                <td><div class="industrial">FOR INDUSTRIAL USE ONLY</div></td>
+                <td class="badges-cell">
+                    {% if halal_badge_url %}<img src="{{ halal_badge_url }}" alt="Halal">{% endif %}
+                    {% if iso_badge_url %}<img src="{{ iso_badge_url }}" alt="ISO">{% endif %}
+                    {% if gmp_badge_url %}<img src="{{ gmp_badge_url }}" alt="GMP">{% endif %}
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- YELLOW FOOTER -->
+    <div class="footer-bar">
+        B-51, Ground Floor, Okhla Phase-1, Okhla Industrial Estate, New Delhi-110020
+    </div>
+
+</div>
+</body>
+</html>
