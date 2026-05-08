@@ -1,7 +1,0 @@
-django
-xhtml2pdf
-psycopg2-binary
-gunicorn
-whitenoise
-pillow
-dj-database-url
