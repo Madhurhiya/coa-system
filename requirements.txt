@@ -5,3 +5,4 @@ dj-database-url
 psycopg2-binary
 pillow
 xhtml2pdf==0.2.11
+python-dateutil
