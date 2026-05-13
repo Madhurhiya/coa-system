@@ -1,0 +1,25 @@
+# Database — never commit this to Git
+db.sqlite3
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*.pyc
+
+# Virtual environment — never commit this
+venv/
+env/
+
+# Environment variables / secrets
+.env
+*.env
+
+# Media uploads
+media/
+
+# Static files collected
+staticfiles/
+
+# OS files
+.DS_Store
+Thumbs.db
