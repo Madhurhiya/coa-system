@@ -506,8 +506,7 @@ def edit_coa(request, coa_id):
 # ================================================================
 # AJAX — Out of range check
 # ================================================================
- 
- @login_required
+@login_required
 def check_result(request):
     import re
     standard = request.POST.get('standard', '').strip()
@@ -516,15 +515,12 @@ def check_result(request):
     if not standard or not result:
         return JsonResponse({'status': 'unknown'})
 
-    # Fix: properly parse decimal numbers
-    result_nums = re.findall(r'[-+]?\d+\.?\d*', result)
+    result_nums = re.findall(r'[-+]?\d*\.?\d+', result)
     if not result_nums:
         return JsonResponse({'status': 'unknown', 'message': 'Non-numeric result'})
 
-    result_val = float(result_nums[0])
-
-    # Fix: parse standard range correctly (handles 3-7, 3.5-7.5, 0.890-0.950)
-    range_match = re.findall(r'[-+]?\d+\.?\d*', standard)
+    result_val  = float(result_nums[0])
+    range_match = re.findall(r'[-+]?\d*\.?\d+', standard)
 
     if len(range_match) >= 2:
         lo, hi = float(range_match[0]), float(range_match[-1])
@@ -536,14 +532,14 @@ def check_result(request):
             return JsonResponse({'status': 'fail',
                 'message': f'Out of range! Expected {lo}–{hi}, got {result_val}'})
 
-    max_match = re.search(r'(?:max|nmt|not more than|≤|<)\s*(\d+\.?\d*)', standard, re.I)
+    max_match = re.search(r'(?:max|nmt|not more than|≤|<)\s*([\d.]+)', standard, re.I)
     if max_match:
         limit = float(max_match.group(1))
         if result_val <= limit:
             return JsonResponse({'status': 'pass'})
         return JsonResponse({'status': 'fail', 'message': f'Exceeds max {limit}!'})
 
-    min_match = re.search(r'(?:min|nlt|not less than|≥|>)\s*(\d+\.?\d*)', standard, re.I)
+    min_match = re.search(r'(?:min|nlt|not less than|≥|>)\s*([\d.]+)', standard, re.I)
     if min_match:
         limit = float(min_match.group(1))
         if result_val >= limit:
@@ -551,6 +547,8 @@ def check_result(request):
         return JsonResponse({'status': 'fail', 'message': f'Below minimum {limit}!'})
 
     return JsonResponse({'status': 'unknown', 'message': 'Could not parse standard'})
+
+
 # ================================================================
 # AJAX — Product standards
 # ================================================================
