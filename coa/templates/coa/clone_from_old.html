@@ -319,7 +319,7 @@ setupAC('id_customer_name', 'customer-dropdown', '/coa/api/customer-search/', nu
 
 // ── OUT OF RANGE CHECK (Change 3) ──
 function parseRange(std) {
-    const nums = std.match(/[-+]?\d*\.?\d+/g);
+    const nums = std.match(/[-+]?\d+\.?\d*/g);
     if (nums && nums.length >= 2) { let lo=parseFloat(nums[0]),hi=parseFloat(nums[nums.length-1]); if(lo>hi)[lo,hi]=[hi,lo]; return {type:'range',lo,hi}; }
     const mx = std.match(/(?:max|nmt|not more than|≤|<)\s*([\d.]+)/i); if(mx) return {type:'max',limit:parseFloat(mx[1])};
     const mn = std.match(/(?:min|nlt|not less than|≥|>)\s*([\d.]+)/i); if(mn) return {type:'min',limit:parseFloat(mn[1])};
@@ -328,7 +328,7 @@ function parseRange(std) {
 function checkRange(input, badge) {
     const std = input.dataset.standard || ''; const val = input.value.trim();
     if (!val || !std) { input.classList.remove('out-of-range','in-range'); if(badge) badge.className='range-badge'; return; }
-    const nums = val.match(/[-+]?\d*\.?\d+/); if (!nums) return;
+    const nums = val.match(/[-+]?\d+\.?\d*/);if (!nums) return;
     const n = parseFloat(nums[0]); const spec = parseRange(std); if (!spec) return;
     let pass = spec.type==='range' ? (n>=spec.lo&&n<=spec.hi) : spec.type==='max' ? n<=spec.limit : n>=spec.limit;
     input.classList.toggle('out-of-range',!pass); input.classList.toggle('in-range',pass);
