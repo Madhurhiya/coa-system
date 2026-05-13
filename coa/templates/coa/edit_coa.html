@@ -336,7 +336,7 @@
 // OUT OF RANGE CHECK
 // ═══════════════════════════════════════════
 function parseRange(standard) {
-    const nums = standard.match(/[-+]?\d*\.?\d+/g);
+    const nums = standard.match(/[-+]?\d+\.?\d*/g);
     if (nums && nums.length >= 2) {
         let lo = parseFloat(nums[0]), hi = parseFloat(nums[nums.length - 1]);
         if (lo > hi) [lo, hi] = [hi, lo];
