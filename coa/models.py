@@ -18,6 +18,7 @@ CATEGORY_CODES = {
     'fragrance':             'FR',
     'water soluble extract': 'WS',
     'water soluble':         'WS',
+    'hydrosol':              'HS',
     'flavour':               'FL',
     'flavor':                'FL',
     'crystal':               'CR',
@@ -30,6 +31,9 @@ CATEGORY_CODES = {
     'aroma chemicals':       'AC',
     'other':                 'OT',
 }
+
+# 1-year expiry categories
+ONE_YEAR_EXPIRY_KEYWORDS = ['water soluble', 'water-soluble', 'hydrosol']
 
 
 # ── Customer master ──
@@ -74,6 +78,11 @@ class Category(models.Model):
                 return code
         return 'XX'
 
+    def is_one_year_expiry(self):
+        """Returns True if this category should have 1-year expiry."""
+        name_lower = self.name.lower().strip()
+        return any(kw in name_lower for kw in ONE_YEAR_EXPIRY_KEYWORDS)
+
 
 class TestGroup(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="groups")
@@ -109,7 +118,6 @@ class COA(models.Model):
     category       = models.ForeignKey(Category, on_delete=models.CASCADE)
     botanical_name = models.CharField(max_length=500, blank=True, null=True)
     plant_part     = models.CharField(max_length=300, blank=True, null=True)
-    # ar_no REMOVED (Change 5)
 
     # ── Customer (for search/records only — NOT printed on COA) ──
     customer_name  = models.CharField(max_length=300, blank=True, null=True,
@@ -124,6 +132,11 @@ class COA(models.Model):
     status     = models.CharField(max_length=20, choices=STATUS_CHOICES, default='DRAFT')
     created_at = models.DateTimeField(auto_now_add=True)
 
+    # ── Audit: who created this COA (records only — not on PDF) ──
+    created_by = models.ForeignKey('auth.User', on_delete=models.SET_NULL,
+                                    null=True, blank=True, related_name='coas_created',
+                                    help_text='User who created this COA. Not printed on COA.')
+
     def save(self, *args, **kwargs):
         # Auto Batch Number
         if not self.batch_no:
@@ -133,9 +146,14 @@ class COA(models.Model):
             count    = COA.objects.filter(batch_no__startswith=prefix).count() + 1
             self.batch_no = f"{prefix}{count:02d}"
 
-        # Change 8: Auto Expiry = 2 years MINUS 1 month from manufacturing date
+        # Auto Expiry:
+        # Water Soluble / Hydrosol → 1 year exactly
+        # Everything else → 2 years minus 1 month
         if self.manufacturing_date and not self.expiry_date:
-            self.expiry_date = self.manufacturing_date + relativedelta(years=2, months=-1)
+            if self.category.is_one_year_expiry():
+                self.expiry_date = self.manufacturing_date + relativedelta(years=1)
+            else:
+                self.expiry_date = self.manufacturing_date + relativedelta(years=2, months=-1)
 
         super().save(*args, **kwargs)
 
@@ -226,7 +244,8 @@ class OldCOA(models.Model):
     def __str__(self):
         return self.file_name or self.product
 
-# ── User Profile (for User Management feature) ──
+
+# ── User Profile ──
 from django.contrib.auth.models import User
 
 class UserProfile(models.Model):
