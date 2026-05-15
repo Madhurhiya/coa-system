@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login — Hiya COA System</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --gd:#1a3c2e; --gm:#2e7d32; --gl:#e8f5e9; --gold:#f5c800; --bd:#d0d7de; --bg:#f6f8fa; }
+        * { box-sizing:border-box; margin:0; padding:0; }
+        body { font-family:'DM Sans',sans-serif; background:var(--bg); min-height:100vh; display:flex; align-items:center; justify-content:center; }
+        .login-card { background:#fff; border-radius:16px; box-shadow:0 4px 24px rgba(0,0,0,0.10); padding:40px 36px; width:100%; max-width:420px; }
+        .brand { text-align:center; margin-bottom:28px; }
+        .brand h1 { font-size:1.6rem; font-weight:800; color:var(--gd); }
+        .brand h1 span { color:var(--gold); }
+        .brand p { color:#6b7280; font-size:0.88rem; margin-top:4px; }
+        .field-group { display:flex; flex-direction:column; gap:5px; margin-bottom:16px; }
+        .field-group label { font-size:0.78rem; font-weight:700; color:var(--gd); text-transform:uppercase; letter-spacing:0.3px; }
+        .field-group input { padding:11px 14px; border:1.5px solid var(--bd); border-radius:8px; font-family:'DM Sans',sans-serif; font-size:0.95rem; outline:none; transition:border-color 0.2s; background:#fafbfc; }
+        .field-group input:focus { border-color:var(--gm); box-shadow:0 0 0 3px rgba(46,125,50,0.12); background:#fff; }
+        .btn-login { background:linear-gradient(135deg,var(--gm),var(--gd)); color:#fff; border:none; padding:13px 28px; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:1rem; font-weight:800; cursor:pointer; width:100%; margin-top:8px; transition:transform 0.15s; }
+        .btn-login:hover { transform:translateY(-1px); }
+        .error { background:#fef2f2; color:#dc2626; border-radius:8px; padding:10px 14px; font-size:0.85rem; font-weight:600; margin-bottom:16px; }
+        .footer-text { text-align:center; color:#9ca3af; font-size:0.78rem; margin-top:20px; }
+    </style>
+</head>
+<body>
+<div class="login-card">
+    <div class="brand">
+        <h1>🧪 <span>hiya</span> COA</h1>
+        <p>Certificate of Analysis System</p>
+    </div>
+
+    {% if form.errors %}
+    <div class="error">❌ Incorrect username or password. Please try again.</div>
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ next }}">
+        <div class="field-group">
+            <label>Username</label>
+            <input type="text" name="username" autofocus autocomplete="username" placeholder="Enter your username">
+        </div>
+        <div class="field-group">
+            <label>Password</label>
+            <input type="password" name="password" autocomplete="current-password" placeholder="Enter your password">
+        </div>
+        <button type="submit" class="btn-login">🔐 Login</button>
+    </form>
+    <div class="footer-text">Hiya India Biotech Pvt. Ltd.</div>
+</div>
+</body>
+</html>
