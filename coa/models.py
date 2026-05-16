@@ -49,7 +49,7 @@ class Customer(models.Model):
 
 # ── Item master ──
 class ItemMaster(models.Model):
-    item_category  = models.CharField(max_length=100, blank=True)
+    item_category  = models.CharField(max_length=500, blank=True)
     item_name      = models.CharField(max_length=300, unique=True)
     botanical_name = models.CharField(max_length=500, blank=True)
     plant_part     = models.CharField(max_length=300, blank=True)
@@ -62,7 +62,7 @@ class ItemMaster(models.Model):
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=500)
     code = models.CharField(max_length=10, blank=True,
         help_text="Short code used in Batch No. e.g. FO, EO, OS")
 
@@ -189,7 +189,7 @@ class COACustomField(models.Model):
 
 class COALabel(models.Model):
     coa          = models.OneToOneField(COA, on_delete=models.CASCADE, related_name="label")
-    invoice_no   = models.CharField(max_length=100, blank=True, null=True)
+    invoice_no   = models.CharField(max_length=500, blank=True, null=True)
     gross_weight = models.CharField(max_length=50, blank=True, null=True)
     tare_weight  = models.CharField(max_length=50, blank=True, null=True)
     net_weight   = models.CharField(max_length=50, blank=True, null=True)
@@ -223,7 +223,7 @@ class OldCOA(models.Model):
                                   help_text="Original file name — used for searching")
     customer  = models.CharField(max_length=300, blank=True, db_index=True)
     product   = models.CharField(max_length=300, blank=True, db_index=True)
-    batch     = models.CharField(max_length=100, blank=True)
+    batch     = models.CharField(max_length=500, blank=True)
     mfg_date  = models.CharField(max_length=50,  blank=True)
     botanical = models.CharField(max_length=500, blank=True)
     part_used = models.CharField(max_length=300, blank=True)

@@ -1,0 +1,3639 @@
+[
+{
+  "model": "coa.oldcoa",
+  "pk": 7376,
+  "fields": {
+    "file_name": "-IVC-NILGIRI OIL-Planet Herbs-18-04-25.docx",
+    "customer": "Nilgiri Oil Planet Herbs",
+    "product": "Nilgiri Oil",
+    "batch": "HI/EO/25041604",
+    "mfg_date": "Apr-2025",
+    "botanical": "Eucalyptus globulus",
+    "part_used": "",
+    "fields": "{\"Appearance\": \"Colorless to clear pale yellow liquid.\", \"Odour\": \"Pleasant and characteristic, aromatic and pungent smell.\", \"Refrective index at 27°C\": \"1.454 to 1.470\", \"Specific gravity at 25°C\": \"0.835 to 0.927\", \"Optical rotation\": \"+10° to - 15°\", \"Solubility\": \"Soluble in ethanol.\", \"GLC\": \"Cineol Content Min 50%\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7377,
+  "fields": {
+    "file_name": "-IVC-NILGIRI OIL2118-Planet Herbs-26-06-25.docx",
+    "customer": "Nilgiri Oil2118 Planet Herbs",
+    "product": "Nilgiri Oil",
+    "batch": "HI/EO/25062403",
+    "mfg_date": "June-2025",
+    "botanical": "Eucalyptus globulus",
+    "part_used": "",
+    "fields": "{\"Appearance\": \"Colorless to clear pale yellow liquid.\", \"Odour\": \"Pleasant and characteristic, aromatic and pungent smell.\", \"Refrective index at 27°C\": \"1.454 to 1.470\", \"Specific gravity at 25°C\": \"0.835 to 0.927\", \"Optical rotation\": \"+10° to - 15°\", \"Solubility\": \"Soluble in ethanol.\", \"GLC\": \"Cineol Content Min 50%\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7378,
+  "fields": {
+    "file_name": "-IVC-NILGIRI OIL5320-Planet Herbs-11-11-25.docx",
+    "customer": "Nilgiri Oil5320 Planet Herbs",
+    "product": "Nilgiri Oil",
+    "batch": "HI/EO/25110804",
+    "mfg_date": "Oct-2025",
+    "botanical": "Eucalyptus globulus",
+    "part_used": "",
+    "fields": "{\"Appearance\": \"Colorless to clear pale yellow liquid.\", \"Odour\": \"Pleasant and characteristic, aromatic and pungent smell.\", \"Refrective index at 27°C\": \"1.454 to 1.470\", \"Specific gravity at 25°C\": \"0.835 to 0.927\", \"Optical rotation\": \"+10° to - 15°\", \"Solubility\": \"Soluble in ethanol.\", \"GLC\": \"Cineol Content Min 50%\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7379,
+  "fields": {
+    "file_name": "-IVC-NILGIRI OIL6998-Planet Herbs-19-01-26.docx",
+    "customer": "Nilgiri Oil6998 Planet Herbs",
+    "product": "Nilgiri Oil",
+    "batch": "HI/EO/26011804",
+    "mfg_date": "Jan-2026",
+    "botanical": "Eucalyptus globulus",
+    "part_used": "",
+    "fields": "{\"Appearance\": \"Colorless to clear pale yellow liquid.\", \"Odour\": \"Pleasant and characteristic, aromatic and pungent smell.\", \"Refrective index at 27°C\": \"1.454 to 1.470\", \"Specific gravity at 25°C\": \"0.835 to 0.927\", \"Optical rotation\": \"+10° to - 15°\", \"Solubility\": \"Soluble in ethanol.\", \"GLC\": \"Cineol Content Min 50%\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7380,
+  "fields": {
+    "file_name": "ABSOLUTE BLACK FRAGRANCE-SO-3194-HYPER FOODS-03-09-25.docx",
+    "customer": "Hyper Foods",
+    "product": "Absolute Black Fragrance",
+    "batch": "HI/FR/25090201                                                                               Exp.",
+    "mfg_date": "Aug-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Appearance\": \"Golden yellow color liquid\", \"Odour\": \"characteristics\", \"Specific gravity at 25°C\": \"0.985 to 1.120\", \"Refractive index at 25°C\": \"1.4892 to 1.498\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7381,
+  "fields": {
+    "file_name": "ACACIA ARABICA OIL SOLUBLE-IVC-3646-ABHISHEIK-28-08-25.docx",
+    "customer": "Abhisheik",
+    "product": "Acacia Arabica Oil",
+    "batch": "HI/OS/25082706",
+    "mfg_date": "Aug-2025",
+    "botanical": "Vachellia nilotica",
+    "part_used": "Bark",
+    "fields": "{\"Odour\": \"Characteristics\", \"Colour and Appearance\": \"Yellowish to pale yellow colour clear liquid\", \"Specific Gravity at 27°C\": \"0.830 to 0.95\", \"R.I\": \"1.45 to 1.52\", \"Acid Value\": \"NMT - 5\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7382,
+  "fields": {
+    "file_name": "ACACIA ARABICA OIL SOLUBLE-IVC-6259-ABHISHEIK-18-12-25.docx",
+    "customer": "Abhisheik",
+    "product": "Acacia Arabica Oil",
+    "batch": "HI/OS/25121706",
+    "mfg_date": "Dec-2025",
+    "botanical": "Vachellia nilotica",
+    "part_used": "Bark",
+    "fields": "{\"Odour\": \"Characteristics\", \"Colour and Appearance\": \"Yellowish to pale yellow colour clear liquid\", \"Specific Gravity at 27°C\": \"0.830 to 0.95\", \"R.I\": \"1.45 to 1.52\", \"Acid Value\": \"NMT - 5\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7383,
+  "fields": {
+    "file_name": "ACAI BERRY OILL-IVC--SALVIA-02-08-25.docx",
+    "customer": "Salvia",
+    "product": "Acai Berry Oil",
+    "batch": "HI/OS/25080101",
+    "mfg_date": "July-2025",
+    "botanical": "Euterpe oleracea",
+    "part_used": "Seed",
+    "fields": "{\"Odour\": \"Characteristic\", \"Solubility\": \"Soluble in Oils, Miscible in petroleum ether & insoluble in water\", \"Colour and Appearance\": \"Yellow color clear liquid\", \"Acid Value\": \"NMT 5.0\", \"Specific Gravity at 25ºC\": \"0.950 to 1.055\", \"Refractive Index at 25ºC\": \"1.450 to 1.518\", \"Peroxide Value\": \"NMT 10\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7384,
+  "fields": {
+    "file_name": "ACAI BERRY OILL-IVC-1898-SALVIA-30-06-25.docx",
+    "customer": "Salvia",
+    "product": "Acai Berry Oil",
+    "batch": "HI/OS/25063002",
+    "mfg_date": "June-2025",
+    "botanical": "Euterpe oleracea",
+    "part_used": "Seed",
+    "fields": "{\"Odour\": \"Characteristic\", \"Solubility\": \"Soluble in Oils, Miscible in petroleum ether & insoluble in water\", \"Colour and Appearance\": \"Yellow color clear liquid\", \"Acid Value\": \"NMT 5.0\", \"Specific Gravity at 25ºC\": \"0.950 to 1.055\", \"Refractive Index at 25ºC\": \"1.450 to 1.518\", \"Peroxide Value\": \"NMT 10\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7385,
+  "fields": {
+    "file_name": "ACAI BERRY OILL-IVC-3300-SALVIA-18-08-25.docx",
+    "customer": "Salvia",
+    "product": "Acai Berry Oil",
+    "batch": "HI/OS/25081101",
+    "mfg_date": "Aug-2025",
+    "botanical": "Euterpe oleracea",
+    "part_used": "Seed",
+    "fields": "{\"Odour\": \"Characteristic\", \"Solubility\": \"Soluble in Oils, Miscible in petroleum ether & insoluble in water\", \"Colour and Appearance\": \"Yellow color clear liquid\", \"Acid Value\": \"NMT 5.0\", \"Specific Gravity at 25ºC\": \"0.950 to 1.055\", \"Refractive Index at 25ºC\": \"1.450 to 1.518\", \"Peroxide Value\": \"NMT 10\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7386,
+  "fields": {
+    "file_name": "ACAI BERRY OILL-IVC-5327-SALVIA-11-11-25.docx",
+    "customer": "Salvia",
+    "product": "Acai Berry Oil",
+    "batch": "HI/OS/25110802",
+    "mfg_date": "Oct-2025",
+    "botanical": "Euterpe oleracea",
+    "part_used": "Seed",
+    "fields": "{\"Odour\": \"Characteristic\", \"Solubility\": \"Soluble in Oils, Miscible in petroleum ether & insoluble in water\", \"Colour and Appearance\": \"Yellow color clear liquid\", \"Acid Value\": \"NMT 5.0\", \"Specific Gravity at 25ºC\": \"0.950 to 1.055\", \"Refractive Index at 25ºC\": \"1.450 to 1.518\", \"Peroxide Value\": \"NMT 10\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7387,
+  "fields": {
+    "file_name": "ACAI BERRY OILL-IVC-SALVIA-07-11-25.docx",
+    "customer": "Salvia",
+    "product": "Acai Berry Oil",
+    "batch": "HI/OS/25110502",
+    "mfg_date": "Oct-2025",
+    "botanical": "Euterpe oleracea",
+    "part_used": "Seed",
+    "fields": "{\"Odour\": \"Characteristic\", \"Solubility\": \"Soluble in Oils, Miscible in petroleum ether & insoluble in water\", \"Colour and Appearance\": \"Yellow color clear liquid\", \"Acid Value\": \"NMT 5.0\", \"Specific Gravity at 25ºC\": \"0.950 to 1.055\", \"Refractive Index at 25ºC\": \"1.450 to 1.518\", \"Peroxide Value\": \"NMT 10\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7388,
+  "fields": {
+    "file_name": "ACHYRANTHUS OIL SOLUBLE-IVC-02471-LAVANYA-29-07-24.docx",
+    "customer": "Lavanya",
+    "product": "Achyranthus Oil Soluble",
+    "batch": "HI/OS/24072903",
+    "mfg_date": "July-2024",
+    "botanical": "Aspera aghara",
+    "part_used": "",
+    "fields": "{\"Odour\": \"Characteristic\", \"Colour and Appearance\": \"Yellowish to pale yellow or light brown color clear liquid\", \"R.I\": \"1.45 to 1.52\", \"Acid Value\": \"NMT -5\", \"Specific Gravity at 27ºC\": \"0.89 to 0.95\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7389,
+  "fields": {
+    "file_name": "AD & SHINE  FRAGRANCE-ABALONE-10-07-24.docx",
+    "customer": "Unknown",
+    "product": "Ad & Shine Fragrance",
+    "batch": "HI/FR/24070804                                                                    Exp.",
+    "mfg_date": "June-2024",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Appearance\": \"Pale yellow to yellow color clear liquid.\", \"Odour\": \"Characteristic\", \"Specific gravity at 25°C\": \"0.920 to 1.100\", \"Refractive index at 20°C\": \"1.420 to 1.5200\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7390,
+  "fields": {
+    "file_name": "AD & SHINE  FRAGRANCE-DEKHAR HERBAL-02-07-24.docx",
+    "customer": "Unknown",
+    "product": "Ad & Shine Fragrance",
+    "batch": "HI/FR/24062806                                                                    Exp.",
+    "mfg_date": "June-2024",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Appearance\": \"Pale yellow to yellow color clear liquid.\", \"Odour\": \"Characteristic\", \"Specific gravity at 25°C\": \"0.920 to 1.100\", \"Refractive index at 20°C\": \"1.420 to 1.5200\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7391,
+  "fields": {
+    "file_name": "AD & SHINE  FRAGRANCE-LIFE VEDA-06-07-24.docx",
+    "customer": "Unknown",
+    "product": "Ad & Shine Fragrance",
+    "batch": "HI/FR/24070401                                                                    Exp.",
+    "mfg_date": "June-2024",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Appearance\": \"Pale yellow to yellow color clear liquid.\", \"Odour\": \"Characteristic\", \"Specific gravity at 25°C\": \"0.920 to 1.100\", \"Refractive index at 20°C\": \"1.420 to 1.5200\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7392,
+  "fields": {
+    "file_name": "AD & SHINE  FRAGRANCE-UVEDIC-16-07-24.docx",
+    "customer": "Unknown",
+    "product": "Ad & Shine Fragrance",
+    "batch": "HI/FR/24071502                                                                     Exp.",
+    "mfg_date": "July-2024",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Appearance\": \"Pale yellow to yellow color clear liquid.\", \"Odour\": \"Characteristic\", \"Specific gravity at 25°C\": \"0.920 to 1.100\", \"Refractive index at 20°C\": \"1.420 to 1.5200\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7393,
+  "fields": {
+    "file_name": "AFRICAN MANGO LIQYUID EXTRACT-2757-LAVANYA-23-07-25.docx",
+    "customer": "Unknown",
+    "product": "African Mango Liquid Extract",
+    "batch": "HI/LE/25072101",
+    "mfg_date": "July-2025",
+    "botanical": "Irvingia gabonensis",
+    "part_used": "Fruit",
+    "fields": "{\"Description\": \"Yellow to pale yellow color clear liquid with characteristic odour.\", \"Water  Solubility\": \"Soluble\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"3-7\", \"Specific Gravity\": \"0.900 - 2.00\", \"Assay\": \"Presence of Polyphenol\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT – 100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7394,
+  "fields": {
+    "file_name": "AFRICAN MANGO LIQYUID EXTRACT-3096-LAVANYA-05-08-25.docx",
+    "customer": "Unknown",
+    "product": "African Mango Liquid Extract",
+    "batch": "HI/LE/25080401",
+    "mfg_date": "July-2025",
+    "botanical": "Irvingia gabonensis",
+    "part_used": "Fruit",
+    "fields": "{\"Description\": \"Yellow to pale yellow color clear liquid with characteristic odour.\", \"Water  Solubility\": \"Soluble\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"3-7\", \"Specific Gravity\": \"0.900 - 2.00\", \"Assay\": \"Presence of Polyphenol\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT – 100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7395,
+  "fields": {
+    "file_name": "AFRICAN MANGO LIQYUID EXTRACT-3374-LAVANYA-19-08-25.docx",
+    "customer": "Unknown",
+    "product": "African Mango Liquid Extract",
+    "batch": "HI/LE/25081801",
+    "mfg_date": "Aug-2025",
+    "botanical": "Irvingia gabonensis",
+    "part_used": "Fruit",
+    "fields": "{\"Description\": \"Yellow to pale yellow color clear liquid with characteristic odour.\", \"Water  Solubility\": \"Soluble\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"3-7\", \"Specific Gravity\": \"0.900 - 2.00\", \"Assay\": \"Presence of Polyphenol\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT – 100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7396,
+  "fields": {
+    "file_name": "AFRICAN MANGO LIQYUID EXTRACT-IVC--lavanya-09-12-25.docx",
+    "customer": "Lavanya",
+    "product": "African Mango Liquid Extract",
+    "batch": "HI/LE/25120801",
+    "mfg_date": "Nov-2025",
+    "botanical": "Irvingia gabonensis",
+    "part_used": "Fruit",
+    "fields": "{\"Description\": \"Yellow to pale yellow color clear liquid with characteristic odour.\", \"Water  Solubility\": \"Soluble\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"3-7\", \"Specific Gravity\": \"0.900 - 2.00\", \"Assay\": \"Presence of Polyphenol\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT – 100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7397,
+  "fields": {
+    "file_name": "AFRICAN MANGO LIQYUID EXTRACT-IVC-3956-LAVANYA-10-09-25.docx",
+    "customer": "Lavanya",
+    "product": "African Mango Liquid Extract",
+    "batch": "HI/LE/25091001",
+    "mfg_date": "Sep-2025",
+    "botanical": "Irvingia gabonensis",
+    "part_used": "Fruit",
+    "fields": "{\"Description\": \"Yellow to pale yellow color clear liquid with characteristic odour.\", \"Water  Solubility\": \"Soluble\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"3-7\", \"Specific Gravity\": \"0.900 - 2.00\", \"Assay\": \"Presence of Polyphenol\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT – 100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7398,
+  "fields": {
+    "file_name": "AFRICAN MANGO LIQYUID EXTRACT-IVC-4153LAVANYA-18-09-25.docx",
+    "customer": "Lavanya",
+    "product": "African Mango Liquid Extract",
+    "batch": "HI/LE/25091801",
+    "mfg_date": "Sep-2025",
+    "botanical": "Irvingia gabonensis",
+    "part_used": "Fruit",
+    "fields": "{\"Description\": \"Yellow to pale yellow color clear liquid with characteristic odour.\", \"Water  Solubility\": \"Soluble\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"3-7\", \"Specific Gravity\": \"0.900 - 2.00\", \"Assay\": \"Presence of Polyphenol\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT – 100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7399,
+  "fields": {
+    "file_name": "AFRICAN MANGO LIQYUID EXTRACT-IVC-4382-LAVANYA-29-09-25.docx",
+    "customer": "Lavanya",
+    "product": "African Mango Liquid Extract",
+    "batch": "HI/LE/25092901",
+    "mfg_date": "Sep-2025",
+    "botanical": "Irvingia gabonensis",
+    "part_used": "Fruit",
+    "fields": "{\"Description\": \"Yellow to pale yellow color clear liquid with characteristic odour.\", \"Water  Solubility\": \"Soluble\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"3-7\", \"Specific Gravity\": \"0.900 - 2.00\", \"Assay\": \"Presence of Polyphenol\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT – 100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7400,
+  "fields": {
+    "file_name": "AFRICAN MANGO LIQYUID EXTRACT-IVC-5134-lavanya-03-11-25.docx",
+    "customer": "Lavanya",
+    "product": "African Mango Liquid Extract",
+    "batch": "HI/LE/25110301",
+    "mfg_date": "Oct-2025",
+    "botanical": "Irvingia gabonensis",
+    "part_used": "Fruit",
+    "fields": "{\"Description\": \"Yellow to pale yellow color clear liquid with characteristic odour.\", \"Water  Solubility\": \"Soluble\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"3-7\", \"Specific Gravity\": \"0.900 - 2.00\", \"Assay\": \"Presence of Polyphenol\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT – 100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7401,
+  "fields": {
+    "file_name": "AFRICAN MANGO LIQYUID EXTRACT-IVC-5515-lavanya-18-11-25.docx",
+    "customer": "Lavanya",
+    "product": "African Mango Liquid Extract",
+    "batch": "HI/LE/25111501",
+    "mfg_date": "Nov-2025",
+    "botanical": "Irvingia gabonensis",
+    "part_used": "Fruit",
+    "fields": "{\"Description\": \"Yellow to pale yellow color clear liquid with characteristic odour.\", \"Water  Solubility\": \"Soluble\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"3-7\", \"Specific Gravity\": \"0.900 - 2.00\", \"Assay\": \"Presence of Polyphenol\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT – 100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7402,
+  "fields": {
+    "file_name": "AFRICAN MANGO LIQYUID EXTRACT-IVC-571-lavanya-18-11-25.docx",
+    "customer": "Lavanya",
+    "product": "African Mango Liquid Extract",
+    "batch": "HI/LE/25112501",
+    "mfg_date": "Nov-2025",
+    "botanical": "Irvingia gabonensis",
+    "part_used": "Fruit",
+    "fields": "{\"Description\": \"Yellow to pale yellow color clear liquid with characteristic odour.\", \"Water  Solubility\": \"Soluble\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"3-7\", \"Specific Gravity\": \"0.900 - 2.00\", \"Assay\": \"Presence of Polyphenol\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT – 100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7403,
+  "fields": {
+    "file_name": "AFRICAN MANGO LIQYUID EXTRACT-IVC-5713-lavanya-25-11-25.docx",
+    "customer": "Lavanya",
+    "product": "African Mango Liquid Extract",
+    "batch": "HI/LE/25112501",
+    "mfg_date": "Nov-2025",
+    "botanical": "Irvingia gabonensis",
+    "part_used": "Fruit",
+    "fields": "{\"Description\": \"Yellow to pale yellow color clear liquid with characteristic odour.\", \"Water  Solubility\": \"Soluble\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"3-7\", \"Specific Gravity\": \"0.900 - 2.00\", \"Assay\": \"Presence of Polyphenol\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT – 100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7404,
+  "fields": {
+    "file_name": "AFRICAN MANGO LIQYUID EXTRACT-IVC-5822-lavanya-01-12-25.docx",
+    "customer": "Lavanya",
+    "product": "African Mango Liquid Extract",
+    "batch": "HI/LE/25112901",
+    "mfg_date": "Nov-2025",
+    "botanical": "Irvingia gabonensis",
+    "part_used": "Fruit",
+    "fields": "{\"Description\": \"Yellow to pale yellow color clear liquid with characteristic odour.\", \"Water  Solubility\": \"Soluble\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"3-7\", \"Specific Gravity\": \"0.900 - 2.00\", \"Assay\": \"Presence of Polyphenol\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT – 100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7405,
+  "fields": {
+    "file_name": "AFRICAN MANGO LIQYUID EXTRACT-IVC-6431-lavanya-24-12-25.docx",
+    "customer": "Lavanya",
+    "product": "African Mango Liquid Extract",
+    "batch": "HI/LE/25122303",
+    "mfg_date": "Dec-2025",
+    "botanical": "Irvingia gabonensis",
+    "part_used": "Fruit",
+    "fields": "{\"Description\": \"Yellow to pale yellow color clear liquid with characteristic odour.\", \"Water  Solubility\": \"Soluble\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"3-7\", \"Specific Gravity\": \"0.900 - 2.00\", \"Assay\": \"Presence of Polyphenol\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT – 100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7406,
+  "fields": {
+    "file_name": "AFRICAN MANGO LIQYUID EXTRACT-IVC-6633-lavanya-03-01-2026.docx",
+    "customer": "Lavanya",
+    "product": "African Mango Liquid Extract",
+    "batch": "HI/LE/26010205",
+    "mfg_date": "Dec-2025",
+    "botanical": "Irvingia gabonensis",
+    "part_used": "Fruit",
+    "fields": "{\"Description\": \"Yellow to pale yellow color clear liquid with characteristic odour.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"3.0 – 7.0\", \"Specific Gravity\": \"0.900 - 2.00\", \"Assay\": \"Presence of Polyphenol\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT – 100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Solubility\": \"Soluble\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7407,
+  "fields": {
+    "file_name": "AFRICAN MANGO LIQYUID EXTRACT-IVC-6884-lavanya-14-01-26.docx",
+    "customer": "Lavanya",
+    "product": "African Mango Liquid Extract",
+    "batch": "HI/LE/26011301",
+    "mfg_date": "Jan-2026",
+    "botanical": "Irvingia gabonensis",
+    "part_used": "Fruit",
+    "fields": "{\"Description\": \"Yellow to pale yellow color clear liquid with characteristic odour.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"3.0 – 7.0\", \"Specific Gravity\": \"0.900 - 2.00\", \"Assay\": \"Presence of Polyphenol\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT – 100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Solubility\": \"Soluble\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7408,
+  "fields": {
+    "file_name": "AFRICAN MANGO LIQYUID EXTRACT-IVC-7186-lavanya-28-01-26.docx",
+    "customer": "Lavanya",
+    "product": "African Mango Liquid Extract",
+    "batch": "HI/LE/26012801",
+    "mfg_date": "Jan-2026",
+    "botanical": "Irvingia gabonensis",
+    "part_used": "Fruit",
+    "fields": "{\"Description\": \"Yellow to pale yellow color clear liquid with characteristic odour.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"3.0 – 7.0\", \"Specific Gravity\": \"0.900 - 2.00\", \"Assay\": \"Presence of Polyphenol\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT – 100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Solubility\": \"Soluble\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7409,
+  "fields": {
+    "file_name": "AFRICAN MANGO LIQYUID EXTRACT-IVC-7539-lavanya-11-02-26.docx",
+    "customer": "Lavanya",
+    "product": "African Mango Liquid Extract",
+    "batch": "HI/LE/26020701",
+    "mfg_date": "Feb-2026",
+    "botanical": "Irvingia gabonensis",
+    "part_used": "Fruit",
+    "fields": "{\"Description\": \"Yellow to pale yellow color clear liquid with characteristic odour.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"3.0 – 7.0\", \"Specific Gravity\": \"0.900 - 2.00\", \"Assay\": \"Presence of Polyphenol\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT – 100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Solubility\": \"Soluble\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7410,
+  "fields": {
+    "file_name": "AFRICAN MANGO LIQYUID EXTRACT-IVC-7760-lavanya-19-02-26.docx",
+    "customer": "Lavanya",
+    "product": "African Mango Liquid Extract",
+    "batch": "HI/LE/26021901",
+    "mfg_date": "Feb-2026",
+    "botanical": "Irvingia gabonensis",
+    "part_used": "Fruit",
+    "fields": "{\"Description\": \"Yellow to pale yellow color clear liquid with characteristic odour.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"3.0 – 7.0\", \"Specific Gravity\": \"0.900 - 2.00\", \"Assay\": \"Presence of Polyphenol\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT – 100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Solubility\": \"Soluble\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7411,
+  "fields": {
+    "file_name": "AFRICAN MANGO LIQYUID EXTRACT-IVC-8114-lavanya-09-03-26.docx",
+    "customer": "Lavanya",
+    "product": "African Mango Liquid Extract",
+    "batch": "HI/LE/26030901",
+    "mfg_date": "Mar-2026",
+    "botanical": "Irvingia gabonensis",
+    "part_used": "Fruit",
+    "fields": "{\"Description\": \"Yellow to pale yellow color clear liquid with characteristic odour.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"3.0 – 7.0\", \"Specific Gravity\": \"0.900 - 2.00\", \"Assay\": \"Presence of Polyphenol\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT – 100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Solubility\": \"Soluble\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7412,
+  "fields": {
+    "file_name": "AFRICAN MANGO LIQYUID EXTRACT-IVC-8373-lavanya-18-03-26.docx",
+    "customer": "Lavanya",
+    "product": "African Mango Liquid Extract",
+    "batch": "HI/LE/26031701",
+    "mfg_date": "Mar-2026",
+    "botanical": "Irvingia gabonensis",
+    "part_used": "Fruit",
+    "fields": "{\"Description\": \"Yellow to pale yellow color clear liquid with characteristic odour.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"3.0 – 7.0\", \"Specific Gravity\": \"0.900 - 2.00\", \"Assay\": \"Presence of Polyphenol\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT – 100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Solubility\": \"Soluble\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7413,
+  "fields": {
+    "file_name": "AFRICAN MANGO LIQYUID EXTRACT-IVC-8616-lavanya-27-03-26.docx",
+    "customer": "Lavanya",
+    "product": "African Mango Liquid Extract",
+    "batch": "HI/LE/26032701",
+    "mfg_date": "Mar-2026",
+    "botanical": "Irvingia gabonensis",
+    "part_used": "Fruit",
+    "fields": "{\"Description\": \"Yellow to pale yellow color clear liquid with characteristic odour.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"3.0 – 7.0\", \"Specific Gravity\": \"0.900 - 2.00\", \"Assay\": \"Presence of Polyphenol\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT – 100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Solubility\": \"Soluble\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7414,
+  "fields": {
+    "file_name": "AFRICAN MANGO LIQYUID EXTRACT-LAVANYA-04-09-25.docx",
+    "customer": "Unknown",
+    "product": "African Mango Liquid Extract",
+    "batch": "HI/LE/25090401",
+    "mfg_date": "Aug-2025",
+    "botanical": "Irvingia gabonensis",
+    "part_used": "Fruit",
+    "fields": "{\"Description\": \"Yellow to pale yellow color clear liquid with characteristic odour.\", \"Water  Solubility\": \"Soluble\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"3-7\", \"Specific Gravity\": \"0.900 - 2.00\", \"Assay\": \"Presence of Polyphenol\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT – 100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7415,
+  "fields": {
+    "file_name": "AGARWOOD  HYDROSOL-IVC-7314-SALVIA-03-02-26.docx",
+    "customer": "Salvia",
+    "product": "Agarwood  Hydrosol",
+    "batch": "HI/WR/26012904",
+    "mfg_date": "Jan-2026",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Appearance\": \"Transparent to opalescent liquid, free from adulterants, turbidity, sediments, suspended and foreign particles\", \"Odour\": \"Characteristic\", \"pH\": \"4.00 – 7.00\", \"Color\": \"Colorless\", \"Specific gravity at 25ºC\": \"0.950 - 1.010\", \"Ethanol\": \"12.0 - 14.0%\", \"Total Bacterial count\": \"Not more than 100 Cfu/g\", \"Total yeast and mould count\": \"Not more than 10 Cfu/g\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7416,
+  "fields": {
+    "file_name": "AGARWOOD FRAGRANCE-IVC-7074-AKASHAY NAND DASS-22-01-26.docx",
+    "customer": "Akashay Nand Dass",
+    "product": "Agarwood Fragrance",
+    "batch": "HI/FR/26012001",
+    "mfg_date": "Jan-2026",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Appearance\": \"Orangish yellow to brownish yellow color liquid\", \"Odor\": \"Characteristic\", \"Specific gravity   at 250C\": \"0.920 to 1.200\", \"Refractive index at 250C\": \"1.450 to 1.520\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7417,
+  "fields": {
+    "file_name": "AGARWOOD FRAGRANCE-IVC-7112-MARC LAB-24-01-26.docx",
+    "customer": "Marc Lab",
+    "product": "Sarjikakshara Oil",
+    "batch": "HI/FO/26012101",
+    "mfg_date": "Jan-2026",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Appearance\": \"Yellow to pale yellow color liquid\", \"Odor\": \"Characteristic\", \"Specific gravity   at 250C\": \"0.800 to 1.500\", \"Refractive index at 250C\": \"1.490 to 1.500\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7418,
+  "fields": {
+    "file_name": "AJWAIN LIQUID EXTRACT-IVC--LAVANYA-06-04-26.docx",
+    "customer": "Lavanya",
+    "product": "Ajwain Liquid Extract",
+    "batch": "HI/LE/26040602",
+    "mfg_date": "Apr-2026",
+    "botanical": "Trachyspermum ammi",
+    "part_used": "Seed",
+    "fields": "{\"Description\": \"Yellowish to pale yellow color liquid with characteristic odour\", \"Water  Solubility\": \"Soluble\", \"pH\": \"3-6\", \"Specific Gravity\": \"0.900 - 2.00\", \"Assay\": \"Presence of Thymol\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT- 100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Propylene Glycol  Solubility\": \"Soluble\", \"Alcohol  Solubility\": \"---------\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7419,
+  "fields": {
+    "file_name": "AJWAIN LIQUID EXTRACT-IVC-7581-LANARK-12-02-26.docx",
+    "customer": "Lanark",
+    "product": "Ajwain Liquid Extract",
+    "batch": "HI/LE/26021102",
+    "mfg_date": "Feb-2026",
+    "botanical": "Trachyspermum ammi",
+    "part_used": "Seed",
+    "fields": "{\"Description\": \"Yellowish to pale yellow color liquid with characteristic odour\", \"Water  Solubility\": \"Soluble\", \"pH\": \"3-6\", \"Specific Gravity\": \"0.900 - 2.00\", \"Assay\": \"Presence of Thymol\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT- 100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Propylene Glycol  Solubility\": \"Soluble\", \"Alcohol  Solubility\": \"---------\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7420,
+  "fields": {
+    "file_name": "AJWAIN LIQUID EXTRACT-IVC-8249-LAVANYA-12-03-26.docx",
+    "customer": "Lavanya",
+    "product": "Ajwain Liquid Extract",
+    "batch": "HI/LE/26031202",
+    "mfg_date": "Mar-2026",
+    "botanical": "Trachyspermum ammi",
+    "part_used": "Seed",
+    "fields": "{\"Description\": \"Yellowish to pale yellow color liquid with characteristic odour\", \"Water  Solubility\": \"Soluble\", \"pH\": \"3-6\", \"Specific Gravity\": \"0.900 - 2.00\", \"Assay\": \"Presence of Thymol\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT- 100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Propylene Glycol  Solubility\": \"Soluble\", \"Alcohol  Solubility\": \"---------\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7421,
+  "fields": {
+    "file_name": "AJWAIN LIQUID EXTRACT-IVC-8562-LAVANYA-25-03-26.docx",
+    "customer": "Lavanya",
+    "product": "Ajwain Liquid Extract",
+    "batch": "HI/LE/26032402",
+    "mfg_date": "Mar-2026",
+    "botanical": "Trachyspermum ammi",
+    "part_used": "Seed",
+    "fields": "{\"Description\": \"Yellowish to pale yellow color liquid with characteristic odour\", \"Water  Solubility\": \"Soluble\", \"pH\": \"3-6\", \"Specific Gravity\": \"0.900 - 2.00\", \"Assay\": \"Presence of Thymol\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT- 100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Propylene Glycol  Solubility\": \"Soluble\", \"Alcohol  Solubility\": \"---------\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7422,
+  "fields": {
+    "file_name": "AJWAIN OIL IVC-7604- JS CHEMICALS-14-02-26.docx",
+    "customer": "Unknown",
+    "product": "Ajwain Oil",
+    "batch": "HI/EO/ 26021101",
+    "mfg_date": "Feb-2026",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Appearance\": \"Colorless to yellow  liquid.\", \"Specific gravity at 25°C\": \"0.890 – 0.935\", \"Optical rotation\": \"-6.00° to +7.0°\", \"Solubility\": \"Miscible with ethanol\", \"Odor\": \"Characteristic aromatic spicy odor and reminiscent of thymol.\", \"Botanical name\": \"Trachyspermum ammi\", \"Refractive index at 27°C\": \"1.485 – 1.525\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7423,
+  "fields": {
+    "file_name": "AJWAIN OIL inv--salvia-15-07-25.docx",
+    "customer": "Unknown",
+    "product": "Ajwain Oil",
+    "batch": "HI/EO/ 25101505",
+    "mfg_date": "Oct-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Appearance\": \"Orange color liquid\", \"Specific gravity at 25°C\": \"0.890 – 0.935\", \"Optical rotation\": \"-6.00° to +7.0°\", \"Solubility\": \"Miscible with ethanol\", \"Odor\": \"Characteristic aromatic spicy odor and reminiscent of thymol.\", \"Botanical name\": \"Trachyspermum ammi\", \"Refractive index at 27°C\": \"1.485 – 1.525\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7424,
+  "fields": {
+    "file_name": "AJWAIN OIL inv--salvia-17-10-25.docx",
+    "customer": "Unknown",
+    "product": "Ajwain Oil",
+    "batch": "HI/EO/ 25101505",
+    "mfg_date": "Oct-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Appearance\": \"Orange color liquid\", \"Specific gravity at 25°C\": \"0.890 – 0.935\", \"Optical rotation\": \"-6.00° to +7.0°\", \"Solubility\": \"Miscible with ethanol\", \"Odor\": \"Characteristic aromatic spicy odor and reminiscent of thymol.\", \"Botanical name\": \"Trachyspermum ammi\", \"Refractive index at 27°C\": \"1.485 – 1.525\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7425,
+  "fields": {
+    "file_name": "AJWAIN OIL inv--salvia-22-09-25.docx",
+    "customer": "Unknown",
+    "product": "Ajwain Oil",
+    "batch": "HI/EO/ 25092207",
+    "mfg_date": "Sep-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Appearance\": \"Orange color liquid\", \"Specific gravity at 25°C\": \"0.890 – 0.935\", \"Optical rotation\": \"-6.00° to +7.0°\", \"Solubility\": \"Miscible with ethanol\", \"Odor\": \"Characteristic aromatic spicy odor and reminiscent of thymol.\", \"Botanical name\": \"Trachyspermum ammi\", \"Refractive index at 27°C\": \"1.485 – 1.525\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7426,
+  "fields": {
+    "file_name": "AJWAIN OIL inv-04006- JS CHEMICALS.docx",
+    "customer": "Unknown",
+    "product": "Ajwain Oil",
+    "batch": "HI/EO/ 24101401",
+    "mfg_date": "Oct-2024",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Appearance\": \"Colorless to yellow  liquid.\", \"Specific gravity at 25°C\": \"0.890 – 0.935\", \"Optical rotation\": \"-6.00° to +7.0°\", \"Solubility\": \"Miscible with ethanol\", \"Odor\": \"Characteristic aromatic spicy odor and reminiscent of thymol.\", \"Botanical name\": \"Trachyspermum ammi\", \"Refractive index at 27°C\": \"1.485 – 1.525\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7427,
+  "fields": {
+    "file_name": "AJWAIN OIL inv-2101-salvia-08-07-25.docx",
+    "customer": "Unknown",
+    "product": "Ajwain Oil",
+    "batch": "HI/EO/ 25070704",
+    "mfg_date": "June-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Appearance\": \"Orange color liquid\", \"Specific gravity at 25°C\": \"0.890 – 0.935\", \"Optical rotation\": \"-6.00° to +7.0°\", \"Solubility\": \"Miscible with ethanol\", \"Odor\": \"Characteristic aromatic spicy odor and reminiscent of thymol.\", \"Botanical name\": \"Trachyspermum ammi\", \"Refractive index at 27°C\": \"1.485 – 1.525\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7428,
+  "fields": {
+    "file_name": "AJWAIN OIL inv-2674-ETERNAL LIFE-19-07-25.docx",
+    "customer": "Unknown",
+    "product": "Ajwain Oil",
+    "batch": "HI/EO/ 25071808",
+    "mfg_date": "July-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Appearance\": \"Orange color liquid\", \"Specific gravity at 25°C\": \"0.890 – 0.935\", \"Optical rotation\": \"-6.00° to +7.0°\", \"Solubility\": \"Miscible with ethanol\", \"Odor\": \"Characteristic aromatic spicy odor and reminiscent of thymol.\", \"Botanical name\": \"Trachyspermum ammi\", \"Refractive index at 27°C\": \"1.485 – 1.525\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7429,
+  "fields": {
+    "file_name": "AJWAIN OIL inv-salvia-19-05-25.docx",
+    "customer": "Unknown",
+    "product": "Oregano Oil",
+    "batch": "HI/EO/ 24101401",
+    "mfg_date": "May-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Appearance\": \"Colorless to yellow  liquid.\", \"Specific gravity at 25°C\": \"0.890 – 0.935\", \"Optical rotation\": \"-6.00° to +7.0°\", \"Solubility\": \"Miscible with ethanol\", \"Odor\": \"Characteristic aromatic spicy odor and reminiscent of thymol.\", \"Botanical name\": \"Trachyspermum ammi\", \"Refractive index at 27°C\": \"1.485 – 1.525\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7430,
+  "fields": {
+    "file_name": "AJWAIN OIL(THYME OIL)-INV-00807-GLIMSUN NUTRITION-29-12-25.docx",
+    "customer": "Glimsun Nutrition",
+    "product": "Thyme Oil",
+    "batch": "HI/EO/ 25122901",
+    "mfg_date": "Dec-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Appearance\": \"Colorless to pale yellow to yellow  liquid.\", \"Specific gravity at 25°C\": \"0.890 – 0.935\", \"Optical rotation\": \"-6.00° to +7.0°\", \"Solubility\": \"Miscible with ethanol\", \"Odor\": \"Characteristic aromatic spicy odor and reminiscent of thymol.\", \"Botanical name\": \"Trachyspermum ammi\", \"Refractive index at 27°C\": \"1.485 – 1.525\", \"Assay (as Thymol)\": \"Min 44.0%\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7431,
+  "fields": {
+    "file_name": "AJWAIN OIL(THYME OIL)-INV-0090-AYUBAL-04-04-26.docx",
+    "customer": "Ayubal",
+    "product": "Ajwain Oil",
+    "batch": "HI/EO/ 26040401",
+    "mfg_date": "Apr-2026",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Appearance\": \"Colorless to pale yellow to yellow  liquid.\", \"Specific gravity at 25°C\": \"0.890 – 0.935\", \"Optical rotation\": \"-6.00° to +7.0°\", \"Solubility\": \"Miscible with ethanol\", \"Odor\": \"Characteristic aromatic spicy odor and reminiscent of thymol.\", \"Botanical name\": \"Trachyspermum ammi\", \"Refractive index at 27°C\": \"1.485 – 1.525\", \"Assay (as Thymol)\": \"Min 40.0%\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7432,
+  "fields": {
+    "file_name": "AJWAIN OIL(THYME OIL)-INV-05669-zee-06-06-25.docx",
+    "customer": "Zee",
+    "product": "Ajwain Oil",
+    "batch": "HI/EO/ 25060401",
+    "mfg_date": "May-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Appearance\": \"Colorless to pale yellow to yellow  liquid.\", \"Specific gravity at 25°C\": \"0.890 – 0.935\", \"Optical rotation\": \"-6.00° to +7.0°\", \"Solubility\": \"Miscible with ethanol\", \"Odor\": \"Characteristic aromatic spicy odor and reminiscent of thymol.\", \"Botanical name\": \"Trachyspermum ammi\", \"Refractive index at 27°C\": \"1.485 – 1.525\", \"Assay (as Thymol)\": \"Min 44.0%\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7433,
+  "fields": {
+    "file_name": "AJWAIN OIL(THYME OIL)-INV-4346-UNITED-26-09-25.docx",
+    "customer": "United",
+    "product": "Ajwain Oil",
+    "batch": "HI/EO/ 25092601",
+    "mfg_date": "Sep-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Appearance\": \"Colorless clear liquid.\", \"Specific gravity at 25°C\": \"0.890 – 0.935\", \"Optical rotation\": \"-6.00° to +7.0°\", \"Solubility\": \"Miscible with ethanol\", \"Odor\": \"Characteristic aromatic spicy odor and reminiscent of thymol.\", \"Botanical name\": \"Trachyspermum ammi\", \"Refractive index at 27°C\": \"1.485 – 1.525\", \"Assay (as Thymol)\": \"Min 44.0%\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7434,
+  "fields": {
+    "file_name": "AJWAIN OIL(THYME OIL)-INV-5463-rb creaters-18-11-25.docx",
+    "customer": "Rb Creaters",
+    "product": "Thyme Oil",
+    "batch": "HI/EO/ 25111505",
+    "mfg_date": "Nov-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Appearance\": \"Colorless to pale yellow to yellow  liquid.\", \"Specific gravity at 25°C\": \"0.890 – 0.935\", \"Optical rotation\": \"-6.00° to +7.0°\", \"Solubility\": \"Miscible with ethanol\", \"Odor\": \"Characteristic aromatic spicy odor and reminiscent of thymol.\", \"Botanical name\": \"Trachyspermum ammi\", \"Refractive index at 27°C\": \"1.485 – 1.525\", \"Assay (as Thymol)\": \"Min 44.0%\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7435,
+  "fields": {
+    "file_name": "AJWAIN OIL(THYME OIL)-INV-7498-VANCOM-10-02-26.docx",
+    "customer": "Vancom",
+    "product": "Thyme Oil",
+    "batch": "HI/EO/ 26020702",
+    "mfg_date": "Feb-2026",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Appearance\": \"Colorless to pale yellow to yellow  liquid.\", \"Specific gravity at 25°C\": \"0.890 – 0.935\", \"Optical rotation\": \"-6.00° to +7.0°\", \"Solubility\": \"Miscible with ethanol\", \"Odor\": \"Characteristic aromatic spicy odor and reminiscent of thymol.\", \"Botanical name\": \"Trachyspermum ammi\", \"Refractive index at 27°C\": \"1.485 – 1.525\", \"Assay (as Thymol)\": \"Min 44.0%\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7436,
+  "fields": {
+    "file_name": "AJWAIN OIL(THYME OIL)-INV-8520-AYUBAL-24-03-26.docx",
+    "customer": "Ayubal",
+    "product": "Ajwain Oil",
+    "batch": "HI/EO/ 26032401",
+    "mfg_date": "Mar-2026",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Appearance\": \"Colorless to pale yellow to yellow  liquid.\", \"Specific gravity at 25°C\": \"0.890 – 0.935\", \"Optical rotation\": \"-6.00° to +7.0°\", \"Solubility\": \"Miscible with ethanol\", \"Odor\": \"Characteristic aromatic spicy odor and reminiscent of thymol.\", \"Botanical name\": \"Trachyspermum ammi\", \"Refractive index at 27°C\": \"1.485 – 1.525\", \"Assay (as Thymol)\": \"Min 40.0%\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7437,
+  "fields": {
+    "file_name": "AJWAIN OIL(THYME OIL)-INV-8562-LAVANYA-25-03-26.docx",
+    "customer": "Lavanya",
+    "product": "Ajwain Oil",
+    "batch": "HI/EO/ 26032402",
+    "mfg_date": "Mar-2026",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Appearance\": \"Colorless to pale yellow to yellow  liquid.\", \"Specific gravity at 25°C\": \"0.890 – 0.935\", \"Optical rotation\": \"-6.00° to +7.0°\", \"Solubility\": \"Miscible with ethanol\", \"Odor\": \"Characteristic aromatic spicy odor and reminiscent of thymol.\", \"Botanical name\": \"Trachyspermum ammi\", \"Refractive index at 27°C\": \"1.485 – 1.525\", \"Assay (as Thymol)\": \"Min 44.0%\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7438,
+  "fields": {
+    "file_name": "ALGAE LIQUID EXTRACT-IVC-4810-WEDERM-16-10-25.docx",
+    "customer": "Wederm",
+    "product": "Pearl Algae Liquid Extract",
+    "batch": "HI/LE/25101402",
+    "mfg_date": "Oct-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Description\": \"Colorless to pale yellow  liquid with characteristic odor.\", \"Water  Solubility\": \"Soluble\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"4.0-7.0\", \"Specific Gravity\": \"1.0-1.50\", \"Assay\": \"Presence of protein\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT – 100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7439,
+  "fields": {
+    "file_name": "ALMOND AND HONEY FRAGRANCE-IVC-07418-CREATIVE COSMETIC-22-03-25.docx",
+    "customer": "Creative Cosmetic",
+    "product": "Almond & Honey Fragrance",
+    "batch": "HI/FR/25031901                                                                      Exp.",
+    "mfg_date": "Mar-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Appearance\": \"Orange to Dark Orangish color clear liquid.\", \"Odour\": \"Characteristic\", \"Specific gravity at 25°C\": \"0.920 to 1.100\", \"Refractive index at 20°C\": \"1.420 to 1.5200\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7440,
+  "fields": {
+    "file_name": "ALMOND AND HONEY FRAGRANCE-IVC-07440-IKRISH-24-03-25.docx",
+    "customer": "Ikrish",
+    "product": "Almond & Honey Fragrance",
+    "batch": "HI/FR/25031901                                                            Exp.",
+    "mfg_date": "Mar-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Appearance\": \"Golden yellow to yellow in color\", \"Odour\": \"Characteristic\", \"Specific gravity at 25°C\": \"0.850 to 1.100\", \"Refractive index at 25°C\": \"1.470 to 1.520\", \"Storage Indications\": \"Keep container tightly closed in a cool, dry and well-ventilated place.\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7441,
+  "fields": {
+    "file_name": "ALMOND AND HONEY FRAGRANCE-IVC-1421-IKRISH-26-05-25.docx",
+    "customer": "Ikrish",
+    "product": "Almond & Honey Fragrance",
+    "batch": "HI/FR/25052501                                                            Exp.",
+    "mfg_date": "May-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Appearance\": \"Golden yellow to yellow in color\", \"Odour\": \"Characteristic\", \"Specific gravity at 25°C\": \"0.850 to 1.100\", \"Refractive index at 25°C\": \"1.470 to 1.520\", \"Storage Indications\": \"Keep container tightly closed in a cool, dry and well-ventilated place.\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7442,
+  "fields": {
+    "file_name": "ALMOND AND HONEY FRAGRANCE-IVC-2092-IKRISH-25-06-25.docx",
+    "customer": "Ikrish",
+    "product": "Almond & Honey Fragrance",
+    "batch": "HI/FR/25062401                                                            Exp.",
+    "mfg_date": "June-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Appearance\": \"Golden yellow to yellow in color\", \"Odour\": \"Characteristic\", \"Specific gravity at 25°C\": \"0.850 to 1.100\", \"Refractive index at 25°C\": \"1.470 to 1.520\", \"Storage Indications\": \"Keep container tightly closed in a cool, dry and well-ventilated place.\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7443,
+  "fields": {
+    "file_name": "ALMOND AND HONEY FRAGRANCE-IVC-2817-2816-IKRISH-25-07-25.docx",
+    "customer": "2816 Ikrish",
+    "product": "Almond & Honey Fragrance",
+    "batch": "HI/FR/25072301                                                            Exp.",
+    "mfg_date": "July-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Appearance\": \"Golden yellow to yellow in color\", \"Odour\": \"Characteristic\", \"Specific gravity at 25°C\": \"0.850 to 1.100\", \"Refractive index at 25°C\": \"1.470 to 1.520\", \"Storage Indications\": \"Keep container tightly closed in a cool, dry and well-ventilated place.\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7444,
+  "fields": {
+    "file_name": "ALMOND AND HONEY FRAGRANCE-IVC-3271-IKRISH-13-08-25.docx",
+    "customer": "Ikrish",
+    "product": "Almond & Honey Fragrance",
+    "batch": "HI/FR/25081101                                                            Exp.",
+    "mfg_date": "Aug-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Appearance\": \"Golden yellow to yellow in color\", \"Odour\": \"Characteristic\", \"Specific gravity at 25°C\": \"0.850 to 1.100\", \"Refractive index at 25°C\": \"1.470 to 1.520\", \"Storage Indications\": \"Keep container tightly closed in a cool, dry and well-ventilated place.\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7445,
+  "fields": {
+    "file_name": "ALMOND AND HONEY FRAGRANCE-IVC-5029-dds chemical-30-10-25.docx",
+    "customer": "Dds Chemical",
+    "product": "Almond & Honey Fragrance",
+    "batch": "HI/FR/25102802                                                                      Exp.",
+    "mfg_date": "Oct-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Appearance\": \"Yellow color clear liquid.\", \"Odour\": \"Characteristic\", \"Specific gravity at 25°C\": \"0.920 to 1.100\", \"Refractive index at 20°C\": \"1.420 to 1.5200\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7446,
+  "fields": {
+    "file_name": "ALMOND AND HONEY FRAGRANCE-IVC-5954-dds chemical-06-12-25.docx",
+    "customer": "Dds Chemical",
+    "product": "Almond & Honey Fragrance",
+    "batch": "HI/FR/25120401                                                                      Exp.",
+    "mfg_date": "Nov-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Appearance\": \"Yellow color clear liquid.\", \"Odour\": \"Characteristic\", \"Specific gravity at 25°C\": \"0.920 to 1.100\", \"Refractive index at 20°C\": \"1.420 to 1.5200\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7447,
+  "fields": {
+    "file_name": "ALMOND AND HONEY FRAGRANCE-IVC-7688-VEDIMATIC-16-02-26.docx",
+    "customer": "Vedimatic",
+    "product": "Almond & Honey Fragrance",
+    "batch": "HI/FR/26021606                                                                      Exp.",
+    "mfg_date": "Feb-2026",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Appearance\": \"Yellow color clear liquid.\", \"Odour\": \"Characteristic\", \"Specific gravity at 25°C\": \"0.920 to 1.100\", \"Refractive index at 20°C\": \"1.420 to 1.5200\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7448,
+  "fields": {
+    "file_name": "ALMOND FRAGRANCE-IVC-04735-MAXDI-20-12-24.docx",
+    "customer": "Maxdi",
+    "product": "Sweet Almond Fragrance OS",
+    "batch": "HI/FR/24121904                                                                  Exp.",
+    "mfg_date": "Dec-2024",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Appearance\": \"Yellow color clear liquid.\", \"Odour\": \"Characteristic\", \"Specific gravity at 25°C\": \"0.950 to 1.120\", \"Refractive index at 20°C\": \"1.420 to 1.520\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7449,
+  "fields": {
+    "file_name": "ALMOND FRAGRANCE-IVC-4941-meribana-27-10-25.docx",
+    "customer": "Meribana",
+    "product": "Almond Fragrance",
+    "batch": "HI/FR/25102709                                                                  Exp.",
+    "mfg_date": "Oct-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Appearance\": \"Pale yellow to light yellow clear liquid.\", \"Odour\": \"Citrus Characteristic\", \"Specific gravity at 25°C\": \"0.950 to 1.120\", \"Refractive index at 20°C\": \"1.420 to 1.520\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7450,
+  "fields": {
+    "file_name": "ALMOND FRAGRANCE-IVC-H4231-APCI-20-03-24.docx",
+    "customer": "H4231 Apci",
+    "product": "Almond Fragrance OS",
+    "batch": "HI/FR/24031801                                                                   Exp.",
+    "mfg_date": "Mar-2024",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Appearance\": \"Pale yellow to light yellow clear liquid.\", \"Odour\": \"Citrus Characteristic\", \"Specific gravity at 25°C\": \"0.950 to 1.120\", \"Refractive index at 20°C\": \"1.420 to 1.520\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7451,
+  "fields": {
+    "file_name": "ALMOND LIQUID EXTRACT-so-4253-lavanya-25-10-25.docx",
+    "customer": "Lavanya",
+    "product": "Almond liquid extract",
+    "batch": "HI/LE/25102513",
+    "mfg_date": "Oct-2025",
+    "botanical": "Prunus dulcis",
+    "part_used": "Nut/Seed",
+    "fields": "{\"Description\": \"Yellow to pale yellow color liquid with characteristic odor.\", \"pH\": \"3-7\", \"Specific Gravity\": \"0.900 – 2.00\", \"Assay\": \"Presence of Flavonoids & Vitamin E\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\", \"Propylene glycol Solubility\": \"Soluble\", \"Alcohol Soluble\": \"------\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7452,
+  "fields": {
+    "file_name": "ALMOND OIL 86ten chemicals dt 14-10-24.docx",
+    "customer": "Unknown",
+    "product": "Almond Oil 86Ten Chemicals Dt 14 10 24",
+    "batch": "HI/FO/24101401",
+    "mfg_date": "Oct-2024",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max  0.5\", \"Peroxide Value\": \"Max 10.0\", \"Refractive Index\": \"1.470 - 1.475\", \"Specific gravity\": \"0.910 - 0.920\", \"Water\": \"Max 0.1%\", \"Saponification value\": \"185-200\", \"Unsaponifiable Matter\": \"Max 0.90%\", \"Storage\": \"In well fitted container, in cool and dark place.\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7453,
+  "fields": {
+    "file_name": "ALMOND OIL-1323-LANARK-23-05-25.docx",
+    "customer": "Unknown",
+    "product": "Almond Oil 1323 Lanark 23 05 25",
+    "batch": "HI/FO/25052201",
+    "mfg_date": "May-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max  0.5\", \"Peroxide Value\": \"Max 10.0\", \"Refractive Index\": \"1.470 - 1.475\", \"Specific gravity\": \"0.910 - 0.920\", \"Water\": \"Max 0.1%\", \"Saponification value\": \"185-200\", \"Unsaponifiable Matter\": \"Max 0.90%\", \"Storage\": \"In well fitted container, in cool and dark place.\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7454,
+  "fields": {
+    "file_name": "ALMOND OIL-4549-LANARK-07-10-25.docx",
+    "customer": "Unknown",
+    "product": "Almond Oil 4549 Lanark 07 10 25",
+    "batch": "HI/FO/25100701",
+    "mfg_date": "Sep-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max  0.5\", \"Peroxide Value\": \"Max 10.0\", \"Refractive Index\": \"1.470 - 1.475\", \"Specific gravity\": \"0.910 - 0.920\", \"Water\": \"Max 0.1%\", \"Saponification value\": \"185-200\", \"Unsaponifiable Matter\": \"Max 0.90%\", \"Storage\": \"In well fitted container, in cool and dark place.\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7455,
+  "fields": {
+    "file_name": "ALMOND OIL-5199-LANARK-06-11-25.docx",
+    "customer": "Unknown",
+    "product": "Almond Oil 5199 Lanark 06 11 25",
+    "batch": "HI/FO/25110401",
+    "mfg_date": "Oct-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max  0.5\", \"Peroxide Value\": \"Max 10.0\", \"Refractive Index\": \"1.470 - 1.475\", \"Specific gravity\": \"0.910 - 0.920\", \"Water\": \"Max 0.1%\", \"Saponification value\": \"185-200\", \"Unsaponifiable Matter\": \"Max 0.90%\", \"Storage\": \"In well fitted container, in cool and dark place.\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7456,
+  "fields": {
+    "file_name": "ALMOND OIL-7674-LANARK-16-02-26.docx",
+    "customer": "Unknown",
+    "product": "Almond Oil 7674 Lanark 16 02 26",
+    "batch": "HI/FO/26021601",
+    "mfg_date": "Feb-2026",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max  0.5\", \"Peroxide Value\": \"Max 10.0\", \"Refractive Index\": \"1.470 - 1.475\", \"Specific gravity\": \"0.910 - 0.920\", \"Water\": \"Max 0.1%\", \"Saponification value\": \"185-200\", \"Unsaponifiable Matter\": \"Max 0.90%\", \"Storage\": \"In well fitted container, in cool and dark place.\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7457,
+  "fields": {
+    "file_name": "ALMOND OIL-DC-300-SESA-COLD PRESSED-24-02-26.docx",
+    "customer": "Unknown",
+    "product": "Almond Oil Dc 300 Sesa Cold Pressed 24 02 26",
+    "batch": "HI/FO/26022301",
+    "mfg_date": "Feb-2026",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max  1.0\", \"Peroxide Value\": \"Max 10.0\", \"Unsaponifiable Matter\": \"Max 2.0%\", \"Storage\": \"In well fitted container, in cool and dark place.\", \"Refractive Index at 250C\": \"1.465 - 1.475\", \"Specific gravity  at 250C\": \"0.910 - 0.930\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7458,
+  "fields": {
+    "file_name": "ALMOND OIL-INV--CIZY CARE-02-05-25.docx",
+    "customer": "Cizy Care",
+    "product": "Almond Oil",
+    "batch": "HI/FO/25050201",
+    "mfg_date": "Apr-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max  0.5\", \"Peroxide Value\": \"Max 10.0\", \"Water\": \"Max 0.1%\", \"Saponification value\": \"185-200\", \"Unsaponifiable Matter\": \"Max 0.90%\", \"Storage\": \"In well fitted container, in cool and dark place.\", \"Refractive Index at 250C\": \"1.470 - 1.475\", \"Specific gravity  at 250C\": \"0.910 - 0.920\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7459,
+  "fields": {
+    "file_name": "ALMOND OIL-INV--OJB-05-07-25.docx",
+    "customer": "Ojb",
+    "product": "Almond Oil",
+    "batch": "HI/FO/25070401",
+    "mfg_date": "June-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max  0.5\", \"Peroxide Value\": \"Max 10.0\", \"Water\": \"Max 0.1%\", \"Saponification value\": \"185-200\", \"Unsaponifiable Matter\": \"Max 0.90%\", \"Storage\": \"In well fitted container, in cool and dark place.\", \"Refractive Index at 250C\": \"1.470 - 1.475\", \"Specific gravity  at 250C\": \"0.910 - 0.920\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7460,
+  "fields": {
+    "file_name": "ALMOND OIL-INV-0071-arAIYA wellness-04-04-26.docx",
+    "customer": "Araiya Wellness",
+    "product": "Almond Oil",
+    "batch": "HI/FO/26040401",
+    "mfg_date": "Apr-2026",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max  0.5\", \"Peroxide Value\": \"Max 10.0\", \"Water\": \"Max 0.1%\", \"Saponification value\": \"185-200\", \"Unsaponifiable Matter\": \"Max 0.90%\", \"Storage\": \"In well fitted container, in cool and dark place.\", \"Refractive Index at 250C\": \"1.456 - 1.480\", \"Specific gravity  at 250C\": \"0.900 - 0.925\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7461,
+  "fields": {
+    "file_name": "ALMOND OIL-INV-02867-OJB-20-08-24.docx",
+    "customer": "Ojb",
+    "product": "Almond Oil",
+    "batch": "HI/FO/24081701",
+    "mfg_date": "Aug-2024",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max  0.5\", \"Peroxide Value\": \"Max 10.0\", \"Water\": \"Max 0.1%\", \"Saponification value\": \"185-200\", \"Unsaponifiable Matter\": \"Max 0.90%\", \"Storage\": \"In well fitted container, in cool and dark place.\", \"Refractive Index at 250C\": \"1.470 - 1.475\", \"Specific gravity  at 250C\": \"0.910 - 0.920\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7462,
+  "fields": {
+    "file_name": "ALMOND OIL-INV-0474-AKINS-13-08-25.docx",
+    "customer": "Akins",
+    "product": "Almond Oil",
+    "batch": "HI/FO/25081101",
+    "mfg_date": "Aug-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max  0.5\", \"Peroxide Value\": \"Max 10.0\", \"Water\": \"Max 0.1%\", \"Saponification value\": \"185-200\", \"Unsaponifiable Matter\": \"Max 0.90%\", \"Storage\": \"In well fitted container, in cool and dark place.\", \"Refractive Index at 250C\": \"1.456 - 1.480\", \"Specific gravity  at 250C\": \"0.900 - 0.925\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7463,
+  "fields": {
+    "file_name": "ALMOND OIL-INV-05145-DR AKASH-04-11-23.docx",
+    "customer": "Dr Akash",
+    "product": "Almond Oil",
+    "batch": "HI/FO/23110205",
+    "mfg_date": "Oct-2023",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max  0.5\", \"Peroxide Value\": \"Max 10.0\", \"Water\": \"Max 0.1%\", \"Saponification value\": \"185-200\", \"Unsaponifiable Matter\": \"Max 0.90%\", \"Storage\": \"In well fitted container, in cool and dark place.\", \"Refractive Index at 250C\": \"1.470 - 1.475\", \"Specific gravity  at 250C\": \"0.910 - 0.920\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7464,
+  "fields": {
+    "file_name": "ALMOND OIL-INV-0833-SHANTILAL-19-01-26.docx",
+    "customer": "Shantilal",
+    "product": "Almond Oil",
+    "batch": "HI/FO/26011801",
+    "mfg_date": "Jan-2026",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max  0.5\", \"Peroxide Value\": \"Max 10.0\", \"Refractive Index\": \"1.470 - 1.475\", \"Specific gravity\": \"0.910 - 0.920\", \"Water\": \"Max 0.1%\", \"Saponification value\": \"185-200\", \"Unsaponifiable Matter\": \"Max 0.90%\", \"Storage\": \"In well fitted container, in cool and dark place.\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7465,
+  "fields": {
+    "file_name": "ALMOND OIL-INV-0855-SHANTILAL-02-02-26.docx",
+    "customer": "Shantilal",
+    "product": "Almond Oil",
+    "batch": "HI/FO/26012901",
+    "mfg_date": "Jan-2026",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max  0.5\", \"Peroxide Value\": \"Max 10.0\", \"Refractive Index\": \"1.470 - 1.475\", \"Specific gravity\": \"0.910 - 0.920\", \"Water\": \"Max 0.1%\", \"Saponification value\": \"185-200\", \"Unsaponifiable Matter\": \"Max 0.90%\", \"Storage\": \"In well fitted container, in cool and dark place.\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7466,
+  "fields": {
+    "file_name": "ALMOND OIL-INV-1648-UNITED-07-06-25.docx",
+    "customer": "United",
+    "product": "Almond Oil",
+    "batch": "HI/FO/25060601",
+    "mfg_date": "May-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max  0.5\", \"Peroxide Value\": \"Max 10.0\", \"Water\": \"Max 0.1%\", \"Saponification value\": \"185-200\", \"Unsaponifiable Matter\": \"Max 0.90%\", \"Storage\": \"In well fitted container, in cool and dark place.\", \"Refractive Index at 250C\": \"1.470 - 1.475\", \"Specific gravity  at 250C\": \"0.910 - 0.920\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7467,
+  "fields": {
+    "file_name": "ALMOND OIL-INV-1987-CIZY CARE-03-07-25.docx",
+    "customer": "Cizy Care",
+    "product": "Almond Oil",
+    "batch": "HI/FO/25070203",
+    "mfg_date": "June-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max  0.5\", \"Peroxide Value\": \"Max 10.0\", \"Water\": \"Max 0.1%\", \"Saponification value\": \"185-200\", \"Unsaponifiable Matter\": \"Max 0.90%\", \"Storage\": \"In well fitted container, in cool and dark place.\", \"Refractive Index at 250C\": \"1.470 - 1.475\", \"Specific gravity  at 250C\": \"0.910 - 0.920\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7468,
+  "fields": {
+    "file_name": "ALMOND OIL-INV-2384-YASH COSMOCHEM-15-01-24.docx",
+    "customer": "Yash Cosmochem",
+    "product": "Almond Oil",
+    "batch": "HI/FO/24011502",
+    "mfg_date": "Jan-2024",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max  0.5\", \"Peroxide Value\": \"Max 10.0\", \"Refractive Index\": \"1.470 - 1.475\", \"Specific gravity\": \"0.910 - 0.920\", \"Water\": \"Max 0.1%\", \"Saponification value\": \"185-200\", \"Unsaponifiable Matter\": \"Max 0.90%\", \"Storage\": \"In well fitted container, in cool and dark place.\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7469,
+  "fields": {
+    "file_name": "ALMOND OIL-INV-2551-RIDHI CHEMICAL-15-07-25.docx",
+    "customer": "Ridhi Chemical",
+    "product": "Almond Oil",
+    "batch": "HI/FO/25071401",
+    "mfg_date": "July-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max  0.5\", \"Peroxide Value\": \"Max 10.0\", \"Water\": \"Max 0.1%\", \"Saponification value\": \"185-200\", \"Unsaponifiable Matter\": \"Max 0.90%\", \"Storage\": \"In well fitted container, in cool and dark place.\", \"Refractive Index at 250C\": \"1.456 - 1.480\", \"Specific gravity  at 250C\": \"0.900 - 0.925\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7470,
+  "fields": {
+    "file_name": "ALMOND OIL-INV-2737-MS SHABREEN-22-07-25.docx",
+    "customer": "Ms Shabreen",
+    "product": "Almond Oil",
+    "batch": "HI/FO/25072102",
+    "mfg_date": "July-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max  0.5\", \"Peroxide Value\": \"Max 10.0\", \"Water\": \"Max 0.1%\", \"Saponification value\": \"185-200\", \"Unsaponifiable Matter\": \"Max 0.90%\", \"Storage\": \"In well fitted container, in cool and dark place.\", \"Refractive Index at 250C\": \"1.456 - 1.480\", \"Specific gravity  at 250C\": \"0.900 - 0.925\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7471,
+  "fields": {
+    "file_name": "ALMOND OIL-INV-2953-SHINE MANUFACTURE-31-07-25.docx",
+    "customer": "Shine Manufacture",
+    "product": "Almond Oil",
+    "batch": "HI/FO/25073101",
+    "mfg_date": "July-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max  0.5\", \"Peroxide Value\": \"Max 10.0\", \"Water\": \"Max 0.1%\", \"Saponification value\": \"185-200\", \"Unsaponifiable Matter\": \"Max 0.90%\", \"Storage\": \"In well fitted container, in cool and dark place.\", \"Refractive Index at 250C\": \"1.456 - 1.480\", \"Specific gravity  at 250C\": \"0.900 - 0.925\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7472,
+  "fields": {
+    "file_name": "ALMOND OIL-INV-2962-SIVA SAKHTI-10-09-25.docx",
+    "customer": "Siva Sakhti",
+    "product": "Almond Oil",
+    "batch": "HI/FO/25091001",
+    "mfg_date": "Sep-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max  0.5\", \"Peroxide Value\": \"Max 10.0\", \"Water\": \"Max 0.1%\", \"Saponification value\": \"185-200\", \"Unsaponifiable Matter\": \"Max 0.90%\", \"Storage\": \"In well fitted container, in cool and dark place.\", \"Refractive Index at 250C\": \"1.456 - 1.480\", \"Specific gravity  at 250C\": \"0.900 - 0.925\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7473,
+  "fields": {
+    "file_name": "ALMOND OIL-INV-2962-SIVA SAKHTI-31-07-25.docx",
+    "customer": "Siva Sakhti",
+    "product": "Almond Oil",
+    "batch": "HI/FO/25073101",
+    "mfg_date": "July-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max  0.5\", \"Peroxide Value\": \"Max 10.0\", \"Water\": \"Max 0.1%\", \"Saponification value\": \"185-200\", \"Unsaponifiable Matter\": \"Max 0.90%\", \"Storage\": \"In well fitted container, in cool and dark place.\", \"Refractive Index at 250C\": \"1.456 - 1.480\", \"Specific gravity  at 250C\": \"0.900 - 0.925\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7474,
+  "fields": {
+    "file_name": "ALMOND OIL-INV-4011-arAIYA wellness-12-09-25.docx",
+    "customer": "Araiya Wellness",
+    "product": "Almond Oil",
+    "batch": "HI/FO/25091102",
+    "mfg_date": "Sep-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max  0.5\", \"Peroxide Value\": \"Max 10.0\", \"Water\": \"Max 0.1%\", \"Saponification value\": \"185-200\", \"Unsaponifiable Matter\": \"Max 0.90%\", \"Storage\": \"In well fitted container, in cool and dark place.\", \"Refractive Index at 250C\": \"1.456 - 1.480\", \"Specific gravity  at 250C\": \"0.900 - 0.925\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7475,
+  "fields": {
+    "file_name": "ALMOND OIL-INV-4221-SANSKRITI-30-09-25.docx",
+    "customer": "Sanskriti",
+    "product": "Almond Oil",
+    "batch": "HI/FO/25093003",
+    "mfg_date": "Sep-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max  0.5\", \"Peroxide Value\": \"Max 10.0\", \"Water\": \"Max 0.1%\", \"Saponification value\": \"185-200\", \"Unsaponifiable Matter\": \"Max 0.90%\", \"Storage\": \"In well fitted container, in cool and dark place.\", \"Refractive Index at 250C\": \"1.456 - 1.480\", \"Specific gravity  at 250C\": \"0.900 - 0.925\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7476,
+  "fields": {
+    "file_name": "ALMOND OIL-INV-5431-SANSKRITI-15-11-25.docx",
+    "customer": "Sanskriti",
+    "product": "Almond Oil",
+    "batch": "HI/FO/25111306",
+    "mfg_date": "Nov-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max  0.5\", \"Peroxide Value\": \"Max 10.0\", \"Water\": \"Max 0.1%\", \"Saponification value\": \"185-200\", \"Unsaponifiable Matter\": \"Max 0.90%\", \"Storage\": \"In well fitted container, in cool and dark place.\", \"Refractive Index at 250C\": \"1.456 - 1.480\", \"Specific gravity  at 250C\": \"0.900 - 0.925\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7477,
+  "fields": {
+    "file_name": "ALMOND OIL-INV-5644- S K ENTERPRISES-22-11-25.docx",
+    "customer": "S K Enterprises",
+    "product": "Almond Oil",
+    "batch": "HI/FO/25111801",
+    "mfg_date": "Nov-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max  0.5\", \"Peroxide Value\": \"Max 10.0\", \"Water\": \"Max 0.1%\", \"Saponification value\": \"185-200\", \"Unsaponifiable Matter\": \"Max 0.90%\", \"Storage\": \"In well fitted container, in cool and dark place.\", \"Refractive Index at 250C\": \"1.456 - 1.480\", \"Specific gravity  at 250C\": \"0.900 - 0.925\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7478,
+  "fields": {
+    "file_name": "ALMOND OIL-INV-6115-arAIYA wellness-11-12-25.docx",
+    "customer": "Araiya Wellness",
+    "product": "Almond Oil",
+    "batch": "HI/FO/25121102",
+    "mfg_date": "Dec-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max  0.5\", \"Peroxide Value\": \"Max 10.0\", \"Water\": \"Max 0.1%\", \"Saponification value\": \"185-200\", \"Unsaponifiable Matter\": \"Max 0.90%\", \"Storage\": \"In well fitted container, in cool and dark place.\", \"Refractive Index at 250C\": \"1.456 - 1.480\", \"Specific gravity  at 250C\": \"0.900 - 0.925\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7479,
+  "fields": {
+    "file_name": "ALMOND OIL-INV-6803- S K ENTERPRISES-10-01-26.docx",
+    "customer": "S K Enterprises",
+    "product": "Almond Oil",
+    "batch": "HI/FO/26010801",
+    "mfg_date": "Dec-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max  0.5\", \"Peroxide Value\": \"Max 10.0\", \"Water\": \"Max 0.1%\", \"Saponification value\": \"185-200\", \"Unsaponifiable Matter\": \"Max 0.90%\", \"Storage\": \"In well fitted container, in cool and dark place.\", \"Refractive Index at 250C\": \"1.456 - 1.480\", \"Specific gravity  at 250C\": \"0.900 - 0.925\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7480,
+  "fields": {
+    "file_name": "ALMOND OIL-INV-6937-KHADI-16-01-26.docx",
+    "customer": "Khadi",
+    "product": "Sweet Almond Oil",
+    "batch": "HI/FO/26011503",
+    "mfg_date": "Jan-2026",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max 0.5\", \"Peroxide Value\": \"Max 10.0\", \"Refractive Index\": \"1.470 - 1.475\", \"Specific gravity\": \"0.910 - 0.920\", \"Water\": \"Max 0.1%\", \"Saponification value\": \"180-200\", \"Unsaponifiable Matter\": \"Max 0.90%\", \"Storage\": \"In well fitted container, in cool and dark place\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7481,
+  "fields": {
+    "file_name": "ALMOND OIL-INV-7090-SANSKRITI-22-01-26.docx",
+    "customer": "Sanskriti",
+    "product": "Almond Oil",
+    "batch": "HI/FO/26012001",
+    "mfg_date": "Jan-2026",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max  0.5\", \"Peroxide Value\": \"Max 10.0\", \"Water\": \"Max 0.1%\", \"Saponification value\": \"185-200\", \"Unsaponifiable Matter\": \"Max 0.90%\", \"Storage\": \"In well fitted container, in cool and dark place.\", \"Refractive Index at 250C\": \"1.456 - 1.480\", \"Specific gravity  at 250C\": \"0.900 - 0.925\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7482,
+  "fields": {
+    "file_name": "ALMOND OIL-INV-7319-CIZY CARE-03-02-26.docx",
+    "customer": "Cizy Care",
+    "product": "Almond Oil",
+    "batch": "HI/FO/26012901",
+    "mfg_date": "Jan-2026",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max  0.5\", \"Peroxide Value\": \"Max 10.0\", \"Water\": \"Max 0.1%\", \"Saponification value\": \"185-200\", \"Unsaponifiable Matter\": \"Max 0.90%\", \"Storage\": \"In well fitted container, in cool and dark place.\", \"Refractive Index at 250C\": \"1.470 - 1.475\", \"Specific gravity  at 250C\": \"0.910 - 0.920\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7483,
+  "fields": {
+    "file_name": "ALMOND OIL-INV-7372-arAIYA wellness-04-02-26.docx",
+    "customer": "Araiya Wellness",
+    "product": "Almond Oil",
+    "batch": "HI/FO/26020404",
+    "mfg_date": "Feb-2026",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max  0.5\", \"Peroxide Value\": \"Max 10.0\", \"Water\": \"Max 0.1%\", \"Saponification value\": \"185-200\", \"Unsaponifiable Matter\": \"Max 0.90%\", \"Storage\": \"In well fitted container, in cool and dark place.\", \"Refractive Index at 250C\": \"1.456 - 1.480\", \"Specific gravity  at 250C\": \"0.900 - 0.925\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7484,
+  "fields": {
+    "file_name": "ALMOND OIL-INV-7567-KHADI-12-02-26.docx",
+    "customer": "Khadi",
+    "product": "Sweet Almond Oil",
+    "batch": "HI/FO/26021101",
+    "mfg_date": "Feb-2026",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max 0.5\", \"Peroxide Value\": \"Max 10.0\", \"Refractive Index\": \"1.470 - 1.475\", \"Specific gravity\": \"0.910 - 0.920\", \"Water\": \"Max 0.1%\", \"Saponification value\": \"180-200\", \"Unsaponifiable Matter\": \"Max 0.90%\", \"Storage\": \"In well fitted container, in cool and dark place\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7485,
+  "fields": {
+    "file_name": "ALMOND OIL-INV-7805-ASTONEA-21-02-26.docx",
+    "customer": "Astonea",
+    "product": "Almond Oil",
+    "batch": "HI/FO/26022102",
+    "mfg_date": "Feb-2026",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max  0.5\", \"Peroxide Value\": \"Max 10.0\", \"Refractive Index\": \"1.470 - 1.475\", \"Specific gravity\": \"0.910 - 0.920\", \"Water\": \"Max 0.1%\", \"Saponification value\": \"185-200\", \"Unsaponifiable Matter\": \"Max 0.90%\", \"Storage\": \"In well fitted container, in cool and dark place.\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7486,
+  "fields": {
+    "file_name": "ALMOND OIL-INV-8067-KHADI-06-03-26.docx",
+    "customer": "Khadi",
+    "product": "Sweet Almond Oil",
+    "batch": "HI/FO/26030601",
+    "mfg_date": "Mar-2026",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max 0.5\", \"Peroxide Value\": \"Max 10.0\", \"Refractive Index\": \"1.470 - 1.475\", \"Specific gravity\": \"0.910 - 0.920\", \"Water\": \"Max 0.1%\", \"Saponification value\": \"180-200\", \"Unsaponifiable Matter\": \"Max 0.90%\", \"Storage\": \"In well fitted container, in cool and dark place\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7487,
+  "fields": {
+    "file_name": "ALMOND OIL-INV-8119-EK TEK-09-03-26.docx",
+    "customer": "Ek Tek",
+    "product": "Almond Oil",
+    "batch": "HI/FO/26030904",
+    "mfg_date": "Mar-2026",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max  0.5\", \"Peroxide Value\": \"Max 10.0\", \"Water\": \"Max 0.1%\", \"Saponification value\": \"185-200\", \"Unsaponifiable Matter\": \"Max 0.90%\", \"Storage\": \"In well fitted container, in cool and dark place.\", \"Refractive Index  at 250C\": \"1.470 - 1.475\", \"Specific gravity at 250C\": \"0.910 - 0.920\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7488,
+  "fields": {
+    "file_name": "ALMOND OIL-INV-8584-arAIYA wellness-26-03-26.docx",
+    "customer": "Araiya Wellness",
+    "product": "Almond Oil",
+    "batch": "HI/FO/26032601",
+    "mfg_date": "Mar-2026",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max  0.5\", \"Peroxide Value\": \"Max 10.0\", \"Water\": \"Max 0.1%\", \"Saponification value\": \"185-200\", \"Unsaponifiable Matter\": \"Max 0.90%\", \"Storage\": \"In well fitted container, in cool and dark place.\", \"Refractive Index at 250C\": \"1.456 - 1.480\", \"Specific gravity  at 250C\": \"0.900 - 0.925\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7489,
+  "fields": {
+    "file_name": "ALMOND OIL-INV-DC2046-MG SHAHNI-09-10-23 and MG SHAHANI 27-10-23 AND HERBAL LIFESCIENCE CARE GUARD SAMPLES.docx",
+    "customer": "Dc2046 Mg Shahni 09 10 23 And Mg Shahani 27 10 23 And Herbal Lifescience Care Guard Samples",
+    "product": "Almond Oil",
+    "batch": "HI/FO/23102801",
+    "mfg_date": "Oct-2023",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max  0.5\", \"Peroxide Value\": \"Max 10.0\", \"Refractive Index\": \"1.470 - 1.475\", \"Specific gravity\": \"0.910 - 0.920\", \"Water\": \"Max 0.1%\", \"Saponification value\": \"185-200\", \"Unsaponifiable Matter\": \"Max 0.90%\", \"Storage\": \"In well fitted container, in cool and dark place.\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7490,
+  "fields": {
+    "file_name": "ALMOND OIL-INV-DC2046-MG SHAHNI-09-10-23 and MG SHAHANI 27-10-23.docx",
+    "customer": "Dc2046 Mg Shahni 09 10 23 And Mg Shahani 27 10 23",
+    "product": "Almond Oil",
+    "batch": "HI/FO/23102801",
+    "mfg_date": "Oct-2023",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max  0.5\", \"Peroxide Value\": \"Max 10.0\", \"Refractive Index\": \"1.470 - 1.475\", \"Specific gravity\": \"0.910 - 0.920\", \"Water\": \"Max 0.1%\", \"Saponification value\": \"185-200\", \"Unsaponifiable Matter\": \"Max 0.90%\", \"Storage\": \"In well fitted container, in cool and dark place.\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7491,
+  "fields": {
+    "file_name": "ALMOND OIL-INV-LANARK SAMPLE-17-08-24.docx",
+    "customer": "Lanark Sample",
+    "product": "Almond Oil",
+    "batch": "HI/FO/24081301",
+    "mfg_date": "Aug-2024",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max  0.5\", \"Peroxide Value\": \"Max 10.0\", \"Refractive Index\": \"1.470 - 1.475\", \"Specific gravity\": \"0.910 - 0.920\", \"Water\": \"Max 0.1%\", \"Saponification value\": \"185-200\", \"Unsaponifiable Matter\": \"Max 0.90%\", \"Storage\": \"In well fitted container, in cool and dark place.\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7492,
+  "fields": {
+    "file_name": "ALMOND OIL-INV-MOR MEDICS-20-06-24.docx",
+    "customer": "Mor Medics",
+    "product": "Almond Oil",
+    "batch": "HI/FO/24061802",
+    "mfg_date": "June-2024",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max  0.5\", \"Peroxide Value\": \"Max 10.0\", \"Refractive Index\": \"1.470 - 1.475\", \"Specific gravity\": \"0.910 - 0.920\", \"Water\": \"Max 0.1%\", \"Saponification value\": \"185-200\", \"Unsaponifiable Matter\": \"Max 0.90%\", \"Storage\": \"In well fitted container, in cool and dark place.\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7493,
+  "fields": {
+    "file_name": "ALMOND OIL-IVC-0053-AJASH-16-03-25.docx",
+    "customer": "Ajash",
+    "product": "Almond Oil",
+    "batch": "HI/FO/25041402",
+    "mfg_date": "Apr-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max  0.5\", \"Peroxide Value\": \"Max 10.0\", \"Refractive Index\": \"1.470 - 1.475\", \"Specific gravity\": \"0.910 - 0.920\", \"Water\": \"Max 0.1%\", \"Saponification value\": \"185-200\", \"Unsaponifiable Matter\": \"Max 0.90%\", \"Storage\": \"In well fitted container, in cool and dark place.\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7494,
+  "fields": {
+    "file_name": "ALMOND OIL-IVC-0053-AJASH-16-04-25.docx",
+    "customer": "Ajash",
+    "product": "Almond Oil",
+    "batch": "HI/FO/25041402",
+    "mfg_date": "Apr-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max  0.5\", \"Peroxide Value\": \"Max 10.0\", \"Refractive Index\": \"1.470 - 1.475\", \"Specific gravity\": \"0.910 - 0.920\", \"Water\": \"Max 0.1%\", \"Saponification value\": \"185-200\", \"Unsaponifiable Matter\": \"Max 0.90%\", \"Storage\": \"In well fitted container, in cool and dark place.\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7495,
+  "fields": {
+    "file_name": "ALMOND OIL-IVC-0053-FORTUNE PHARMA-16-04-25.docx",
+    "customer": "Fortune Pharma",
+    "product": "Almond Oil",
+    "batch": "HI/FO/25041401",
+    "mfg_date": "Apr-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max  0.5\", \"Peroxide Value\": \"Max 10.0\", \"Refractive Index\": \"1.470 - 1.475\", \"Specific gravity\": \"0.910 - 0.920\", \"Water\": \"Max 0.1%\", \"Saponification value\": \"185-200\", \"Unsaponifiable Matter\": \"Max 0.90%\", \"Storage\": \"In well fitted container, in cool and dark place.\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7496,
+  "fields": {
+    "file_name": "ALMOND OIL-IVC-0083-KRISHNA MART-21-05-24.docx",
+    "customer": "Krishna Mart",
+    "product": "Almond Oil",
+    "batch": "HI/FO/24051502",
+    "mfg_date": "May-2024",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max  0.5\", \"Peroxide Value\": \"Max 10.0\", \"Refractive Index\": \"1.470 - 1.475\", \"Specific gravity\": \"0.910 - 0.920\", \"Water\": \"Max 0.1%\", \"Saponification value\": \"185-200\", \"Unsaponifiable Matter\": \"Max 0.90%\", \"Storage\": \"In well fitted container, in cool and dark place.\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7497,
+  "fields": {
+    "file_name": "ALMOND OIL-IVC-01625-GOODCARE-17-06-24.docx",
+    "customer": "Goodcare",
+    "product": "Almond Oil",
+    "batch": "HI/FO/24061701",
+    "mfg_date": "June-2024",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max  0.5\", \"Peroxide Value\": \"Max 10.0\", \"Refractive Index\": \"1.470 - 1.475\", \"Specific gravity\": \"0.910 - 0.920\", \"Water\": \"Max 0.1%\", \"Saponification value\": \"185-200\", \"Unsaponifiable Matter\": \"Max 0.90%\", \"Storage\": \"In well fitted container, in cool and dark place.\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7498,
+  "fields": {
+    "file_name": "ALMOND OIL-IVC-0239-grodium technologies-10-04-25.docx",
+    "customer": "Grodium Technologies",
+    "product": "Almond Oil",
+    "batch": "HI/FO/25040901",
+    "mfg_date": "Mar-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max  0.5\", \"Peroxide Value\": \"Max 10.0\", \"Refractive Index\": \"1.470 - 1.475\", \"Specific gravity\": \"0.910 - 0.920\", \"Water\": \"Max 0.1%\", \"Saponification value\": \"185-200\", \"Unsaponifiable Matter\": \"Max 0.90%\", \"Storage\": \"In well fitted container, in cool and dark place.\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7499,
+  "fields": {
+    "file_name": "ALMOND OIL-IVC-04054 CONOR 16-10-24.docx",
+    "customer": "Conor 16 10 24",
+    "product": "Almond Oil",
+    "batch": "HI/FO/24101501",
+    "mfg_date": "Oct -2024",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max  0.5\", \"Peroxide Value\": \"Max 10.0\", \"Refractive Index\": \"1.470 - 1.475\", \"Specific gravity\": \"0.910 - 0.920\", \"Water\": \"Max 0.1%\", \"Saponification value\": \"185-200\", \"Unsaponifiable Matter\": \"Max 0.90%\", \"Storage\": \"In well fitted container, in cool and dark place.\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7500,
+  "fields": {
+    "file_name": "ALMOND OIL-IVC-04089 -(AJMERA HERBALS)-17-10-24.docx",
+    "customer": "(Ajmera Herbals)",
+    "product": "Almond Oil",
+    "batch": "HI/FO/24101701",
+    "mfg_date": "Oct -2024",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max  0.5\", \"Peroxide Value\": \"Max 5.0\", \"Refractive Index\": \"1.456 - 1.480\", \"Specific gravity\": \"0.890 - 0.925\", \"Water\": \"Max 0.1%\", \"Saponification value\": \"185-200\", \"Storage\": \"In well fitted container, in cool and dark place.\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7501,
+  "fields": {
+    "file_name": "ALMOND OIL-IVC-0677-86TEN CHEMICAL-08-10-25.docx",
+    "customer": "86Ten Chemical",
+    "product": "Almond Oil",
+    "batch": "HI/FO/25100701",
+    "mfg_date": "Sep-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max  0.5\", \"Peroxide Value\": \"Max 10.0\", \"Refractive Index\": \"1.470 - 1.475\", \"Specific gravity\": \"0.910 - 0.920\", \"Water\": \"Max 0.1%\", \"Saponification value\": \"185-200\", \"Unsaponifiable Matter\": \"Max 0.90%\", \"Storage\": \"In well fitted container, in cool and dark place.\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7502,
+  "fields": {
+    "file_name": "ALMOND OIL-IVC-0943-RUDRAKASH-07-03-26.docx",
+    "customer": "Rudrakash",
+    "product": "Almond Oil",
+    "batch": "HI/FO/26030601",
+    "mfg_date": "Mar-2026",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max 0.5\", \"Peroxide Value\": \"Max 10.0\", \"Refractive Index\": \"1.470 - 1.475\", \"Specific gravity\": \"0.910 - 0.920\", \"Water\": \"Max 0.1%\", \"Saponification value\": \"185-200\", \"Unsaponifiable Matter\": \"Max 0.90%\", \"Storage\": \"In well fitted container, in cool and dark place.\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7503,
+  "fields": {
+    "file_name": "ALMOND OIL-IVC-3078-(APEX)-05-08-25.docx",
+    "customer": "(Apex)",
+    "product": "Almond Oil",
+    "batch": "HI/FO/25080401",
+    "mfg_date": "July-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max  0.5\", \"Peroxide Value\": \"Max 5.0\", \"Refractive Index\": \"1.456 - 1.480\", \"Specific gravity\": \"0.890 - 0.925\", \"Water\": \"Max 0.1%\", \"Saponification value\": \"185-200\", \"Unsaponifiable Matter\": \"Max 0.90%\", \"Storage\": \"In well fitted container, in cool and dark place.\", \"Absorbance (264-276nm)\": \"0.2 to 6\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7504,
+  "fields": {
+    "file_name": "ALMOND OIL-IVC-4957-SHREE DHANVATRI-29-10-25.docx",
+    "customer": "Shree Dhanvatri",
+    "product": "Almond Oil",
+    "batch": "HI/FO/25102801",
+    "mfg_date": "Oct-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max  0.5\", \"Peroxide Value\": \"Max 10.0\", \"Refractive Index\": \"1.470 - 1.475\", \"Specific gravity\": \"0.910 - 0.920\", \"Water\": \"Max 0.1%\", \"Saponification value\": \"185-200\", \"Unsaponifiable Matter\": \"Max 0.90%\", \"Storage\": \"In well fitted container, in cool and dark place.\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7505,
+  "fields": {
+    "file_name": "ALMOND OIL-IVC-5044-86TEN CHEMICAL-31-10-255.docx",
+    "customer": "86Ten Chemical",
+    "product": "Almond Oil",
+    "batch": "HI/FO/25102902",
+    "mfg_date": "Oct-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max  0.5\", \"Peroxide Value\": \"Max 10.0\", \"Refractive Index\": \"1.470 - 1.475\", \"Specific gravity\": \"0.910 - 0.920\", \"Water\": \"Max 0.1%\", \"Saponification value\": \"185-200\", \"Unsaponifiable Matter\": \"Max 0.90%\", \"Storage\": \"In well fitted container, in cool and dark place.\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7506,
+  "fields": {
+    "file_name": "ALMOND OIL-IVC-5548-CONOR-19-11-25.docx",
+    "customer": "Conor",
+    "product": "Almond Oil",
+    "batch": "HI/FO/25111501",
+    "mfg_date": "Nov-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max  0.5\", \"Peroxide Value\": \"Max 10.0\", \"Refractive Index\": \"1.470 - 1.475\", \"Specific gravity\": \"0.910 - 0.920\", \"Water\": \"Max 0.1%\", \"Saponification value\": \"185-200\", \"Unsaponifiable Matter\": \"Max 0.90%\", \"Storage\": \"In well fitted container, in cool and dark place.\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7507,
+  "fields": {
+    "file_name": "ALMOND OIL-IVC-5687-HELIOS-22-11-25.docx",
+    "customer": "Helios",
+    "product": "Almond Oil",
+    "batch": "HI/FO/25111801",
+    "mfg_date": "Nov-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max  0.5\", \"Peroxide Value\": \"Max 10.0\", \"Refractive Index\": \"1.470 - 1.475\", \"Specific gravity\": \"0.910 - 0.920\", \"Water\": \"Max 0.1%\", \"Saponification value\": \"180-200\", \"Unsaponifiable Matter\": \"Max 0.90%\", \"Storage\": \"In well fitted container, in cool and dark place.\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7508,
+  "fields": {
+    "file_name": "ALMOND OIL-IVC-5976-CONOR-06-12-25.docx",
+    "customer": "Conor",
+    "product": "Almond Oil",
+    "batch": "HI/FO/25120401",
+    "mfg_date": "Nov-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max  0.5\", \"Peroxide Value\": \"Max 10.0\", \"Refractive Index\": \"1.470 - 1.475\", \"Specific gravity\": \"0.910 - 0.920\", \"Water\": \"Max 0.1%\", \"Saponification value\": \"185-200\", \"Unsaponifiable Matter\": \"Max 0.90%\", \"Storage\": \"In well fitted container, in cool and dark place.\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7509,
+  "fields": {
+    "file_name": "ALMOND OIL-IVC-7108-SREE RAMU SPECIALITY-23-01-26.docx",
+    "customer": "Sree Ramu Speciality",
+    "product": "Almond Oil",
+    "batch": "HI/FO/26012003",
+    "mfg_date": "Jan-2026",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max 1.0\", \"Peroxide Value\": \"Max 10.0\", \"Unsaponifiable Matter\": \"Max 2.0%\", \"Storage\": \"In well fitted container, in cool and dark place.\", \"Refractive Index at 250C\": \"1.465 - 1.475\", \"Specific gravity at 250C\": \"0.910 - 0.930\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7510,
+  "fields": {
+    "file_name": "ALMOND OIL-IVC-7405-SESA-COLD PRESSED-06-02-26.docx",
+    "customer": "Sesa Cold Pressed",
+    "product": "Almond Oil",
+    "batch": "HI/FO/26020402",
+    "mfg_date": "Feb-2026",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max  1.0\", \"Peroxide Value\": \"Max 10.0\", \"Unsaponifiable Matter\": \"Max 2.0%\", \"Storage\": \"In well fitted container, in cool and dark place.\", \"Refractive Index at 250C\": \"1.465 - 1.475\", \"Specific gravity  at 250C\": \"0.910 - 0.930\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7511,
+  "fields": {
+    "file_name": "ALMOND OIL-IVC-7984-7985-SESA-COLD PRESSED-02-03-26.docx",
+    "customer": "7985 Sesa Cold Pressed",
+    "product": "Almond Oil",
+    "batch": "HI/FO/26030201",
+    "mfg_date": "Mar-2026",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max  1.0\", \"Peroxide Value\": \"Max 10.0\", \"Unsaponifiable Matter\": \"Max 2.0%\", \"Storage\": \"In well fitted container, in cool and dark place.\", \"Refractive Index at 250C\": \"1.465 - 1.475\", \"Specific gravity  at 250C\": \"0.910 - 0.930\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7512,
+  "fields": {
+    "file_name": "ALMOND OIL-IVC-8030-CONOR-05-03-26.docx",
+    "customer": "Conor",
+    "product": "Almond Oil",
+    "batch": "HI/FO/26030501",
+    "mfg_date": "Mar-2026",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max  0.5\", \"Peroxide Value\": \"Max 10.0\", \"Refractive Index\": \"1.470 - 1.475\", \"Specific gravity\": \"0.910 - 0.920\", \"Water\": \"Max 0.1%\", \"Saponification value\": \"185-200\", \"Unsaponifiable Matter\": \"Max 0.90%\", \"Storage\": \"In well fitted container, in cool and dark place.\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7513,
+  "fields": {
+    "file_name": "ALMOND OIL-IVC-8063-NATURO AND ORGO PVT LTD-06-03-26.docx",
+    "customer": "Naturo And Orgo Pvt Ltd",
+    "product": "Almond Oil",
+    "batch": "HI/FO/26030501",
+    "mfg_date": "Mar-2026",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max  0.5\", \"Peroxide Value\": \"Max 10.0\", \"Refractive Index\": \"1.470 - 1.475\", \"Specific gravity\": \"0.910 - 0.920\", \"Water\": \"Max 0.1%\", \"Saponification value\": \"185-200\", \"Unsaponifiable Matter\": \"Max 0.90%\", \"Storage\": \"In well fitted container, in cool and dark place.\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7514,
+  "fields": {
+    "file_name": "ALMOND OIL-IVC-8159-GOOD CARE-SHREE BAIDYNATH-10-03-26.docx",
+    "customer": "Good Care Shree Baidynath",
+    "product": "Almond Oil",
+    "batch": "HI/FO/26031001",
+    "mfg_date": "Feb-2026",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely miscible with petroleum ether.\", \"Acid Value\": \"Max 0.5\", \"Peroxide Value\": \"Max 10.0\", \"Refractive Index\": \"1.460 - 1.475\", \"Specific gravity\": \"0.910 - 0.925\", \"Water\": \"Max 0.1%\", \"Saponification value\": \"185-200\", \"Unsaponifiable Matter\": \"Max 0.90%\", \"Storage\": \"In well fitted container, in cool and dark place.\", \"Mineral Oil Test\": \"Negative\", \"Rancidity test\": \"Negative\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7515,
+  "fields": {
+    "file_name": "ALMOND OIL-IVC-8337-SKM SIDDHA-16-03-26.docx",
+    "customer": "Skm Siddha",
+    "product": "Almond Oil",
+    "batch": "HI/FO/26031401",
+    "mfg_date": "Mar-2026",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max  0.5\", \"Peroxide Value\": \"Max 5.0\", \"Refractive Index\": \"1.456 - 1.480\", \"Specific gravity\": \"0.890 - 0.925\", \"Water\": \"Max 0.1%\", \"Saponification value\": \"185-200\", \"Storage\": \"In well fitted container, in cool and dark place.\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7516,
+  "fields": {
+    "file_name": "ALMOND OIL-IVC-DEKHAR HERBAL-02-07-24.docx",
+    "customer": "Dekhar Herbal",
+    "product": "Almond Oil",
+    "batch": "HI/FO/24062801",
+    "mfg_date": "June-2024",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Solubility\": \"Very slightly soluble in Alcohol and completely. Miscible With light petroleum.\", \"Acid Value\": \"Max  0.5\", \"Peroxide Value\": \"Max 10.0\", \"Refractive Index\": \"1.470 - 1.475\", \"Specific gravity\": \"0.910 - 0.920\", \"Water\": \"Max 0.1%\", \"Saponification value\": \"185-200\", \"Unsaponifiable Matter\": \"Max 0.90%\", \"Storage\": \"In well fitted container, in cool and dark place.\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7517,
+  "fields": {
+    "file_name": "ALOE  BUTTER -IVC-6579-AKUMS-31-12-25.docx",
+    "customer": "Akums",
+    "product": "Aloe Butter",
+    "batch": "HI/BU/25122901",
+    "mfg_date": "Dec-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Peroxide Value\": \"Max 5.0\", \"Unsaponifiable Matter\": \"1.0 % Max\", \"Storage\": \"In well fitted container, in cool and dark place.\", \"Iodine Value\": \"40 - 70\", \"FFA\": \"Max 0.5%\", \"Moisture\": \"Max 1.0%\", \"Melting Point\": \"42 0C – 48 0C\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7518,
+  "fields": {
+    "file_name": "ALOE FRESH FRAGRANCE-IVC-DAYS & HEALTH-24-07-24.docx",
+    "customer": "Days & Health",
+    "product": "Aloe Fresh  Fragrance",
+    "batch": "HI/FR/24072403                                                     Exp.",
+    "mfg_date": "July-2024",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Appearance\": \"Light yellow to yellow color liquid.\", \"Odour\": \"Characteristic,\", \"Specific gravity at 25°C\": \"0.950 to 1.20\", \"Refractive index at 20°C\": \"1.470 to 1.550\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7519,
+  "fields": {
+    "file_name": "ALOEVERA  FRAGRANCE-IVC-00873-JS CHEMICAL-18-01-25 and NEEM BT FOR MERIBANNA UDYOG.docx",
+    "customer": "Js Chemical 18 01 25 And Neem Bt For Meribanna Udyog",
+    "product": "Neem bt Fragrance",
+    "batch": "HI/FR/25012302                                                  Exp.",
+    "mfg_date": "Jan-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Appearance\": \"Light yellow to yellow color liquid.\", \"Odour\": \"Characteristic,\", \"Specific gravity at 25°C\": \"0.950 to 1.20\", \"Refractive index at 20°C\": \"1.470 to 1.550\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7520,
+  "fields": {
+    "file_name": "ALOEVERA  FRAGRANCE-IVC-00873-JS CHEMICAL-18-01-25.docx",
+    "customer": "Js Chemical",
+    "product": "Aloe vera  Fragrance",
+    "batch": "HI/FR/25011503                                                   Exp.",
+    "mfg_date": "Jan-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Appearance\": \"Light yellow to yellow color liquid.\", \"Odour\": \"Characteristic,\", \"Specific gravity at 25°C\": \"0.950 to 1.20\", \"Refractive index at 20°C\": \"1.470 to 1.550\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7521,
+  "fields": {
+    "file_name": "ALOEVERA  FRAGRANCE-IVC-04006 JS CHEMICALS.docx",
+    "customer": "Js Chemicals",
+    "product": "Aloevera  Fragrance",
+    "batch": "HI/FR/24101402                                                  Exp.",
+    "mfg_date": "Oct-2024",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Appearance\": \"Light yellow to yellow color liquid.\", \"Odour\": \"Characteristic,\", \"Specific gravity at 25°C\": \"0.950 to 1.20\", \"Refractive index at 20°C\": \"1.470 to 1.550\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7522,
+  "fields": {
+    "file_name": "ALOEVERA  FRAGRANCE-IVC-4941-meribanna-27-10-25.docx",
+    "customer": "Meribanna",
+    "product": "Aloevera Fragrance",
+    "batch": "HI/FR/25102701                                                 Exp.",
+    "mfg_date": "Oct-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Appearance\": \"Light yellow to yellow color liquid.\", \"Odour\": \"Characteristic,\", \"Specific gravity at 25°C\": \"0.950 to 1.20\", \"Refractive index at 20°C\": \"1.470 to 1.550\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7523,
+  "fields": {
+    "file_name": "ALOEVERA  FRAGRANCE-IVC-6075-vedimatic-10-12-25.docx",
+    "customer": "Vedimatic",
+    "product": "Aloevera Fragrance",
+    "batch": "HI/FR/25120801                                                 Exp.",
+    "mfg_date": "Nov-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Appearance\": \"Colorless to pale yellow color liquid.\", \"Odour\": \"Characteristic,\", \"Specific gravity at 25°C\": \"0.950 to 1.20\", \"Refractive index at 20°C\": \"1.470 to 1.550\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7524,
+  "fields": {
+    "file_name": "ALOEVERA  FRAGRANCE-IVC-6155-rumy-13-12-25.docx",
+    "customer": "Rumy",
+    "product": "Aloevera Fragrance",
+    "batch": "HI/FR/25121201                                                 Exp.",
+    "mfg_date": "Dec-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Appearance\": \"Colorless to pale yellow color liquid.\", \"Odour\": \"Characteristic,\", \"Specific gravity at 25°C\": \"0.950 to 1.20\", \"Refractive index at 20°C\": \"1.470 to 1.550\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7525,
+  "fields": {
+    "file_name": "ALOEVERA  FRAGRANCE-IVC-6258-deepshika pathak-18-12-25.docx",
+    "customer": "Deepshika Pathak",
+    "product": "Aloevera Fragrance",
+    "batch": "HI/FR/25121701                                                 Exp.",
+    "mfg_date": "Dec-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Appearance\": \"Colorless to pale yellow color liquid.\", \"Odour\": \"Characteristic,\", \"Specific gravity at 25°C\": \"0.950 to 1.20\", \"Refractive index at 20°C\": \"1.470 to 1.550\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7526,
+  "fields": {
+    "file_name": "ALOEVERA  FRAGRANCE-IVC-7688-VEDIMATIC-16-02-26.docx",
+    "customer": "Vedimatic",
+    "product": "Aloevera Fragrance",
+    "batch": "HI/FR/26021604                                                 Exp.",
+    "mfg_date": "Feb-2026",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Appearance\": \"Colorless to pale yellow color liquid.\", \"Odour\": \"Characteristic,\", \"Specific gravity at 25°C\": \"0.950 to 1.20\", \"Refractive index at 20°C\": \"1.470 to 1.550\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7527,
+  "fields": {
+    "file_name": "ALOEVERA 200 X POWDER COA INCNUT-1811-18-07-25.docx",
+    "customer": "Unknown",
+    "product": "Aloevera 200 X Powder Coa Incnut 1811 18 07 25",
+    "batch": "HI/PW/25070901",
+    "mfg_date": "",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Description\": \"Creamy white powder (spray dried)\", \"Botanical name\": \"Aloe Barbadensis\", \"Absorbance\": \"34.00%\", \"Turbidity\": \"5 NTU\", \"pH (1.0% w/v solution)\": \"4.74\", \"Moisture content\": \"3.56% w/v\", \"Ash content\": \"1.319 w/v\", \"Heavy metals\": \"Less than 10 ppm\", \"Aloin\": \"6.24%\", \"Aloe polysaccharide\": \"12.3w/w\", \"Total aerobic plate count\": \"33 cfu/gm\", \"Total yeast & mold count\": \"Less than 10 cfu/gm\", \"Coliforms\": \"Absent\", \"E. coli\": \"Absent\", \"Salmonellae\": \"Absent\", \"S. aureus\": \"Absent\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7528,
+  "fields": {
+    "file_name": "ALOEVERA 200 X POWDER COA INCNUT-5180-05-11-25.docx",
+    "customer": "Unknown",
+    "product": "Aloevera 200 X Powder Coa Incnut 5180 05 11 25",
+    "batch": "HI/PW/25110301",
+    "mfg_date": "",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Description\": \"Creamy white powder (spray dried)\", \"Botanical name\": \"Aloe Barbadensis\", \"Absorbance\": \"34.00%\", \"Turbidity\": \"5 NTU\", \"pH (1.0% w/v solution)\": \"4.74\", \"Moisture content\": \"3.54% w/v\", \"Ash content\": \"1.3196 w/v\", \"Heavy metals\": \"Less than 10 ppm\", \"Aloin\": \"6.21%\", \"Aloe polysaccharide\": \"12.4w/w\", \"Total aerobic plate count\": \"33 cfu/gm\", \"Total yeast & mold count\": \"Less than 10 cfu/gm\", \"Coliforms\": \"Absent\", \"E. coli\": \"Absent\", \"Salmonellae\": \"Absent\", \"S. aureus\": \"Absent\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7529,
+  "fields": {
+    "file_name": "ALOEVERA 200 X POWDER-IVC-04027-ANANYA-15-10-24.docx",
+    "customer": "Ananya",
+    "product": "Aloevera 200 X Powder",
+    "batch": "HI/PW/24101501",
+    "mfg_date": "",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Description\": \"Creamy white powder ( spray dried )\", \"Botanical name\": \"Aloe Barbadensis\", \"Absorbance\": \"34.00%\", \"Turbidity\": \"5 NTU\", \"Moisture content\": \"3.55% w/v\", \"Ash content\": \"1.326w/v\", \"Heavy metals\": \"Less than 10 ppm\", \"Aloin\": \"6.21%\", \"Aloe polysaccharide\": \"12.5% w/w\", \"Total aerobic plate count\": \"35 cfu/gm\", \"Total yeast & mold count\": \"Less than 10 cfu/gm\", \"Coliforms\": \"Absent\", \"Salmonellae\": \"Absent\", \"pH(1.0% w/v solution)\": \"4.74\", \"E.coli\": \"Absent\", \"S.aureus\": \"Absent\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7530,
+  "fields": {
+    "file_name": "ALOEVERA 200 X POWDER-IVC-1344-ANANYA-25-05-25.docx",
+    "customer": "Ananya",
+    "product": "Aloevera 200 X Powder",
+    "batch": "HI/PW/25052201",
+    "mfg_date": "",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Description\": \"Creamy white powder ( spray dried )\", \"Botanical name\": \"Aloe Barbadensis\", \"Absorbance\": \"34.00%\", \"Turbidity\": \"5 NTU\", \"Moisture content\": \"3.54% w/v\", \"Ash content\": \"1.325w/v\", \"Heavy metals\": \"Less than 10 ppm\", \"Aloin\": \"6.22%\", \"Aloe polysaccharide\": \"12.4% w/w\", \"Total aerobic plate count\": \"35 cfu/gm\", \"Total yeast & mold count\": \"Less than 10 cfu/gm\", \"Coliforms\": \"Absent\", \"Salmonellae\": \"Absent\", \"pH(1.0% w/v solution)\": \"4.74\", \"E.coli\": \"Absent\", \"S.aureus\": \"Absent\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7531,
+  "fields": {
+    "file_name": "ALOEVERA 200 X POWDER-IVC-2075-ANANYA-24-06-25.docx",
+    "customer": "Ananya",
+    "product": "Aloevera 200 X Powder",
+    "batch": "HI/PW/25062301",
+    "mfg_date": "",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Description\": \"Creamy white powder ( spray dried )\", \"Botanical name\": \"Aloe Barbadensis\", \"Absorbance\": \"34.00%\", \"Turbidity\": \"5 NTU\", \"Moisture content\": \"3.51% w/v\", \"Ash content\": \"1.321w/v\", \"Heavy metals\": \"Less than 10 ppm\", \"Aloin\": \"6.21%\", \"Aloe polysaccharide\": \"12.5% w/w\", \"Total aerobic plate count\": \"35 cfu/gm\", \"Total yeast & mold count\": \"Less than 10 cfu/gm\", \"Coliforms\": \"Absent\", \"Salmonellae\": \"Absent\", \"pH(1.0% w/v solution)\": \"4.73\", \"E.coli\": \"Absent\", \"S.aureus\": \"Absent\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7532,
+  "fields": {
+    "file_name": "ALOEVERA 200 X POWDER-IVC-2522-ANANYA-14-07-25.docx",
+    "customer": "Ananya",
+    "product": "Aloevera 200 X Powder",
+    "batch": "HI/PW/25071201",
+    "mfg_date": "",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Description\": \"Creamy white powder ( spray dried )\", \"Botanical name\": \"Aloe Barbadensis\", \"Absorbance\": \"34.00%\", \"Turbidity\": \"5 NTU\", \"Moisture content\": \"3.53% w/v\", \"Ash content\": \"1.321w/v\", \"Heavy metals\": \"Less than 10 ppm\", \"Aloin\": \"6.22%\", \"Aloe polysaccharide\": \"12.5% w/w\", \"Total aerobic plate count\": \"35 cfu/gm\", \"Total yeast & mold count\": \"Less than 10 cfu/gm\", \"Coliforms\": \"Absent\", \"Salmonellae\": \"Absent\", \"pH(1.0% w/v solution)\": \"4.72\", \"E.coli\": \"Absent\", \"S.aureus\": \"Absent\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7533,
+  "fields": {
+    "file_name": "ALOEVERA 200 X POWDER-IVC-4338-PRIMIER-26-09-25.docx",
+    "customer": "Primier",
+    "product": "Aloevera 200 X Powder",
+    "batch": "HI/PW/25092601",
+    "mfg_date": "",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Description\": \"Creamy white powder ( spray dried )\", \"Botanical name\": \"Aloe Barbadensis\", \"Absorbance\": \"34.00%\", \"Turbidity\": \"5 NTU\", \"Moisture content\": \"3.52% w/v\", \"Ash content\": \"1.324w/v\", \"Heavy metals\": \"Less than 10 ppm\", \"Aloin\": \"6.22%\", \"Aloe polysaccharide\": \"12.3% w/w\", \"Total aerobic plate count\": \"35 cfu/gm\", \"Total yeast & mold count\": \"Less than 10 cfu/gm\", \"Coliforms\": \"Absent\", \"Salmonellae\": \"Absent\", \"pH(1.0% w/v solution)\": \"4.71\", \"E.coli\": \"Absent\", \"S.aureus\": \"Absent\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7534,
+  "fields": {
+    "file_name": "ALOEVERA 200 X POWDER-IVC-7531-OJB-11-02-26.docx",
+    "customer": "Ojb",
+    "product": "Aloevera 200 X Powder",
+    "batch": "HI/PW/26020701",
+    "mfg_date": "",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Description\": \"Creamy white powder ( spray dried )\", \"Botanical name\": \"Aloe Barbadensis\", \"Absorbance\": \"34.00%\", \"Turbidity\": \"5 NTU\", \"Moisture content\": \"3.57% w/v\", \"Ash content\": \"1.325 w/v\", \"Heavy metals\": \"Less than 10 ppm\", \"Aloin\": \"6.23%\", \"Aloe polysaccharide\": \"12.4% w/w\", \"Total aerobic plate count\": \"35 cfu/gm\", \"Total yeast & mold count\": \"Less than 10 cfu/gm\", \"Coliforms\": \"Absent\", \"Salmonellae\": \"Absent\", \"pH(1.0% w/v solution)\": \"4.71\", \"E.coli\": \"Absent\", \"S.aureus\": \"Absent\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7535,
+  "fields": {
+    "file_name": "ALOEVERA 200 X POWDER-IVC-7929-OZONE-27-02-26.docx",
+    "customer": "Ozone",
+    "product": "Aloevera 200 X Powder",
+    "batch": "HI/PW/26022701",
+    "mfg_date": "",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Description\": \"Creamy white powder ( spray dried )\", \"Botanical name\": \"Aloe Barbadensis\", \"Absorbance\": \"34.00%\", \"Turbidity\": \"5 NTU\", \"Moisture content\": \"3.54% w/v\", \"Ash content\": \"1.323 w/v\", \"Heavy metals\": \"Less than 10 ppm\", \"Aloin\": \"6.21%\", \"Aloe polysaccharide\": \"12.4% w/w\", \"Total aerobic plate count\": \"35 cfu/gm\", \"Total yeast & mold count\": \"Less than 10 cfu/gm\", \"Coliforms\": \"Absent\", \"Salmonellae\": \"Absent\", \"pH(1.0% w/v solution)\": \"4.72\", \"E.coli\": \"Absent\", \"S.aureus\": \"Absent\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7536,
+  "fields": {
+    "file_name": "ALOEVERA 200 X POWDER-IVC-8076-OZONE-06-03-26.docx",
+    "customer": "Ozone",
+    "product": "Aloevera 200 X Powder",
+    "batch": "HI/PW/26030601",
+    "mfg_date": "",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Description\": \"Creamy white powder ( spray dried )\", \"Botanical name\": \"Aloe Barbadensis\", \"Absorbance\": \"34.00%\", \"Turbidity\": \"5 NTU\", \"Moisture content\": \"3.52% w/v\", \"Ash content\": \"1.321 w/v\", \"Heavy metals\": \"Less than 10 ppm\", \"Aloin\": \"6.24%\", \"Aloe polysaccharide\": \"12.2% w/w\", \"Total aerobic plate count\": \"35 cfu/gm\", \"Total yeast & mold count\": \"Less than 10 cfu/gm\", \"Coliforms\": \"Absent\", \"Salmonellae\": \"Absent\", \"pH(1.0% w/v solution)\": \"4.69\", \"E.coli\": \"Absent\", \"S.aureus\": \"Absent\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7537,
+  "fields": {
+    "file_name": "ALOEVERA 200 X POWDER-IVC-8099-OJB-07-03-26.docx",
+    "customer": "Ojb",
+    "product": "Aloevera 200 X Powder",
+    "batch": "HI/PW/26030601",
+    "mfg_date": "",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Description\": \"Creamy white powder ( spray dried )\", \"Botanical name\": \"Aloe Barbadensis\", \"Absorbance\": \"34.00%\", \"Turbidity\": \"5 NTU\", \"Moisture content\": \"3.56% w/v\", \"Ash content\": \"1.324 w/v\", \"Heavy metals\": \"Less than 10 ppm\", \"Aloin\": \"6.21%\", \"Aloe polysaccharide\": \"12.4% w/w\", \"Total aerobic plate count\": \"35 cfu/gm\", \"Total yeast & mold count\": \"Less than 10 cfu/gm\", \"Coliforms\": \"Absent\", \"Salmonellae\": \"Absent\", \"pH(1.0% w/v solution)\": \"4.71\", \"E.coli\": \"Absent\", \"S.aureus\": \"Absent\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7538,
+  "fields": {
+    "file_name": "ALOEVERA 200 X POWDER-IVC-8197-FOREVER-14-03-26.docx",
+    "customer": "Forever",
+    "product": "Aloevera 200 X Powder",
+    "batch": "HI/PW/26031401",
+    "mfg_date": "",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Description\": \"Creamy white powder ( spray dried )\", \"Botanical name\": \"Aloe Barbadensis\", \"Absorbance\": \"34.00%\", \"Turbidity\": \"5 NTU\", \"Moisture content\": \"3.56% w/v\", \"Ash content\": \"1.324 w/v\", \"Heavy metals\": \"Less than 10 ppm\", \"Aloin\": \"6.21%\", \"Aloe polysaccharide\": \"12.4% w/w\", \"Total aerobic plate count\": \"35 cfu/gm\", \"Total yeast & mold count\": \"Less than 10 cfu/gm\", \"Coliforms\": \"Absent\", \"Salmonellae\": \"Absent\", \"pH(1.0% w/v solution)\": \"4.71\", \"E.coli\": \"Absent\", \"S.aureus\": \"Absent\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7539,
+  "fields": {
+    "file_name": "ALOEVERA 200 X POWDER-IVC-forever-17-01-26.docx",
+    "customer": "Forever",
+    "product": "Aloevera 200 X Powder",
+    "batch": "HI/PW/26011601",
+    "mfg_date": "",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Description\": \"Creamy white powder ( spray dried )\", \"Botanical name\": \"Aloe Barbadensis\", \"Absorbance\": \"34.00%\", \"Turbidity\": \"5 NTU\", \"Moisture content\": \"3.52% w/v\", \"Ash content\": \"1.324 w/v\", \"Heavy metals\": \"Less than 10 ppm\", \"Aloin\": \"6.24%\", \"Aloe polysaccharide\": \"12.4% w/w\", \"Total aerobic plate count\": \"35 cfu/gm\", \"Total yeast & mold count\": \"Less than 10 cfu/gm\", \"Coliforms\": \"Absent\", \"Salmonellae\": \"Absent\", \"pH(1.0% w/v solution)\": \"4.71\", \"E.coli\": \"Absent\", \"S.aureus\": \"Absent\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7540,
+  "fields": {
+    "file_name": "ALOEVERA 200 X POWDER-SV AGRO-INWARD-134-15-12-20.docx",
+    "customer": "Unknown",
+    "product": "Aloevera 200 X Powder Sv Agro Inward 134 15 12 20",
+    "batch": "HI/IGS/2012-15-134",
+    "mfg_date": "",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Description\": \"Creamy white powder ( spray dried )\", \"Botanical name\": \"Aloe Barbadensis\", \"Absorbance\": \"34.00%\", \"Turbidity\": \"5 NTU\", \"Moisture content\": \"3.35% w/v\", \"Ash content\": \"1.29% w/v\", \"Heavy metals\": \"Less than 10 ppm\", \"Aloin\": \"6.21%\", \"Aloe polysaccharide\": \"12.21% w/w\", \"Total aerobic plate count\": \"35 cfu/gm\", \"Total yeast & mold count\": \"Less than 10 cfu/gm\", \"Coliforms\": \"Absent\", \"Salmonellae\": \"Absent\", \"pH(1.0% w/v solution)\": \"4.71\", \"E.coli\": \"Absent\", \"S.aureus\": \"Absent\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7541,
+  "fields": {
+    "file_name": "ALOEVERA DRY EXTRACT -IVC-3270-Suguna-13-08-25.docx",
+    "customer": "Suguna",
+    "product": "Aloevera Dry Extract",
+    "batch": "",
+    "mfg_date": "",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Description\": \"Brown colored powder\", \"Assay\": \"Presence of Polysaccharides\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Odour & Taste\": \"Characteristic\", \"Identification Test-TLC Method\": \"Positive\", \"Water Solubility (%w/v)\": \"NLT -80%w/v\", \"Loss on Drying (%w/w)\": \"NMT- 7%w/w\", \"Particle Size\": \"NLT 90% pass through 60 mesh\", \"pH of 1%w/v aqueous solution\": \"3 – 7\", \"Heavy Metals\": \"NMT 10 ppm\", \"(a) Lead\": \"NMT 3 ppm\", \"(b) Mercury\": \"NMT 0.1 ppm\", \"(c) Arsenic\": \"NMT 1 ppm\", \"(d) Cadmium\": \"NMT 1 ppm\", \"Yeast & Mold\": \"NMT-100 cfu/gm\", \"E. Coli & Salmonella\": \"Absent\", \"Staphylococcus aureus\": \"Absent\", \"Pseudomonas aeruginosa\": \"Absent\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7542,
+  "fields": {
+    "file_name": "ALOEVERA DRY EXTRACT-IVC-3927-ZEE-09-09-25.docx",
+    "customer": "Zee",
+    "product": "Aloevera Dry Extract",
+    "batch": "",
+    "mfg_date": "",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Description\": \"Brown colored powder.\", \"Assay\": \"Presence of Polysaccharides\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Odour & Taste\": \"Characteristic\", \"Identification Test-TLC Method\": \"Positive\", \"Water Solubility (%w/v)\": \"NLT -80%w/v\", \"Loss on Drying (%w/w)\": \"NMT- 7%w/w\", \"Particle Size\": \"NLT 90% pass through 60 mesh\", \"pH of 1%w/v aqueous solution\": \"3.0 – 7.0\", \"Heavy Metals\": \"NMT 10 ppm\", \"(a) Lead\": \"NMT 3 ppm\", \"(b) Mercury\": \"NMT 0.1 ppm\", \"(c) Arsenic\": \"NMT 1 ppm\", \"(d) Cadmium\": \"NMT 1 ppm\", \"Yeast & Mold\": \"NMT-100 cfu/gm\", \"E. Coli & Salmonella\": \"Absent\", \"Staphylococcus aureus\": \"Absent\", \"Pseudomonas aeruginosa\": \"Absent\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7543,
+  "fields": {
+    "file_name": "ALOEVERA FRAGRANCE- NATURAL TOUCH-14-08-24.docx",
+    "customer": "Unknown",
+    "product": "Aloevera  Fragrance",
+    "batch": "HI/FR/24081204                                                         Exp.",
+    "mfg_date": "Aug-2024",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Appearance\": \"Light yellow to yellow color liquid.\", \"Odour\": \"Characteristic,\", \"Specific gravity at 25°C\": \"0.950 to 1.20\", \"Refractive index at 20°C\": \"1.470 to 1.550\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7544,
+  "fields": {
+    "file_name": "ALOEVERA FRAGRANCE- OS-TWO POLES-4500-GREAT CARE-04-10-25.docx",
+    "customer": "Unknown",
+    "product": "Aloevera and Cucumber Fragrance",
+    "batch": "HI/FR/25100401                                                        Exp.",
+    "mfg_date": "Sep-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Appearance\": \"Light yellow to yellow color liquid.\", \"Odour\": \"Characteristic,\", \"Specific gravity at 25°C\": \"0.950 to 1.20\", \"Refractive index at 20°C\": \"1.470 to 1.550\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7545,
+  "fields": {
+    "file_name": "ALOEVERA FRAGRANCE- WS-TWO POLES-13-08-24 and dt 21-02-25 GREAT CARE.docx",
+    "customer": "Unknown",
+    "product": "Aloevera and Cucumber WS Fragrance",
+    "batch": "HI/FR/25022103                                                        Exp.",
+    "mfg_date": "Feb-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Appearance\": \"Light yellow to yellow color liquid.\", \"Odour\": \"Characteristic,\", \"Specific gravity at 25°C\": \"0.950 to 1.20\", \"Refractive index at 20°C\": \"1.470 to 1.550\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7546,
+  "fields": {
+    "file_name": "ALOEVERA FRAGRANCE- WS-TWO POLES-13-08-24.docx",
+    "customer": "Unknown",
+    "product": "Aloevera WS Fragrance",
+    "batch": "HI/FR/25022103                                                        Exp.",
+    "mfg_date": "Feb-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Appearance\": \"Light yellow to yellow color liquid.\", \"Odour\": \"Characteristic,\", \"Specific gravity at 25°C\": \"0.950 to 1.20\", \"Refractive index at 20°C\": \"1.470 to 1.550\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7547,
+  "fields": {
+    "file_name": "ALOEVERA FRAGRANCE-IVC-UVEDIC-16-07-24.docx",
+    "customer": "Uvedic",
+    "product": "Aloevera  Fragrance",
+    "batch": "HI/FR/24071503                                                  Exp.",
+    "mfg_date": "July-2024",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Appearance\": \"Light yellow to yellow color liquid.\", \"Odour\": \"Characteristic,\", \"Specific gravity at 25°C\": \"0.950 to 1.20\", \"Refractive index at 20°C\": \"1.470 to 1.550\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7548,
+  "fields": {
+    "file_name": "ALOEVERA GEL-IVC-03217-JAHNVI-06-09-24.docx",
+    "customer": "Jahnvi",
+    "product": "Aloevera Gel",
+    "batch": "",
+    "mfg_date": "",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Description\": \"Colorless transparent gel\", \"Salmonella\": \"Negative\", \"E.coli\": \"Negative\", \"Ph Value\": \"4.5 to 7.0\", \"Heavy Metal\": \"Passes test\", \"Arsenic\": \"IP 1996<5ppm\", \"Pseudomonas Aeruginosa\": \"Negative\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7549,
+  "fields": {
+    "file_name": "ALOEVERA GEL-IVC-04384-MEDICLAB-06-11-24.docx",
+    "customer": "Mediclab",
+    "product": "Aloevera Gel",
+    "batch": "",
+    "mfg_date": "",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Description\": \"Colorless transparent gel\", \"Salmonella\": \"Negative\", \"E.coli\": \"Negative\", \"Ph Value\": \"4.5 to 7.0\", \"Heavy Metal\": \"Passes test\", \"Arsenic\": \"IP 1996<5ppm\", \"Pseudomonas Aeruginosa\": \"Negative\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7550,
+  "fields": {
+    "file_name": "ALOEVERA GEL-IVC-0452-savita n chavan-19-04-25.docx",
+    "customer": "Savita N Chavan",
+    "product": "Aloevera Gel",
+    "batch": "",
+    "mfg_date": "",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Description\": \"Colorless transparent gel\", \"Salmonella\": \"Negative\", \"E.coli\": \"Negative\", \"Ph Value\": \"4.5 to 7.0\", \"Heavy Metal\": \"Passes test\", \"Arsenic\": \"IP 1996<5ppm\", \"Pseudomonas Aeruginosa\": \"Negative\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7551,
+  "fields": {
+    "file_name": "ALOEVERA GEL-IVC-2011-HERBS 4 SURE-23-06-25.docx",
+    "customer": "Herbs 4 Sure",
+    "product": "Aloevera Gel",
+    "batch": "",
+    "mfg_date": "",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Description\": \"Colorless transparent gel\", \"Salmonella\": \"Negative\", \"E.coli\": \"Negative\", \"Ph Value\": \"4.5 to 7.0\", \"Heavy Metal\": \"Passes test\", \"Arsenic\": \"IP 1996<5ppm\", \"Pseudomonas Aeruginosa\": \"Negative\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7552,
+  "fields": {
+    "file_name": "ALOEVERA GEL-IVC-2775-KUREASUA PHARMA-24-07-25.docx",
+    "customer": "Kureasua Pharma",
+    "product": "Aloevera Gel",
+    "batch": "",
+    "mfg_date": "",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Description\": \"Colorless transparent gel\", \"Salmonella\": \"Negative\", \"E.coli\": \"Negative\", \"Ph Value\": \"4.5 to 7.0\", \"Heavy Metal\": \"Passes test\", \"Arsenic\": \"IP 1996<5ppm\", \"Pseudomonas Aeruginosa\": \"Negative\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7553,
+  "fields": {
+    "file_name": "ALOEVERA GEL-IVC-6477-KRJ-26-12-25.docx",
+    "customer": "Krj",
+    "product": "Aloevera Gel",
+    "batch": "",
+    "mfg_date": "",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Description\": \"Colorless transparent gel\", \"Salmonella\": \"Negative\", \"E.coli\": \"Negative\", \"Ph Value\": \"4.5 to 7.0\", \"Heavy Metal\": \"Passes test\", \"Arsenic\": \"IP 1996<5ppm\", \"Pseudomonas Aeruginosa\": \"Negative\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7554,
+  "fields": {
+    "file_name": "ALOEVERA GEL-IVC-6622-LUCKY & COMPANY-02-01-26.docx",
+    "customer": "Lucky & Company",
+    "product": "Aloevera Gel",
+    "batch": "",
+    "mfg_date": "",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Description\": \"Colorless transparent gel\", \"Salmonella\": \"Negative\", \"E.coli\": \"Negative\", \"Ph Value\": \"4.5 to 7.0\", \"Heavy Metal\": \"Passes test\", \"Arsenic\": \"IP 1996<5ppm\", \"Pseudomonas Aeruginosa\": \"Negative\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7555,
+  "fields": {
+    "file_name": "ALOEVERA GEL-IVC-8602-WELLMED-27-03-26.docx",
+    "customer": "Wellmed",
+    "product": "Aloevera Gel",
+    "batch": "",
+    "mfg_date": "",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Description\": \"Colorless transparent gel\", \"Salmonella\": \"Negative\", \"E.coli\": \"Negative\", \"Ph Value\": \"4.5 to 7.0\", \"Heavy Metal\": \"Passes test\", \"Arsenic\": \"IP 1996<5ppm\", \"Pseudomonas Aeruginosa\": \"Negative\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7556,
+  "fields": {
+    "file_name": "ALOEVERA HYDROSOL-IVC-07425-M DEVI-03-02-24.docx",
+    "customer": "M Devi",
+    "product": "Aloevera Hydrosol",
+    "batch": "HI/WR/24013001",
+    "mfg_date": "Jan-2024",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Complies\": \"Total yeast and mould count\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7557,
+  "fields": {
+    "file_name": "ALOEVERA HYDROSOL-IVC-4831-risiveda-17-10-25.docx",
+    "customer": "Risiveda",
+    "product": "Aloevera Hydrosol",
+    "batch": "HI/WR/25101401",
+    "mfg_date": "Oct-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Complies\": \"Total yeast and mould count\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7558,
+  "fields": {
+    "file_name": "ALOEVERA HYDROSOL-IVC-6844-risiveda-12-01-26.docx",
+    "customer": "Risiveda",
+    "product": "Aloevera Hydrosol",
+    "batch": "HI/WR/26010801",
+    "mfg_date": "Dec-2025",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Complies\": \"Total yeast and mould count\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7559,
+  "fields": {
+    "file_name": "ALOEVERA HYDROSOL-IVC-8150-risiveda-10-03-26.docx",
+    "customer": "Risiveda",
+    "product": "Aloevera Hydrosol",
+    "batch": "HI/WR/26031001",
+    "mfg_date": "Mar-2026",
+    "botanical": "",
+    "part_used": "",
+    "fields": "{\"Complies\": \"Total yeast and mould count\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7560,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT AL-IVC-1047-SAMPLE-DAYS HEALTHCARE-14-05-25.docx",
+    "customer": "Sample Days Healthcare",
+    "product": "Aloevera Liquid Extract AL",
+    "batch": "HI/LE/25051201",
+    "mfg_date": "May-2025",
+    "botanical": "Aloe indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Colorless to pale yellow  color liquid with characteristic odor.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"4.0 -7.0\", \"Specific Gravity\": \"1.0 – 1.100\", \"Assay\": \"Presence of Aloin\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\", \"Alcohol Soluble\": \"------\", \"Dry Residue at 1050C 6hrs\": \"NMT-5.0%\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7561,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT IVC- 4002 EXCEL MANUFACTURING COMPANY.docx",
+    "customer": "Unknown",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/24101401",
+    "mfg_date": "Oct-2024",
+    "botanical": "Aloe indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Colorless to pale yellow  color liquid with characteristic odor.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"4.0-7.0\", \"Specific Gravity\": \"1.00- 1.30\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\", \"Alcohol Soluble\": \"------\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7562,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT- BEAUTY PLUS TDS.docx",
+    "customer": "Unknown",
+    "product": "Aloevera Liquid Extract",
+    "batch": "",
+    "mfg_date": "",
+    "botanical": "Aloe vera",
+    "part_used": "Leaf",
+    "fields": "{}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7563,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT- IVC-5462-herb 4 sure-17-11-25.docx",
+    "customer": "Unknown",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/25111501",
+    "mfg_date": "Nov-2025",
+    "botanical": "Aloe vera indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Colorless to pale yellow liquid with characteristic odour\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"3.0 – 7.0\", \"Specific Gravity\": \"0.900 – 2.000\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7564,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT- IVC-6825-EXCEL MANUFACTURE-24-01-26.docx",
+    "customer": "Unknown",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/26012101",
+    "mfg_date": "Jan-2026",
+    "botanical": "Aloe vera indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Colorless to pale yellow liquid with characteristic odour\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"4.0 – 7.0\", \"Specific Gravity\": \"0.900 – 2.000\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7565,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT- IVC-7090-sanskriti-22-01-26.docx",
+    "customer": "Unknown",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/26012004",
+    "mfg_date": "Jan-2026",
+    "botanical": "Aloe vera indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Colorless to pale yellow liquid with characteristic odour\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"4.0 – 7.0\", \"Specific Gravity\": \"0.900 – 2.000\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7566,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT- IVC-WELSPUN-04-12-25.docx",
+    "customer": "Unknown",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/25120401",
+    "mfg_date": "Nov-2025",
+    "botanical": "Aloe vera indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Colorless to pale yellow liquid with characteristic odour\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"3.0 – 7.0\", \"Specific Gravity\": \"0.900 – 2.000\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7567,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT- IVC-WELSPUN-19-01-26.docx",
+    "customer": "Unknown",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/26011801",
+    "mfg_date": "Jan-2026",
+    "botanical": "Aloe vera indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Colorless to pale yellow liquid with characteristic odour\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"3.0 – 7.0\", \"Specific Gravity\": \"0.900 – 2.000\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7568,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT- IVC_5255_WELSPUN-08-11-2025.docx",
+    "customer": "Unknown",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/25110601",
+    "mfg_date": "Oct-2025",
+    "botanical": "Aloe vera indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Colorless to pale yellow liquid with characteristic odour\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"3.0 – 7.0\", \"Specific Gravity\": \"0.900 – 2.000\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7569,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-3419-3418-ANANYA-20-08-25.docx",
+    "customer": "Unknown",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/25081802",
+    "mfg_date": "Aug-2025",
+    "botanical": "Aloe indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Colorless to pale yellow  color liquid with characteristic odor.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"4.0-7.0\", \"Specific Gravity\": \"1.00- 1.30\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\", \"Alcohol Soluble\": \"------\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7570,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-4407-ANANYA-30-09-25.docx",
+    "customer": "Unknown",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/25093003",
+    "mfg_date": "Sep-2025",
+    "botanical": "Aloe indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Colorless to pale yellow  color liquid with characteristic odor.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"4.0-7.0\", \"Specific Gravity\": \"1.00- 1.30\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\", \"Alcohol Soluble\": \"------\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7571,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-4555-ANANYA-07-10-25.docx",
+    "customer": "Unknown",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/25100701",
+    "mfg_date": "Sep-2025",
+    "botanical": "Aloe indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Colorless to pale yellow  color liquid with characteristic odor.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"4.0-7.0\", \"Specific Gravity\": \"1.00- 1.30\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\", \"Alcohol Soluble\": \"------\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7572,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-4775-EK TEK-15-10-25.docx",
+    "customer": "Unknown",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/25101301",
+    "mfg_date": "Oct-2025",
+    "botanical": "Aloe indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Colorless to pale yellow  color liquid with characteristic odor.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"4.0-7.0\", \"Specific Gravity\": \"1.00- 1.30\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\", \"Alcohol Soluble\": \"------\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7573,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-5084-WELPSUN-1-11-25.docx",
+    "customer": "Unknown",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/25103101",
+    "mfg_date": "Oct-2025",
+    "botanical": "Aloe vera indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Colorless to pale yellow liquid with characteristic odour.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"3 - 7\", \"Specific Gravity\": \"0.900 – 2.000\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\", \"Alcohol Soluble\": \"------\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7574,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-5220-ANANYA-07-11-25.docx",
+    "customer": "Unknown",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/25110603",
+    "mfg_date": "Oct-2025",
+    "botanical": "Aloe indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Colorless to pale yellow  color liquid with characteristic odor.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"4.0-7.0\", \"Specific Gravity\": \"1.00- 1.30\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\", \"Alcohol Soluble\": \"------\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7575,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-5448-araiya wellness-17-11-25.docx",
+    "customer": "Unknown",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/25111501",
+    "mfg_date": "Nov-2025",
+    "botanical": "Aloe indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Colorless to pale yellow  color liquid with characteristic odor.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"4.0-7.0\", \"Specific Gravity\": \"1.00- 1.30\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\", \"Alcohol Soluble\": \"------\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7576,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-6001-araiya wellness-09-12-25.docx",
+    "customer": "Unknown",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/25120401",
+    "mfg_date": "Nov-2025",
+    "botanical": "Aloe indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Colorless to pale yellow  color liquid with characteristic odor.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"4.0-7.0\", \"Specific Gravity\": \"1.00- 1.30\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\", \"Alcohol Soluble\": \"------\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7577,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-8531-araiya wellness-24-03-26.docx",
+    "customer": "Unknown",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/26032406",
+    "mfg_date": "Mar-2026",
+    "botanical": "Aloe indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Colorless to pale yellow  color liquid with characteristic odor.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"4.0-7.0\", \"Specific Gravity\": \"1.00- 1.30\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\", \"Alcohol Soluble\": \"------\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7578,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-CSV-14-03-24.docx",
+    "customer": "Unknown",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/24031209",
+    "mfg_date": "Feb-2024",
+    "botanical": "Aloe vera",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Colorless to pale yellow color liquid, slightly turbid with characteristic odor.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"5.5-7.0\", \"Specific Gravity\": \"1.00 – 1.08\", \"Assay\": \"Presence of Aloin & Polysaccharide\", \"Total Plate Count\": \"NMT-100 cfu/gm\", \"Yeast/Molds\": \"NMT-10 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\", \"Water : PG\": \"1:1\", \"Pathogen\": \"Absent\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7579,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-DEKHAR HERBAL-02-07-24.docx",
+    "customer": "Unknown",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/24062801",
+    "mfg_date": "June-2024",
+    "botanical": "Aloe indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Colorless to pale yellow  color liquid with characteristic odor.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"4.0-7.0\", \"Specific Gravity\": \"1.00- 1.30\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\", \"Alcohol Soluble\": \"------\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7580,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-GUJRAT SALES-07-24.docx",
+    "customer": "Unknown",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/24070401",
+    "mfg_date": "June-2024",
+    "botanical": "Aloe indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Colorless to pale yellow  color liquid with characteristic odor.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"4.0-7.0\", \"Specific Gravity\": \"1.00- 1.30\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\", \"Alcohol Soluble\": \"------\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7581,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-INV-00583-MG SHAHNI-17-10-24.docx",
+    "customer": "Mg Shahni",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/24101705",
+    "mfg_date": "Oct-2024",
+    "botanical": "Aloe vera",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Yellow to light brown colour liquid with characteristic odour.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"3.0 – 7.0\", \"Specific Gravity\": \"0.900 – 2.000\", \"Assay\": \"Presence of Aloin & Polysaccharide\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\", \"Alcohol Soluble\": \"------\", \"Dry Residue\": \"NMT- 30%\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7582,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-INV-0731-MG SHAHNI-30-10-25.docx",
+    "customer": "Mg Shahni",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/25102802",
+    "mfg_date": "Oct-2025",
+    "botanical": "Aloe vera",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Yellow to light brown colour liquid with characteristic odour.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"3-7\", \"Specific Gravity\": \"0.900 – 2.000\", \"Assay\": \"Presence of Aloin & Polysaccharide\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\", \"Alcohol Soluble\": \"------\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7583,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-INV-2110-(HENNA)-26-06-25.docx",
+    "customer": "(Henna)",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/25062401",
+    "mfg_date": "June-2025",
+    "botanical": "Aloe vera",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Brownish red color liquid with characteristic odour.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"3-7\", \"Specific Gravity\": \"1.0-1.500\", \"Assay\": \"Presence of Aloin & Polysaccharide\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7584,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-INV-6364-MG SHAHNI-22-12-25.docx",
+    "customer": "Mg Shahni",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/25122002",
+    "mfg_date": "Dec-2025",
+    "botanical": "Aloe vera",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Yellow to light brown colour liquid with characteristic odour.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"3-7\", \"Specific Gravity\": \"0.900 – 2.000\", \"Assay\": \"Presence of Aloin & Polysaccharide\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\", \"Alcohol Soluble\": \"------\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7585,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-INV-7705-(HENNA)-17-02-26.docx",
+    "customer": "(Henna)",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/26021601",
+    "mfg_date": "Feb-2026",
+    "botanical": "Aloe vera",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Brownish red color liquid with characteristic odour.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"3-7\", \"Specific Gravity\": \"1.0-1.500\", \"Assay\": \"Presence of Aloin & Polysaccharide\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7586,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-INV-7853-MG SHAHNI-24-02-26.docx",
+    "customer": "Mg Shahni",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/26022401",
+    "mfg_date": "Feb-2026",
+    "botanical": "Aloe vera",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Yellow to light brown colour liquid with characteristic odour.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"3-7\", \"Specific Gravity\": \"0.900 – 2.000\", \"Assay\": \"Presence of Aloin & Polysaccharide\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\", \"Alcohol Soluble\": \"------\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7587,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-INV-8642-(HENNA)-31-03-26.docx",
+    "customer": "(Henna)",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/26033101",
+    "mfg_date": "Mar-2026",
+    "botanical": "Aloe vera",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Brownish red color liquid with characteristic odour.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"3-7\", \"Specific Gravity\": \"1.0-1.500\", \"Assay\": \"Presence of Aloin & Polysaccharide\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7588,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-INV-DC2046-(MG SHAHNI)-09-10-23 and MG SHAHANI 27-10-23.docx",
+    "customer": "Dc2046 (Mg Shahni) 09 10 23 And Mg Shahani 27 10 23",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/23102704",
+    "mfg_date": "Oct-2023",
+    "botanical": "Aloe vera",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Yellow to light brown colour liquid with characteristic odour.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"3-7\", \"Specific Gravity\": \"0.900 – 2.000\", \"Assay\": \"Presence of Aloin & Polysaccharide\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\", \"Alcohol Soluble\": \"------\", \"Dry Residue\": \"NMT- 30%\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7589,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-IVC--GRODIUM-19-12-25.docx",
+    "customer": "Grodium",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/25121701",
+    "mfg_date": "Dec-2025",
+    "botanical": "Aloe indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Colorless color clear liquid with characteristic odor.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"4.0-7.0\", \"Specific Gravity\": \"1.00- 1.30\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7590,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-IVC-00067-R&D GLOBAL-15-05-24.docx",
+    "customer": "R&D Global",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/24050907",
+    "mfg_date": "May-2024",
+    "botanical": "Aloe indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Colorless to pale yellow  color liquid with characteristic odor.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"3-7\", \"Specific Gravity\": \"0.900 – 2.000\", \"Assay\": \"Presence of Aloin & Polysaccharide\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\", \"Alcohol Soluble\": \"------\", \"Dry Residue\": \"NMT- 20%\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7591,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-IVC-001626-GOODCARE-17-06-24.docx",
+    "customer": "Goodcare",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/24061701",
+    "mfg_date": "June-2024",
+    "botanical": "Aloe indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Clear colourless liquid with characteristic odour.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"3.0 – 7.0\", \"Specific Gravity\": \"0.900 – 2.000\", \"Assay\": \"Presence of Aloin & Polysaccharide\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\", \"Alcohol Soluble\": \"------\", \"Dry Residue\": \"NMT- 30%\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7592,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-IVC-02073-ANANYA-10-07-23.docx",
+    "customer": "Ananya",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/23070701",
+    "mfg_date": "June-2023",
+    "botanical": "Aloe indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Colorless to pale yellow  color liquid with characteristic odor.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"4.0-7.0\", \"Specific Gravity\": \"1.00- 1.30\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\", \"Alcohol Soluble\": \"------\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7593,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-IVC-02253-ANANYA-17-07-24.docx",
+    "customer": "Ananya",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/24071603",
+    "mfg_date": "July-2024",
+    "botanical": "Aloe indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Colorless to pale yellow  color liquid with characteristic odor.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"4.0-7.0\", \"Specific Gravity\": \"1.00- 1.30\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\", \"Alcohol Soluble\": \"------\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7594,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-IVC-03811-COSMO-04-10-24.docx",
+    "customer": "Cosmo",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/24093001",
+    "mfg_date": "Sep-2024",
+    "botanical": "Aloe indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Colorless to pale yellow  color liquid with characteristic odor.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"4.0-7.0\", \"Specific Gravity\": \"1.00- 1.30\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\", \"Alcohol Soluble\": \"------\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7595,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-IVC-04691-ASTONEA LAB)-18-10-23.docx",
+    "customer": "Astonea Lab)",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/23101801",
+    "mfg_date": "Oct-2023",
+    "botanical": "Aloe vera",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Colorless to pale yellow liquid with characteristic odour.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"3-6\", \"Specific Gravity\": \"0.900 – 2.000\", \"Assay\": \"Presence of Polysachharide\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\", \"Alcohol Soluble\": \"------\", \"Dry Residue\": \"NMT- 30%\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7596,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-IVC-0474-AKINS-13-08-25.docx",
+    "customer": "Akins",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/25081101",
+    "mfg_date": "Aug-2025",
+    "botanical": "Aloe indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Clear colorless liquid with characteristic odour.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"3.0 – 7.0\", \"Specific Gravity\": \"1.0 – 1.50\", \"Assay\": \"Presence of Aloin & Polysaccharide\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7597,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-IVC-04972-ANANYA-28-10-23.docx",
+    "customer": "Ananya",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/23102801",
+    "mfg_date": "Oct-2023",
+    "botanical": "Aloe indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Colorless to pale yellow  color liquid with characteristic odor.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"4.0-7.0\", \"Specific Gravity\": \"1.00- 1.30\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\", \"Alcohol Soluble\": \"------\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7598,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-IVC-06006-GREAT CARE INC-13-01-25 AND DT 21-02-25.docx",
+    "customer": "Great Care Inc 13 01 25 And Dt 21 02 25",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/25022101",
+    "mfg_date": "Feb-2025",
+    "botanical": "Aloe indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Colorless to pale yellow  color liquid with characteristic odor.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"4.0-7.0\", \"Specific Gravity\": \"1.00- 1.30\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\", \"Alcohol Soluble\": \"------\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7599,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-IVC-06683-CREATIVE-13-02-25.docx",
+    "customer": "Creative",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/24021201",
+    "mfg_date": "Feb-2025",
+    "botanical": "Aloe indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Colorless to pale yellow  color liquid with characteristic odor.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"4.0-7.0\", \"Specific Gravity\": \"1.00- 1.30\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\", \"Alcohol Soluble\": \"------\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7600,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-IVC-1117-FAIZAL BADI-14-05-25.docx",
+    "customer": "Faizal Badi",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/25051203",
+    "mfg_date": "May-2025",
+    "botanical": "Aloe indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Colorless to pale yellow  color liquid with characteristic odor.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"4.0-7.0\", \"Specific Gravity\": \"1.00- 1.30\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\", \"Alcohol Soluble\": \"------\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7601,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-IVC-1627-ZEE LAB-06-06-25.docx",
+    "customer": "Zee Lab",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/25060403",
+    "mfg_date": "May-2025",
+    "botanical": "Aloe indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Colorless to pale yellow  color liquid with characteristic odor.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"3.0-7.0\", \"Specific Gravity\": \"1.00- 1.30\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\", \"Alcohol Soluble\": \"------\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7602,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-IVC-1910-UNITED-18-06-25.docx",
+    "customer": "United",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/25061601",
+    "mfg_date": "June-2025",
+    "botanical": "Aloe indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Colorless to pale yellow  color liquid with characteristic odor.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"4.0-7.0\", \"Specific Gravity\": \"1.00- 1.30\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7603,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-IVC-2010-GOODCARE-23-06-25.docx",
+    "customer": "Goodcare",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/25062301",
+    "mfg_date": "June-2025",
+    "botanical": "Aloe indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Clear colorless liquid with characteristic odour.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"3.0 – 7.0\", \"Specific Gravity\": \"1.0 – 1.50\", \"Assay\": \"Presence of Aloin & Polysaccharide\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7604,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-IVC-2118-vancom-26-06-25.docx",
+    "customer": "Vancom",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/25062406",
+    "mfg_date": "June-2025",
+    "botanical": "Aloe indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Clear colorless liquid with characteristic odour.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"3.0 – 7.0\", \"Specific Gravity\": \"1.0 – 1.50\", \"Assay\": \"Presence of Aloin & Polysaccharide\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7605,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-IVC-2167-ANANYA-30-06-25.docx",
+    "customer": "Ananya",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/25063001",
+    "mfg_date": "June-2025",
+    "botanical": "Aloe indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Colorless to pale yellow  color liquid with characteristic odor.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"4.0-7.0\", \"Specific Gravity\": \"1.00- 1.30\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\", \"Alcohol Soluble\": \"------\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7606,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-IVC-3456THE CANOPY-21-08-25.docx",
+    "customer": "The Canopy",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/25082101",
+    "mfg_date": "Aug-2025",
+    "botanical": "Aloe indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Colorless to pale yellow  color liquid with characteristic odor.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"4.0-7.0\", \"Specific Gravity\": \"1.00- 1.30\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7607,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-IVC-3717-GRODIUM-01-09-25.docx",
+    "customer": "Grodium",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/25083001",
+    "mfg_date": "Aug-2025",
+    "botanical": "Aloe indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Colorless to pale yellow  color liquid with characteristic odor.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"4.0-7.0\", \"Specific Gravity\": \"1.00- 1.30\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7608,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-IVC-3742-FORTUNE PHARMA-06-09-25.docx",
+    "customer": "Fortune Pharma",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/25090501",
+    "mfg_date": "Aug-2025",
+    "botanical": "Aloe indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Colorless to pale yellow  color liquid with characteristic odor.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"4.0-7.0\", \"Specific Gravity\": \"1.00- 1.30\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\", \"Alcohol Soluble\": \"------\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7609,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-IVC-3777-GRODIUM-03-09-25.docx",
+    "customer": "Grodium",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/25090201",
+    "mfg_date": "Aug-2025",
+    "botanical": "Aloe indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Colorless color clear liquid with characteristic odor.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"4.0-7.0\", \"Specific Gravity\": \"1.00- 1.30\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7610,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-IVC-3838-BEAUCIENCE-05-09-25.docx",
+    "customer": "Beaucience",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/25090405",
+    "mfg_date": "Aug-2025",
+    "botanical": "Aloe indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Colorless to pale yellow  color liquid with characteristic odor.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"4.0-7.0\", \"Specific Gravity\": \"1.00- 1.30\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7611,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-IVC-3903-GRODIUM-08-09-25.docx",
+    "customer": "Grodium",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/25090503",
+    "mfg_date": "Aug-2025",
+    "botanical": "Aloe indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Colorless color clear liquid with characteristic odor.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"4.0-7.0\", \"Specific Gravity\": \"1.00- 1.30\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7612,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-IVC-4056-BEAUCIENCE-15-09-25.docx",
+    "customer": "Beaucience",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/25091101",
+    "mfg_date": "Sep-2025",
+    "botanical": "Aloe indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Colorless to pale yellow  color liquid with characteristic odor.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"4.0-7.0\", \"Specific Gravity\": \"1.00- 1.30\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7613,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-IVC-4214-UNITED-20-09-25.docx",
+    "customer": "United",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/25091801",
+    "mfg_date": "Sep-2025",
+    "botanical": "Aloe indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Colorless to pale yellow color liquid with characteristic odor.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"4.0-7.0\", \"Specific Gravity\": \"1.00- 1.30\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7614,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-IVC-4519-BEAUCIENCE-04-10-25.docx",
+    "customer": "Beaucience",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/25100602",
+    "mfg_date": "Sep-2025",
+    "botanical": "Aloe indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Colorless to pale yellow  color liquid with characteristic odor.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"4.0-7.0\", \"Specific Gravity\": \"1.00- 1.30\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7615,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-IVC-4558-(ABHISHEIK PHARMA)-07-10-25.docx",
+    "customer": "(Abhisheik Pharma)",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/25100701",
+    "mfg_date": "Sep-2025",
+    "botanical": "Aloe indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Colorless to pale yellow  color liquid with characteristic odor.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"3-7\", \"Specific Gravity\": \"0.900 – 2.000\", \"Assay\": \"Presence of Aloin & Polysaccharide\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\", \"Alcohol Soluble\": \"------\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7616,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-IVC-4870-GRODIUM-24-10-25.docx",
+    "customer": "Grodium",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/25102403",
+    "mfg_date": "Oct-2025",
+    "botanical": "Aloe indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Colorless color clear liquid with characteristic odor.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"4.0-7.0\", \"Specific Gravity\": \"1.00- 1.30\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7617,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-IVC-5895-(ABHISHEIK PHARMA)-03-12-25.docx",
+    "customer": "(Abhisheik Pharma)",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/25120102",
+    "mfg_date": "Nov-2025",
+    "botanical": "Aloe indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Colorless to pale yellow  color liquid with characteristic odor.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"3-7\", \"Specific Gravity\": \"0.900 – 2.000\", \"Assay\": \"Presence of Aloin & Polysaccharide\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\", \"Alcohol Soluble\": \"------\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7618,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-IVC-5957-GREAT CARE INC-05-12-25.docx",
+    "customer": "Great Care Inc",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/25120401",
+    "mfg_date": "Nov-2025",
+    "botanical": "Aloe indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Colorless to pale yellow  color liquid with characteristic odor.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"4.0-7.0\", \"Specific Gravity\": \"1.00- 1.30\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\", \"Alcohol Soluble\": \"------\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7619,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-IVC-6152-BEAUCIENCE-13-12-25.docx",
+    "customer": "Beaucience",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/25121201",
+    "mfg_date": "Dec-2025",
+    "botanical": "Aloe indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Colorless to pale yellow  color liquid with characteristic odor.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"4.0-7.0\", \"Specific Gravity\": \"1.00- 1.30\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7620,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-IVC-6585-GRODIUM-31-12-25.docx",
+    "customer": "Grodium",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/25122902",
+    "mfg_date": "Dec-2025",
+    "botanical": "Aloe indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Colorless color clear liquid with characteristic odor.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"4.0-7.0\", \"Specific Gravity\": \"1.00- 1.30\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7621,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-IVC-6695-KHADI-06-01-26.docx",
+    "customer": "Khadi",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/26010503",
+    "mfg_date": "Dec-2025",
+    "botanical": "Aloe indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Colorless to pale yellow  color liquid with characteristic odor.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"4.0-7.0\", \"Specific Gravity\": \"1.00- 1.30\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\", \"Alcohol Soluble\": \"------\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7622,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-IVC-6740-LAVANYA-07-01-26.docx",
+    "customer": "Lavanya",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/26010501",
+    "mfg_date": "Dec-2025",
+    "botanical": "Aloe indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Colorless to pale yellow  color liquid with characteristic odor.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"4.0-7.0\", \"Specific Gravity\": \"1.00- 1.30\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\", \"Alcohol Soluble\": \"------\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7623,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-IVC-6770-SB AROMATIC-08-01-26.docx",
+    "customer": "Sb Aromatic",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/26010501",
+    "mfg_date": "Dec-2025",
+    "botanical": "Aloe indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Colorless to pale yellow  color liquid with characteristic odor.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"4.0-7.0\", \"Specific Gravity\": \"1.00- 1.30\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\", \"Alcohol Soluble\": \"------\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7624,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-IVC-6786-VANCOM-09-01-26.docx",
+    "customer": "Vancom",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/26010501",
+    "mfg_date": "Dec-2025",
+    "botanical": "Aloe indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Colorless clear liquid with characteristic odor.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"4.0-7.0\", \"Specific Gravity\": \"1.00- 1.30\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\", \"Alcohol Soluble\": \"------\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7625,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-IVC-6937-KHADI-16-01-26.docx",
+    "customer": "Khadi",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/26011504",
+    "mfg_date": "Jan-2026",
+    "botanical": "Aloe indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Colorless to pale yellow  color liquid with characteristic odor.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"4.0-7.0\", \"Specific Gravity\": \"1.00- 1.30\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\", \"Alcohol Soluble\": \"------\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7626,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-IVC-7102-GRODIUM-23-01-26.docx",
+    "customer": "Grodium",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/26012005",
+    "mfg_date": "Jan-2026",
+    "botanical": "Aloe indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Colorless color clear liquid with characteristic odor.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"4.0-7.0\", \"Specific Gravity\": \"1.00- 1.30\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7627,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-IVC-7119-KHADI-24-01-26.docx",
+    "customer": "Khadi",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/26012102",
+    "mfg_date": "Jan-2026",
+    "botanical": "Aloe indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Colorless to pale yellow  color liquid with characteristic odor.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"4.0-7.0\", \"Specific Gravity\": \"1.00- 1.30\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\", \"Alcohol Soluble\": \"------\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7628,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-IVC-7212-ETERNAL LIFE-29-01-26.docx",
+    "customer": "Eternal Life",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/26012802",
+    "mfg_date": "Jan-2026",
+    "botanical": "Aloe indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Clear colorless liquid with characteristic odour.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"3.0 – 7.0\", \"Specific Gravity\": \"1.0 – 1.50\", \"Assay\": \"Presence of Aloin & Polysaccharide\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7629,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-IVC-7498-VANCOM-10-02-26.docx",
+    "customer": "Vancom",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/26020704",
+    "mfg_date": "Feb-2026",
+    "botanical": "Aloe indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Clear colorless liquid with characteristic odour.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"4.0 – 7.0\", \"Specific Gravity\": \"1.0 – 1.50\", \"Assay\": \"Presence of Aloin & Polysaccharide\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7630,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-IVC-7567-KHADI-12-02-26.docx",
+    "customer": "Khadi",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/26021101",
+    "mfg_date": "Feb-2026",
+    "botanical": "Aloe indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Colorless to pale yellow  color liquid with characteristic odor.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"4.0-7.0\", \"Specific Gravity\": \"1.00- 1.30\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\", \"Alcohol Soluble\": \"------\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7631,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-IVC-7703-VANCOM-17-02-26.docx",
+    "customer": "Vancom",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/26021601",
+    "mfg_date": "Feb-2026",
+    "botanical": "Aloe indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Clear colorless liquid with characteristic odour.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"4.0 – 7.0\", \"Specific Gravity\": \"1.0 – 1.50\", \"Assay\": \"Presence of Aloin & Polysaccharide\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7632,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-IVC-7846-BEAUCIENCE-23-02-26.docx",
+    "customer": "Beaucience",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/26022302",
+    "mfg_date": "Feb-2026",
+    "botanical": "Aloe indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Colorless to pale yellow  color liquid with characteristic odor.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"4.0-7.0\", \"Specific Gravity\": \"1.00- 1.30\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7633,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-IVC-8159-GOODCARE-10-03-26.docx",
+    "customer": "Goodcare",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/26031001",
+    "mfg_date": "Mar-2026",
+    "botanical": "Aloe indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Clear colorless liquid with characteristic odour.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"3.0 – 7.0\", \"Specific Gravity\": \"1.0 – 1.50\", \"Assay\": \"Presence of Aloin & Polysaccharide\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\", \"Dry Residue\": \"NMT- 30%\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7634,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-IVC-8264-PLANET HERB-13-03-26.docx",
+    "customer": "Planet Herb",
+    "product": "Aloevera Liquid Extract",
+    "batch": "HI/LE/26031306",
+    "mfg_date": "Mar-2026",
+    "botanical": "Aloe indica",
+    "part_used": "Leaf",
+    "fields": "{\"Description\": \"Clear colorless liquid with characteristic odour.\", \"Propylene Glycol Solubility\": \"Soluble\", \"pH\": \"4.0 – 7.0\", \"Specific Gravity\": \"1.0 – 1.50\", \"Assay\": \"Presence of Aloin & Polysaccharide\", \"Total Plate Count\": \"NMT-1000 cfu/gm\", \"Yeast/Molds\": \"NMT-100 cfu/gm\", \"E. Coli\": \"Absent\", \"Salmonella\": \"Absent\", \"Total Coliforms\": \"Absent\", \"Water Soluble\": \"Soluble\"}"
+  }
+},
+{
+  "model": "coa.oldcoa",
+  "pk": 7635,
+  "fields": {
+    "file_name": "ALOEVERA LIQUID EXTRACT-IVC-8545-PRAKASH-24-03-26.docx",
+    "customer": "Prakash",
+    "product": "Aloevera Liquid Extract",
+    "batch": "",
+    "mfg_date": "",
+    "botanical": "",
+    "part_used": "",
+    "fields": 
