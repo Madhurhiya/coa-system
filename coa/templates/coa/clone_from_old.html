@@ -192,12 +192,14 @@
                                        placeholder="Enter result">
                                 <span class="range-badge"></span>
                             </td>
-                            <td style="text-align:center;">
-                                <button type="button" class="btn-remove" title="Delete this field"
-                                        onclick="removeOldRow(this)">✕</button>
-                                <button type="button" class="btn-add-heading-before" title="Add section heading above"
-                                        onclick="addHeadingBefore(this)" style="background:none;border:none;cursor:pointer;color:#4338ca;font-size:0.8rem;padding:2px 4px;" title="Insert heading above">＋H</button>
-                            </td>
+                           <td style="text-align:center;">
+    <button type="button" class="btn-remove" title="Delete this field"
+            onclick="removeOldRow(this)">✕</button>
+    <button type="button" onclick="addHeadingBefore(this)" 
+            style="background:none;border:none;cursor:pointer;color:#4338ca;font-size:0.8rem;padding:2px 4px;">＋H</button>
+    <button type="button" onclick="addFieldBelow(this)" 
+            style="background:none;border:none;cursor:pointer;color:#2e7d32;font-size:0.8rem;padding:2px 4px;">＋F</button>
+</td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -407,6 +409,37 @@ function addHeadingAtEnd() {
     if (!label) return;
     const tbody = document.getElementById('oldFieldsBody');
     tbody.appendChild(makeHeadingRow(label));
+}
+// ── INSERT NEW FIELD BELOW A ROW ──
+function addFieldBelow(btn) {
+    const row = btn.closest('tr');
+    const label = prompt('Enter field name:', 'New Field');
+    if (!label) return;
+    const tr = document.createElement('tr');
+    tr.className = 'old-field-row';
+    tr.style.cssText = 'background:#f0fdf4;';
+    tr.innerHTML = `
+        <td style="color:#9ca3af;font-size:0.78rem;">+</td>
+        <td colspan="1">
+            <input type="hidden" name="custom_field_name" value="${label}">
+            <input type="hidden" name="custom_is_heading" value="0">
+            <input type="text" placeholder="Field name…"
+                   value="${label}"
+                   style="width:100%;border:none;background:transparent;font-weight:500;color:#1a3c2e;font-family:'DM Sans',sans-serif;font-size:0.88rem;outline:none;"
+                   oninput="this.previousElementSibling.previousElementSibling.value=this.value">
+        </td>
+        <td>
+            <input type="text" name="custom_field_spec" placeholder="Standard / Specification"
+                   style="width:100%;padding:6px 10px;border:1.5px solid #d0d7de;border-radius:6px;font-family:'DM Sans',sans-serif;font-size:0.86rem;outline:none;background:#f0fdf4;">
+        </td>
+        <td>
+            <input type="text" name="custom_field_result" placeholder="Enter result"
+                   style="width:100%;padding:6px 10px;border:1.5px solid #d0d7de;border-radius:6px;font-family:'DM Sans',sans-serif;font-size:0.86rem;outline:none;background:#f0fdf4;">
+        </td>
+        <td style="text-align:center;">
+            <button type="button" class="btn-remove" onclick="this.closest('tr').remove()">✕</button>
+        </td>`;
+    row.parentNode.insertBefore(tr, row.nextSibling);
 }
 
 // ── ADD CUSTOM FIELD ──
