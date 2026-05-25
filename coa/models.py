@@ -32,9 +32,6 @@ CATEGORY_CODES = {
     'other':                 'OT',
 }
 
-# 1-year expiry categories
-ONE_YEAR_EXPIRY_KEYWORDS = ['water soluble', 'water-soluble', 'hydrosol']
-
 
 # ── Customer master ──
 class Customer(models.Model):
@@ -78,10 +75,14 @@ class Category(models.Model):
                 return code
         return 'XX'
 
+    def is_dry_extract(self):
+        """Returns True if this is a Dry Extract category."""
+        return 'dry extract' in self.name.lower() or 'dry-extract' in self.name.lower()
+
     def is_one_year_expiry(self):
         """Returns True if this category should have 1-year expiry."""
         name_lower = self.name.lower().strip()
-        return any(kw in name_lower for kw in ONE_YEAR_EXPIRY_KEYWORDS)
+        return any(kw in name_lower for kw in ['water soluble', 'water-soluble', 'hydrosol'])
 
 
 class TestGroup(models.Model):
@@ -147,11 +148,14 @@ class COA(models.Model):
             self.batch_no = f"{prefix}{count:02d}"
 
         # Auto Expiry:
-        # Water Soluble / Hydrosol → 1 year exactly
-        # Everything else → 2 years minus 1 month
+        # Water Soluble / Hydrosol → 1 year
+        # Dry Extract              → 3 years
+        # Everything else          → 2 years minus 1 month
         if self.manufacturing_date and not self.expiry_date:
             if self.category.is_one_year_expiry():
                 self.expiry_date = self.manufacturing_date + relativedelta(years=1)
+            elif self.category.is_dry_extract():
+                self.expiry_date = self.manufacturing_date + relativedelta(years=3)
             else:
                 self.expiry_date = self.manufacturing_date + relativedelta(years=2, months=-1)
 
@@ -165,6 +169,8 @@ class COAResult(models.Model):
     coa               = models.ForeignKey(COA, on_delete=models.CASCADE, related_name="results")
     parameter         = models.ForeignKey(TestParameter, on_delete=models.CASCADE)
     result            = models.CharField(max_length=300, blank=True, null=True)
+    reference         = models.CharField(max_length=300, blank=True, null=True,
+                                          help_text="Reference column — shown only for Dry Extract COAs")
     standard_override = models.CharField(max_length=300, blank=True, null=True)
 
     def __str__(self):
@@ -176,6 +182,8 @@ class COACustomField(models.Model):
     field_name    = models.CharField(max_length=200)
     specification = models.CharField(max_length=300, blank=True, null=True)
     result        = models.CharField(max_length=300, blank=True, null=True)
+    reference     = models.CharField(max_length=300, blank=True, null=True,
+                                      help_text="Reference column — shown only for Dry Extract COAs")
     order         = models.IntegerField(default=0)
     is_heading    = models.BooleanField(default=False,
                         help_text="If True, renders as a bold section heading row in the COA table")

@@ -38,8 +38,6 @@
         .field-group label { font-size: 0.78rem; font-weight: 700; color: var(--green-dark); text-transform: uppercase; letter-spacing: 0.3px; }
         .field-group input, .field-group select { padding: 10px 13px; border: 1.5px solid var(--border); border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 0.92rem; color: #1a202c; background: #fafbfc; outline: none; transition: border-color 0.2s; }
         .field-group input:focus, .field-group select:focus { border-color: var(--green-mid); box-shadow: 0 0 0 3px rgba(46,125,50,0.12); background: #fff; }
-
-        /* PARAM TABLE — now a real table for action buttons */
         .param-table { width: 100%; border-collapse: collapse; }
         .param-table th { background: #f8f9fa; padding: 8px 10px; font-size: 0.72rem; font-weight: 700; color: #6b7280; text-align: left; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid #e5e7eb; }
         .param-table td { padding: 6px 8px; border-bottom: 1px solid #f0f0f0; vertical-align: middle; }
@@ -48,27 +46,18 @@
         .param-default { font-size: 0.72rem; color: #9ca3af; margin-top: 2px; }
         .param-table input[type="text"] { width: 100%; padding: 7px 10px; border: 1.5px solid var(--border); border-radius: 6px; font-family: 'DM Sans', sans-serif; font-size: 0.88rem; outline: none; background: #fafbfc; }
         .param-table input[type="text"]:focus { border-color: var(--green-mid); background: #fff; }
-        .group-label { background: #f8f9fa; border-left: 4px solid var(--green-mid); padding: 8px 14px; font-size: 0.8rem; font-weight: 700; color: var(--green-dark); margin: 12px 0 6px; border-radius: 0 6px 6px 0; text-transform: uppercase; letter-spacing: 0.5px; }
-
-        /* OUT OF RANGE */
         .range-badge { font-size: 0.7rem; font-weight: 700; padding: 2px 7px; border-radius: 10px; white-space: nowrap; display: none; margin-top: 3px; }
         .range-badge.fail { background: #fef2f2; color: #dc2626; display: inline-block; }
         .range-badge.pass { background: #f0fdf4; color: #16a34a; display: inline-block; }
         input.out-of-range { border-color: #dc2626 !important; background: #fff5f5 !important; }
         input.in-range     { border-color: #16a34a !important; background: #f0fdf4 !important; }
-
-        /* Action buttons per row */
         .row-actions { display: flex; gap: 4px; align-items: center; white-space: nowrap; }
-        .btn-del-row { background: none; border: none; color: #dc2626; cursor: pointer; font-size: 0.9rem; padding: 3px 6px; border-radius: 4px; title: "Delete this row"; }
+        .btn-del-row { background: none; border: none; color: #dc2626; cursor: pointer; font-size: 0.9rem; padding: 3px 6px; border-radius: 4px; }
         .btn-del-row:hover { background: #fef2f2; }
         .btn-ins-row { background: none; border: none; color: #4338ca; cursor: pointer; font-size: 0.75rem; font-weight: 700; padding: 3px 6px; border-radius: 4px; font-family: 'DM Sans', sans-serif; }
         .btn-ins-row:hover { background: #ede9fe; }
-
-        /* Inserted custom row inside param section */
         tr.inserted-row td { background: #f0fdf4; }
         tr.inserted-heading-row td { background: #e8f5e9; font-weight: 700; }
-
-        /* CUSTOM FIELDS */
         .custom-table { width: 100%; border-collapse: collapse; }
         .custom-table th { background: #f8f9fa; padding: 9px 12px; font-size: 0.75rem; font-weight: 700; color: #555; text-align: left; text-transform: uppercase; letter-spacing: 0.4px; }
         .custom-table td { padding: 6px 8px; border-bottom: 1px solid #f0f0f0; }
@@ -86,6 +75,7 @@
         .btn-add-heading:hover { border-color: var(--green-mid); background: var(--green-light); }
         .btn-submit { background: linear-gradient(135deg, var(--green-mid), var(--green-dark)); color: #fff; border: none; padding: 14px 32px; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 800; cursor: pointer; width: 100%; box-shadow: 0 4px 14px rgba(46,125,50,0.35); transition: transform 0.15s; margin-top: 8px; }
         .btn-submit:hover { transform: translateY(-1px); }
+        .ref-badge { font-size: 0.65rem; background: #ede9fe; color: #5b21b6; padding: 1px 6px; border-radius: 10px; font-weight: 600; }
         @media(max-width:640px) { .form-grid { grid-template-columns: 1fr; } .full { grid-column: span 1; } .navbar { padding: 0 16px; } }
     </style>
 </head>
@@ -138,22 +128,23 @@
             </div>
         </div>
 
-        <!-- SECTION 2: TEST PARAMETERS — with delete + insert per row -->
+        <!-- SECTION 2: TEST PARAMETERS -->
         <div class="card">
             <div class="card-header">
                 <h2>🔬 Test Parameters & Results</h2>
-                <span class="badge">{{ coa.category.name }}</span>
+                <span class="badge">{{ coa.category.name }}{% if is_dry_extract %} &nbsp;|&nbsp; <span class="ref-badge">Reference column active</span>{% endif %}</span>
             </div>
             <div class="card-body" style="padding:16px;">
                 <div style="background:#fffbeb;border:1px solid #fcd34d;border-radius:8px;padding:8px 14px;font-size:0.8rem;color:#92400e;margin-bottom:12px;">
-                    💡 Use <strong>✕</strong> to delete a row &nbsp;|&nbsp; <strong>＋ Field</strong> to insert a new field below &nbsp;|&nbsp; <strong>＋ H</strong> to insert a section heading below
+                    💡 Use <strong>✕</strong> to delete a row &nbsp;|&nbsp; <strong>＋ Field</strong> to insert below &nbsp;|&nbsp; <strong>＋ H</strong> to insert heading below
                 </div>
                 <table class="param-table" id="paramTable">
                     <thead>
                         <tr>
-                            <th style="width:30%">Parameter</th>
-                            <th style="width:28%">Standard</th>
-                            <th style="width:28%">Result</th>
+                            <th style="width:{% if is_dry_extract %}25%{% else %}30%{% endif %}">Parameter</th>
+                            <th style="width:{% if is_dry_extract %}23%{% else %}28%{% endif %}">Standard</th>
+                            <th style="width:{% if is_dry_extract %}20%{% else %}28%{% endif %}">Result</th>
+                            {% if is_dry_extract %}<th style="width:18%">Reference</th>{% endif %}
                             <th style="width:14%">Actions</th>
                         </tr>
                     </thead>
@@ -161,7 +152,7 @@
                         {% for grp in grouped_parameters %}
                             {% if grp.group %}
                             <tr class="group-label-row">
-                                <td colspan="4" style="padding:8px 10px;background:#f8f9fa;border-left:4px solid #2e7d32;font-size:0.8rem;font-weight:700;color:#1a3c2e;text-transform:uppercase;letter-spacing:0.5px;">{{ grp.group.name }}</td>
+                                <td colspan="{% if is_dry_extract %}5{% else %}4{% endif %}" style="padding:8px 10px;background:#f8f9fa;border-left:4px solid #2e7d32;font-size:0.8rem;font-weight:700;color:#1a3c2e;text-transform:uppercase;letter-spacing:0.5px;">{{ grp.group.name }}</td>
                             </tr>
                             {% endif %}
                             {% for param in grp.params %}
@@ -169,7 +160,6 @@
                                 <td>
                                     <div class="param-name">{{ param.name }}</div>
                                     {% if param.specification %}<div class="param-default">Default: {{ param.specification }}</div>{% endif %}
-                                    <!-- Hidden inputs so this param is still submitted -->
                                     <input type="hidden" name="param_keep_{{ param.id }}" value="1">
                                 </td>
                                 <td>
@@ -189,11 +179,19 @@
                                            placeholder="Enter result">
                                     <span class="range-badge" id="badge_{{ param.id }}"></span>
                                 </td>
+                                {% if is_dry_extract %}
+                                <td>
+                                    <input type="text"
+                                           name="reference_{{ param.id }}"
+                                           value="{% if param.id in existing_results %}{{ existing_results|get_item:param.id|get_item:'reference' }}{% endif %}"
+                                           placeholder="Reference">
+                                </td>
+                                {% endif %}
                                 <td>
                                     <div class="row-actions">
-                                        <button type="button" class="btn-del-row" title="Delete this row" onclick="deleteParamRow(this)">✕</button>
-                                        <button type="button" class="btn-ins-row" title="Insert field below" onclick="insertFieldBelow(this)">＋ Field</button>
-                                        <button type="button" class="btn-ins-row" title="Insert heading below" onclick="insertHeadingBelow(this)" style="color:#1a3c2e;">＋ H</button>
+                                        <button type="button" class="btn-del-row" onclick="deleteParamRow(this)">✕</button>
+                                        <button type="button" class="btn-ins-row" onclick="insertFieldBelow(this)">＋ Field</button>
+                                        <button type="button" class="btn-ins-row" onclick="insertHeadingBelow(this)" style="color:#1a3c2e;">＋ H</button>
                                     </div>
                                 </td>
                             </tr>
@@ -214,9 +212,10 @@
                 <table class="custom-table" id="customTable">
                     <thead>
                         <tr>
-                            <th style="width:34%">Field Name / Heading</th>
-                            <th style="width:29%">Standard / Specification</th>
-                            <th style="width:27%">Result</th>
+                            <th style="width:{% if is_dry_extract %}27%{% else %}34%{% endif %}">Field Name / Heading</th>
+                            <th style="width:{% if is_dry_extract %}23%{% else %}29%{% endif %}">Standard / Specification</th>
+                            <th style="width:{% if is_dry_extract %}22%{% else %}27%{% endif %}">Result</th>
+                            {% if is_dry_extract %}<th style="width:18%">Reference</th>{% endif %}
                             <th style="width:10%">Remove</th>
                         </tr>
                     </thead>
@@ -243,6 +242,15 @@
                                     <input type="hidden" name="custom_field_result" value="">
                                 {% endif %}
                             </td>
+                            {% if is_dry_extract %}
+                            <td>
+                                {% if not cf.is_heading %}
+                                    <input type="text" name="custom_field_reference" value="{{ cf.reference|default:'' }}" placeholder="Reference">
+                                {% else %}
+                                    <input type="hidden" name="custom_field_reference" value="">
+                                {% endif %}
+                            </td>
+                            {% endif %}
                             <td style="text-align:center;">
                                 <button type="button" class="btn-remove" onclick="removeRow(this)">🗑️</button>
                             </td>
@@ -254,9 +262,6 @@
                     <button type="button" class="btn-add-row" onclick="addCustomField()">+ Add Test Field</button>
                     <button type="button" class="btn-add-heading" onclick="addHeadingRow()">☰ Add Section Heading</button>
                 </div>
-                <p style="font-size:0.75rem;color:#9ca3af;margin-top:8px;">
-                    💡 Use <strong>Add Section Heading</strong> to add a bold row like "Physical Tests" above a group.
-                </p>
             </div>
         </div>
 
@@ -265,7 +270,8 @@
 </div>
 
 <script>
-// ── OUT OF RANGE CHECK (fixed decimal regex) ──
+const IS_DRY_EXTRACT = {{ is_dry_extract|yesno:'true,false' }};
+
 function parseRange(standard) {
     const nums = standard.match(/[-+]?\d+\.?\d*/g);
     if (nums && nums.length >= 2) {
@@ -307,58 +313,54 @@ document.querySelectorAll('.result-input[data-param-id]').forEach(input => {
     if (input.value) doCheck();
 });
 
-// ── DELETE PARAM ROW ──
-function deleteParamRow(btn) {
-    const row = btn.closest('tr');
-    // Also remove the group label row above if it's alone
-    row.remove();
-}
+function deleteParamRow(btn) { btn.closest('tr').remove(); }
 
-// ── INSERT CUSTOM FIELD BELOW A PARAM ROW ──
 function insertFieldBelow(btn) {
     const row = btn.closest('tr');
     const tr = document.createElement('tr');
     tr.className = 'inserted-row';
+    const refCol = IS_DRY_EXTRACT ? `<td style="background:#f0fdf4;"><input type="text" name="custom_field_reference" placeholder="Reference" style="width:100%;padding:7px 10px;border:1.5px solid #d0d7de;border-radius:6px;font-family:'DM Sans',sans-serif;font-size:0.88rem;outline:none;background:#f0fdf4;"></td>` : '';
     tr.innerHTML = `
-        <td colspan="1">
+        <td style="background:#f0fdf4;">
             <input type="hidden" name="custom_is_heading" value="0">
             <input type="text" name="custom_field_name" placeholder="Field name" style="width:100%;padding:7px 10px;border:1.5px solid #d0d7de;border-radius:6px;font-family:'DM Sans',sans-serif;font-size:0.88rem;outline:none;background:#f0fdf4;">
         </td>
-        <td><input type="text" name="custom_field_spec" placeholder="Standard" style="width:100%;padding:7px 10px;border:1.5px solid #d0d7de;border-radius:6px;font-family:'DM Sans',sans-serif;font-size:0.88rem;outline:none;background:#f0fdf4;"></td>
-        <td>
-            <input type="text" name="custom_field_result" placeholder="Result" style="width:100%;padding:7px 10px;border:1.5px solid #d0d7de;border-radius:6px;font-family:'DM Sans',sans-serif;font-size:0.88rem;outline:none;background:#f0fdf4;">
-        </td>
-        <td><div class="row-actions"><button type="button" class="btn-del-row" onclick="deleteParamRow(this)">✕</button></div></td>`;
+        <td style="background:#f0fdf4;"><input type="text" name="custom_field_spec" placeholder="Standard" style="width:100%;padding:7px 10px;border:1.5px solid #d0d7de;border-radius:6px;font-family:'DM Sans',sans-serif;font-size:0.88rem;outline:none;background:#f0fdf4;"></td>
+        <td style="background:#f0fdf4;"><input type="text" name="custom_field_result" placeholder="Result" style="width:100%;padding:7px 10px;border:1.5px solid #d0d7de;border-radius:6px;font-family:'DM Sans',sans-serif;font-size:0.88rem;outline:none;background:#f0fdf4;"></td>
+        ${refCol}
+        <td style="background:#f0fdf4;"><div class="row-actions"><button type="button" class="btn-del-row" onclick="deleteParamRow(this)">✕</button></div></td>`;
     row.parentNode.insertBefore(tr, row.nextSibling);
     tr.querySelector('input[name="custom_field_name"]').focus();
 }
 
-// ── INSERT HEADING BELOW A PARAM ROW ──
 function insertHeadingBelow(btn) {
     const row = btn.closest('tr');
     const tr = document.createElement('tr');
     tr.className = 'inserted-heading-row';
+    const refCol = IS_DRY_EXTRACT ? `<td style="background:#e8f5e9;"><input type="hidden" name="custom_field_reference" value=""></td>` : '';
     tr.innerHTML = `
-        <td colspan="3">
+        <td colspan="3" style="background:#e8f5e9;">
             <input type="hidden" name="custom_is_heading" value="1">
             <input type="hidden" name="custom_field_spec" value="">
             <input type="hidden" name="custom_field_result" value="">
             <input type="text" name="custom_field_name" placeholder="Section heading text…"
                    style="width:100%;border:none;background:transparent;font-weight:700;color:#1a3c2e;font-family:'DM Sans',sans-serif;font-size:0.9rem;outline:none;padding:4px;">
         </td>
-        <td><div class="row-actions"><button type="button" class="btn-del-row" onclick="deleteParamRow(this)">✕</button></div></td>`;
+        ${refCol}
+        <td style="background:#e8f5e9;"><div class="row-actions"><button type="button" class="btn-del-row" onclick="deleteParamRow(this)">✕</button></div></td>`;
     row.parentNode.insertBefore(tr, row.nextSibling);
     tr.querySelector('input[name="custom_field_name"]').focus();
 }
 
-// ── CUSTOM FIELDS (bottom section) ──
 function addCustomField() {
     const tbody = document.getElementById('customBody');
     const tr = document.createElement('tr');
+    const refCol = IS_DRY_EXTRACT ? `<td><input type="text" name="custom_field_reference" placeholder="Reference"></td>` : '';
     tr.innerHTML = `
         <td><input type="hidden" name="custom_is_heading" value="0"><input type="text" name="custom_field_name" placeholder="e.g. Heavy Metals"></td>
         <td><input type="text" name="custom_field_spec" placeholder="e.g. Absent"></td>
         <td><input type="text" name="custom_field_result" placeholder="Result"></td>
+        ${refCol}
         <td style="text-align:center;"><button type="button" class="btn-remove" onclick="removeRow(this)">🗑️</button></td>`;
     tbody.appendChild(tr);
     tr.querySelector('input[name="custom_field_name"]').focus();
@@ -368,10 +370,12 @@ function addHeadingRow() {
     const tbody = document.getElementById('customBody');
     const tr = document.createElement('tr');
     tr.className = 'heading-row';
+    const refCol = IS_DRY_EXTRACT ? `<td><input type="hidden" name="custom_field_reference" value=""></td>` : '';
     tr.innerHTML = `
         <td><input type="hidden" name="custom_is_heading" value="1"><input type="text" name="custom_field_name" placeholder="Section heading text"></td>
         <td><span class="heading-badge">📋 HEADING</span><input type="hidden" name="custom_field_spec" value=""></td>
         <td><input type="hidden" name="custom_field_result" value=""></td>
+        ${refCol}
         <td style="text-align:center;"><button type="button" class="btn-remove" onclick="removeRow(this)">🗑️</button></td>`;
     tbody.appendChild(tr);
     tr.querySelector('input[name="custom_field_name"]').focus();

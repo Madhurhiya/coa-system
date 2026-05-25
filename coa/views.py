@@ -15,9 +15,6 @@ from .models import (Category, TestParameter, COA, COAResult,
 from .forms import COAForm
 
 
-# ================================================================
-# LINK CALLBACK — makes images work in xhtml2pdf
-# ================================================================
 def link_callback(uri, rel):
     if uri.startswith(settings.STATIC_URL):
         relative = uri[len(settings.STATIC_URL):]
@@ -36,9 +33,6 @@ def link_callback(uri, rel):
     return uri
 
 
-# ================================================================
-# AJAX — Item Lookup
-# ================================================================
 @login_required
 def item_lookup(request):
     name = request.GET.get('name', '').strip()
@@ -55,9 +49,6 @@ def item_lookup(request):
         return JsonResponse({})
 
 
-# ================================================================
-# AJAX — Item Search autocomplete
-# ================================================================
 @login_required
 def item_search(request):
     q     = request.GET.get('q', '').strip()
@@ -70,9 +61,6 @@ def item_search(request):
     return JsonResponse({'results': list(items)})
 
 
-# ================================================================
-# AJAX — Customer Search autocomplete
-# ================================================================
 @login_required
 def customer_search(request):
     q     = request.GET.get('q', '').strip()
@@ -85,9 +73,6 @@ def customer_search(request):
     return JsonResponse({'results': list(customers)})
 
 
-# ================================================================
-# COA LIST
-# ================================================================
 @login_required
 def coa_list(request):
     query    = request.GET.get('q', '').strip()
@@ -115,9 +100,6 @@ def coa_list(request):
     })
 
 
-# ================================================================
-# DELETE COA
-# ================================================================
 @login_required
 def delete_coa(request, coa_id):
     coa = get_object_or_404(COA, id=coa_id)
@@ -127,15 +109,11 @@ def delete_coa(request, coa_id):
     return render(request, 'coa/confirm_delete.html', {'coa': coa})
 
 
-# ================================================================
-# CREATE COA
-# — FIX 1: reads custom_is_heading (not custom_field_is_heading)
-# — FIX 2: saves created_by
-# ================================================================
 @login_required
 def create_coa(request):
     form = COAForm(request.POST or None)
     grouped_parameters = []
+    is_dry_extract = False
 
     if request.method == 'POST':
 
@@ -147,39 +125,45 @@ def create_coa(request):
                 ).select_related('group').order_by('group__order', 'order')
                 for group_key, group_items in groupby(parameters, key=lambda p: p.group):
                     grouped_parameters.append({'group': group_key, 'params': list(group_items)})
+                try:
+                    is_dry_extract = Category.objects.get(id=category_id).is_dry_extract()
+                except:
+                    pass
 
         elif 'save_coa' in request.POST:
             if form.is_valid():
-                # FIX 2: save created_by
                 coa = form.save(commit=False)
                 coa.created_by = request.user
                 coa.save()
 
                 category_id = request.POST.get('category')
                 parameters  = TestParameter.objects.filter(category_id=category_id)
-
+                
                 for param in parameters:
                     value             = request.POST.get(f'param_{param.id}', '').strip()
                     standard_override = request.POST.get(f'standard_{param.id}', '').strip()
+                    reference         = request.POST.get(f'reference_{param.id}', '').strip()
                     if value:
                         COAResult.objects.create(
                             coa=coa, parameter=param, result=value,
+                            reference=reference,
                             standard_override=standard_override if standard_override != param.specification else ''
                         )
 
-                # FIX 1: read custom_is_heading
-                names    = request.POST.getlist('custom_field_name')
-                specs    = request.POST.getlist('custom_field_spec')
-                results  = request.POST.getlist('custom_field_result')
-                headings = request.POST.getlist('custom_is_heading')
+                names      = request.POST.getlist('custom_field_name')
+                specs      = request.POST.getlist('custom_field_spec')
+                results    = request.POST.getlist('custom_field_result')
+                references = request.POST.getlist('custom_field_reference')
+                headings   = request.POST.getlist('custom_is_heading')
                 for i, name in enumerate(names):
                     name = name.strip()
                     if name:
                         is_heading = (headings[i] == '1') if i < len(headings) else False
                         COACustomField.objects.create(
                             coa=coa, field_name=name,
-                            specification=specs[i]   if i < len(specs)   else '',
-                            result=results[i]         if i < len(results) else '',
+                            specification=specs[i]       if i < len(specs)       else '',
+                            result=results[i]             if i < len(results)     else '',
+                            reference=references[i]       if i < len(references)  else '',
                             order=i,
                             is_heading=is_heading,
                         )
@@ -201,15 +185,10 @@ def create_coa(request):
         'prev_results':       {},
         'prev_custom':        [],
         'is_clone':           False,
+        'is_dry_extract':     is_dry_extract,
     })
 
 
-# ================================================================
-# CLONE COA
-# — FIX 1: reads custom_is_heading (not custom_field_is_heading)
-# — FIX 2: saves created_by
-# — FIX 3: passes is_heading in prev_custom
-# ================================================================
 @login_required
 def clone_coa(request, coa_id):
     original = get_object_or_404(COA, id=coa_id)
@@ -224,21 +203,20 @@ def clone_coa(request, coa_id):
 
     prev_results = {
         r.parameter_id: {
-            'result':   r.result,
-            'standard': r.standard_override or r.parameter.specification,
+            'result':    r.result,
+            'reference': r.reference,
+            'standard':  r.standard_override or r.parameter.specification,
         }
         for r in original.results.all().select_related('parameter')
     }
 
-    # FIX 3: include is_heading so clone shows headings correctly
     prev_custom = list(original.custom_fields.values(
-        'field_name', 'specification', 'result', 'is_heading'
+        'field_name', 'specification', 'result', 'reference', 'is_heading'
     ))
 
     if request.method == 'POST':
         form = COAForm(request.POST)
         if 'save_coa' in request.POST and form.is_valid():
-            # FIX 2: save created_by
             coa = form.save(commit=False)
             coa.created_by = request.user
             coa.save()
@@ -249,25 +227,28 @@ def clone_coa(request, coa_id):
             for param in parameters:
                 value             = request.POST.get(f'param_{param.id}', '').strip()
                 standard_override = request.POST.get(f'standard_{param.id}', '').strip()
+                reference         = request.POST.get(f'reference_{param.id}', '').strip()
                 if value:
                     COAResult.objects.create(
                         coa=coa, parameter=param, result=value,
+                        reference=reference,
                         standard_override=standard_override if standard_override != param.specification else ''
                     )
 
-            # FIX 1: read custom_is_heading
-            names    = request.POST.getlist('custom_field_name')
-            specs    = request.POST.getlist('custom_field_spec')
-            results  = request.POST.getlist('custom_field_result')
-            headings = request.POST.getlist('custom_is_heading')
+            names      = request.POST.getlist('custom_field_name')
+            specs      = request.POST.getlist('custom_field_spec')
+            results    = request.POST.getlist('custom_field_result')
+            references = request.POST.getlist('custom_field_reference')
+            headings   = request.POST.getlist('custom_is_heading')
             for i, name in enumerate(names):
                 name = name.strip()
                 if name:
                     is_heading = (headings[i] == '1') if i < len(headings) else False
                     COACustomField.objects.create(
                         coa=coa, field_name=name,
-                        specification=specs[i]   if i < len(specs)   else '',
-                        result=results[i]         if i < len(results) else '',
+                        specification=specs[i]       if i < len(specs)       else '',
+                        result=results[i]             if i < len(results)     else '',
+                        reference=references[i]       if i < len(references)  else '',
                         order=i,
                         is_heading=is_heading,
                     )
@@ -292,9 +273,6 @@ def clone_coa(request, coa_id):
     })
 
 
-# ================================================================
-# COA DETAIL
-# ================================================================
 @login_required
 def coa_detail(request, coa_id):
     coa           = get_object_or_404(COA, id=coa_id)
@@ -309,9 +287,6 @@ def coa_detail(request, coa_id):
     })
 
 
-# ================================================================
-# DOWNLOAD COA PDF
-# ================================================================
 @login_required
 def download_coa_pdf(request, coa_id):
     coa     = get_object_or_404(COA, id=coa_id)
@@ -319,13 +294,12 @@ def download_coa_pdf(request, coa_id):
         'parameter', 'parameter__group'
     ).order_by('parameter__group__order', 'parameter__order')
 
-    # Group results — no serial numbers needed
     grouped_results = []
     for group_key, group_items in groupby(results, key=lambda r: r.parameter.group):
         grouped_results.append({'group': group_key, 'items': list(group_items)})
 
-    # Custom fields — just fetch, no counter logic needed
-    custom_fields = list(coa.custom_fields.all())
+    custom_fields   = list(coa.custom_fields.all())
+    is_dry_extract  = coa.category.is_dry_extract()
 
     STATIC = settings.STATIC_URL
     def s(f): return f"{STATIC}images/{f}"
@@ -335,6 +309,7 @@ def download_coa_pdf(request, coa_id):
         'coa':             coa,
         'grouped_results': grouped_results,
         'custom_fields':   custom_fields,
+        'is_dry_extract':  is_dry_extract,
         'logo_url':        s('logo.png'),
         'halal_badge_url': s('halal_badge.png'),
         'iso_badge_url':   s('iso_badge.png'),
@@ -354,9 +329,6 @@ def download_coa_pdf(request, coa_id):
     return response
 
 
-# ================================================================
-# GENERATE LABEL
-# ================================================================
 @login_required
 def generate_label(request, coa_id):
     coa = get_object_or_404(COA, id=coa_id)
@@ -383,9 +355,6 @@ def generate_label(request, coa_id):
     return render(request, 'coa/generate_label.html', {'coa': coa, 'label': label})
 
 
-# ================================================================
-# DOWNLOAD LABEL PDF
-# ================================================================
 @login_required
 def download_label_pdf(request, coa_id):
     coa = get_object_or_404(COA, id=coa_id)
@@ -418,19 +387,16 @@ def download_label_pdf(request, coa_id):
     return response
 
 
-# ================================================================
-# EDIT COA
-# — already correct: reads custom_is_heading
-# ================================================================
 @login_required
 def edit_coa(request, coa_id):
     coa = get_object_or_404(COA, id=coa_id)
 
     existing_results = {
         r.parameter_id: {
-            'result':   r.result or '',
-            'standard': r.standard_override or r.parameter.specification or '',
-            'obj':      r,
+            'result':    r.result or '',
+            'reference': r.reference or '',
+            'standard':  r.standard_override or r.parameter.specification or '',
+            'obj':       r,
         }
         for r in coa.results.all().select_related('parameter')
     }
@@ -443,7 +409,8 @@ def edit_coa(request, coa_id):
     for group_key, group_items in groupby(parameters, key=lambda p: p.group):
         grouped_parameters.append({'group': group_key, 'params': list(group_items)})
 
-    custom_fields = list(coa.custom_fields.all())
+    custom_fields  = list(coa.custom_fields.all())
+    is_dry_extract = coa.category.is_dry_extract()
 
     if request.method == 'POST':
         coa.product_name   = request.POST.get('product_name', coa.product_name).strip()
@@ -462,33 +429,38 @@ def edit_coa(request, coa_id):
         coa.save()
 
         for param in TestParameter.objects.filter(category=coa.category):
-            value    = request.POST.get(f'param_{param.id}', '').strip()
-            standard = request.POST.get(f'standard_{param.id}', '').strip()
+            value     = request.POST.get(f'param_{param.id}', '').strip()
+            standard  = request.POST.get(f'standard_{param.id}', '').strip()
+            reference = request.POST.get(f'reference_{param.id}', '').strip()
 
             if param.id in existing_results:
                 r = existing_results[param.id]['obj']
                 r.result            = value
+                r.reference         = reference
                 r.standard_override = standard if standard != param.specification else ''
                 r.save()
             elif value:
                 COAResult.objects.create(
                     coa=coa, parameter=param, result=value,
+                    reference=reference,
                     standard_override=standard if standard != param.specification else ''
                 )
 
         coa.custom_fields.all().delete()
-        names    = request.POST.getlist('custom_field_name')
-        specs    = request.POST.getlist('custom_field_spec')
-        results  = request.POST.getlist('custom_field_result')
-        headings = request.POST.getlist('custom_is_heading')
+        names      = request.POST.getlist('custom_field_name')
+        specs      = request.POST.getlist('custom_field_spec')
+        results    = request.POST.getlist('custom_field_result')
+        references = request.POST.getlist('custom_field_reference')
+        headings   = request.POST.getlist('custom_is_heading')
         for i, name in enumerate(names):
             name = name.strip()
             if name:
                 is_heading = (headings[i] == '1') if i < len(headings) else False
                 COACustomField.objects.create(
                     coa=coa, field_name=name,
-                    specification=specs[i].strip()   if i < len(specs)   else '',
-                    result=results[i].strip()         if i < len(results) else '',
+                    specification=specs[i].strip()       if i < len(specs)       else '',
+                    result=results[i].strip()             if i < len(results)     else '',
+                    reference=references[i].strip()       if i < len(references)  else '',
                     order=i,
                     is_heading=is_heading,
                 )
@@ -500,12 +472,10 @@ def edit_coa(request, coa_id):
         'grouped_parameters': grouped_parameters,
         'existing_results':   existing_results,
         'custom_fields':      custom_fields,
+        'is_dry_extract':     is_dry_extract,
     })
 
 
-# ================================================================
-# AJAX — Out of range check
-# ================================================================
 @login_required
 def check_result(request):
     import re
@@ -515,31 +485,31 @@ def check_result(request):
     if not standard or not result:
         return JsonResponse({'status': 'unknown'})
 
-    result_nums = re.findall(r'[-+]?\d*\.?\d+', result)
+    result_nums = re.findall(r'[-+]?\d+\.?\d*', result)
     if not result_nums:
         return JsonResponse({'status': 'unknown', 'message': 'Non-numeric result'})
 
     result_val  = float(result_nums[0])
-    range_match = re.findall(r'[-+]?\d*\.?\d+', standard)
+    range_match = re.findall(r'[-+]?\d+\.?\d*', standard)
 
     if len(range_match) >= 2:
         lo, hi = float(range_match[0]), float(range_match[-1])
         if lo > hi:
             lo, hi = hi, lo
         if lo <= result_val <= hi:
-            return JsonResponse({'status': 'pass', 'message': f'Within range {lo}–{hi}'})
+            return JsonResponse({'status': 'pass', 'message': f'Within range {lo}-{hi}'})
         else:
             return JsonResponse({'status': 'fail',
-                'message': f'Out of range! Expected {lo}–{hi}, got {result_val}'})
+                'message': f'Out of range! Expected {lo}-{hi}, got {result_val}'})
 
-    max_match = re.search(r'(?:max|nmt|not more than|≤|<)\s*([\d.]+)', standard, re.I)
+    max_match = re.search(r'(?:max|nmt|not more than|<=|<)\s*(\d+\.?\d*)', standard, re.I)
     if max_match:
         limit = float(max_match.group(1))
         if result_val <= limit:
             return JsonResponse({'status': 'pass'})
         return JsonResponse({'status': 'fail', 'message': f'Exceeds max {limit}!'})
 
-    min_match = re.search(r'(?:min|nlt|not less than|≥|>)\s*([\d.]+)', standard, re.I)
+    min_match = re.search(r'(?:min|nlt|not less than|>=|>)\s*(\d+\.?\d*)', standard, re.I)
     if min_match:
         limit = float(min_match.group(1))
         if result_val >= limit:
@@ -549,9 +519,6 @@ def check_result(request):
     return JsonResponse({'status': 'unknown', 'message': 'Could not parse standard'})
 
 
-# ================================================================
-# AJAX — Product standards
-# ================================================================
 @login_required
 def product_standards(request):
     name = request.GET.get('name', '').strip()
@@ -568,9 +535,6 @@ def product_standards(request):
         return JsonResponse({'standards': {}, 'found': False})
 
 
-# ================================================================
-# AJAX — Standards search autocomplete
-# ================================================================
 @login_required
 def standards_search(request):
     from .models import ProductStandard
@@ -584,9 +548,6 @@ def standards_search(request):
     return JsonResponse({'results': list(results)})
 
 
-# ================================================================
-# OLD COA SEARCH
-# ================================================================
 @login_required
 def old_coa_search(request):
     from .models import OldCOA
@@ -619,9 +580,6 @@ def old_coa_search(request):
     })
 
 
-# ================================================================
-# OLD COA DETAIL
-# ================================================================
 @login_required
 def old_coa_detail(request, old_id):
     from .models import OldCOA
@@ -632,11 +590,6 @@ def old_coa_detail(request, old_id):
     })
 
 
-# ================================================================
-# CLONE FROM OLD COA
-# — FIX: reads custom_is_heading (not custom_field_is_heading)
-# — FIX: saves created_by
-# ================================================================
 @login_required
 def clone_from_old(request, old_id):
     from .models import OldCOA
@@ -647,7 +600,6 @@ def clone_from_old(request, old_id):
     if request.method == 'POST' and 'save_coa' in request.POST:
         form = COAForm(request.POST)
         if form.is_valid():
-            # FIX: save created_by
             coa = form.save(commit=False)
             coa.created_by = request.user
             coa.save()
@@ -655,27 +607,30 @@ def clone_from_old(request, old_id):
             category_id = request.POST.get('category')
             if category_id:
                 for param in TestParameter.objects.filter(category_id=category_id):
-                    value    = request.POST.get(f'param_{param.id}', '').strip()
-                    standard = request.POST.get(f'standard_{param.id}', '').strip()
+                    value     = request.POST.get(f'param_{param.id}', '').strip()
+                    standard  = request.POST.get(f'standard_{param.id}', '').strip()
+                    reference = request.POST.get(f'reference_{param.id}', '').strip()
                     if value:
                         COAResult.objects.create(
                             coa=coa, parameter=param, result=value,
+                            reference=reference,
                             standard_override=standard if standard != param.specification else ''
                         )
 
-            # FIX: read custom_is_heading
-            names    = request.POST.getlist('custom_field_name')
-            specs    = request.POST.getlist('custom_field_spec')
-            results  = request.POST.getlist('custom_field_result')
-            headings = request.POST.getlist('custom_is_heading')
+            names      = request.POST.getlist('custom_field_name')
+            specs      = request.POST.getlist('custom_field_spec')
+            results    = request.POST.getlist('custom_field_result')
+            references = request.POST.getlist('custom_field_reference')
+            headings   = request.POST.getlist('custom_is_heading')
             for i, name in enumerate(names):
                 name = name.strip()
                 if name:
                     is_heading = (headings[i] == '1') if i < len(headings) else False
                     COACustomField.objects.create(
                         coa=coa, field_name=name,
-                        specification=specs[i].strip()   if i < len(specs)   else '',
-                        result=results[i].strip()         if i < len(results) else '',
+                        specification=specs[i].strip()       if i < len(specs)       else '',
+                        result=results[i].strip()             if i < len(results)     else '',
+                        reference=references[i].strip()       if i < len(references)  else '',
                         order=i,
                         is_heading=is_heading,
                     )
@@ -720,10 +675,6 @@ def clone_from_old(request, old_id):
         'selected_cat_id':    selected_cat_id or '',
     })
 
-
-# ================================================================
-# USER MANAGEMENT — Admin only
-# ================================================================
 
 def admin_required(view_func):
     from functools import wraps

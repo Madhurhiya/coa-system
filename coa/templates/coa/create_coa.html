@@ -48,7 +48,9 @@
         .group-label{background:#f8f9fa;border-left:4px solid var(--green-mid);padding:8px 14px;font-size:0.8rem;font-weight:700;color:var(--green-dark);margin:16px 0 10px;border-radius:0 6px 6px 0;text-transform:uppercase;letter-spacing:0.5px;}
         .param-grid{display:grid;grid-template-columns:2fr 1.5fr 1.5fr;gap:0;}
         .param-grid-header{display:grid;grid-template-columns:2fr 1.5fr 1.5fr;gap:0;margin-bottom:6px;}
-        .param-grid-header span{font-size:0.72rem;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:0.5px;padding:0 8px;}
+        .param-grid-de{display:grid;grid-template-columns:2fr 1.5fr 1.2fr 1.2fr;gap:0;}
+        .param-grid-header-de{display:grid;grid-template-columns:2fr 1.5fr 1.2fr 1.2fr;gap:0;margin-bottom:6px;}
+        .param-grid-header span,.param-grid-header-de span{font-size:0.72rem;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:0.5px;padding:0 8px;}
         .param-row{display:contents;}
         .param-row>div{padding:7px 8px;border-bottom:1px solid #f0f0f0;display:flex;align-items:center;gap:6px;}
         .param-name{font-size:0.88rem;color:#333;font-weight:500;}
@@ -60,7 +62,7 @@
         .range-badge.pass{background:#f0fdf4;color:#16a34a;display:inline-block;}
         input.out-of-range{border-color:#dc2626!important;background:#fff5f5!important;}
         input.in-range{border-color:#16a34a!important;background:#f0fdf4!important;}
-
+        .ref-badge{font-size:0.65rem;background:#ede9fe;color:#5b21b6;padding:1px 6px;border-radius:10px;font-weight:600;}
         /* CUSTOM FIELDS */
         .custom-table{width:100%;border-collapse:collapse;}
         .custom-table th{background:#f8f9fa;padding:9px 12px;font-size:0.75rem;font-weight:700;color:#555;text-align:left;text-transform:uppercase;letter-spacing:0.4px;}
@@ -77,12 +79,11 @@
         .btn-add-row:hover{border-color:var(--green-mid);background:var(--green-light);}
         .btn-add-heading{background:none;border:1.5px dashed #a5d6a7;color:var(--green-dark);font-family:'DM Sans',sans-serif;font-size:0.83rem;font-weight:600;padding:8px 14px;border-radius:8px;cursor:pointer;transition:all 0.15s;}
         .btn-add-heading:hover{border-color:var(--green-mid);background:var(--green-light);}
-
         .btn-load{background:var(--green-dark);color:#fff;border:none;padding:10px 22px;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:700;cursor:pointer;transition:opacity 0.2s;}
         .btn-load:hover{opacity:0.88;}
         .btn-submit{background:linear-gradient(135deg,var(--green-mid),var(--green-dark));color:#fff;border:none;padding:14px 32px;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:800;cursor:pointer;width:100%;box-shadow:0 4px 14px rgba(46,125,50,0.35);transition:transform 0.15s,box-shadow 0.15s;margin-top:8px;}
         .btn-submit:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(46,125,50,0.45);}
-        @media(max-width:640px){.form-grid{grid-template-columns:1fr;}.full{grid-column:span 1;}.param-grid,.param-grid-header{grid-template-columns:1.5fr 1fr 1fr;}.navbar{padding:0 16px;}}
+        @media(max-width:640px){.form-grid{grid-template-columns:1fr;}.full{grid-column:span 1;}.param-grid,.param-grid-header,.param-grid-de,.param-grid-header-de{grid-template-columns:1fr;}.navbar{padding:0 16px;}}
     </style>
 </head>
 <body>
@@ -126,6 +127,7 @@
                             <option value="">— Select Category —</option>
                             {% for cat in form.fields.category.queryset %}
                                 <option value="{{ cat.id }}"
+                                    data-is-de="{{ cat.is_dry_extract|yesno:'true,false' }}"
                                     {% if form.category.value == cat.id|stringformat:"s" %}selected{% endif %}
                                     {% if is_clone and form.initial.category.id == cat.id %}selected{% endif %}>
                                     {{ cat.name }}
@@ -168,15 +170,50 @@
         <div class="card">
             <div class="card-header">
                 <h2>🔬 Test Parameters & Results</h2>
-                <span class="badge">Enter results in the Result column</span>
+                <span class="badge">Enter results in the Result column{% if is_dry_extract %} &nbsp;|&nbsp; <span class="ref-badge">Dry Extract — Reference column active</span>{% endif %}</span>
             </div>
             <div class="card-body param-section">
+                {% if is_dry_extract %}
+                <div class="param-grid-header-de">
+                    <span>Parameter</span><span>Standard</span><span>Result</span><span>Reference</span>
+                </div>
+                {% else %}
                 <div class="param-grid-header">
                     <span>Parameter</span><span>Standard</span><span>Result</span>
                 </div>
+                {% endif %}
+
                 {% for grp in grouped_parameters %}
                     {% if grp.group %}<div class="group-label">{{ grp.group.name }}</div>{% endif %}
                     {% for param in grp.params %}
+
+                    {% if is_dry_extract %}
+                    <div class="param-grid-de">
+                        <div class="param-row">
+                            <div>
+                                <div class="param-name">{{ param.name }}</div>
+                                {% if param.specification %}<div style="font-size:0.72rem;color:#9ca3af;">Default: {{ param.specification }}</div>{% endif %}
+                            </div>
+                            <div>
+                                <input type="text" name="standard_{{ param.id }}" id="std_{{ param.id }}"
+                                       value="{% if prev_results and param.id in prev_results %}{{ prev_results|get_item:param.id|get_item:'standard' }}{% else %}{{ param.specification|default:'' }}{% endif %}"
+                                       placeholder="Standard / spec">
+                            </div>
+                            <div style="flex-direction:column;align-items:flex-start;">
+                                <input type="text" name="param_{{ param.id }}" id="res_{{ param.id }}"
+                                       class="result-input" data-param-id="{{ param.id }}"
+                                       value="{% if prev_results and param.id in prev_results %}{{ prev_results|get_item:param.id|get_item:'result' }}{% endif %}"
+                                       placeholder="Enter result">
+                                <span class="range-badge" id="badge_{{ param.id }}"></span>
+                            </div>
+                            <div>
+                                <input type="text" name="reference_{{ param.id }}"
+                                       value="{% if prev_results and param.id in prev_results %}{{ prev_results|get_item:param.id|get_item:'reference'|default:'' }}{% endif %}"
+                                       placeholder="Reference">
+                            </div>
+                        </div>
+                    </div>
+                    {% else %}
                     <div class="param-grid">
                         <div class="param-row">
                             <div>
@@ -198,13 +235,15 @@
                             </div>
                         </div>
                     </div>
+                    {% endif %}
+
                     {% endfor %}
                 {% endfor %}
             </div>
         </div>
         {% endif %}
 
-        <!-- CUSTOM FIELDS with heading support -->
+        <!-- CUSTOM FIELDS -->
         <div class="card">
             <div class="card-header">
                 <h2>➕ Additional Fields & Test Headings</h2>
@@ -214,9 +253,10 @@
                 <table class="custom-table" id="customTable">
                     <thead>
                         <tr>
-                            <th style="width:34%">Field Name / Heading</th>
-                            <th style="width:29%">Standard / Specification</th>
-                            <th style="width:27%">Result</th>
+                            <th style="width:{% if is_dry_extract %}27%{% else %}34%{% endif %}">Field Name / Heading</th>
+                            <th style="width:{% if is_dry_extract %}23%{% else %}29%{% endif %}">Standard / Specification</th>
+                            <th style="width:{% if is_dry_extract %}22%{% else %}27%{% endif %}">Result</th>
+                            {% if is_dry_extract %}<th style="width:18%">Reference</th>{% endif %}
                             <th style="width:10%">Remove</th>
                         </tr>
                     </thead>
@@ -244,6 +284,15 @@
                                         <input type="text" name="custom_field_result" value="{{ cf.result|default:'' }}" placeholder="Result">
                                     {% endif %}
                                 </td>
+                                {% if is_dry_extract %}
+                                <td>
+                                    {% if cf.is_heading %}
+                                        <input type="hidden" name="custom_field_reference" value="">
+                                    {% else %}
+                                        <input type="text" name="custom_field_reference" value="{{ cf.reference|default:'' }}" placeholder="Reference">
+                                    {% endif %}
+                                </td>
+                                {% endif %}
                                 <td style="text-align:center;">
                                     <button type="button" class="btn-remove" onclick="removeRow(this)">🗑️</button>
                                 </td>
@@ -270,6 +319,9 @@
 </div>
 
 <script>
+// is_dry_extract flag from Django
+const IS_DRY_EXTRACT = {{ is_dry_extract|yesno:'true,false' }};
+
 // AUTOCOMPLETE
 function setupAutocomplete(inputId, dropdownId, fetchUrl, onSelect) {
     const input = document.getElementById(inputId);
@@ -337,7 +389,7 @@ setupAutocomplete('id_product_name', 'item-dropdown', '/coa/api/item-search/', f
 });
 setupAutocomplete('id_customer_name', 'customer-dropdown', '/coa/api/customer-search/', null);
 
-// LOAD PARAMS — preserve mfg date (CHANGE #7 fix)
+// LOAD PARAMS
 document.getElementById('btnLoadParams').addEventListener('click', function() {
     const form = document.getElementById('coaForm');
     let loadInput = document.getElementById('load_fields_input');
@@ -371,7 +423,7 @@ document.querySelectorAll('.result-input[data-param-id]').forEach(input => {
     function doCheck() {
         if (!stdInput) return;
         const spec = parseRange(stdInput.value);
-        const nums = input.value.match(/[-+]?\d*\.?\d+/);
+        const nums = input.value.match(/[-+]?\d+\.?\d*/);
         if (!spec || !nums || !input.value.trim()) {
             input.classList.remove('out-of-range', 'in-range');
             if (badge) badge.className = 'range-badge'; return;
@@ -390,28 +442,34 @@ document.querySelectorAll('.result-input[data-param-id]').forEach(input => {
     if (input.value) doCheck();
 });
 
-// CUSTOM FIELDS
+// CUSTOM FIELDS — reference column added for dry extract
 function addCustomField() {
     const tr = document.createElement('tr');
+    const refCol = IS_DRY_EXTRACT ? `<td><input type="text" name="custom_field_reference" placeholder="Reference"></td>` : ``;
     tr.innerHTML = `
         <td><input type="hidden" name="custom_is_heading" value="0"><input type="text" name="custom_field_name" placeholder="e.g. Heavy Metals"></td>
         <td><input type="text" name="custom_field_spec" placeholder="e.g. Absent"></td>
         <td><input type="text" name="custom_field_result" placeholder="Result"></td>
+        ${refCol}
         <td style="text-align:center;"><button type="button" class="btn-remove" onclick="removeRow(this)">🗑️</button></td>`;
     document.getElementById('customBody').appendChild(tr);
     tr.querySelector('input[name="custom_field_name"]').focus();
 }
+
 function addHeadingRow() {
     const tr = document.createElement('tr');
     tr.className = 'heading-row';
+    const refCol = IS_DRY_EXTRACT ? `<td><input type="hidden" name="custom_field_reference" value=""></td>` : ``;
     tr.innerHTML = `
         <td><input type="hidden" name="custom_is_heading" value="1"><input type="text" name="custom_field_name" placeholder="Section heading (e.g. Physical Tests)"></td>
         <td><span class="heading-badge">📋 HEADING</span><input type="hidden" name="custom_field_spec" value=""></td>
         <td><input type="hidden" name="custom_field_result" value=""></td>
+        ${refCol}
         <td style="text-align:center;"><button type="button" class="btn-remove" onclick="removeRow(this)">🗑️</button></td>`;
     document.getElementById('customBody').appendChild(tr);
     tr.querySelector('input[name="custom_field_name"]').focus();
 }
+
 function removeRow(btn) { btn.closest('tr').remove(); }
 </script>
 </body>
