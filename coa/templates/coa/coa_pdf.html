@@ -40,13 +40,22 @@
             table-layout: fixed;
         }
         .results-table th,
-        .results-table td {
-            border: 1px solid #000;
-            padding: 6px 8px;
-            vertical-align: middle;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-        }
+.results-table td {
+    border: 1px solid #000;
+    padding: 6px 8px;
+    vertical-align: middle;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Dry Extract — smaller cell height */
+.de-row td {
+    padding: 2px 8px;
+    vertical-align: middle;
+}
+.de-row th {
+    padding: 2px 8px;
+}
         .results-table thead th {
             background-color: #ececec;
             font-weight: bold;
@@ -158,29 +167,29 @@
             </tr>
             {% endif %}
 
-            {% for result in section.items %}
-            <tr>
-                {% if is_dry_extract %}
-                <td class="col-test-de">{{ result.parameter.name }}</td>
-                <td class="col-standard-de">
-                    {% if result.standard_override %}{{ result.standard_override }}
-                    {% elif result.parameter.specification %}{{ result.parameter.specification }}
-                    {% else %}—{% endif %}
-                </td>
-                <td class="col-result-de">{{ result.result|default:"—" }}</td>
-                <td class="col-reference-de">{{ result.reference|default:"—" }}</td>
-                {% else %}
-                <td class="col-test">{{ result.parameter.name }}</td>
-                <td class="col-standard">
-                    {% if result.standard_override %}{{ result.standard_override }}
-                    {% elif result.parameter.specification %}{{ result.parameter.specification }}
-                    {% else %}—{% endif %}
-                </td>
-                <td class="col-result">{{ result.result|default:"—" }}</td>
-                {% endif %}
-            </tr>
-            {% endfor %}
-        {% endfor %}
+           {% for result in section.items %}
+        <tr {% if is_dry_extract %}class="de-row"{% endif %}>
+           {% if is_dry_extract %}
+        <td class="col-test-de">{{ result.parameter.name }}</td>
+        <td class="col-standard-de">
+        {% if result.standard_override %}{{ result.standard_override }}
+        {% elif result.parameter.specification %}{{ result.parameter.specification }}
+        {% else %}—{% endif %}
+    </td>
+    <td class="col-result-de">{{ result.result|default:"—" }}</td>
+    <td class="col-reference-de">{{ result.reference|default:"—" }}</td>
+    {% else %}
+    <td class="col-test">{{ result.parameter.name }}</td>
+    <td class="col-standard">
+        {% if result.standard_override %}{{ result.standard_override }}
+        {% elif result.parameter.specification %}{{ result.parameter.specification }}
+        {% else %}—{% endif %}
+    </td>
+    <td class="col-result">{{ result.result|default:"—" }}</td>
+    {% endif %}
+</tr>
+{% endfor %}
+{% endfor %}
 
         <!-- Custom fields -->
         {% if custom_fields %}
@@ -199,7 +208,7 @@
                     {% endif %}
                 </tr>
                 {% else %}
-                <tr>
+                <tr {% if is_dry_extract %}class="de-row"{% endif %}></tr>
                     {% if is_dry_extract %}
                     <td class="col-test-de">{{ cf.field_name }}</td>
                     <td class="col-standard-de">{% if cf.specification %}{{ cf.specification }}{% else %}—{% endif %}</td>
