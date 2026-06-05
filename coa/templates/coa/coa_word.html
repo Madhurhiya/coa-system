@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"></head>
+<body style="font-family: Arial, sans-serif; font-size: 10pt; color: #1a1a1a;">
+
+<h1 style="text-align:center; font-size:14pt; text-decoration:underline; text-transform:uppercase; letter-spacing:1.5px;">
+    Certificate of Analysis
+</h1>
+
+<table width="100%" style="border:1.5px solid #222; border-collapse:collapse; margin-bottom:10px;">
+    <tr>
+        <td width="55%" style="padding:6px 10px; border-right:1px solid #444; line-height:1.9;">
+            <b>Product Name :</b> {{ coa.product_name }}<br>
+            <b>Batch No. :</b> {{ coa.batch_no }}<br>
+            {% if coa.botanical_name %}<b>Botanical Name :</b> <i>{{ coa.botanical_name }}</i><br>{% endif %}
+            {% if coa.plant_part %}<b>Part of Plant Used :</b> {{ coa.plant_part }}<br>{% endif %}
+        </td>
+        <td width="45%" style="padding:6px 10px; line-height:1.9;">
+            <b>Mfg. Date :</b> {{ coa.manufacturing_date|date:"F-Y" }}<br>
+            <b>Exp. Date :</b> {{ coa.expiry_date|date:"F-Y" }}<br>
+        </td>
+    </tr>
+</table>
+
+<table width="100%" style="border-collapse:collapse; margin-bottom:8px; font-size:9pt;">
+    <thead>
+        <tr style="background:#ececec;">
+            {% if is_dry_extract %}
+            <th style="border:1px solid #000; padding:6px 8px; width:33%;">Tests</th>
+            <th style="border:1px solid #000; padding:6px 8px; width:29%; text-align:center;">Standard</th>
+            <th style="border:1px solid #000; padding:6px 8px; width:20%; text-align:center;">Results</th>
+            <th style="border:1px solid #000; padding:6px 8px; width:18%; text-align:center;">Reference</th>
+            {% else %}
+            <th style="border:1px solid #000; padding:6px 8px; width:40%;">Tests</th>
+            <th style="border:1px solid #000; padding:6px 8px; width:35%; text-align:center;">Standard</th>
+            <th style="border:1px solid #000; padding:6px 8px; width:25%; text-align:center;">Results</th>
+            {% endif %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for section in grouped_results %}
+            {% if section.group %}
+            <tr style="background:#e2e2e2;">
+                <td colspan="{% if is_dry_extract %}4{% else %}3{% endif %}" style="border:1px solid #000; padding:5px 8px; font-weight:bold;">{{ section.group.name }}</td>
+            </tr>
+            {% endif %}
+            {% for result in section.items %}
+            <tr>
+                {% if is_dry_extract %}
+                <td style="border:1px solid #000; padding:4px 8px;">{{ result.parameter.name }}</td>
+                <td style="border:1px solid #000; padding:4px 8px; text-align:center;">{% if result.standard_override %}{{ result.standard_override }}{% elif result.parameter.specification %}{{ result.parameter.specification }}{% else %}—{% endif %}</td>
+                <td style="border:1px solid #000; padding:4px 8px; text-align:center;">{{ result.result|default:"—" }}</td>
+                <td style="border:1px solid #000; padding:4px 8px; text-align:center;">{{ result.reference|default:"—" }}</td>
+                {% else %}
+                <td style="border:1px solid #000; padding:4px 8px;">{{ result.parameter.name }}</td>
+                <td style="border:1px solid #000; padding:4px 8px; text-align:center;">{% if result.standard_override %}{{ result.standard_override }}{% elif result.parameter.specification %}{{ result.parameter.specification }}{% else %}—{% endif %}</td>
+                <td style="border:1px solid #000; padding:4px 8px; text-align:center;">{{ result.result|default:"—" }}</td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        {% endfor %}
+
+        {% if custom_fields %}
+            {% for cf in custom_fields %}
+                {% if cf.is_heading %}
+                <tr style="background:#e2e2e2;">
+                    <td colspan="{% if is_dry_extract %}4{% else %}3{% endif %}" style="border:1px solid #000; padding:5px 8px; font-weight:bold;">{{ cf.field_name }}</td>
+                </tr>
+                {% else %}
+                <tr>
+                    {% if is_dry_extract %}
+                    <td style="border:1px solid #000; padding:4px 8px;">{{ cf.field_name }}</td>
+                    <td style="border:1px solid #000; padding:4px 8px; text-align:center;">{{ cf.specification|default:"—" }}</td>
+                    <td style="border:1px solid #000; padding:4px 8px; text-align:center;">{{ cf.result|default:"—" }}</td>
+                    <td style="border:1px solid #000; padding:4px 8px; text-align:center;">{{ cf.reference|default:"—" }}</td>
+                    {% else %}
+                    <td style="border:1px solid #000; padding:4px 8px;">{{ cf.field_name }}</td>
+                    <td style="border:1px solid #000; padding:4px 8px; text-align:center;">{{ cf.specification|default:"—" }}</td>
+                    <td style="border:1px solid #000; padding:4px 8px; text-align:center;">{{ cf.result|default:"—" }}</td>
+                    {% endif %}
+                </tr>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    </tbody>
+</table>
+
+<p style="font-size:9pt; font-weight:bold; margin:8px 0;">
+    OPINION OF ANALYST: The above material complies with the prescribed API standards.
+</p>
+
+<br><br>
+
+<table width="100%" style="border-collapse:collapse; margin-top:18px;">
+    <tr>
+        <td width="50%" style="text-align:center; padding:0 20px; font-size:9.5pt; font-weight:bold;">
+            <br><br>______________________________<br>Analysed By
+        </td>
+        <td width="50%" style="text-align:center; padding:0 20px; font-size:9.5pt; font-weight:bold;">
+            <br><br>______________________________<br>Approved By
+        </td>
+    </tr>
+</table>
+
+<p style="font-size:7pt; color:#444; margin-top:7px; line-height:1.5;">
+    <b>Note :-</b> Since it is an herbal product, there is likely to be minor colour variation
+    from batch to batch because of the seasonal variations of the raw materials.
+    Colour does not affect the quality and efficacy of the product.
+</p>
+
+<p style="text-align:center; font-size:7.5pt; color:#1a5c1a; font-weight:bold; margin-top:8px; border-top:1px solid #bbb; padding-top:5px; line-height:1.6;">
+    Manufactured by: Hiya India Biotech Pvt. Ltd. &amp; Supplied by: Nuplanet Ventures India Pvt. Ltd<br>
+    B-51, Okhla Industrial Area, Phase -1, New Delhi – 110020<br>
+    <span style="font-weight:normal;">contact@rawble.com | marketing@rawble.com | admin@rawble.com</span>
+</p>
+
+</body>
+</html>

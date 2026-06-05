@@ -775,265 +775,32 @@ def user_delete(request, user_id):
 
 @login_required
 def download_coa_word(request, coa_id):
-    from docx import Document
-    from docx.shared import Pt, RGBColor, Inches, Cm
-    from docx.enum.text import WD_ALIGN_PARAGRAPH
-    from docx.oxml.ns import qn
-    from docx.oxml import OxmlElement
     from io import BytesIO
+    from htmldocx import HtmlToDocx
+    from django.template.loader import render_to_string
 
     coa = get_object_or_404(COA, id=coa_id)
     results = coa.results.all().select_related(
         'parameter', 'parameter__group'
     ).order_by('parameter__group__order', 'parameter__order')
+
     grouped_results = []
     for group_key, group_items in groupby(results, key=lambda r: r.parameter.group):
         grouped_results.append({'group': group_key, 'items': list(group_items)})
+
     custom_fields  = list(coa.custom_fields.all())
     is_dry_extract = coa.category.is_dry_extract()
 
-    doc = Document()
+    html_content = render_to_string('coa/coa_word.html', {
+        'coa':             coa,
+        'grouped_results': grouped_results,
+        'custom_fields':   custom_fields,
+        'is_dry_extract':  is_dry_extract,
+    })
 
-    # Page margins
-    section = doc.sections[0]
-    section.top_margin    = Cm(1.5)
-    section.bottom_margin = Cm(1.5)
-    section.left_margin   = Cm(2)
-    section.right_margin  = Cm(2)
-
-    # ── Image paths ──
-    import os
-    static_dir  = os.path.join(settings.BASE_DIR, 'coa', 'static', 'images')
-    logo_path   = os.path.join(static_dir, 'logo.png')
-    halal_path  = os.path.join(static_dir, 'halal_badge.png')
-    iso_path    = os.path.join(static_dir, 'iso_badge.png')
-    gmp_path    = os.path.join(static_dir, 'gmp_badge.png')
-    stamp_path  = os.path.join(static_dir, 'stamp.png')
-
-    # ── Header: Logo left | Badges right ──
-    header_table = doc.add_table(rows=1, cols=2)
-    header_table.style = 'Table Grid'
-    left_hdr  = header_table.rows[0].cells[0]
-    right_hdr = header_table.rows[0].cells[1]
-
-    # Remove borders from header table
-    for cell in [left_hdr, right_hdr]:
-        tc   = cell._tc
-        tcPr = tc.get_or_add_tcPr()
-        tcBorders = OxmlElement('w:tcBorders')
-        for edge in ('top','left','bottom','right'):
-            tag = OxmlElement(f'w:{edge}')
-            tag.set(qn('w:val'), 'none')
-            tcBorders.append(tag)
-        tcPr.append(tcBorders)
-
-    # Logo
-    if os.path.exists(logo_path):
-        left_hdr.paragraphs[0].add_run().add_picture(logo_path, height=Cm(1.5))
-
-    # Badges — right aligned
-    right_hdr.paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.RIGHT
-    badge_run = right_hdr.paragraphs[0].add_run()
-    for badge_path in [halal_path, iso_path, gmp_path]:
-        if os.path.exists(badge_path):
-            badge_run.add_picture(badge_path, height=Cm(1.2))
-
-    # Divider line
-    divider = doc.add_paragraph()
-    divider_run = divider.add_run('─' * 80)
-    divider_run.font.size = Pt(8)
-
-    def set_cell_bg(cell, hex_color):
-        tc   = cell._tc
-        tcPr = tc.get_or_add_tcPr()
-        shd  = OxmlElement('w:shd')
-        shd.set(qn('w:val'),   'clear')
-        shd.set(qn('w:color'), 'auto')
-        shd.set(qn('w:fill'),  hex_color)
-        tcPr.append(shd)
-
-    def set_borders(cell, color='000000'):
-        tc   = cell._tc
-        tcPr = tc.get_or_add_tcPr()
-        tcBorders = OxmlElement('w:tcBorders')
-        for edge in ('top','left','bottom','right'):
-            tag = OxmlElement(f'w:{edge}')
-            tag.set(qn('w:val'),   'single')
-            tag.set(qn('w:sz'),    '4')
-            tag.set(qn('w:space'), '0')
-            tag.set(qn('w:color'), color)
-            tcBorders.append(tag)
-        tcPr.append(tcBorders)
-
-    # ── Title ──
-    title_para = doc.add_paragraph()
-    title_para.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    run = title_para.add_run('Certificate of Analysis')
-    run.bold      = True
-    run.font.size = Pt(14)
-    run.underline = True
-
-    doc.add_paragraph()
-
-    # ── Product Info Box ──
-    info_table = doc.add_table(rows=1, cols=2)
-    info_table.style = 'Table Grid'
-
-    left_cell  = info_table.rows[0].cells[0]
-    right_cell = info_table.rows[0].cells[1]
-
-    # Set column widths
-    for i, width in enumerate([Cm(10), Cm(7)]):
-        info_table.columns[i].width = width
-
-    def add_info_line(cell, label, value, italic=False):
-        p   = cell.add_paragraph()
-        lbl = p.add_run(f'{label} : ')
-        lbl.bold      = True
-        lbl.font.size = Pt(9.5)
-        val = p.add_run(str(value) if value else '')
-        val.font.size   = Pt(9.5)
-        val.font.italic = italic
-
-    # Clear default empty paragraph
-    left_cell.paragraphs[0].clear()
-    right_cell.paragraphs[0].clear()
-
-    add_info_line(left_cell,  'Product Name',      coa.product_name)
-    add_info_line(left_cell,  'Batch No.',          coa.batch_no)
-    if coa.botanical_name:
-        add_info_line(left_cell, 'Botanical Name',  coa.botanical_name, italic=True)
-    if coa.plant_part:
-        add_info_line(left_cell, 'Part of Plant Used', coa.plant_part)
-
-    add_info_line(right_cell, 'Mfg. Date', coa.manufacturing_date.strftime('%B-%Y') if coa.manufacturing_date else '—')
-    add_info_line(right_cell, 'Exp. Date', coa.expiry_date.strftime('%B-%Y') if coa.expiry_date else '—')
-
-    set_borders(left_cell)
-    set_borders(right_cell)
-
-    doc.add_paragraph()
-
-    # ── Results Table ──
-    col_count = 4 if is_dry_extract else 3
-    result_table = doc.add_table(rows=1, cols=col_count)
-    result_table.style = 'Table Grid'
-
-    # Header row
-    hdr = result_table.rows[0].cells
-    headers = ['Tests', 'Standard', 'Results']
-    if is_dry_extract:
-        headers.append('Reference')
-
-    for i, h in enumerate(headers):
-        set_cell_bg(hdr[i], 'ECECEC')
-        set_borders(hdr[i])
-        run = hdr[i].paragraphs[0].add_run(h)
-        run.bold           = True
-        run.font.size      = Pt(9.5)
-        hdr[i].paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.CENTER
-
-    # Data rows
-    for section in grouped_results:
-        # Group header row
-        if section['group']:
-            grp_row = result_table.add_row().cells
-            for i in range(1, col_count):
-                grp_row[0].merge(grp_row[i])
-            set_cell_bg(grp_row[0], 'E2E2E2')
-            set_borders(grp_row[0])
-            run = grp_row[0].paragraphs[0].add_run(section['group'].name)
-            run.bold      = True
-            run.font.size = Pt(9.5)
-
-        for result in section['items']:
-            row_cells = result_table.add_row().cells
-            std = result.standard_override or result.parameter.specification or '—'
-            data = [result.parameter.name, std, result.result or '—']
-            if is_dry_extract:
-                data.append(result.reference or '—')
-            for i, val in enumerate(data):
-                set_borders(row_cells[i])
-                run = row_cells[i].paragraphs[0].add_run(val)
-                run.font.size = Pt(9)
-                if i > 0:
-                    row_cells[i].paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.CENTER
-
-    # Custom fields
-    if custom_fields:
-        for cf in custom_fields:
-            if cf.is_heading:
-                grp_row = result_table.add_row().cells
-                for i in range(1, col_count):
-                    grp_row[0].merge(grp_row[i])
-                set_cell_bg(grp_row[0], 'E2E2E2')
-                set_borders(grp_row[0])
-                run = grp_row[0].paragraphs[0].add_run(cf.field_name)
-                run.bold      = True
-                run.font.size = Pt(9.5)
-            else:
-                row_cells = result_table.add_row().cells
-                data = [cf.field_name, cf.specification or '—', cf.result or '—']
-                if is_dry_extract:
-                    data.append(cf.reference or '—')
-                for i, val in enumerate(data):
-                    set_borders(row_cells[i])
-                    run = row_cells[i].paragraphs[0].add_run(val)
-                    run.font.size = Pt(9)
-                    if i > 0:
-                        row_cells[i].paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.CENTER
-
-    doc.add_paragraph()
-
-    # ── Opinion ──
-    opinion = doc.add_paragraph()
-    op_run  = opinion.add_run(
-        'OPINION OF ANALYST: The above material complies with the prescribed API standards.'
-    )
-    op_run.bold      = True
-    op_run.font.size = Pt(9)
-
-    doc.add_paragraph()
-
-    # ── Signature lines ──
-    sig_table = doc.add_table(rows=1, cols=2)
-    sig_left  = sig_table.rows[0].cells[0]
-    sig_right = sig_table.rows[0].cells[1]
-
-    for cell, label in [(sig_left, 'Analysed By'), (sig_right, 'Approved By')]:
-        p   = cell.add_paragraph()
-        p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-        run = p.add_run(f'\n\n{"_" * 30}\n{label}')
-        run.bold      = True
-        run.font.size = Pt(9.5)
-
-    doc.add_paragraph()
-
-    # ── Footer Note ──
-    note = doc.add_paragraph()
-    note_run = note.add_run(
-        'Note :- Since it is an herbal product, there is likely to be minor colour variation '
-        'from batch to batch because of the seasonal variations of the raw materials. '
-        'Colour does not affect the quality and efficacy of the product.'
-    )
-    note_run.font.size = Pt(7)
-    note_run.font.color.rgb = RGBColor(0x44, 0x44, 0x44)
-
-    # ── Company Bottom ──
-    company = doc.add_paragraph()
-    company.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    c_run = company.add_run(
-        'Manufactured by: Hiya India Biotech Pvt. Ltd. & Supplied by: Nuplanet Ventures India Pvt. Ltd\n'
-        'B-51, Okhla Industrial Area, Phase -1, New Delhi – 110020\n'
-        'contact@rawble.com | marketing@rawble.com | admin@rawble.com'
-    )
-    c_run.font.size = Pt(7.5)
-    c_run.font.color.rgb = RGBColor(0x1a, 0x5c, 0x1a)
-    c_run.bold = True
-
-    # ── Save ──
-    buffer = BytesIO()
-    doc.save(buffer)
+    buffer  = BytesIO()
+    parser  = HtmlToDocx()
+    parser.parse_html_string_to_file(html_content, buffer)
     buffer.seek(0)
 
     safe_batch    = coa.batch_no.replace('/', '-')
