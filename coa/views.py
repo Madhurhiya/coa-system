@@ -775,106 +775,227 @@ def user_delete(request, user_id):
 
 @login_required
 def download_coa_word(request, coa_id):
+    from docx import Document
+    from docx.shared import Pt, RGBColor, Inches, Cm
+    from docx.enum.text import WD_ALIGN_PARAGRAPH
+    from docx.oxml.ns import qn
+    from docx.oxml import OxmlElement
+    from io import BytesIO
+
     coa = get_object_or_404(COA, id=coa_id)
     results = coa.results.all().select_related(
         'parameter', 'parameter__group'
     ).order_by('parameter__group__order', 'parameter__order')
-    custom_fields = list(coa.custom_fields.all())
+    grouped_results = []
+    for group_key, group_items in groupby(results, key=lambda r: r.parameter.group):
+        grouped_results.append({'group': group_key, 'items': list(group_items)})
+    custom_fields  = list(coa.custom_fields.all())
     is_dry_extract = coa.category.is_dry_extract()
 
     doc = Document()
 
-    # Title
-    title = doc.add_heading(f'Certificate of Analysis', 0)
-    title.alignment = 1  # center
+    # Page margins
+    section = doc.sections[0]
+    section.top_margin    = Cm(1.5)
+    section.bottom_margin = Cm(1.5)
+    section.left_margin   = Cm(2)
+    section.right_margin  = Cm(2)
 
-    sub = doc.add_paragraph(f'{coa.product_name}  |  Batch: {coa.batch_no}')
-    sub.alignment = 1
+    def set_cell_bg(cell, hex_color):
+        tc   = cell._tc
+        tcPr = tc.get_or_add_tcPr()
+        shd  = OxmlElement('w:shd')
+        shd.set(qn('w:val'),   'clear')
+        shd.set(qn('w:color'), 'auto')
+        shd.set(qn('w:fill'),  hex_color)
+        tcPr.append(shd)
 
-    doc.add_paragraph('')
+    def set_borders(cell, color='000000'):
+        tc   = cell._tc
+        tcPr = tc.get_or_add_tcPr()
+        tcBorders = OxmlElement('w:tcBorders')
+        for edge in ('top','left','bottom','right'):
+            tag = OxmlElement(f'w:{edge}')
+            tag.set(qn('w:val'),   'single')
+            tag.set(qn('w:sz'),    '4')
+            tag.set(qn('w:space'), '0')
+            tag.set(qn('w:color'), color)
+            tcBorders.append(tag)
+        tcPr.append(tcBorders)
 
-    # Product Info Table
-    info_table = doc.add_table(rows=0, cols=2)
+    # ── Title ──
+    title_para = doc.add_paragraph()
+    title_para.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    run = title_para.add_run('Certificate of Analysis')
+    run.bold      = True
+    run.font.size = Pt(14)
+    run.underline = True
+
+    doc.add_paragraph()
+
+    # ── Product Info Box ──
+    info_table = doc.add_table(rows=1, cols=2)
     info_table.style = 'Table Grid'
 
-    def add_info_row(label, value):
-        row = info_table.add_row().cells
-        row[0].text = label
-        row[1].text = str(value) if value else '—'
-        row[0].paragraphs[0].runs[0].bold = True
+    left_cell  = info_table.rows[0].cells[0]
+    right_cell = info_table.rows[0].cells[1]
 
-    add_info_row('Product Name',      coa.product_name)
-    add_info_row('Batch No.',         coa.batch_no)
-    add_info_row('Category',          coa.category.name)
-    add_info_row('Manufacturing Date', coa.manufacturing_date.strftime('%B %Y') if coa.manufacturing_date else '—')
-    add_info_row('Expiry Date',       coa.expiry_date.strftime('%B %Y') if coa.expiry_date else '—')
+    # Set column widths
+    for i, width in enumerate([Cm(10), Cm(7)]):
+        info_table.columns[i].width = width
+
+    def add_info_line(cell, label, value, italic=False):
+        p   = cell.add_paragraph()
+        lbl = p.add_run(f'{label} : ')
+        lbl.bold      = True
+        lbl.font.size = Pt(9.5)
+        val = p.add_run(str(value) if value else '')
+        val.font.size   = Pt(9.5)
+        val.font.italic = italic
+
+    # Clear default empty paragraph
+    left_cell.paragraphs[0].clear()
+    right_cell.paragraphs[0].clear()
+
+    add_info_line(left_cell,  'Product Name',      coa.product_name)
+    add_info_line(left_cell,  'Batch No.',          coa.batch_no)
     if coa.botanical_name:
-        add_info_row('Botanical Name', coa.botanical_name)
+        add_info_line(left_cell, 'Botanical Name',  coa.botanical_name, italic=True)
     if coa.plant_part:
-        add_info_row('Part of Plant',  coa.plant_part)
-    if coa.customer_name:
-        add_info_row('Customer',       coa.customer_name)
+        add_info_line(left_cell, 'Part of Plant Used', coa.plant_part)
 
-    doc.add_paragraph('')
-    doc.add_heading('Test Results', level=1)
+    add_info_line(right_cell, 'Mfg. Date', coa.manufacturing_date.strftime('%B-%Y') if coa.manufacturing_date else '—')
+    add_info_line(right_cell, 'Exp. Date', coa.expiry_date.strftime('%B-%Y') if coa.expiry_date else '—')
 
-    # Results Table
-    if is_dry_extract:
-        cols = 4
-        headers = ['Sr.', 'Parameter', 'Standard', 'Result', 'Reference']
-        result_table = doc.add_table(rows=1, cols=5)
-    else:
-        result_table = doc.add_table(rows=1, cols=4)
-        headers = ['Sr.', 'Parameter', 'Standard', 'Result']
+    set_borders(left_cell)
+    set_borders(right_cell)
 
+    doc.add_paragraph()
+
+    # ── Results Table ──
+    col_count = 4 if is_dry_extract else 3
+    result_table = doc.add_table(rows=1, cols=col_count)
     result_table.style = 'Table Grid'
-    hdr_cells = result_table.rows[0].cells
+
+    # Header row
+    hdr = result_table.rows[0].cells
+    headers = ['Tests', 'Standard', 'Results']
+    if is_dry_extract:
+        headers.append('Reference')
+
     for i, h in enumerate(headers):
-        hdr_cells[i].text = h
-        hdr_cells[i].paragraphs[0].runs[0].bold = True
+        set_cell_bg(hdr[i], 'ECECEC')
+        set_borders(hdr[i])
+        run = hdr[i].paragraphs[0].add_run(h)
+        run.bold           = True
+        run.font.size      = Pt(9.5)
+        hdr[i].paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.CENTER
 
-    sr = 1
-    current_group = None
-    for result in results:
-        grp = result.parameter.group
-        if grp and grp != current_group:
-            current_group = grp
+    # Data rows
+    for section in grouped_results:
+        # Group header row
+        if section['group']:
             grp_row = result_table.add_row().cells
-            grp_row[0].merge(grp_row[-1])
-            grp_row[0].text = grp.name
-            grp_row[0].paragraphs[0].runs[0].bold = True
+            for i in range(1, col_count):
+                grp_row[0].merge(grp_row[i])
+            set_cell_bg(grp_row[0], 'E2E2E2')
+            set_borders(grp_row[0])
+            run = grp_row[0].paragraphs[0].add_run(section['group'].name)
+            run.bold      = True
+            run.font.size = Pt(9.5)
 
-        row_cells = result_table.add_row().cells
-        row_cells[0].text = str(sr)
-        row_cells[1].text = result.parameter.name
-        row_cells[2].text = result.standard_override or result.parameter.specification or '—'
-        row_cells[3].text = result.result or '—'
-        if is_dry_extract and len(row_cells) > 4:
-            row_cells[4].text = result.reference or '—'
-        sr += 1
-
-    if custom_fields:
-        grp_row = result_table.add_row().cells
-        grp_row[0].merge(grp_row[-1])
-        grp_row[0].text = 'Additional Tests'
-        grp_row[0].paragraphs[0].runs[0].bold = True
-
-        for i, cf in enumerate(custom_fields):
+        for result in section['items']:
             row_cells = result_table.add_row().cells
-            row_cells[0].text = str(i + 1)
-            row_cells[1].text = cf.field_name
-            row_cells[2].text = cf.specification or '—'
-            row_cells[3].text = cf.result or '—'
-            if is_dry_extract and len(row_cells) > 4:
-                row_cells[4].text = cf.reference or '—'
+            std = result.standard_override or result.parameter.specification or '—'
+            data = [result.parameter.name, std, result.result or '—']
+            if is_dry_extract:
+                data.append(result.reference or '—')
+            for i, val in enumerate(data):
+                set_borders(row_cells[i])
+                run = row_cells[i].paragraphs[0].add_run(val)
+                run.font.size = Pt(9)
+                if i > 0:
+                    row_cells[i].paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.CENTER
 
-    # Save to response
+    # Custom fields
+    if custom_fields:
+        for cf in custom_fields:
+            if cf.is_heading:
+                grp_row = result_table.add_row().cells
+                for i in range(1, col_count):
+                    grp_row[0].merge(grp_row[i])
+                set_cell_bg(grp_row[0], 'E2E2E2')
+                set_borders(grp_row[0])
+                run = grp_row[0].paragraphs[0].add_run(cf.field_name)
+                run.bold      = True
+                run.font.size = Pt(9.5)
+            else:
+                row_cells = result_table.add_row().cells
+                data = [cf.field_name, cf.specification or '—', cf.result or '—']
+                if is_dry_extract:
+                    data.append(cf.reference or '—')
+                for i, val in enumerate(data):
+                    set_borders(row_cells[i])
+                    run = row_cells[i].paragraphs[0].add_run(val)
+                    run.font.size = Pt(9)
+                    if i > 0:
+                        row_cells[i].paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.CENTER
+
+    doc.add_paragraph()
+
+    # ── Opinion ──
+    opinion = doc.add_paragraph()
+    op_run  = opinion.add_run(
+        'OPINION OF ANALYST: The above material complies with the prescribed API standards.'
+    )
+    op_run.bold      = True
+    op_run.font.size = Pt(9)
+
+    doc.add_paragraph()
+
+    # ── Signature lines ──
+    sig_table = doc.add_table(rows=1, cols=2)
+    sig_left  = sig_table.rows[0].cells[0]
+    sig_right = sig_table.rows[0].cells[1]
+
+    for cell, label in [(sig_left, 'Analysed By'), (sig_right, 'Approved By')]:
+        p   = cell.add_paragraph()
+        p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        run = p.add_run(f'\n\n{"_" * 30}\n{label}')
+        run.bold      = True
+        run.font.size = Pt(9.5)
+
+    doc.add_paragraph()
+
+    # ── Footer Note ──
+    note = doc.add_paragraph()
+    note_run = note.add_run(
+        'Note :- Since it is an herbal product, there is likely to be minor colour variation '
+        'from batch to batch because of the seasonal variations of the raw materials. '
+        'Colour does not affect the quality and efficacy of the product.'
+    )
+    note_run.font.size = Pt(7)
+    note_run.font.color.rgb = RGBColor(0x44, 0x44, 0x44)
+
+    # ── Company Bottom ──
+    company = doc.add_paragraph()
+    company.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    c_run = company.add_run(
+        'Manufactured by: Hiya India Biotech Pvt. Ltd. & Supplied by: Nuplanet Ventures India Pvt. Ltd\n'
+        'B-51, Okhla Industrial Area, Phase -1, New Delhi – 110020\n'
+        'contact@rawble.com | marketing@rawble.com | admin@rawble.com'
+    )
+    c_run.font.size = Pt(7.5)
+    c_run.font.color.rgb = RGBColor(0x1a, 0x5c, 0x1a)
+    c_run.bold = True
+
+    # ── Save ──
     buffer = BytesIO()
     doc.save(buffer)
     buffer.seek(0)
 
-    safe_batch   = coa.batch_no.replace('/', '-')
-    safe_product = coa.product_name.replace(' ', '_').replace('/', '-')
+    safe_batch    = coa.batch_no.replace('/', '-')
+    safe_product  = coa.product_name.replace(' ', '_').replace('/', '-')
     safe_customer = (coa.customer_name or 'General').replace(' ', '_').replace('/', '-')
 
     response = HttpResponse(
