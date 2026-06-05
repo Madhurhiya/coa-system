@@ -157,6 +157,7 @@
         <div class="card-body">
             <div class="actions">
                 <a href="{% url 'download_coa_pdf' coa.id %}" class="btn btn-primary">⬇ Download COA PDF</a>
+                <a href="{% url 'download_coa_word' coa.id %}" class="btn btn-outline">📄 Download Word</a>
                 <a href="{% url 'generate_label' coa.id %}" class="btn btn-gold">🏷️ Generate Label</a>
                 <a href="{% url 'clone_coa' coa.id %}" class="btn btn-secondary">🔁 Clone COA</a>
                 <a href="{% url 'create_coa' %}" class="btn btn-secondary">+ New COA</a>

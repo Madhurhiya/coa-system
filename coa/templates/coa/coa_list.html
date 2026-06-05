@@ -161,7 +161,8 @@
                         <div class="actions-cell">
                             <a href="{% url 'coa_detail' coa.id %}"       class="btn-a btn-view">View</a>
                             <a href="{% url 'edit_coa' coa.id %}"          class="btn-a btn-edit">✏️ Edit</a>
-                            <a href="{% url 'download_coa_pdf' coa.id %}"  class="btn-a btn-pdf">PDF</a>
+                            <a href="{% url 'download_coa_pdf' coa.id %}"   class="btn-a btn-pdf">PDF</a>
+                            <a href="{% url 'download_coa_word' coa.id %}"  class="btn-a btn-edit">Word</a> 
                             <a href="{% url 'clone_coa' coa.id %}"         class="btn-a btn-clone">🔁 Clone</a>
                             <!-- Change 6: Delete button -->
                             <button type="button" class="btn-a btn-delete"

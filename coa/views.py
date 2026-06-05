@@ -7,6 +7,9 @@ from django.template.loader import get_template
 from django.conf import settings
 from xhtml2pdf import pisa
 from itertools import groupby
+from docx import Document
+from docx.shared import Pt, RGBColor, Inches
+from io import BytesIO
 
 from django.contrib.auth.models import User
 from django.contrib import messages
@@ -138,7 +141,7 @@ def create_coa(request):
 
                 category_id = request.POST.get('category')
                 parameters  = TestParameter.objects.filter(category_id=category_id)
-                
+
                 for param in parameters:
                     value             = request.POST.get(f'param_{param.id}', '').strip()
                     standard_override = request.POST.get(f'standard_{param.id}', '').strip()
@@ -769,3 +772,114 @@ def user_delete(request, user_id):
         messages.success(request, f'User "{username}" deleted.')
         return redirect('user_list')
     return render(request, 'coa/user_confirm_delete.html', {'target_user': target_user})
+
+@login_required
+def download_coa_word(request, coa_id):
+    coa = get_object_or_404(COA, id=coa_id)
+    results = coa.results.all().select_related(
+        'parameter', 'parameter__group'
+    ).order_by('parameter__group__order', 'parameter__order')
+    custom_fields = list(coa.custom_fields.all())
+    is_dry_extract = coa.category.is_dry_extract()
+
+    doc = Document()
+
+    # Title
+    title = doc.add_heading(f'Certificate of Analysis', 0)
+    title.alignment = 1  # center
+
+    sub = doc.add_paragraph(f'{coa.product_name}  |  Batch: {coa.batch_no}')
+    sub.alignment = 1
+
+    doc.add_paragraph('')
+
+    # Product Info Table
+    info_table = doc.add_table(rows=0, cols=2)
+    info_table.style = 'Table Grid'
+
+    def add_info_row(label, value):
+        row = info_table.add_row().cells
+        row[0].text = label
+        row[1].text = str(value) if value else '—'
+        row[0].paragraphs[0].runs[0].bold = True
+
+    add_info_row('Product Name',      coa.product_name)
+    add_info_row('Batch No.',         coa.batch_no)
+    add_info_row('Category',          coa.category.name)
+    add_info_row('Manufacturing Date', coa.manufacturing_date.strftime('%B %Y') if coa.manufacturing_date else '—')
+    add_info_row('Expiry Date',       coa.expiry_date.strftime('%B %Y') if coa.expiry_date else '—')
+    if coa.botanical_name:
+        add_info_row('Botanical Name', coa.botanical_name)
+    if coa.plant_part:
+        add_info_row('Part of Plant',  coa.plant_part)
+    if coa.customer_name:
+        add_info_row('Customer',       coa.customer_name)
+
+    doc.add_paragraph('')
+    doc.add_heading('Test Results', level=1)
+
+    # Results Table
+    if is_dry_extract:
+        cols = 4
+        headers = ['Sr.', 'Parameter', 'Standard', 'Result', 'Reference']
+        result_table = doc.add_table(rows=1, cols=5)
+    else:
+        result_table = doc.add_table(rows=1, cols=4)
+        headers = ['Sr.', 'Parameter', 'Standard', 'Result']
+
+    result_table.style = 'Table Grid'
+    hdr_cells = result_table.rows[0].cells
+    for i, h in enumerate(headers):
+        hdr_cells[i].text = h
+        hdr_cells[i].paragraphs[0].runs[0].bold = True
+
+    sr = 1
+    current_group = None
+    for result in results:
+        grp = result.parameter.group
+        if grp and grp != current_group:
+            current_group = grp
+            grp_row = result_table.add_row().cells
+            grp_row[0].merge(grp_row[-1])
+            grp_row[0].text = grp.name
+            grp_row[0].paragraphs[0].runs[0].bold = True
+
+        row_cells = result_table.add_row().cells
+        row_cells[0].text = str(sr)
+        row_cells[1].text = result.parameter.name
+        row_cells[2].text = result.standard_override or result.parameter.specification or '—'
+        row_cells[3].text = result.result or '—'
+        if is_dry_extract and len(row_cells) > 4:
+            row_cells[4].text = result.reference or '—'
+        sr += 1
+
+    if custom_fields:
+        grp_row = result_table.add_row().cells
+        grp_row[0].merge(grp_row[-1])
+        grp_row[0].text = 'Additional Tests'
+        grp_row[0].paragraphs[0].runs[0].bold = True
+
+        for i, cf in enumerate(custom_fields):
+            row_cells = result_table.add_row().cells
+            row_cells[0].text = str(i + 1)
+            row_cells[1].text = cf.field_name
+            row_cells[2].text = cf.specification or '—'
+            row_cells[3].text = cf.result or '—'
+            if is_dry_extract and len(row_cells) > 4:
+                row_cells[4].text = cf.reference or '—'
+
+    # Save to response
+    buffer = BytesIO()
+    doc.save(buffer)
+    buffer.seek(0)
+
+    safe_batch   = coa.batch_no.replace('/', '-')
+    safe_product = coa.product_name.replace(' ', '_').replace('/', '-')
+    safe_customer = (coa.customer_name or 'General').replace(' ', '_').replace('/', '-')
+
+    response = HttpResponse(
+        buffer.getvalue(),
+        content_type='application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+    )
+    response['Content-Disposition'] = f'attachment; filename="COA_{safe_product}_{safe_customer}_{safe_batch}.docx"'
+    return response
