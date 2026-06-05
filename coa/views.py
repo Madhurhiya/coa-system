@@ -801,6 +801,48 @@ def download_coa_word(request, coa_id):
     section.left_margin   = Cm(2)
     section.right_margin  = Cm(2)
 
+    # ── Image paths ──
+    import os
+    static_dir  = os.path.join(settings.BASE_DIR, 'coa', 'static', 'images')
+    logo_path   = os.path.join(static_dir, 'logo.png')
+    halal_path  = os.path.join(static_dir, 'halal_badge.png')
+    iso_path    = os.path.join(static_dir, 'iso_badge.png')
+    gmp_path    = os.path.join(static_dir, 'gmp_badge.png')
+    stamp_path  = os.path.join(static_dir, 'stamp.png')
+
+    # ── Header: Logo left | Badges right ──
+    header_table = doc.add_table(rows=1, cols=2)
+    header_table.style = 'Table Grid'
+    left_hdr  = header_table.rows[0].cells[0]
+    right_hdr = header_table.rows[0].cells[1]
+
+    # Remove borders from header table
+    for cell in [left_hdr, right_hdr]:
+        tc   = cell._tc
+        tcPr = tc.get_or_add_tcPr()
+        tcBorders = OxmlElement('w:tcBorders')
+        for edge in ('top','left','bottom','right'):
+            tag = OxmlElement(f'w:{edge}')
+            tag.set(qn('w:val'), 'none')
+            tcBorders.append(tag)
+        tcPr.append(tcBorders)
+
+    # Logo
+    if os.path.exists(logo_path):
+        left_hdr.paragraphs[0].add_run().add_picture(logo_path, height=Cm(1.5))
+
+    # Badges — right aligned
+    right_hdr.paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.RIGHT
+    badge_run = right_hdr.paragraphs[0].add_run()
+    for badge_path in [halal_path, iso_path, gmp_path]:
+        if os.path.exists(badge_path):
+            badge_run.add_picture(badge_path, height=Cm(1.2))
+
+    # Divider line
+    divider = doc.add_paragraph()
+    divider_run = divider.add_run('─' * 80)
+    divider_run.font.size = Pt(8)
+
     def set_cell_bg(cell, hex_color):
         tc   = cell._tc
         tcPr = tc.get_or_add_tcPr()
