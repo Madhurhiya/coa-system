@@ -10,6 +10,7 @@ urlpatterns = [
     path('<int:coa_id>/edit/',            views.edit_coa,           name='edit_coa'),
     path('<int:coa_id>/delete/',          views.delete_coa,         name='delete_coa'),      # Change 6
     path('<int:coa_id>/download/',        views.download_coa_pdf,   name='download_coa_pdf'),
+    path('<int:coa_id>/download-word/', views.download_coa_word,    name='download_coa_word'),
     path('<int:coa_id>/label/',           views.generate_label,     name='generate_label'),
     path('<int:coa_id>/label/download/',  views.download_label_pdf, name='download_label_pdf'),
     path('<int:coa_id>/clone/',           views.clone_coa,          name='clone_coa'),
