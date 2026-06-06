@@ -855,10 +855,7 @@ def download_coa_word(request, coa_id):
         if os.path.exists(bp):
             br.add_picture(bp, height=Cm(1.2))
 
-    # Divider
-    d = doc.add_paragraph()
-    dr = d.add_run('─' * 90)
-    dr.font.size = Pt(7)
+    
 
     # ── Title ──
     t = doc.add_paragraph()
@@ -971,21 +968,22 @@ def download_coa_word(request, coa_id):
     opr.bold = True
     opr.font.size = Pt(9)
 
-    # ── Stamp ──
+    # ── Stamp + Signatures ──
+    sig = doc.add_table(rows=2, cols=2)
+
+    stamp_left  = sig.rows[0].cells[0]
+    stamp_right = sig.rows[0].cells[1]
+    no_borders(stamp_left)
+    no_borders(stamp_right)
+    stamp_right.paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.CENTER
     if os.path.exists(stamp_path):
-        sp = doc.add_paragraph()
-        sp.alignment = WD_ALIGN_PARAGRAPH.CENTER
-        sp.add_run().add_picture(stamp_path, height=Cm(1.8))
+        stamp_right.paragraphs[0].add_run().add_picture(stamp_path, height=Cm(1.5))
 
-    doc.add_paragraph()
-
-    # ── Signatures ──
-    sig = doc.add_table(rows=1, cols=2)
-    for cell, label in [(sig.rows[0].cells[0], 'Analysed By'), (sig.rows[0].cells[1], 'Approved By')]:
+    for cell, label in [(sig.rows[1].cells[0], 'Analysed By'), (sig.rows[1].cells[1], 'Approved By')]:
         no_borders(cell)
-        p = cell.add_paragraph()
+        p = cell.paragraphs[0]
         p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-        run = p.add_run(f'\n\n{"_" * 30}\n{label}')
+        run = p.add_run(f'{"_" * 30}\n{label}')
         run.bold = True
         run.font.size = Pt(9.5)
 
