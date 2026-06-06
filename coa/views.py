@@ -975,9 +975,11 @@ def download_coa_word(request, coa_id):
     stamp_right = sig.rows[0].cells[1]
     no_borders(stamp_left)
     no_borders(stamp_right)
-    stamp_right.paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.CENTER
+    # Merge both cells and center stamp
+    merged = stamp_left.merge(stamp_right)
+    merged.paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.CENTER
     if os.path.exists(stamp_path):
-        stamp_right.paragraphs[0].add_run().add_picture(stamp_path, height=Cm(1.5))
+        merged.paragraphs[0].add_run().add_picture(stamp_path, height=Cm(1.5))
 
     for cell, label in [(sig.rows[1].cells[0], 'Analysed By'), (sig.rows[1].cells[1], 'Approved By')]:
         no_borders(cell)
