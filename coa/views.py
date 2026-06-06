@@ -798,9 +798,11 @@ def download_coa_word(request, coa_id):
         'is_dry_extract':  is_dry_extract,
     })
 
+    from docx import Document
     buffer  = BytesIO()
     parser  = HtmlToDocx()
-    parser.parse_html_string_to_file(html_content, buffer)
+    docx    = parser.parse_html_string(html_content)
+    docx.save(buffer)
     buffer.seek(0)
 
     safe_batch    = coa.batch_no.replace('/', '-')
