@@ -772,58 +772,250 @@ def user_delete(request, user_id):
         messages.success(request, f'User "{username}" deleted.')
         return redirect('user_list')
     return render(request, 'coa/user_confirm_delete.html', {'target_user': target_user})
+
 @login_required
 def download_coa_word(request, coa_id):
+    from docx import Document
+    from docx.shared import Pt, RGBColor, Inches, Cm
+    from docx.enum.text import WD_ALIGN_PARAGRAPH
+    from docx.oxml.ns import qn
+    from docx.oxml import OxmlElement
     from io import BytesIO
-    from htmldocx import HtmlToDocx
-    from django.template.loader import render_to_string
-    import os, base64
+    import os
 
     coa = get_object_or_404(COA, id=coa_id)
     results = coa.results.all().select_related(
         'parameter', 'parameter__group'
     ).order_by('parameter__group__order', 'parameter__order')
-
     grouped_results = []
     for group_key, group_items in groupby(results, key=lambda r: r.parameter.group):
         grouped_results.append({'group': group_key, 'items': list(group_items)})
-
     custom_fields  = list(coa.custom_fields.all())
     is_dry_extract = coa.category.is_dry_extract()
 
-    # ── Encode images as base64 ──
     static_dir = os.path.join(settings.BASE_DIR, 'coa', 'static', 'images')
+    logo_path  = os.path.join(static_dir, 'logo.png')
+    halal_path = os.path.join(static_dir, 'halal_badge.png')
+    iso_path   = os.path.join(static_dir, 'iso_badge.png')
+    gmp_path   = os.path.join(static_dir, 'gmp_badge.png')
+    stamp_path = os.path.join(static_dir, 'stamp.png')
 
-    def img_b64(filename):
-        path = os.path.join(static_dir, filename)
-        if os.path.exists(path):
-            with open(path, 'rb') as f:
-                return base64.b64encode(f.read()).decode('utf-8')
-        return ''
+    doc = Document()
+    section = doc.sections[0]
+    section.top_margin    = Cm(1.5)
+    section.bottom_margin = Cm(1.5)
+    section.left_margin   = Cm(2)
+    section.right_margin  = Cm(2)
 
-    logo_b64  = img_b64('logo.png')
-    halal_b64 = img_b64('halal_badge.png')
-    iso_b64   = img_b64('iso_badge.png')
-    gmp_b64   = img_b64('gmp_badge.png')
-    stamp_b64 = img_b64('stamp.png')
+    def set_cell_bg(cell, hex_color):
+        tc = cell._tc
+        tcPr = tc.get_or_add_tcPr()
+        shd = OxmlElement('w:shd')
+        shd.set(qn('w:val'), 'clear')
+        shd.set(qn('w:color'), 'auto')
+        shd.set(qn('w:fill'), hex_color)
+        tcPr.append(shd)
 
-    html_content = render_to_string('coa/coa_word.html', {
-        'coa':             coa,
-        'grouped_results': grouped_results,
-        'custom_fields':   custom_fields,
-        'is_dry_extract':  is_dry_extract,
-        'logo_b64':        logo_b64,
-        'halal_b64':       halal_b64,
-        'iso_b64':         iso_b64,
-        'gmp_b64':         gmp_b64,
-        'stamp_b64':       stamp_b64,
-    })
+    def set_borders(cell, color='000000'):
+        tc = cell._tc
+        tcPr = tc.get_or_add_tcPr()
+        tcBorders = OxmlElement('w:tcBorders')
+        for edge in ('top', 'left', 'bottom', 'right'):
+            tag = OxmlElement(f'w:{edge}')
+            tag.set(qn('w:val'), 'single')
+            tag.set(qn('w:sz'), '4')
+            tag.set(qn('w:space'), '0')
+            tag.set(qn('w:color'), color)
+            tcBorders.append(tag)
+        tcPr.append(tcBorders)
 
-    parser  = HtmlToDocx()
-    docx    = parser.parse_html_string(html_content)
+    def no_borders(cell):
+        tc = cell._tc
+        tcPr = tc.get_or_add_tcPr()
+        tcBorders = OxmlElement('w:tcBorders')
+        for edge in ('top', 'left', 'bottom', 'right'):
+            tag = OxmlElement(f'w:{edge}')
+            tag.set(qn('w:val'), 'none')
+            tag.set(qn('w:sz'), '0')
+            tag.set(qn('w:color'), 'FFFFFF')
+            tcBorders.append(tag)
+        tcPr.append(tcBorders)
 
+    # ── Header: Logo | Badges ──
+    hdr = doc.add_table(rows=1, cols=2)
+    lc = hdr.rows[0].cells[0]
+    rc = hdr.rows[0].cells[1]
+    no_borders(lc)
+    no_borders(rc)
+    if os.path.exists(logo_path):
+        lc.paragraphs[0].add_run().add_picture(logo_path, height=Cm(1.5))
+    rc.paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.RIGHT
+    br = rc.paragraphs[0].add_run()
+    for bp in [halal_path, iso_path, gmp_path]:
+        if os.path.exists(bp):
+            br.add_picture(bp, height=Cm(1.2))
+
+    # Divider
+    d = doc.add_paragraph()
+    dr = d.add_run('─' * 90)
+    dr.font.size = Pt(7)
+
+    # ── Title ──
+    t = doc.add_paragraph()
+    t.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    tr = t.add_run('Certificate of Analysis')
+    tr.bold = True
+    tr.font.size = Pt(14)
+    tr.underline = True
+
+    # ── Product Info Table ──
+    info = doc.add_table(rows=1, cols=2)
+    info.style = 'Table Grid'
+    lc = info.rows[0].cells[0]
+    rc = info.rows[0].cells[1]
+    lc.paragraphs[0].clear()
+    rc.paragraphs[0].clear()
+
+    def add_line(cell, label, value, italic=False):
+        p = cell.add_paragraph()
+        lb = p.add_run(f'{label} : ')
+        lb.bold = True
+        lb.font.size = Pt(9.5)
+        vr = p.add_run(str(value) if value else '')
+        vr.font.size = Pt(9.5)
+        vr.font.italic = italic
+
+    add_line(lc, 'Product Name', coa.product_name)
+    add_line(lc, 'Batch No.', coa.batch_no)
+    if coa.botanical_name:
+        add_line(lc, 'Botanical Name', coa.botanical_name, italic=True)
+    if coa.plant_part:
+        add_line(lc, 'Part of Plant Used', coa.plant_part)
+    add_line(rc, 'Mfg. Date', coa.manufacturing_date.strftime('%B-%Y') if coa.manufacturing_date else '—')
+    add_line(rc, 'Exp. Date', coa.expiry_date.strftime('%B-%Y') if coa.expiry_date else '—')
+    set_borders(lc)
+    set_borders(rc)
+
+    doc.add_paragraph()
+
+    # ── Results Table ──
+    col_count = 4 if is_dry_extract else 3
+    rt = doc.add_table(rows=1, cols=col_count)
+    rt.style = 'Table Grid'
+
+    headers = ['Tests', 'Standard', 'Results']
+    if is_dry_extract:
+        headers.append('Reference')
+
+    hdr_cells = rt.rows[0].cells
+    for i, h in enumerate(headers):
+        set_cell_bg(hdr_cells[i], 'ECECEC')
+        set_borders(hdr_cells[i])
+        run = hdr_cells[i].paragraphs[0].add_run(h)
+        run.bold = True
+        run.font.size = Pt(9.5)
+        hdr_cells[i].paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.CENTER
+
+    for section in grouped_results:
+        if section['group']:
+            gr = rt.add_row().cells
+            for i in range(1, col_count):
+                gr[0].merge(gr[i])
+            set_cell_bg(gr[0], 'E2E2E2')
+            set_borders(gr[0])
+            run = gr[0].paragraphs[0].add_run(section['group'].name)
+            run.bold = True
+            run.font.size = Pt(9.5)
+
+        for result in section['items']:
+            row = rt.add_row().cells
+            std = result.standard_override or result.parameter.specification or '—'
+            data = [result.parameter.name, std, result.result or '—']
+            if is_dry_extract:
+                data.append(result.reference or '—')
+            for i, val in enumerate(data):
+                set_borders(row[i])
+                run = row[i].paragraphs[0].add_run(val)
+                run.font.size = Pt(9)
+                if i > 0:
+                    row[i].paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.CENTER
+
+    if custom_fields:
+        for cf in custom_fields:
+            if cf.is_heading:
+                gr = rt.add_row().cells
+                for i in range(1, col_count):
+                    gr[0].merge(gr[i])
+                set_cell_bg(gr[0], 'E2E2E2')
+                set_borders(gr[0])
+                run = gr[0].paragraphs[0].add_run(cf.field_name)
+                run.bold = True
+                run.font.size = Pt(9.5)
+            else:
+                row = rt.add_row().cells
+                data = [cf.field_name, cf.specification or '—', cf.result or '—']
+                if is_dry_extract:
+                    data.append(cf.reference or '—')
+                for i, val in enumerate(data):
+                    set_borders(row[i])
+                    run = row[i].paragraphs[0].add_run(val)
+                    run.font.size = Pt(9)
+                    if i > 0:
+                        row[i].paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.CENTER
+
+    doc.add_paragraph()
+
+    # ── Opinion ──
+    op = doc.add_paragraph()
+    opr = op.add_run('OPINION OF ANALYST: The above material complies with the prescribed API standards.')
+    opr.bold = True
+    opr.font.size = Pt(9)
+
+    # ── Stamp ──
+    if os.path.exists(stamp_path):
+        sp = doc.add_paragraph()
+        sp.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        sp.add_run().add_picture(stamp_path, height=Cm(1.8))
+
+    doc.add_paragraph()
+
+    # ── Signatures ──
+    sig = doc.add_table(rows=1, cols=2)
+    for cell, label in [(sig.rows[0].cells[0], 'Analysed By'), (sig.rows[0].cells[1], 'Approved By')]:
+        no_borders(cell)
+        p = cell.add_paragraph()
+        p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        run = p.add_run(f'\n\n{"_" * 30}\n{label}')
+        run.bold = True
+        run.font.size = Pt(9.5)
+
+    doc.add_paragraph()
+
+    # ── Note ──
+    note = doc.add_paragraph()
+    nr = note.add_run(
+        'Note :- Since it is an herbal product, there is likely to be minor colour variation '
+        'from batch to batch because of the seasonal variations of the raw materials. '
+        'Colour does not affect the quality and efficacy of the product.'
+    )
+    nr.font.size = Pt(7)
+    nr.font.color.rgb = RGBColor(0x44, 0x44, 0x44)
+
+    # ── Company Footer ──
+    cf_para = doc.add_paragraph()
+    cf_para.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    cfr = cf_para.add_run(
+        'Manufactured by: Hiya India Biotech Pvt. Ltd. & Supplied by: Nuplanet Ventures India Pvt. Ltd\n'
+        'B-51, Okhla Industrial Area, Phase -1, New Delhi – 110020\n'
+        'contact@rawble.com | marketing@rawble.com | admin@rawble.com'
+    )
+    cfr.font.size = Pt(7.5)
+    cfr.font.color.rgb = RGBColor(0x1a, 0x5c, 0x1a)
+    cfr.bold = True
+
+    # ── Save ──
     buffer = BytesIO()
-    docx.save(buffer)
+    doc.save(buffer)
     buffer.seek(0)
 
     safe_batch    = coa.batch_no.replace('/', '-')
