@@ -772,18 +772,12 @@ def user_delete(request, user_id):
         messages.success(request, f'User "{username}" deleted.')
         return redirect('user_list')
     return render(request, 'coa/user_confirm_delete.html', {'target_user': target_user})
-
 @login_required
 def download_coa_word(request, coa_id):
     from io import BytesIO
     from htmldocx import HtmlToDocx
     from django.template.loader import render_to_string
-    from docx import Document
-    from docx.shared import Cm, Pt
-    from docx.enum.text import WD_ALIGN_PARAGRAPH
-    from docx.oxml.ns import qn
-    from docx.oxml import OxmlElement
-    import os
+    import os, base64
 
     coa = get_object_or_404(COA, id=coa_id)
     results = coa.results.all().select_related(
@@ -797,87 +791,47 @@ def download_coa_word(request, coa_id):
     custom_fields  = list(coa.custom_fields.all())
     is_dry_extract = coa.category.is_dry_extract()
 
-    # ── Step 1: Create doc with header images ──
-    doc = Document()
-
-    section = doc.sections[0]
-    section.top_margin    = Cm(1.5)
-    section.bottom_margin = Cm(1.5)
-    section.left_margin   = Cm(2)
-    section.right_margin  = Cm(2)
-
+    # ── Encode images as base64 ──
     static_dir = os.path.join(settings.BASE_DIR, 'coa', 'static', 'images')
-    logo_path  = os.path.join(static_dir, 'logo.png')
-    halal_path = os.path.join(static_dir, 'halal_badge.png')
-    iso_path   = os.path.join(static_dir, 'iso_badge.png')
-    gmp_path   = os.path.join(static_dir, 'gmp_badge.png')
 
-    def remove_borders(cell):
-        tc   = cell._tc
-        tcPr = tc.get_or_add_tcPr()
-        tcBorders = OxmlElement('w:tcBorders')
-        for edge in ('top','left','bottom','right'):
-            tag = OxmlElement(f'w:{edge}')
-            tag.set(qn('w:val'), 'none')
-            tag.set(qn('w:sz'), '0')
-            tag.set(qn('w:color'), 'FFFFFF')
-            tcBorders.append(tag)
-        tcPr.append(tcBorders)
+    def img_b64(filename):
+        path = os.path.join(static_dir, filename)
+        if os.path.exists(path):
+            with open(path, 'rb') as f:
+                return base64.b64encode(f.read()).decode('utf-8')
+        return ''
 
-    # Header table — logo left, badges right
-    hdr_table = doc.add_table(rows=1, cols=2)
-    left_cell  = hdr_table.rows[0].cells[0]
-    right_cell = hdr_table.rows[0].cells[1]
-    remove_borders(left_cell)
-    remove_borders(right_cell)
+    logo_b64  = img_b64('logo.png')
+    halal_b64 = img_b64('halal_badge.png')
+    iso_b64   = img_b64('iso_badge.png')
+    gmp_b64   = img_b64('gmp_badge.png')
+    stamp_b64 = img_b64('stamp.png')
 
-    if os.path.exists(logo_path):
-        left_cell.paragraphs[0].add_run().add_picture(logo_path, height=Cm(1.5))
-
-    right_cell.paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.RIGHT
-    badge_run = right_cell.paragraphs[0].add_run()
-    for badge in [halal_path, iso_path, gmp_path]:
-        if os.path.exists(badge):
-            badge_run.add_picture(badge, height=Cm(1.2))
-
-    # Divider
-    p = doc.add_paragraph('─' * 90)
-    p.runs[0].font.size = Pt(7)
-
-    # ── Step 2: Save doc to buffer, reload and append HTML ──
-    temp_buffer = BytesIO()
-    doc.save(temp_buffer)
-    temp_buffer.seek(0)
-
-    # ── Step 3: Parse HTML into a separate doc ──
     html_content = render_to_string('coa/coa_word.html', {
         'coa':             coa,
         'grouped_results': grouped_results,
         'custom_fields':   custom_fields,
         'is_dry_extract':  is_dry_extract,
+        'logo_b64':        logo_b64,
+        'halal_b64':       halal_b64,
+        'iso_b64':         iso_b64,
+        'gmp_b64':         gmp_b64,
+        'stamp_b64':       stamp_b64,
     })
 
-    parser   = HtmlToDocx()
-    html_doc = parser.parse_html_string(html_content)
+    parser  = HtmlToDocx()
+    docx    = parser.parse_html_string(html_content)
 
-    # ── Step 4: Merge — copy all paragraphs/tables from html_doc into main doc ──
-    main_doc = Document(temp_buffer)
-
-    from docx.oxml import OxmlElement
-    for element in html_doc.element.body:
-        main_doc.element.body.append(element)
-
-    # ── Step 5: Save final doc ──
-    final_buffer = BytesIO()
-    main_doc.save(final_buffer)
-    final_buffer.seek(0)
+    buffer = BytesIO()
+    docx.save(buffer)
+    buffer.seek(0)
 
     safe_batch    = coa.batch_no.replace('/', '-')
     safe_product  = coa.product_name.replace(' ', '_').replace('/', '-')
     safe_customer = (coa.customer_name or 'General').replace(' ', '_').replace('/', '-')
 
     response = HttpResponse(
-        final_buffer.getvalue(),
+        buffer.getvalue(),
         content_type='application/vnd.openxmlformats-officedocument.wordprocessingml.document'
     )
     response['Content-Disposition'] = f'attachment; filename="COA_{safe_product}_{safe_customer}_{safe_batch}.docx"'
