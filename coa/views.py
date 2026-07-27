@@ -1,4 +1,5 @@
 import os, json
+from datetime import date, datetime
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, JsonResponse
 from django.db.models import Q
@@ -77,11 +78,42 @@ def customer_search(request):
 
 
 @login_required
+def load_parameters(request):
+    """Returns test parameters for a category as JSON, so the create-COA
+    page can load them via AJAX instead of doing a full page reload."""
+    category_id = request.GET.get('category', '').strip()
+    if not category_id:
+        return JsonResponse({'groups': [], 'is_dry_extract': False})
+
+    category = get_object_or_404(Category, id=category_id)
+    parameters = TestParameter.objects.filter(
+        category_id=category_id
+    ).select_related('group').order_by('group__order', 'order')
+
+    groups = []
+    for group_key, group_items in groupby(parameters, key=lambda p: p.group):
+        groups.append({
+            'group_name': group_key.name if group_key else None,
+            'params': [
+                {'id': p.id, 'name': p.name, 'specification': p.specification or ''}
+                for p in group_items
+            ],
+        })
+
+    return JsonResponse({
+        'groups': groups,
+        'is_dry_extract': category.is_dry_extract(),
+    })
+
+
+@login_required
 def coa_list(request):
+    from django.core.paginator import Paginator
+
     query    = request.GET.get('q', '').strip()
     customer = request.GET.get('customer', '').strip()
     item     = request.GET.get('item', '').strip()
-    coas     = COA.objects.all().order_by('-created_at')
+    coas     = COA.objects.select_related('category').order_by('-created_at')
 
     if query:
         coas = coas.filter(
@@ -95,11 +127,15 @@ def coa_list(request):
     if item:
         coas = coas.filter(product_name__icontains=item)
 
+    paginator = Paginator(coas, 50)
+    page_obj  = paginator.get_page(request.GET.get('page'))
+
     return render(request, 'coa/coa_list.html', {
-        'coas':     coas,
-        'query':    query,
-        'customer': customer,
-        'item':     item,
+        'coas':      page_obj,
+        'page_obj':  page_obj,
+        'query':     query,
+        'customer':  customer,
+        'item':      item,
     })
 
 
@@ -112,9 +148,28 @@ def delete_coa(request, coa_id):
     return render(request, 'coa/confirm_delete.html', {'coa': coa})
 
 
+def _param_position(request, param_id, fallback):
+    raw = request.POST.get(f'position_param_{param_id}', '').strip()
+    try:
+        return int(raw)
+    except (TypeError, ValueError):
+        return fallback
+
+
+def _custom_positions(request, count):
+    raw_list = request.POST.getlist('custom_position')
+    positions = []
+    for i in range(count):
+        try:
+            positions.append(int(raw_list[i]))
+        except (IndexError, ValueError):
+            positions.append(100000 + i)  # fallback: push to the end, keep submitted order
+    return positions
+
+
 @login_required
 def create_coa(request):
-    form = COAForm(request.POST or None)
+    form = COAForm(request.POST or None, initial={'manufacturing_date': date.today()})
     grouped_parameters = []
     is_dry_extract = False
 
@@ -146,11 +201,12 @@ def create_coa(request):
                     value             = request.POST.get(f'param_{param.id}', '').strip()
                     standard_override = request.POST.get(f'standard_{param.id}', '').strip()
                     reference         = request.POST.get(f'reference_{param.id}', '').strip()
-                    if value:
+                    if value or standard_override:
                         COAResult.objects.create(
                             coa=coa, parameter=param, result=value,
                             reference=reference,
-                            standard_override=standard_override if standard_override != param.specification else ''
+                            standard_override=standard_override if standard_override != param.specification else '',
+                            position=_param_position(request, param.id, param.order * 1000),
                         )
 
                 names      = request.POST.getlist('custom_field_name')
@@ -158,6 +214,7 @@ def create_coa(request):
                 results    = request.POST.getlist('custom_field_result')
                 references = request.POST.getlist('custom_field_reference')
                 headings   = request.POST.getlist('custom_is_heading')
+                positions  = _custom_positions(request, len(names))
                 for i, name in enumerate(names):
                     name = name.strip()
                     if name:
@@ -167,7 +224,7 @@ def create_coa(request):
                             specification=specs[i]       if i < len(specs)       else '',
                             result=results[i]             if i < len(results)     else '',
                             reference=references[i]       if i < len(references)  else '',
-                            order=i,
+                            order=positions[i],
                             is_heading=is_heading,
                         )
                 return redirect('coa_detail', coa_id=coa.id)
@@ -231,11 +288,12 @@ def clone_coa(request, coa_id):
                 value             = request.POST.get(f'param_{param.id}', '').strip()
                 standard_override = request.POST.get(f'standard_{param.id}', '').strip()
                 reference         = request.POST.get(f'reference_{param.id}', '').strip()
-                if value:
+                if value or standard_override:
                     COAResult.objects.create(
                         coa=coa, parameter=param, result=value,
                         reference=reference,
-                        standard_override=standard_override if standard_override != param.specification else ''
+                        standard_override=standard_override if standard_override != param.specification else '',
+                        position=_param_position(request, param.id, param.order * 1000),
                     )
 
             names      = request.POST.getlist('custom_field_name')
@@ -243,6 +301,7 @@ def clone_coa(request, coa_id):
             results    = request.POST.getlist('custom_field_result')
             references = request.POST.getlist('custom_field_reference')
             headings   = request.POST.getlist('custom_is_heading')
+            positions  = _custom_positions(request, len(names))
             for i, name in enumerate(names):
                 name = name.strip()
                 if name:
@@ -252,7 +311,7 @@ def clone_coa(request, coa_id):
                         specification=specs[i]       if i < len(specs)       else '',
                         result=results[i]             if i < len(results)     else '',
                         reference=references[i]       if i < len(references)  else '',
-                        order=i,
+                        order=positions[i],
                         is_heading=is_heading,
                     )
             return redirect('coa_detail', coa_id=coa.id)
@@ -263,6 +322,7 @@ def clone_coa(request, coa_id):
             'botanical_name': original.botanical_name,
             'plant_part':     original.plant_part,
             'customer_name':  original.customer_name,
+            'manufacturing_date': date.today(),
         })
 
     return render(request, 'coa/create_coa.html', {
@@ -278,31 +338,19 @@ def clone_coa(request, coa_id):
 
 @login_required
 def coa_detail(request, coa_id):
-    coa           = get_object_or_404(COA, id=coa_id)
-    results       = coa.results.all().select_related(
-        'parameter', 'parameter__group'
-    ).order_by('parameter__group__order', 'parameter__order')
-    custom_fields = coa.custom_fields.all()
+    coa          = get_object_or_404(COA, id=coa_id)
+    ordered_rows = coa.ordered_rows()
     return render(request, 'coa/coa_detail.html', {
-        'coa':           coa,
-        'results':       results,
-        'custom_fields': custom_fields,
+        'coa':          coa,
+        'ordered_rows': ordered_rows,
     })
 
 
 @login_required
 def download_coa_pdf(request, coa_id):
-    coa     = get_object_or_404(COA, id=coa_id)
-    results = coa.results.all().select_related(
-        'parameter', 'parameter__group'
-    ).order_by('parameter__group__order', 'parameter__order')
-
-    grouped_results = []
-    for group_key, group_items in groupby(results, key=lambda r: r.parameter.group):
-        grouped_results.append({'group': group_key, 'items': list(group_items)})
-
-    custom_fields   = list(coa.custom_fields.all())
-    is_dry_extract  = coa.category.is_dry_extract()
+    coa          = get_object_or_404(COA, id=coa_id)
+    ordered_rows = coa.ordered_rows()
+    is_dry_extract = coa.category.is_dry_extract()
 
     STATIC = settings.STATIC_URL
     def s(f): return f"{STATIC}images/{f}"
@@ -310,8 +358,7 @@ def download_coa_pdf(request, coa_id):
     template = get_template('coa/coa_pdf.html')
     html = template.render({
         'coa':             coa,
-        'grouped_results': grouped_results,
-        'custom_fields':   custom_fields,
+        'ordered_rows':    ordered_rows,
         'is_dry_extract':  is_dry_extract,
         'logo_url':        s('logo.png'),
         'halal_badge_url': s('halal_badge.png'),
@@ -404,15 +451,6 @@ def edit_coa(request, coa_id):
         for r in coa.results.all().select_related('parameter')
     }
 
-    parameters = TestParameter.objects.filter(
-        category=coa.category
-    ).select_related('group').order_by('group__order', 'order')
-
-    grouped_parameters = []
-    for group_key, group_items in groupby(parameters, key=lambda p: p.group):
-        grouped_parameters.append({'group': group_key, 'params': list(group_items)})
-
-    custom_fields  = list(coa.custom_fields.all())
     is_dry_extract = coa.category.is_dry_extract()
 
     if request.method == 'POST':
@@ -423,7 +461,6 @@ def edit_coa(request, coa_id):
 
         mfg_date_str = request.POST.get('manufacturing_date', '')
         if mfg_date_str:
-            from datetime import datetime
             try:
                 coa.manufacturing_date = datetime.strptime(mfg_date_str, '%Y-%m-%d').date()
                 coa.expiry_date = None
@@ -435,18 +472,26 @@ def edit_coa(request, coa_id):
             value     = request.POST.get(f'param_{param.id}', '').strip()
             standard  = request.POST.get(f'standard_{param.id}', '').strip()
             reference = request.POST.get(f'reference_{param.id}', '').strip()
+            position  = _param_position(request, param.id, param.order * 1000)
 
             if param.id in existing_results:
                 r = existing_results[param.id]['obj']
-                r.result            = value
-                r.reference         = reference
-                r.standard_override = standard if standard != param.specification else ''
-                r.save()
-            elif value:
+                if value or standard:
+                    r.result            = value
+                    r.reference         = reference
+                    r.standard_override = standard if standard != param.specification else ''
+                    r.position          = position
+                    r.save()
+                else:
+                    # Row was removed in the editor (or fully cleared) —
+                    # delete it instead of leaving a blank result on the COA.
+                    r.delete()
+            elif value or standard:
                 COAResult.objects.create(
                     coa=coa, parameter=param, result=value,
                     reference=reference,
-                    standard_override=standard if standard != param.specification else ''
+                    standard_override=standard if standard != param.specification else '',
+                    position=position,
                 )
 
         coa.custom_fields.all().delete()
@@ -455,6 +500,7 @@ def edit_coa(request, coa_id):
         results    = request.POST.getlist('custom_field_result')
         references = request.POST.getlist('custom_field_reference')
         headings   = request.POST.getlist('custom_is_heading')
+        positions  = _custom_positions(request, len(names))
         for i, name in enumerate(names):
             name = name.strip()
             if name:
@@ -464,17 +510,18 @@ def edit_coa(request, coa_id):
                     specification=specs[i].strip()       if i < len(specs)       else '',
                     result=results[i].strip()             if i < len(results)     else '',
                     reference=references[i].strip()       if i < len(references)  else '',
-                    order=i,
+                    order=positions[i],
                     is_heading=is_heading,
                 )
 
         return redirect('coa_detail', coa_id=coa.id)
 
+    ordered_rows = coa.ordered_rows(include_untested_params=True)
+
     return render(request, 'coa/edit_coa.html', {
         'coa':                coa,
-        'grouped_parameters': grouped_parameters,
+        'ordered_rows':       ordered_rows,
         'existing_results':   existing_results,
-        'custom_fields':      custom_fields,
         'is_dry_extract':     is_dry_extract,
     })
 
@@ -613,7 +660,7 @@ def clone_from_old(request, old_id):
                     value     = request.POST.get(f'param_{param.id}', '').strip()
                     standard  = request.POST.get(f'standard_{param.id}', '').strip()
                     reference = request.POST.get(f'reference_{param.id}', '').strip()
-                    if value:
+                    if value or standard:
                         COAResult.objects.create(
                             coa=coa, parameter=param, result=value,
                             reference=reference,
@@ -645,6 +692,7 @@ def clone_from_old(request, old_id):
             'botanical_name': old_coa.botanical,
             'plant_part':     old_coa.part_used,
             'customer_name':  old_coa.customer,
+            'manufacturing_date': date.today(),
         })
 
     grouped_parameters = []
@@ -784,13 +832,7 @@ def download_coa_word(request, coa_id):
     import os
 
     coa = get_object_or_404(COA, id=coa_id)
-    results = coa.results.all().select_related(
-        'parameter', 'parameter__group'
-    ).order_by('parameter__group__order', 'parameter__order')
-    grouped_results = []
-    for group_key, group_items in groupby(results, key=lambda r: r.parameter.group):
-        grouped_results.append({'group': group_key, 'items': list(group_items)})
-    custom_fields  = list(coa.custom_fields.all())
+    ordered_rows   = coa.ordered_rows()
     is_dry_extract = coa.category.is_dry_extract()
 
     static_dir = os.path.join(settings.BASE_DIR, 'coa', 'static', 'images')
@@ -913,52 +955,87 @@ def download_coa_word(request, coa_id):
         run.font.size = Pt(9.5)
         hdr_cells[i].paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.CENTER
 
-    for section in grouped_results:
-        if section['group']:
+    for row_item in ordered_rows:
+        kind = row_item['kind']
+
+        if kind == 'group':
             gr = rt.add_row().cells
             for i in range(1, col_count):
                 gr[0].merge(gr[i])
             set_cell_bg(gr[0], 'E2E2E2')
             set_borders(gr[0])
-            run = gr[0].paragraphs[0].add_run(section['group'].name)
+            run = gr[0].paragraphs[0].add_run(row_item['name'])
             run.bold = True
             run.font.size = Pt(9.5)
 
-        for result in section['items']:
-            row = rt.add_row().cells
-            std = result.standard_override or result.parameter.specification or '—'
-            data = [result.parameter.name, std, result.result or '—']
-            if is_dry_extract:
-                data.append(result.reference or '—')
-            for i, val in enumerate(data):
-                set_borders(row[i])
-                run = row[i].paragraphs[0].add_run(val)
-                run.font.size = Pt(9)
-                if i > 0:
-                    row[i].paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.CENTER
+        elif kind == 'heading':
+            cf = row_item['cf']
+            gr = rt.add_row().cells
+            for i in range(1, col_count):
+                gr[0].merge(gr[i])
+            set_cell_bg(gr[0], 'E2E2E2')
+            set_borders(gr[0])
+            run = gr[0].paragraphs[0].add_run(cf.field_name)
+            run.bold = True
+            run.font.size = Pt(9.5)
 
-    if custom_fields:
-        for cf in custom_fields:
-            if cf.is_heading:
-                gr = rt.add_row().cells
-                for i in range(1, col_count):
-                    gr[0].merge(gr[i])
-                set_cell_bg(gr[0], 'E2E2E2')
-                set_borders(gr[0])
-                run = gr[0].paragraphs[0].add_run(cf.field_name)
-                run.bold = True
-                run.font.size = Pt(9.5)
+        elif kind == 'param':
+            result = row_item['result']
+            parameter = row_item['parameter']
+            if result is None:
+                continue  # untested parameter with nothing saved — nothing to print
+            row = rt.add_row().cells
+            std = result.standard_override or parameter.specification or '—'
+            run = row[0].paragraphs[0].add_run(parameter.name)
+            run.font.size = Pt(9)
+            set_borders(row[0])
+            if result.result:
+                run = row[1].paragraphs[0].add_run(std)
+                run.font.size = Pt(9)
+                row[1].paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.CENTER
+                set_borders(row[1])
+                run = row[2].paragraphs[0].add_run(result.result)
+                run.font.size = Pt(9)
+                row[2].paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.CENTER
+                set_borders(row[2])
             else:
-                row = rt.add_row().cells
-                data = [cf.field_name, cf.specification or '—', cf.result or '—']
-                if is_dry_extract:
-                    data.append(cf.reference or '—')
-                for i, val in enumerate(data):
-                    set_borders(row[i])
-                    run = row[i].paragraphs[0].add_run(val)
-                    run.font.size = Pt(9)
-                    if i > 0:
-                        row[i].paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.CENTER
+                row[1].merge(row[2])
+                run = row[1].paragraphs[0].add_run(std)
+                run.font.size = Pt(9)
+                row[1].paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.CENTER
+                set_borders(row[1])
+            if is_dry_extract:
+                run = row[3].paragraphs[0].add_run(result.reference or '—')
+                run.font.size = Pt(9)
+                row[3].paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.CENTER
+                set_borders(row[3])
+
+        elif kind == 'custom':
+            cf = row_item['cf']
+            row = rt.add_row().cells
+            run = row[0].paragraphs[0].add_run(cf.field_name)
+            run.font.size = Pt(9)
+            set_borders(row[0])
+            if cf.result:
+                run = row[1].paragraphs[0].add_run(cf.specification or '—')
+                run.font.size = Pt(9)
+                row[1].paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.CENTER
+                set_borders(row[1])
+                run = row[2].paragraphs[0].add_run(cf.result)
+                run.font.size = Pt(9)
+                row[2].paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.CENTER
+                set_borders(row[2])
+            else:
+                row[1].merge(row[2])
+                run = row[1].paragraphs[0].add_run(cf.specification or '—')
+                run.font.size = Pt(9)
+                row[1].paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.CENTER
+                set_borders(row[1])
+            if is_dry_extract:
+                run = row[3].paragraphs[0].add_run(cf.reference or '—')
+                run.font.size = Pt(9)
+                row[3].paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.CENTER
+                set_borders(row[3])
 
     doc.add_paragraph()
 

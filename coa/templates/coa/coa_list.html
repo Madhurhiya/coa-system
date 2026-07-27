@@ -126,7 +126,7 @@
         <div style="font-size:0.88rem;color:#6b7280;">
             {% if query or customer or item %}Filtered results{% else %}All Certificates of Analysis{% endif %}
         </div>
-        <div class="count-chip">📋 {{ coas.count }} COA{% if coas.count != 1 %}s{% endif %}</div>
+        <div class="count-chip">📋 {{ page_obj.paginator.count }} COA{% if page_obj.paginator.count != 1 %}s{% endif %}</div>
     </div>
 
     <div class="card">
@@ -175,6 +175,19 @@
                 {% endfor %}
             </tbody>
         </table>
+        {% if page_obj.paginator.num_pages > 1 %}
+        <div style="display:flex;align-items:center;justify-content:center;gap:6px;padding:16px;flex-wrap:wrap;">
+            {% with base_qs=request.GET.urlencode %}
+            {% if page_obj.has_previous %}
+                <a class="btn-clear" href="?{% if query %}q={{ query }}&{% endif %}{% if customer %}customer={{ customer }}&{% endif %}{% if item %}item={{ item }}&{% endif %}page={{ page_obj.previous_page_number }}">‹ Prev</a>
+            {% endif %}
+            <span style="font-size:0.85rem;color:#6b7280;padding:0 6px;">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+            {% if page_obj.has_next %}
+                <a class="btn-clear" href="?{% if query %}q={{ query }}&{% endif %}{% if customer %}customer={{ customer }}&{% endif %}{% if item %}item={{ item }}&{% endif %}page={{ page_obj.next_page_number }}">Next ›</a>
+            {% endif %}
+            {% endwith %}
+        </div>
+        {% endif %}
         {% else %}
         <div class="empty-state">
             <h3>{% if query or customer or item %}No COAs found{% else %}No COAs yet{% endif %}</h3>

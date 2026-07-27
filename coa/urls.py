@@ -21,6 +21,7 @@ urlpatterns = [
     path('old/<int:old_id>/clone/',       views.clone_from_old,     name='clone_from_old'),  # Change 1
 
     # ── AJAX endpoints ──
+    path('api/load-parameters/',    views.load_parameters,   name='load_parameters'),
     path('api/item-lookup/',        views.item_lookup,       name='item_lookup'),
     path('api/item-search/',        views.item_search,       name='item_search'),
     path('api/customer-search/',    views.customer_search,   name='customer_search'),

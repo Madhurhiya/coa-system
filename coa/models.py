@@ -1,4 +1,4 @@
-from django.db import models
+from django.db import models, transaction, IntegrityError
 from datetime import date
 from dateutil.relativedelta import relativedelta
 
@@ -114,6 +114,62 @@ class TestParameter(models.Model):
 
 class COA(models.Model):
 
+    def ordered_rows(self, include_untested_params=False):
+        """Returns a single ordered list of dicts describing every row that
+        should appear on this COA, in the exact order they should print —
+        test-parameter results, custom fields, and section headings are all
+        interleaved by their saved position, instead of parameters always
+        being printed first and custom fields/headings always last.
+
+        Each item is one of:
+          {'kind': 'group',  'name': <TestGroup name>}
+          {'kind': 'param',  'parameter': <TestParameter>, 'result': <COAResult or None>}
+          {'kind': 'custom' or 'heading', 'cf': <COACustomField>}
+
+        include_untested_params=True also appends any TestParameter in this
+        COA's category that has no saved result yet (used by the edit form
+        so every possible parameter is still available to fill in).
+        """
+        results = list(
+            self.results.select_related('parameter', 'parameter__group').order_by('position', 'id')
+        )
+        customs = list(self.custom_fields.all().order_by('order', 'id'))
+
+        rows = []
+        seen_groups = set()
+        max_pos = -1
+        seen_param_ids = set()
+
+        for r in results:
+            grp = r.parameter.group
+            if grp and grp.id not in seen_groups:
+                rows.append({'kind': 'group', 'position': r.position, 'name': grp.name})
+                seen_groups.add(grp.id)
+            rows.append({'kind': 'param', 'position': r.position, 'parameter': r.parameter, 'result': r})
+            seen_param_ids.add(r.parameter_id)
+            max_pos = max(max_pos, r.position)
+
+        for cf in customs:
+            rows.append({'kind': 'heading' if cf.is_heading else 'custom', 'position': cf.order, 'cf': cf})
+            max_pos = max(max_pos, cf.order)
+
+        if include_untested_params:
+            remaining = (TestParameter.objects.filter(category_id=self.category_id)
+                         .exclude(id__in=seen_param_ids)
+                         .select_related('group').order_by('order'))
+            next_pos = max_pos + 1
+            for p in remaining:
+                grp = p.group
+                if grp and grp.id not in seen_groups:
+                    rows.append({'kind': 'group', 'position': next_pos, 'name': grp.name})
+                    seen_groups.add(grp.id)
+                    next_pos += 1
+                rows.append({'kind': 'param', 'position': next_pos, 'parameter': p, 'result': None})
+                next_pos += 1
+
+        rows.sort(key=lambda x: x['position'])
+        return rows
+
     # ── Product Info ──
     product_name   = models.CharField(max_length=200)
     category       = models.ForeignKey(Category, on_delete=models.CASCADE)
@@ -131,7 +187,7 @@ class COA(models.Model):
 
     # ── Workflow ──
     status     = models.CharField(max_length=20, choices=STATUS_CHOICES, default='DRAFT')
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True, db_index=True)
 
     # ── Audit: who created this COA (records only — not on PDF) ──
     created_by = models.ForeignKey('auth.User', on_delete=models.SET_NULL,
@@ -139,14 +195,6 @@ class COA(models.Model):
                                     help_text='User who created this COA. Not printed on COA.')
 
     def save(self, *args, **kwargs):
-        # Auto Batch Number
-        if not self.batch_no:
-            cat_code = self.category.get_code()
-            date_str = date.today().strftime("%y%m%d")
-            prefix   = f"HI/{cat_code}/{date_str}"
-            count    = COA.objects.filter(batch_no__startswith=prefix).count() + 1
-            self.batch_no = f"{prefix}{count:02d}"
-
         # Auto Expiry:
         # Water Soluble / Hydrosol → 1 year
         # Dry Extract              → 3 years
@@ -159,7 +207,38 @@ class COA(models.Model):
             else:
                 self.expiry_date = self.manufacturing_date + relativedelta(years=2, months=-1)
 
-        super().save(*args, **kwargs)
+        if self.batch_no:
+            # Batch number already set (edit, or explicitly provided) — save normally.
+            super().save(*args, **kwargs)
+            return
+
+        # Auto Batch Number — generated and saved inside a transaction, and
+        # retried a few times if two COAs are saved at nearly the same moment
+        # and would otherwise collide on the same batch number.
+        cat_code = self.category.get_code()
+        date_str = date.today().strftime("%y%m%d")
+        prefix   = f"HI/{cat_code}/{date_str}"
+
+        last_error = None
+        for attempt in range(5):
+            with transaction.atomic():
+                # Lock the Category row itself (it always exists, even when
+                # this is the first COA of the day for it) so two requests
+                # generating a batch number for the same category+day can't
+                # both read the same count and collide.
+                Category.objects.select_for_update().get(pk=self.category_id)
+                count = COA.objects.filter(batch_no__startswith=prefix).count()
+                self.batch_no = f"{prefix}{count + 1 + attempt:02d}"
+                try:
+                    with transaction.atomic():
+                        super().save(*args, **kwargs)
+                    return
+                except IntegrityError as e:
+                    last_error = e
+                    self.batch_no = ''  # reset and try the next number
+                    continue
+        # If we somehow still collided 5 times in a row, surface the error.
+        raise last_error
 
     def __str__(self):
         return f"{self.product_name} | {self.batch_no}"
@@ -172,6 +251,12 @@ class COAResult(models.Model):
     reference         = models.CharField(max_length=300, blank=True, null=True,
                                           help_text="Reference column — shown only for Dry Extract COAs")
     standard_override = models.CharField(max_length=300, blank=True, null=True)
+    position          = models.IntegerField(default=0,
+                                             help_text="Row order on the printed COA, shared with COACustomField.order "
+                                                        "so custom fields/headings can be interleaved with parameters.")
+
+    class Meta:
+        ordering = ['position', 'id']
 
     def __str__(self):
         return f"{self.coa.batch_no} | {self.parameter.name}"

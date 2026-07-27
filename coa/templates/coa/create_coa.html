@@ -51,6 +51,14 @@
         .param-grid-de{display:grid;grid-template-columns:2fr 1.5fr 1.2fr 1.2fr;gap:0;}
         .param-grid-header-de{display:grid;grid-template-columns:2fr 1.5fr 1.2fr 1.2fr;gap:0;margin-bottom:6px;}
         .param-grid-header span,.param-grid-header-de span{font-size:0.72rem;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:0.5px;padding:0 8px;}
+        .param-block{position:relative;}
+        .param-actions{display:flex;gap:4px;align-items:center;justify-content:flex-end;padding:2px 8px 6px;}
+        .btn-ins-row{background:none;border:none;color:#4338ca;cursor:pointer;font-size:0.72rem;font-weight:700;padding:2px 6px;border-radius:4px;font-family:'DM Sans',sans-serif;}
+        .btn-ins-row:hover{background:#ede9fe;}
+        .btn-del-row{background:none;border:none;color:#dc2626;cursor:pointer;font-size:0.85rem;padding:2px 6px;border-radius:4px;}
+        .btn-del-row:hover{background:#fef2f2;}
+        .inserted-row-inline{background:#f0fdf4;border-radius:6px;margin:2px 0;padding:6px 8px;}
+        .inserted-heading-inline{background:#e8f5e9;border-radius:6px;margin:2px 0;padding:6px 8px;font-weight:700;}
         .param-row{display:contents;}
         .param-row>div{padding:7px 8px;border-bottom:1px solid #f0f0f0;display:flex;align-items:center;gap:6px;}
         .param-name{font-size:0.88rem;color:#333;font-weight:500;}
@@ -166,13 +174,12 @@
         </div>
 
         <!-- TEST PARAMETERS -->
-        {% if grouped_parameters %}
-        <div class="card">
+        <div class="card" id="paramsCard" {% if not grouped_parameters %}style="display:none;"{% endif %}>
             <div class="card-header">
                 <h2>🔬 Test Parameters & Results</h2>
-                <span class="badge">Enter results in the Result column{% if is_dry_extract %} &nbsp;|&nbsp; <span class="ref-badge">Dry Extract — Reference column active</span>{% endif %}</span>
+                <span class="badge">Enter results in the Result column <span id="dryExtractBadgeWrap">{% if is_dry_extract %} &nbsp;|&nbsp; <span class="ref-badge">Dry Extract — Reference column active</span>{% endif %}</span></span>
             </div>
-            <div class="card-body param-section">
+            <div class="card-body param-section" id="paramsBody">
                 {% if is_dry_extract %}
                 <div class="param-grid-header-de">
                     <span>Parameter</span><span>Standard</span><span>Result</span><span>Reference</span>
@@ -188,6 +195,7 @@
                     {% for param in grp.params %}
 
                     {% if is_dry_extract %}
+                    <div class="param-block" data-param-id="{{ param.id }}">
                     <div class="param-grid-de">
                         <div class="param-row">
                             <div>
@@ -213,7 +221,14 @@
                             </div>
                         </div>
                     </div>
+                    <div class="param-actions">
+                        <button type="button" class="btn-del-row" onclick="deleteParamBlock(this)" title="Don't include this test on this COA">✕ Remove</button>
+                        <button type="button" class="btn-ins-row" onclick="insertFieldAboveParam(this)">＋ Field above</button>
+                        <button type="button" class="btn-ins-row" onclick="insertHeadingAboveParam(this)">＋ Heading above</button>
+                    </div>
+                    </div>
                     {% else %}
+                    <div class="param-block" data-param-id="{{ param.id }}">
                     <div class="param-grid">
                         <div class="param-row">
                             <div>
@@ -235,13 +250,18 @@
                             </div>
                         </div>
                     </div>
+                    <div class="param-actions">
+                        <button type="button" class="btn-del-row" onclick="deleteParamBlock(this)" title="Don't include this test on this COA">✕ Remove</button>
+                        <button type="button" class="btn-ins-row" onclick="insertFieldAboveParam(this)">＋ Field above</button>
+                        <button type="button" class="btn-ins-row" onclick="insertHeadingAboveParam(this)">＋ Heading above</button>
+                    </div>
+                    </div>
                     {% endif %}
 
                     {% endfor %}
                 {% endfor %}
             </div>
         </div>
-        {% endif %}
 
         <!-- CUSTOM FIELDS -->
         <div class="card">
@@ -311,20 +331,14 @@
             </div>
         </div>
 
-      {% if grouped_parameters %}
-        <button type="submit" name="save_coa" class="btn-submit">✅ Save Certificate of Analysis</button>
-        {% else %}
-        <div style="background:#fff3e0;border:1.5px solid #fcd34d;border-radius:10px;padding:16px 20px;margin-top:8px;font-size:0.88rem;color:#92400e;">
-            ⚠️ Please select a <strong>Category</strong> and click <strong>"⚡ Load Test Parameters"</strong> before saving.
-        </div>
-        {% endif %}
+        <button type="submit" name="save_coa" class="btn-submit" id="submitBtn">✅ Save Certificate of Analysis</button>
 
     </form>
 </div>
 
 <script>
-// is_dry_extract flag from Django
-const IS_DRY_EXTRACT = {{ is_dry_extract|yesno:'true,false' }};
+// is_dry_extract flag from Django (updated by loadParameters() when category changes)
+let IS_DRY_EXTRACT = {{ is_dry_extract|yesno:'true,false' }};
 
 // AUTOCOMPLETE
 function setupAutocomplete(inputId, dropdownId, fetchUrl, onSelect) {
@@ -393,18 +407,96 @@ setupAutocomplete('id_product_name', 'item-dropdown', '/coa/api/item-search/', f
 });
 setupAutocomplete('id_customer_name', 'customer-dropdown', '/coa/api/customer-search/', null);
 
-// LOAD PARAMS
-document.getElementById('btnLoadParams').addEventListener('click', function() {
-    const form = document.getElementById('coaForm');
-    let loadInput = document.getElementById('load_fields_input');
-    if (!loadInput) {
-        loadInput = document.createElement('input');
-        loadInput.type = 'hidden'; loadInput.name = 'load_fields';
-        loadInput.value = '1'; loadInput.id = 'load_fields_input';
-        form.appendChild(loadInput);
+// Manufacturing date always defaults to today if not already set
+(function() {
+    const mfgInput = document.getElementById('id_manufacturing_date');
+    if (mfgInput && !mfgInput.value) {
+        const d = new Date();
+        const pad = n => String(n).padStart(2, '0');
+        mfgInput.value = `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
     }
-    form.submit();
-});
+})();
+
+// LOAD PARAMS — via AJAX, no page reload
+function escapeHtml(s) {
+    return (s || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function renderParamRow(param, isDE) {
+    const std = escapeHtml(param.specification);
+    const refCell = isDE ? `
+        <div>
+            <input type="text" name="reference_${param.id}" placeholder="Reference">
+        </div>` : '';
+    return `
+    <div class="param-block" data-param-id="${param.id}">
+    <div class="${isDE ? 'param-grid-de' : 'param-grid'}">
+        <div class="param-row">
+            <div>
+                <div class="param-name">${escapeHtml(param.name)}</div>
+                ${param.specification ? `<div style="font-size:0.72rem;color:#9ca3af;">Default: ${std}</div>` : ''}
+            </div>
+            <div>
+                <input type="text" name="standard_${param.id}" id="std_${param.id}" value="${std}" placeholder="Standard / spec">
+            </div>
+            <div style="flex-direction:column;align-items:flex-start;">
+                <input type="text" name="param_${param.id}" id="res_${param.id}" class="result-input" data-param-id="${param.id}" placeholder="Enter result">
+                <span class="range-badge" id="badge_${param.id}"></span>
+            </div>
+            ${refCell}
+        </div>
+    </div>
+    <div class="param-actions">
+        <button type="button" class="btn-del-row" onclick="deleteParamBlock(this)" title="Don't include this test on this COA">✕ Remove</button>
+        <button type="button" class="btn-ins-row" onclick="insertFieldAboveParam(this)">＋ Field above</button>
+        <button type="button" class="btn-ins-row" onclick="insertHeadingAboveParam(this)">＋ Heading above</button>
+    </div>
+    </div>`;
+}
+
+async function loadParameters() {
+    const categoryId = document.getElementById('id_category').value;
+    if (!categoryId) { alert('Please select a category first.'); return; }
+
+    const btn = document.getElementById('btnLoadParams');
+    const originalText = btn.textContent;
+    btn.textContent = '⏳ Loading...';
+    btn.disabled = true;
+
+    try {
+        const res = await fetch(`/coa/api/load-parameters/?category=${categoryId}`);
+        const data = await res.json();
+        const isDE = data.is_dry_extract;
+        IS_DRY_EXTRACT = isDE;
+
+        const headerHtml = isDE
+            ? `<div class="param-grid-header-de"><span>Parameter</span><span>Standard</span><span>Result</span><span>Reference</span></div>`
+            : `<div class="param-grid-header"><span>Parameter</span><span>Standard</span><span>Result</span></div>`;
+
+        let rowsHtml = '';
+        data.groups.forEach(grp => {
+            if (grp.group_name) rowsHtml += `<div class="group-label">${escapeHtml(grp.group_name)}</div>`;
+            grp.params.forEach(p => { rowsHtml += renderParamRow(p, isDE); });
+        });
+
+        document.getElementById('paramsBody').innerHTML = headerHtml + rowsHtml;
+        document.getElementById('dryExtractBadgeWrap').innerHTML = isDE
+            ? '&nbsp;|&nbsp; <span class="ref-badge">Dry Extract — Reference column active</span>' : '';
+        document.getElementById('paramsCard').style.display = '';
+        document.getElementById('submitBtn').style.display = '';
+
+        // Re-attach the pass/fail live-check behaviour to the newly created inputs.
+        attachRangeChecks();
+
+        document.getElementById('paramsCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } catch (err) {
+        alert('Could not load test parameters. Please check your connection and try again.');
+    } finally {
+        btn.textContent = originalText;
+        btn.disabled = false;
+    }
+}
+document.getElementById('btnLoadParams').addEventListener('click', loadParameters);
 
 // OUT OF RANGE CHECK
 function parseRange(standard) {
@@ -420,31 +512,36 @@ function parseRange(standard) {
     if (minM) return { type: 'min', limit: parseFloat(minM[1]) };
     return null;
 }
-document.querySelectorAll('.result-input[data-param-id]').forEach(input => {
-    const paramId = input.dataset.paramId;
-    const badge = document.getElementById('badge_' + paramId);
-    const stdInput = document.getElementById('std_' + paramId);
-    function doCheck() {
-        if (!stdInput) return;
-        const spec = parseRange(stdInput.value);
-        const nums = input.value.match(/[-+]?\d+\.?\d*/);
-        if (!spec || !nums || !input.value.trim()) {
-            input.classList.remove('out-of-range', 'in-range');
-            if (badge) badge.className = 'range-badge'; return;
+function attachRangeChecks() {
+    document.querySelectorAll('.result-input[data-param-id]').forEach(input => {
+        if (input.dataset.rangeWired) return; // don't double-wire existing rows
+        input.dataset.rangeWired = '1';
+        const paramId = input.dataset.paramId;
+        const badge = document.getElementById('badge_' + paramId);
+        function doCheck() {
+            const stdInput = document.getElementById('std_' + paramId);
+            if (!stdInput) return;
+            const spec = parseRange(stdInput.value);
+            const nums = input.value.match(/[-+]?\d+\.?\d*/);
+            if (!spec || !nums || !input.value.trim()) {
+                input.classList.remove('out-of-range', 'in-range');
+                if (badge) badge.className = 'range-badge'; return;
+            }
+            const val = parseFloat(nums[0]);
+            let pass = false;
+            if (spec.type === 'range') pass = (val >= spec.lo && val <= spec.hi);
+            if (spec.type === 'max')   pass = (val <= spec.limit);
+            if (spec.type === 'min')   pass = (val >= spec.limit);
+            input.classList.toggle('out-of-range', !pass);
+            input.classList.toggle('in-range', pass);
+            if (badge) { badge.textContent = pass ? '✓ OK' : '⚠ Out of range'; badge.className = 'range-badge ' + (pass ? 'pass' : 'fail'); }
         }
-        const val = parseFloat(nums[0]);
-        let pass = false;
-        if (spec.type === 'range') pass = (val >= spec.lo && val <= spec.hi);
-        if (spec.type === 'max')   pass = (val <= spec.limit);
-        if (spec.type === 'min')   pass = (val >= spec.limit);
-        input.classList.toggle('out-of-range', !pass);
-        input.classList.toggle('in-range', pass);
-        if (badge) { badge.textContent = pass ? '✓ OK' : '⚠ Out of range'; badge.className = 'range-badge ' + (pass ? 'pass' : 'fail'); }
-    }
-    input.addEventListener('input', doCheck);
-    input.addEventListener('blur',  doCheck);
-    if (input.value) doCheck();
-});
+        input.addEventListener('input', doCheck);
+        input.addEventListener('blur',  doCheck);
+        if (input.value) doCheck();
+    });
+}
+attachRangeChecks();
 
 // CUSTOM FIELDS — reference column added for dry extract
 function addCustomField() {
@@ -456,7 +553,8 @@ function addCustomField() {
         <td><input type="text" name="custom_field_result" placeholder="Result"></td>
         ${refCol}
         <td style="text-align:center;"><button type="button" class="btn-remove" onclick="removeRow(this)">🗑️</button></td>`;
-    document.getElementById('customBody').appendChild(tr);
+    const body = document.getElementById('customBody');
+    body.insertBefore(tr, body.firstChild); // new fields appear above previously added ones
     tr.querySelector('input[name="custom_field_name"]').focus();
 }
 
@@ -470,11 +568,105 @@ function addHeadingRow() {
         <td><input type="hidden" name="custom_field_result" value=""></td>
         ${refCol}
         <td style="text-align:center;"><button type="button" class="btn-remove" onclick="removeRow(this)">🗑️</button></td>`;
-    document.getElementById('customBody').appendChild(tr);
+    const body = document.getElementById('customBody');
+    body.insertBefore(tr, body.firstChild); // new headings appear above previously added ones
     tr.querySelector('input[name="custom_field_name"]').focus();
 }
 
 function removeRow(btn) { btn.closest('tr').remove(); }
+
+// Per-row "insert above" / "remove" for the Test Parameters section — works
+// on both the parameters loaded on page render AND ones loaded via AJAX
+// (Load Test Parameters), so lab staff can add extra fields/headings or
+// drop a test right where they're working, not just at the bottom.
+function insertFieldAboveParam(btn) {
+    const block = btn.closest('.param-block');
+    const wrap = document.createElement('div');
+    wrap.className = 'inserted-row-inline';
+    const refField = IS_DRY_EXTRACT ? `<input type="text" name="custom_field_reference" placeholder="Reference" style="width:100%;padding:7px 10px;border:1.5px solid #d0d7de;border-radius:6px;font-size:0.85rem;margin-top:4px;">` : '';
+    wrap.innerHTML = `
+        <input type="hidden" name="custom_is_heading" value="0">
+        <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;">
+            <input type="text" name="custom_field_name" placeholder="Field name" style="flex:1.5;min-width:120px;padding:7px 10px;border:1.5px solid #d0d7de;border-radius:6px;font-size:0.85rem;">
+            <input type="text" name="custom_field_spec" placeholder="Standard" style="flex:1;min-width:100px;padding:7px 10px;border:1.5px solid #d0d7de;border-radius:6px;font-size:0.85rem;">
+            <input type="text" name="custom_field_result" placeholder="Result" style="flex:1;min-width:100px;padding:7px 10px;border:1.5px solid #d0d7de;border-radius:6px;font-size:0.85rem;">
+            <button type="button" class="btn-del-row" onclick="this.closest('.inserted-row-inline').remove()">✕</button>
+        </div>
+        ${refField}`;
+    block.parentNode.insertBefore(wrap, block);
+    wrap.querySelector('input[name="custom_field_name"]').focus();
+}
+
+function insertHeadingAboveParam(btn) {
+    const block = btn.closest('.param-block');
+    const wrap = document.createElement('div');
+    wrap.className = 'inserted-heading-inline';
+    wrap.innerHTML = `
+        <input type="hidden" name="custom_is_heading" value="1">
+        <input type="hidden" name="custom_field_spec" value="">
+        <input type="hidden" name="custom_field_result" value="">
+        <div style="display:flex;gap:6px;align-items:center;">
+            <input type="text" name="custom_field_name" placeholder="Section heading text…" style="flex:1;padding:7px 10px;border:none;background:transparent;font-weight:700;color:#1a3c2e;font-size:0.88rem;">
+            <button type="button" class="btn-del-row" onclick="this.closest('.inserted-heading-inline').remove()">✕</button>
+        </div>`;
+    block.parentNode.insertBefore(wrap, block);
+    wrap.querySelector('input[name="custom_field_name"]').focus();
+}
+
+function deleteParamBlock(btn) {
+    // Removes this test parameter from the form entirely so it won't be
+    // saved on this COA (its standard/result inputs are simply not submitted).
+    btn.closest('.param-block').remove();
+}
+
+// Walks the Test Parameters section in DOM order and records the true
+// position of every row (parameter or inline-inserted field/heading) into
+// hidden inputs, then does the same for anything added in the bottom
+// "Additional Fields" table (which always comes after). This is what makes
+// a heading print exactly where you placed it instead of always at the end.
+function assignPositions() {
+    let pos = 0;
+    const paramsBody = document.getElementById('paramsBody');
+    if (paramsBody) {
+        Array.from(paramsBody.children).forEach(el => {
+            if (el.classList.contains('param-block')) {
+                const paramId = el.dataset.paramId;
+                if (!paramId) return;
+                let posInput = el.querySelector(`input[name="position_param_${paramId}"]`);
+                if (!posInput) {
+                    posInput = document.createElement('input');
+                    posInput.type = 'hidden';
+                    posInput.name = `position_param_${paramId}`;
+                    el.appendChild(posInput);
+                }
+                posInput.value = pos++;
+            } else if (el.classList.contains('inserted-row-inline') || el.classList.contains('inserted-heading-inline')) {
+                let posInput = el.querySelector('input[name="custom_position"]');
+                if (!posInput) {
+                    posInput = document.createElement('input');
+                    posInput.type = 'hidden';
+                    posInput.name = 'custom_position';
+                    el.appendChild(posInput);
+                }
+                posInput.value = pos++;
+            }
+        });
+    }
+    const customBody = document.getElementById('customBody');
+    if (customBody) {
+        Array.from(customBody.children).forEach(tr => {
+            let posInput = tr.querySelector('input[name="custom_position"]');
+            if (!posInput) {
+                posInput = document.createElement('input');
+                posInput.type = 'hidden';
+                posInput.name = 'custom_position';
+                tr.appendChild(posInput);
+            }
+            posInput.value = pos++;
+        });
+    }
+}
+document.getElementById('coaForm').addEventListener('submit', assignPositions);
 </script>
 </body>
 </html>

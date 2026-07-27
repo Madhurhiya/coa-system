@@ -159,70 +159,91 @@
     </thead>
     <tbody>
 
-        <!-- Regular grouped test parameters -->
-        {% for section in grouped_results %}
-            {% if section.group %}
+        <!-- One unified, correctly-ordered pass: parameters, headings and
+             custom fields interleaved exactly as placed in the form -->
+        {% for row in ordered_rows %}
+
+            {% if row.kind == 'group' %}
             <tr class="group-header-row">
-                <td colspan="{% if is_dry_extract %}4{% else %}3{% endif %}">{{ section.group.name }}</td>
+                <td colspan="{% if is_dry_extract %}4{% else %}3{% endif %}">{{ row.name }}</td>
+            </tr>
+
+            {% elif row.kind == 'heading' %}
+            <tr>
+                {% if is_dry_extract %}
+                <td style="border:1px solid #000;font-weight:bold;font-size:9.5pt;color:#000;padding:6px 8px;text-align:left;background:#e2e2e2;width:33%;">{{ row.cf.field_name }}</td>
+                <td style="border:1px solid #000;background:#e2e2e2;width:29%;"></td>
+                <td style="border:1px solid #000;background:#e2e2e2;width:20%;"></td>
+                <td style="border:1px solid #000;background:#e2e2e2;width:18%;"></td>
+                {% else %}
+                <td style="border:1px solid #000;font-weight:bold;font-size:9.5pt;color:#000;padding:6px 8px;text-align:left;background:#e2e2e2;width:40%;">{{ row.cf.field_name }}</td>
+                <td style="border:1px solid #000;background:#e2e2e2;width:35%;"></td>
+                <td style="border:1px solid #000;background:#e2e2e2;width:25%;"></td>
+                {% endif %}
+            </tr>
+
+            {% elif row.kind == 'param' and row.result %}
+            <tr>
+                {% if is_dry_extract %}
+                <td class="col-test-de">{{ row.parameter.name }}</td>
+                {% if row.result.result %}
+                <td class="col-standard-de">
+                    {% if row.result.standard_override %}{{ row.result.standard_override }}
+                    {% elif row.parameter.specification %}{{ row.parameter.specification }}
+                    {% else %}—{% endif %}
+                </td>
+                <td class="col-result-de">{{ row.result.result }}</td>
+                {% else %}
+                <td class="col-standard-de" colspan="2" style="text-align:center;">
+                    {% if row.result.standard_override %}{{ row.result.standard_override }}
+                    {% elif row.parameter.specification %}{{ row.parameter.specification }}
+                    {% else %}—{% endif %}
+                </td>
+                {% endif %}
+                <td class="col-reference-de">{{ row.result.reference|default:"—" }}</td>
+                {% else %}
+                <td class="col-test">{{ row.parameter.name }}</td>
+                {% if row.result.result %}
+                <td class="col-standard">
+                    {% if row.result.standard_override %}{{ row.result.standard_override }}
+                    {% elif row.parameter.specification %}{{ row.parameter.specification }}
+                    {% else %}—{% endif %}
+                </td>
+                <td class="col-result">{{ row.result.result }}</td>
+                {% else %}
+                <td class="col-standard" colspan="2" style="text-align:center;">
+                    {% if row.result.standard_override %}{{ row.result.standard_override }}
+                    {% elif row.parameter.specification %}{{ row.parameter.specification }}
+                    {% else %}—{% endif %}
+                </td>
+                {% endif %}
+                {% endif %}
+            </tr>
+
+            {% elif row.kind == 'custom' %}
+            <tr>
+                {% if is_dry_extract %}
+                <td class="col-test-de">{{ row.cf.field_name }}</td>
+                {% if row.cf.result %}
+                <td class="col-standard-de">{% if row.cf.specification %}{{ row.cf.specification }}{% else %}—{% endif %}</td>
+                <td class="col-result-de">{{ row.cf.result }}</td>
+                {% else %}
+                <td class="col-standard-de" colspan="2" style="text-align:center;">{% if row.cf.specification %}{{ row.cf.specification }}{% else %}—{% endif %}</td>
+                {% endif %}
+                <td class="col-reference-de">{{ row.cf.reference|default:"—" }}</td>
+                {% else %}
+                <td class="col-test">{{ row.cf.field_name }}</td>
+                {% if row.cf.result %}
+                <td class="col-standard">{% if row.cf.specification %}{{ row.cf.specification }}{% else %}—{% endif %}</td>
+                <td class="col-result">{{ row.cf.result }}</td>
+                {% else %}
+                <td class="col-standard" colspan="2" style="text-align:center;">{% if row.cf.specification %}{{ row.cf.specification }}{% else %}—{% endif %}</td>
+                {% endif %}
+                {% endif %}
             </tr>
             {% endif %}
 
-            {% for result in section.items %}
-            <tr>
-                {% if is_dry_extract %}
-                <td class="col-test-de">{{ result.parameter.name }}</td>
-                <td class="col-standard-de">
-                    {% if result.standard_override %}{{ result.standard_override }}
-                    {% elif result.parameter.specification %}{{ result.parameter.specification }}
-                    {% else %}—{% endif %}
-                </td>
-                <td class="col-result-de">{{ result.result|default:"—" }}</td>
-                <td class="col-reference-de">{{ result.reference|default:"—" }}</td>
-                {% else %}
-                <td class="col-test">{{ result.parameter.name }}</td>
-                <td class="col-standard">
-                    {% if result.standard_override %}{{ result.standard_override }}
-                    {% elif result.parameter.specification %}{{ result.parameter.specification }}
-                    {% else %}—{% endif %}
-                </td>
-                <td class="col-result">{{ result.result|default:"—" }}</td>
-                {% endif %}
-            </tr>
-            {% endfor %}
         {% endfor %}
-
-        <!-- Custom fields -->
-        {% if custom_fields %}
-            {% for cf in custom_fields %}
-                {% if cf.is_heading %}
-                <tr>
-                    {% if is_dry_extract %}
-                    <td style="border:1px solid #000;font-weight:bold;font-size:9.5pt;color:#000;padding:6px 8px;text-align:left;background:#e2e2e2;width:33%;">{{ cf.field_name }}</td>
-                    <td style="border:1px solid #000;background:#e2e2e2;width:29%;"></td>
-                    <td style="border:1px solid #000;background:#e2e2e2;width:20%;"></td>
-                    <td style="border:1px solid #000;background:#e2e2e2;width:18%;"></td>
-                    {% else %}
-                    <td style="border:1px solid #000;font-weight:bold;font-size:9.5pt;color:#000;padding:6px 8px;text-align:left;background:#e2e2e2;width:40%;">{{ cf.field_name }}</td>
-                    <td style="border:1px solid #000;background:#e2e2e2;width:35%;"></td>
-                    <td style="border:1px solid #000;background:#e2e2e2;width:25%;"></td>
-                    {% endif %}
-                </tr>
-                {% else %}
-                <tr>
-                    {% if is_dry_extract %}
-                    <td class="col-test-de">{{ cf.field_name }}</td>
-                    <td class="col-standard-de">{% if cf.specification %}{{ cf.specification }}{% else %}—{% endif %}</td>
-                    <td class="col-result-de">{% if cf.result %}{{ cf.result }}{% else %}—{% endif %}</td>
-                    <td class="col-reference-de">{% if cf.reference %}{{ cf.reference }}{% else %}—{% endif %}</td>
-                    {% else %}
-                    <td class="col-test">{{ cf.field_name }}</td>
-                    <td class="col-standard">{% if cf.specification %}{{ cf.specification }}{% else %}—{% endif %}</td>
-                    <td class="col-result">{% if cf.result %}{{ cf.result }}{% else %}—{% endif %}</td>
-                    {% endif %}
-                </tr>
-                {% endif %}
-            {% endfor %}
-        {% endif %}
 
     </tbody>
 </table>

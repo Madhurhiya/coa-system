@@ -5,7 +5,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-5w%hbek&kg)z64h798_=e95xy9hxpedi2x)i5cvv60y*y@4m35')
 
-DEBUG = True
+# DEBUG is OFF by default. To turn it on temporarily (e.g. to see a real error
+# page while debugging on Railway), set an env var DEBUG=True in the Railway
+# dashboard, then remove it again when done — never leave it on permanently.
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = ['*']
 
@@ -76,9 +79,24 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 LANGUAGE_CODE = 'en-us'
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 USE_I18N = True
 USE_TZ = True
+
+# With DEBUG off, errors no longer show a stack trace in the browser —
+# this makes sure they still show up in Railway's log viewer so you can
+# actually see what went wrong.
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {'class': 'logging.StreamHandler'},
+    },
+    'root': {'handlers': ['console'], 'level': 'INFO'},
+    'loggers': {
+        'django.request': {'handlers': ['console'], 'level': 'ERROR', 'propagate': False},
+    },
+}
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [

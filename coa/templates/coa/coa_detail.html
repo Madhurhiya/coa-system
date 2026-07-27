@@ -123,30 +123,38 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for result in results %}
-                        {% if result.parameter.group %}
-                            {% if forloop.first or result.parameter.group != results|dictsort:"parameter.group.id"|first %}
-                            <tr class="group-row"><td colspan="4">{{ result.parameter.group.name }}</td></tr>
-                            {% endif %}
-                        {% endif %}
+                    {% for row in ordered_rows %}
+                        {% if row.kind == 'group' %}
+                        <tr class="group-row"><td colspan="4">{{ row.name }}</td></tr>
+
+                        {% elif row.kind == 'heading' %}
+                        <tr class="custom-group-row"><td colspan="4">{{ row.cf.field_name }}</td></tr>
+
+                        {% elif row.kind == 'param' and row.result %}
                         <tr>
                             <td class="sr-no">{{ forloop.counter }}</td>
-                            <td>{{ result.parameter.name }}</td>
-                            <td class="spec-val">{% if result.standard_override %}{{ result.standard_override }}{% elif result.parameter.specification %}{{ result.parameter.specification }}{% else %}—{% endif %}</td>
-                            <td class="result-val">{{ result.result }}</td>
+                            <td>{{ row.parameter.name }}</td>
+                            {% if row.result.result %}
+                            <td class="spec-val">{% if row.result.standard_override %}{{ row.result.standard_override }}{% elif row.parameter.specification %}{{ row.parameter.specification }}{% else %}—{% endif %}</td>
+                            <td class="result-val">{{ row.result.result }}</td>
+                            {% else %}
+                            <td class="spec-val" colspan="2" style="text-align:center;">{% if row.result.standard_override %}{{ row.result.standard_override }}{% elif row.parameter.specification %}{{ row.parameter.specification }}{% else %}—{% endif %}</td>
+                            {% endif %}
                         </tr>
+
+                        {% elif row.kind == 'custom' %}
+                        <tr>
+                            <td class="sr-no">{{ forloop.counter }}</td>
+                            <td>{{ row.cf.field_name }}</td>
+                            {% if row.cf.result %}
+                            <td class="spec-val">{% if row.cf.specification %}{{ row.cf.specification }}{% else %}—{% endif %}</td>
+                            <td class="result-val">{{ row.cf.result }}</td>
+                            {% else %}
+                            <td class="spec-val" colspan="2" style="text-align:center;">{% if row.cf.specification %}{{ row.cf.specification }}{% else %}—{% endif %}</td>
+                            {% endif %}
+                        </tr>
+                        {% endif %}
                     {% endfor %}
-                    {% if custom_fields %}
-                    <tr class="custom-group-row"><td colspan="4">Additional Tests</td></tr>
-                    {% for cf in custom_fields %}
-                    <tr>
-                        <td class="sr-no">{{ forloop.counter }}</td>
-                        <td>{{ cf.field_name }}</td>
-                        <td class="spec-val">{% if cf.specification %}{{ cf.specification }}{% else %}—{% endif %}</td>
-                        <td class="result-val">{% if cf.result %}{{ cf.result }}{% else %}—{% endif %}</td>
-                    </tr>
-                    {% endfor %}
-                    {% endif %}
                 </tbody>
             </table>
         </div>
@@ -158,6 +166,7 @@
             <div class="actions">
                 <a href="{% url 'download_coa_pdf' coa.id %}" class="btn btn-primary">⬇ Download COA PDF</a>
                 <a href="{% url 'download_coa_word' coa.id %}" class="btn btn-outline">📄 Download Word</a>
+                <a href="{% url 'edit_coa' coa.id %}" class="btn btn-secondary">✏️ Edit COA</a>
                 <a href="{% url 'generate_label' coa.id %}" class="btn btn-gold">🏷️ Generate Label</a>
                 <a href="{% url 'clone_coa' coa.id %}" class="btn btn-secondary">🔁 Clone COA</a>
                 <a href="{% url 'create_coa' %}" class="btn btn-secondary">+ New COA</a>

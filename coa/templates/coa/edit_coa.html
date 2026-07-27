@@ -136,7 +136,7 @@
             </div>
             <div class="card-body" style="padding:16px;">
                 <div style="background:#fffbeb;border:1px solid #fcd34d;border-radius:8px;padding:8px 14px;font-size:0.8rem;color:#92400e;margin-bottom:12px;">
-                    💡 Use <strong>✕</strong> to delete a row &nbsp;|&nbsp; <strong>＋ Field</strong> to insert below &nbsp;|&nbsp; <strong>＋ H</strong> to insert heading below
+                    💡 Use <strong>✕</strong> to delete a row &nbsp;|&nbsp; <strong>＋ Field</strong> / <strong>＋ H</strong> to insert a field or heading directly above that row
                 </div>
                 <table class="param-table" id="paramTable">
                     <thead>
@@ -149,64 +149,103 @@
                         </tr>
                     </thead>
                     <tbody id="paramBody">
-                        {% for grp in grouped_parameters %}
-                            {% if grp.group %}
+                        {% for row in ordered_rows %}
+
+                            {% if row.kind == 'group' %}
                             <tr class="group-label-row">
-                                <td colspan="{% if is_dry_extract %}5{% else %}4{% endif %}" style="padding:8px 10px;background:#f8f9fa;border-left:4px solid #2e7d32;font-size:0.8rem;font-weight:700;color:#1a3c2e;text-transform:uppercase;letter-spacing:0.5px;">{{ grp.group.name }}</td>
+                                <td colspan="{% if is_dry_extract %}5{% else %}4{% endif %}" style="padding:8px 10px;background:#f8f9fa;border-left:4px solid #2e7d32;font-size:0.8rem;font-weight:700;color:#1a3c2e;text-transform:uppercase;letter-spacing:0.5px;">{{ row.name }}</td>
                             </tr>
-                            {% endif %}
-                            {% for param in grp.params %}
-                            <tr class="param-data-row" data-param-id="{{ param.id }}">
+
+                            {% elif row.kind == 'param' %}
+                            <tr class="param-data-row" data-param-id="{{ row.parameter.id }}">
                                 <td>
-                                    <div class="param-name">{{ param.name }}</div>
-                                    {% if param.specification %}<div class="param-default">Default: {{ param.specification }}</div>{% endif %}
-                                    <input type="hidden" name="param_keep_{{ param.id }}" value="1">
+                                    <div class="param-name">{{ row.parameter.name }}</div>
+                                    {% if row.parameter.specification %}<div class="param-default">Default: {{ row.parameter.specification }}</div>{% endif %}
+                                    <input type="hidden" name="param_keep_{{ row.parameter.id }}" value="1">
                                 </td>
                                 <td>
                                     <input type="text"
-                                           name="standard_{{ param.id }}"
-                                           id="std_{{ param.id }}"
-                                           value="{% if param.id in existing_results %}{{ existing_results|get_item:param.id|get_item:'standard' }}{% else %}{{ param.specification|default:'' }}{% endif %}"
+                                           name="standard_{{ row.parameter.id }}"
+                                           id="std_{{ row.parameter.id }}"
+                                           value="{% if row.parameter.id in existing_results %}{{ existing_results|get_item:row.parameter.id|get_item:'standard' }}{% else %}{{ row.parameter.specification|default:'' }}{% endif %}"
                                            placeholder="Standard / spec">
                                 </td>
                                 <td>
                                     <input type="text"
-                                           name="param_{{ param.id }}"
-                                           id="res_{{ param.id }}"
+                                           name="param_{{ row.parameter.id }}"
+                                           id="res_{{ row.parameter.id }}"
                                            class="result-input"
-                                           data-param-id="{{ param.id }}"
-                                           value="{% if param.id in existing_results %}{{ existing_results|get_item:param.id|get_item:'result' }}{% endif %}"
+                                           data-param-id="{{ row.parameter.id }}"
+                                           value="{% if row.parameter.id in existing_results %}{{ existing_results|get_item:row.parameter.id|get_item:'result' }}{% endif %}"
                                            placeholder="Enter result">
-                                    <span class="range-badge" id="badge_{{ param.id }}"></span>
+                                    <span class="range-badge" id="badge_{{ row.parameter.id }}"></span>
                                 </td>
                                 {% if is_dry_extract %}
                                 <td>
                                     <input type="text"
-                                           name="reference_{{ param.id }}"
-                                           value="{% if param.id in existing_results %}{{ existing_results|get_item:param.id|get_item:'reference' }}{% endif %}"
+                                           name="reference_{{ row.parameter.id }}"
+                                           value="{% if row.parameter.id in existing_results %}{{ existing_results|get_item:row.parameter.id|get_item:'reference' }}{% endif %}"
                                            placeholder="Reference">
                                 </td>
                                 {% endif %}
                                 <td>
                                     <div class="row-actions">
                                         <button type="button" class="btn-del-row" onclick="deleteParamRow(this)">✕</button>
-                                        <button type="button" class="btn-ins-row" onclick="insertFieldBelow(this)">＋ Field</button>
-                                        <button type="button" class="btn-ins-row" onclick="insertHeadingBelow(this)" style="color:#1a3c2e;">＋ H</button>
+                                        <button type="button" class="btn-ins-row" onclick="insertFieldAbove(this)">＋ Field</button>
+                                        <button type="button" class="btn-ins-row" onclick="insertHeadingAbove(this)" style="color:#1a3c2e;">＋ H</button>
                                     </div>
                                 </td>
                             </tr>
-                            {% endfor %}
+
+                            {% elif row.kind == 'heading' %}
+                            <tr class="inserted-heading-row">
+                                <td colspan="3" style="background:#e8f5e9;">
+                                    <input type="hidden" name="custom_is_heading" value="1">
+                                    <input type="hidden" name="custom_field_spec" value="">
+                                    <input type="hidden" name="custom_field_result" value="">
+                                    <input type="text" name="custom_field_name" value="{{ row.cf.field_name }}" placeholder="Section heading text…"
+                                           style="width:100%;border:none;background:transparent;font-weight:700;color:#1a3c2e;font-family:'DM Sans',sans-serif;font-size:0.9rem;outline:none;padding:4px;">
+                                </td>
+                                {% if is_dry_extract %}<td style="background:#e8f5e9;"><input type="hidden" name="custom_field_reference" value=""></td>{% endif %}
+                                <td style="background:#e8f5e9;">
+                                    <div class="row-actions">
+                                        <button type="button" class="btn-del-row" onclick="deleteParamRow(this)">✕</button>
+                                        <button type="button" class="btn-ins-row" onclick="insertFieldAbove(this)">＋ Field</button>
+                                        <button type="button" class="btn-ins-row" onclick="insertHeadingAbove(this)" style="color:#1a3c2e;">＋ H</button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            {% elif row.kind == 'custom' %}
+                            <tr class="inserted-row">
+                                <td style="background:#f0fdf4;">
+                                    <input type="hidden" name="custom_is_heading" value="0">
+                                    <input type="text" name="custom_field_name" value="{{ row.cf.field_name }}" placeholder="Field name" style="width:100%;padding:7px 10px;border:1.5px solid #d0d7de;border-radius:6px;font-family:'DM Sans',sans-serif;font-size:0.88rem;outline:none;background:#f0fdf4;">
+                                </td>
+                                <td style="background:#f0fdf4;"><input type="text" name="custom_field_spec" value="{{ row.cf.specification|default:'' }}" placeholder="Standard" style="width:100%;padding:7px 10px;border:1.5px solid #d0d7de;border-radius:6px;font-family:'DM Sans',sans-serif;font-size:0.88rem;outline:none;background:#f0fdf4;"></td>
+                                <td style="background:#f0fdf4;"><input type="text" name="custom_field_result" value="{{ row.cf.result|default:'' }}" placeholder="Result" style="width:100%;padding:7px 10px;border:1.5px solid #d0d7de;border-radius:6px;font-family:'DM Sans',sans-serif;font-size:0.88rem;outline:none;background:#f0fdf4;"></td>
+                                {% if is_dry_extract %}<td style="background:#f0fdf4;"><input type="text" name="custom_field_reference" value="{{ row.cf.reference|default:'' }}" placeholder="Reference" style="width:100%;padding:7px 10px;border:1.5px solid #d0d7de;border-radius:6px;font-family:'DM Sans',sans-serif;font-size:0.88rem;outline:none;background:#f0fdf4;"></td>{% endif %}
+                                <td style="background:#f0fdf4;">
+                                    <div class="row-actions">
+                                        <button type="button" class="btn-del-row" onclick="deleteParamRow(this)">✕</button>
+                                        <button type="button" class="btn-ins-row" onclick="insertFieldAbove(this)">＋ Field</button>
+                                        <button type="button" class="btn-ins-row" onclick="insertHeadingAbove(this)" style="color:#1a3c2e;">＋ H</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endif %}
+
                         {% endfor %}
                     </tbody>
                 </table>
             </div>
         </div>
 
-        <!-- SECTION 3: CUSTOM FIELDS -->
+        <!-- SECTION 3: ADD NEW FIELDS -->
         <div class="card">
             <div class="card-header">
-                <h2>➕ Additional Fields & Test Headings</h2>
-                <span class="badge">Optional</span>
+                <h2>➕ Add New Fields & Headings</h2>
+                <span class="badge">Appended after everything above — use the ＋ buttons in the table to insert at a specific spot instead</span>
             </div>
             <div class="card-body">
                 <table class="custom-table" id="customTable">
@@ -219,44 +258,7 @@
                             <th style="width:10%">Remove</th>
                         </tr>
                     </thead>
-                    <tbody id="customBody">
-                        {% for cf in custom_fields %}
-                        <tr {% if cf.is_heading %}class="heading-row"{% endif %}>
-                            <td>
-                                <input type="hidden" name="custom_is_heading" value="{{ cf.is_heading|yesno:'1,0' }}">
-                                <input type="text" name="custom_field_name" value="{{ cf.field_name }}"
-                                       placeholder="{% if cf.is_heading %}Section heading text{% else %}e.g. Heavy Metals{% endif %}">
-                            </td>
-                            <td>
-                                {% if cf.is_heading %}
-                                    <span class="heading-badge">📋 HEADING</span>
-                                {% else %}
-                                    <input type="text" name="custom_field_spec" value="{{ cf.specification|default:'' }}" placeholder="e.g. Absent">
-                                {% endif %}
-                            </td>
-                            <td>
-                                {% if not cf.is_heading %}
-                                    <input type="text" name="custom_field_result" value="{{ cf.result|default:'' }}" placeholder="Result">
-                                {% else %}
-                                    <input type="hidden" name="custom_field_spec" value="">
-                                    <input type="hidden" name="custom_field_result" value="">
-                                {% endif %}
-                            </td>
-                            {% if is_dry_extract %}
-                            <td>
-                                {% if not cf.is_heading %}
-                                    <input type="text" name="custom_field_reference" value="{{ cf.reference|default:'' }}" placeholder="Reference">
-                                {% else %}
-                                    <input type="hidden" name="custom_field_reference" value="">
-                                {% endif %}
-                            </td>
-                            {% endif %}
-                            <td style="text-align:center;">
-                                <button type="button" class="btn-remove" onclick="removeRow(this)">🗑️</button>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
+                    <tbody id="customBody"></tbody>
                 </table>
                 <div class="add-row-group">
                     <button type="button" class="btn-add-row" onclick="addCustomField()">+ Add Test Field</button>
@@ -315,7 +317,7 @@ document.querySelectorAll('.result-input[data-param-id]').forEach(input => {
 
 function deleteParamRow(btn) { btn.closest('tr').remove(); }
 
-function insertFieldBelow(btn) {
+function insertFieldAbove(btn) {
     const row = btn.closest('tr');
     const tr = document.createElement('tr');
     tr.className = 'inserted-row';
@@ -329,11 +331,11 @@ function insertFieldBelow(btn) {
         <td style="background:#f0fdf4;"><input type="text" name="custom_field_result" placeholder="Result" style="width:100%;padding:7px 10px;border:1.5px solid #d0d7de;border-radius:6px;font-family:'DM Sans',sans-serif;font-size:0.88rem;outline:none;background:#f0fdf4;"></td>
         ${refCol}
         <td style="background:#f0fdf4;"><div class="row-actions"><button type="button" class="btn-del-row" onclick="deleteParamRow(this)">✕</button></div></td>`;
-    row.parentNode.insertBefore(tr, row.nextSibling);
+    row.parentNode.insertBefore(tr, row);
     tr.querySelector('input[name="custom_field_name"]').focus();
 }
 
-function insertHeadingBelow(btn) {
+function insertHeadingAbove(btn) {
     const row = btn.closest('tr');
     const tr = document.createElement('tr');
     tr.className = 'inserted-heading-row';
@@ -348,7 +350,7 @@ function insertHeadingBelow(btn) {
         </td>
         ${refCol}
         <td style="background:#e8f5e9;"><div class="row-actions"><button type="button" class="btn-del-row" onclick="deleteParamRow(this)">✕</button></div></td>`;
-    row.parentNode.insertBefore(tr, row.nextSibling);
+    row.parentNode.insertBefore(tr, row);
     tr.querySelector('input[name="custom_field_name"]').focus();
 }
 
@@ -362,7 +364,7 @@ function addCustomField() {
         <td><input type="text" name="custom_field_result" placeholder="Result"></td>
         ${refCol}
         <td style="text-align:center;"><button type="button" class="btn-remove" onclick="removeRow(this)">🗑️</button></td>`;
-    tbody.appendChild(tr);
+    tbody.insertBefore(tr, tbody.firstChild); // new fields appear above previous ones
     tr.querySelector('input[name="custom_field_name"]').focus();
 }
 
@@ -377,11 +379,59 @@ function addHeadingRow() {
         <td><input type="hidden" name="custom_field_result" value=""></td>
         ${refCol}
         <td style="text-align:center;"><button type="button" class="btn-remove" onclick="removeRow(this)">🗑️</button></td>`;
-    tbody.appendChild(tr);
+    tbody.insertBefore(tr, tbody.firstChild); // new headings appear above previous ones
     tr.querySelector('input[name="custom_field_name"]').focus();
 }
 
 function removeRow(btn) { btn.closest('tr').remove(); }
+
+// Records the true on-screen order of every row (parameter, inline field,
+// inline heading) into hidden inputs right before the form submits, then
+// continues the sequence for anything newly added in the bottom table —
+// this is what makes a heading save/print exactly where you placed it.
+function assignPositions() {
+    let pos = 0;
+    const paramBody = document.getElementById('paramBody');
+    if (paramBody) {
+        Array.from(paramBody.children).forEach(tr => {
+            if (tr.classList.contains('param-data-row')) {
+                const paramId = tr.dataset.paramId;
+                if (!paramId) return;
+                let posInput = tr.querySelector(`input[name="position_param_${paramId}"]`);
+                if (!posInput) {
+                    posInput = document.createElement('input');
+                    posInput.type = 'hidden';
+                    posInput.name = `position_param_${paramId}`;
+                    tr.appendChild(posInput);
+                }
+                posInput.value = pos++;
+            } else if (tr.classList.contains('inserted-row') || tr.classList.contains('inserted-heading-row')) {
+                let posInput = tr.querySelector('input[name="custom_position"]');
+                if (!posInput) {
+                    posInput = document.createElement('input');
+                    posInput.type = 'hidden';
+                    posInput.name = 'custom_position';
+                    tr.appendChild(posInput);
+                }
+                posInput.value = pos++;
+            }
+        });
+    }
+    const customBody = document.getElementById('customBody');
+    if (customBody) {
+        Array.from(customBody.children).forEach(tr => {
+            let posInput = tr.querySelector('input[name="custom_position"]');
+            if (!posInput) {
+                posInput = document.createElement('input');
+                posInput.type = 'hidden';
+                posInput.name = 'custom_position';
+                tr.appendChild(posInput);
+            }
+            posInput.value = pos++;
+        });
+    }
+}
+document.getElementById('editForm').addEventListener('submit', assignPositions);
 </script>
 </body>
 </html>
