@@ -53,6 +53,16 @@
         .param-grid-header span,.param-grid-header-de span{font-size:0.72rem;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:0.5px;padding:0 8px;}
         .param-block{position:relative;}
         .param-actions{display:flex;gap:4px;align-items:center;justify-content:flex-end;padding:2px 8px 6px;}
+        .drag-row{position:relative;}
+        .drag-handle{position:absolute;left:-2px;top:8px;cursor:grab;color:#b8c0c8;font-size:1rem;line-height:1;padding:4px 3px;user-select:none;border-radius:4px;}
+        .drag-handle:hover{color:#4338ca;background:#ede9fe;}
+        .drag-handle:active{cursor:grabbing;}
+        .drag-row{padding-left:20px;}
+        .drag-row.dragging{opacity:0.4;}
+        .drag-row.drag-over-top{box-shadow:inset 0 2px 0 0 #2e7d32;}
+        .drag-row.drag-over-bottom{box-shadow:inset 0 -2px 0 0 #2e7d32;}
+        #customBody tr.drag-row td:first-child{position:relative;padding-left:24px;}
+        #customBody tr.drag-row .drag-handle{left:2px;top:50%;transform:translateY(-50%);}
         .btn-ins-row{background:none;border:none;color:#4338ca;cursor:pointer;font-size:0.72rem;font-weight:700;padding:2px 6px;border-radius:4px;font-family:'DM Sans',sans-serif;}
         .btn-ins-row:hover{background:#ede9fe;}
         .btn-del-row{background:none;border:none;color:#dc2626;cursor:pointer;font-size:0.85rem;padding:2px 6px;border-radius:4px;}
@@ -195,7 +205,7 @@
                     {% for param in grp.params %}
 
                     {% if is_dry_extract %}
-                    <div class="param-block" data-param-id="{{ param.id }}">
+                    <div class="param-block drag-row" data-param-id="{{ param.id }}" draggable="true"><span class="drag-handle" title="Drag to reorder">⋮⋮</span>
                     <div class="param-grid-de">
                         <div class="param-row">
                             <div>
@@ -228,7 +238,7 @@
                     </div>
                     </div>
                     {% else %}
-                    <div class="param-block" data-param-id="{{ param.id }}">
+                    <div class="param-block drag-row" data-param-id="{{ param.id }}" draggable="true"><span class="drag-handle" title="Drag to reorder">⋮⋮</span>
                     <div class="param-grid">
                         <div class="param-row">
                             <div>
@@ -429,7 +439,7 @@ function renderParamRow(param, isDE) {
             <input type="text" name="reference_${param.id}" placeholder="Reference">
         </div>` : '';
     return `
-    <div class="param-block" data-param-id="${param.id}">
+    <div class="param-block drag-row" data-param-id="${param.id}" draggable="true"><span class="drag-handle" title="Drag to reorder">⋮⋮</span>
     <div class="${isDE ? 'param-grid-de' : 'param-grid'}">
         <div class="param-row">
             <div>
@@ -546,9 +556,11 @@ attachRangeChecks();
 // CUSTOM FIELDS — reference column added for dry extract
 function addCustomField() {
     const tr = document.createElement('tr');
+    tr.className = 'drag-row';
+    tr.draggable = true;
     const refCol = IS_DRY_EXTRACT ? `<td><input type="text" name="custom_field_reference" placeholder="Reference"></td>` : ``;
     tr.innerHTML = `
-        <td><input type="hidden" name="custom_is_heading" value="0"><input type="text" name="custom_field_name" placeholder="e.g. Heavy Metals"></td>
+        <td><span class="drag-handle" title="Drag to reorder">⋮⋮</span><input type="hidden" name="custom_is_heading" value="0"><input type="text" name="custom_field_name" placeholder="e.g. Heavy Metals"></td>
         <td><input type="text" name="custom_field_spec" placeholder="e.g. Absent"></td>
         <td><input type="text" name="custom_field_result" placeholder="Result"></td>
         ${refCol}
@@ -560,10 +572,11 @@ function addCustomField() {
 
 function addHeadingRow() {
     const tr = document.createElement('tr');
-    tr.className = 'heading-row';
+    tr.className = 'heading-row drag-row';
+    tr.draggable = true;
     const refCol = IS_DRY_EXTRACT ? `<td><input type="hidden" name="custom_field_reference" value=""></td>` : ``;
     tr.innerHTML = `
-        <td><input type="hidden" name="custom_is_heading" value="1"><input type="text" name="custom_field_name" placeholder="Section heading (e.g. Physical Tests)"></td>
+        <td><span class="drag-handle" title="Drag to reorder">⋮⋮</span><input type="hidden" name="custom_is_heading" value="1"><input type="text" name="custom_field_name" placeholder="Section heading (e.g. Physical Tests)"></td>
         <td><span class="heading-badge">📋 HEADING</span><input type="hidden" name="custom_field_spec" value=""></td>
         <td><input type="hidden" name="custom_field_result" value=""></td>
         ${refCol}
@@ -575,6 +588,48 @@ function addHeadingRow() {
 
 function removeRow(btn) { btn.closest('tr').remove(); }
 
+// ── Drag-to-reorder ──────────────────────────────────────────────────────
+// Works with the position-tracking already in place: dragging just moves
+// DOM elements, and assignPositions() (below) reads whatever the final DOM
+// order is at submit time — so no other code needs to know dragging happened.
+function makeSortable(containerId, itemSelector) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    let dragEl = null;
+
+    container.addEventListener('dragstart', e => {
+        const item = e.target.closest(itemSelector);
+        if (!item || !container.contains(item)) return;
+        dragEl = item;
+        setTimeout(() => item.classList.add('dragging'), 0);
+    });
+
+    container.addEventListener('dragend', () => {
+        if (dragEl) dragEl.classList.remove('dragging');
+        dragEl = null;
+    });
+
+    container.addEventListener('dragover', e => {
+        if (!dragEl) return;
+        e.preventDefault();
+        const items = [...container.querySelectorAll(itemSelector)].filter(el => el !== dragEl);
+        const after = items.reduce((closest, child) => {
+            const box = child.getBoundingClientRect();
+            const offset = e.clientY - box.top - box.height / 2;
+            if (offset < 0 && offset > closest.offset) return { offset, element: child };
+            return closest;
+        }, { offset: -Infinity, element: null }).element;
+
+        if (after == null) {
+            container.appendChild(dragEl);
+        } else {
+            container.insertBefore(dragEl, after);
+        }
+    });
+}
+makeSortable('paramsBody', '.drag-row');
+makeSortable('customBody', '.drag-row');
+
 // Per-row "insert above" / "remove" for the Test Parameters section — works
 // on both the parameters loaded on page render AND ones loaded via AJAX
 // (Load Test Parameters), so lab staff can add extra fields/headings or
@@ -582,9 +637,11 @@ function removeRow(btn) { btn.closest('tr').remove(); }
 function insertFieldAboveParam(btn) {
     const block = btn.closest('.param-block');
     const wrap = document.createElement('div');
-    wrap.className = 'inserted-row-inline';
+    wrap.className = 'inserted-row-inline drag-row';
+    wrap.draggable = true;
     const refField = IS_DRY_EXTRACT ? `<input type="text" name="custom_field_reference" placeholder="Reference" style="width:100%;padding:7px 10px;border:1.5px solid #d0d7de;border-radius:6px;font-size:0.85rem;margin-top:4px;">` : '';
     wrap.innerHTML = `
+        <span class="drag-handle" title="Drag to reorder">⋮⋮</span>
         <input type="hidden" name="custom_is_heading" value="0">
         <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;">
             <input type="text" name="custom_field_name" placeholder="Field name" style="flex:1.5;min-width:120px;padding:7px 10px;border:1.5px solid #d0d7de;border-radius:6px;font-size:0.85rem;">
@@ -600,8 +657,10 @@ function insertFieldAboveParam(btn) {
 function insertHeadingAboveParam(btn) {
     const block = btn.closest('.param-block');
     const wrap = document.createElement('div');
-    wrap.className = 'inserted-heading-inline';
+    wrap.className = 'inserted-heading-inline drag-row';
+    wrap.draggable = true;
     wrap.innerHTML = `
+        <span class="drag-handle" title="Drag to reorder">⋮⋮</span>
         <input type="hidden" name="custom_is_heading" value="1">
         <input type="hidden" name="custom_field_spec" value="">
         <input type="hidden" name="custom_field_result" value="">

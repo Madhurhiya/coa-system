@@ -53,6 +53,11 @@
         input.in-range     { border-color: #16a34a !important; background: #f0fdf4 !important; }
         .row-actions { display: flex; gap: 4px; align-items: center; white-space: nowrap; }
         .btn-del-row { background: none; border: none; color: #dc2626; cursor: pointer; font-size: 0.9rem; padding: 3px 6px; border-radius: 4px; }
+        .drag-row td:first-child { position: relative; padding-left: 26px !important; }
+        .drag-handle { position: absolute; left: 4px; top: 50%; transform: translateY(-50%); cursor: grab; color: #b8c0c8; font-size: 1rem; line-height: 1; padding: 4px 3px; user-select: none; border-radius: 4px; }
+        .drag-handle:hover { color: #4338ca; background: #ede9fe; }
+        .drag-handle:active { cursor: grabbing; }
+        .drag-row.dragging { opacity: 0.4; }
         .btn-del-row:hover { background: #fef2f2; }
         .btn-ins-row { background: none; border: none; color: #4338ca; cursor: pointer; font-size: 0.75rem; font-weight: 700; padding: 3px 6px; border-radius: 4px; font-family: 'DM Sans', sans-serif; }
         .btn-ins-row:hover { background: #ede9fe; }
@@ -157,8 +162,9 @@
                             </tr>
 
                             {% elif row.kind == 'param' %}
-                            <tr class="param-data-row" data-param-id="{{ row.parameter.id }}">
+                            <tr class="param-data-row drag-row" data-param-id="{{ row.parameter.id }}" draggable="true">
                                 <td>
+                                    <span class="drag-handle" title="Drag to reorder">⋮⋮</span>
                                     <div class="param-name">{{ row.parameter.name }}</div>
                                     {% if row.parameter.specification %}<div class="param-default">Default: {{ row.parameter.specification }}</div>{% endif %}
                                     <input type="hidden" name="param_keep_{{ row.parameter.id }}" value="1">
@@ -198,13 +204,14 @@
                             </tr>
 
                             {% elif row.kind == 'heading' %}
-                            <tr class="inserted-heading-row">
-                                <td colspan="3" style="background:#e8f5e9;">
+                            <tr class="inserted-heading-row drag-row" draggable="true">
+                                <td colspan="3" style="background:#e8f5e9;position:relative;">
+                                    <span class="drag-handle" title="Drag to reorder">⋮⋮</span>
                                     <input type="hidden" name="custom_is_heading" value="1">
                                     <input type="hidden" name="custom_field_spec" value="">
                                     <input type="hidden" name="custom_field_result" value="">
                                     <input type="text" name="custom_field_name" value="{{ row.cf.field_name }}" placeholder="Section heading text…"
-                                           style="width:100%;border:none;background:transparent;font-weight:700;color:#1a3c2e;font-family:'DM Sans',sans-serif;font-size:0.9rem;outline:none;padding:4px;">
+                                           style="width:100%;border:none;background:transparent;font-weight:700;color:#1a3c2e;font-family:'DM Sans',sans-serif;font-size:0.9rem;outline:none;padding:4px 4px 4px 22px;">
                                 </td>
                                 {% if is_dry_extract %}<td style="background:#e8f5e9;"><input type="hidden" name="custom_field_reference" value=""></td>{% endif %}
                                 <td style="background:#e8f5e9;">
@@ -217,8 +224,9 @@
                             </tr>
 
                             {% elif row.kind == 'custom' %}
-                            <tr class="inserted-row">
+                            <tr class="inserted-row drag-row" draggable="true">
                                 <td style="background:#f0fdf4;">
+                                    <span class="drag-handle" title="Drag to reorder">⋮⋮</span>
                                     <input type="hidden" name="custom_is_heading" value="0">
                                     <input type="text" name="custom_field_name" value="{{ row.cf.field_name }}" placeholder="Field name" style="width:100%;padding:7px 10px;border:1.5px solid #d0d7de;border-radius:6px;font-family:'DM Sans',sans-serif;font-size:0.88rem;outline:none;background:#f0fdf4;">
                                 </td>
@@ -320,10 +328,12 @@ function deleteParamRow(btn) { btn.closest('tr').remove(); }
 function insertFieldAbove(btn) {
     const row = btn.closest('tr');
     const tr = document.createElement('tr');
-    tr.className = 'inserted-row';
+    tr.className = 'inserted-row drag-row';
+    tr.draggable = true;
     const refCol = IS_DRY_EXTRACT ? `<td style="background:#f0fdf4;"><input type="text" name="custom_field_reference" placeholder="Reference" style="width:100%;padding:7px 10px;border:1.5px solid #d0d7de;border-radius:6px;font-family:'DM Sans',sans-serif;font-size:0.88rem;outline:none;background:#f0fdf4;"></td>` : '';
     tr.innerHTML = `
         <td style="background:#f0fdf4;">
+            <span class="drag-handle" title="Drag to reorder">⋮⋮</span>
             <input type="hidden" name="custom_is_heading" value="0">
             <input type="text" name="custom_field_name" placeholder="Field name" style="width:100%;padding:7px 10px;border:1.5px solid #d0d7de;border-radius:6px;font-family:'DM Sans',sans-serif;font-size:0.88rem;outline:none;background:#f0fdf4;">
         </td>
@@ -338,15 +348,17 @@ function insertFieldAbove(btn) {
 function insertHeadingAbove(btn) {
     const row = btn.closest('tr');
     const tr = document.createElement('tr');
-    tr.className = 'inserted-heading-row';
+    tr.className = 'inserted-heading-row drag-row';
+    tr.draggable = true;
     const refCol = IS_DRY_EXTRACT ? `<td style="background:#e8f5e9;"><input type="hidden" name="custom_field_reference" value=""></td>` : '';
     tr.innerHTML = `
-        <td colspan="3" style="background:#e8f5e9;">
+        <td colspan="3" style="background:#e8f5e9;position:relative;">
+            <span class="drag-handle" title="Drag to reorder">⋮⋮</span>
             <input type="hidden" name="custom_is_heading" value="1">
             <input type="hidden" name="custom_field_spec" value="">
             <input type="hidden" name="custom_field_result" value="">
             <input type="text" name="custom_field_name" placeholder="Section heading text…"
-                   style="width:100%;border:none;background:transparent;font-weight:700;color:#1a3c2e;font-family:'DM Sans',sans-serif;font-size:0.9rem;outline:none;padding:4px;">
+                   style="width:100%;border:none;background:transparent;font-weight:700;color:#1a3c2e;font-family:'DM Sans',sans-serif;font-size:0.9rem;outline:none;padding:4px 4px 4px 22px;">
         </td>
         ${refCol}
         <td style="background:#e8f5e9;"><div class="row-actions"><button type="button" class="btn-del-row" onclick="deleteParamRow(this)">✕</button></div></td>`;
@@ -357,9 +369,11 @@ function insertHeadingAbove(btn) {
 function addCustomField() {
     const tbody = document.getElementById('customBody');
     const tr = document.createElement('tr');
+    tr.className = 'drag-row';
+    tr.draggable = true;
     const refCol = IS_DRY_EXTRACT ? `<td><input type="text" name="custom_field_reference" placeholder="Reference"></td>` : '';
     tr.innerHTML = `
-        <td><input type="hidden" name="custom_is_heading" value="0"><input type="text" name="custom_field_name" placeholder="e.g. Heavy Metals"></td>
+        <td><span class="drag-handle" title="Drag to reorder">⋮⋮</span><input type="hidden" name="custom_is_heading" value="0"><input type="text" name="custom_field_name" placeholder="e.g. Heavy Metals"></td>
         <td><input type="text" name="custom_field_spec" placeholder="e.g. Absent"></td>
         <td><input type="text" name="custom_field_result" placeholder="Result"></td>
         ${refCol}
@@ -371,10 +385,11 @@ function addCustomField() {
 function addHeadingRow() {
     const tbody = document.getElementById('customBody');
     const tr = document.createElement('tr');
-    tr.className = 'heading-row';
+    tr.className = 'heading-row drag-row';
+    tr.draggable = true;
     const refCol = IS_DRY_EXTRACT ? `<td><input type="hidden" name="custom_field_reference" value=""></td>` : '';
     tr.innerHTML = `
-        <td><input type="hidden" name="custom_is_heading" value="1"><input type="text" name="custom_field_name" placeholder="Section heading text"></td>
+        <td><span class="drag-handle" title="Drag to reorder">⋮⋮</span><input type="hidden" name="custom_is_heading" value="1"><input type="text" name="custom_field_name" placeholder="Section heading text"></td>
         <td><span class="heading-badge">📋 HEADING</span><input type="hidden" name="custom_field_spec" value=""></td>
         <td><input type="hidden" name="custom_field_result" value=""></td>
         ${refCol}
@@ -384,6 +399,48 @@ function addHeadingRow() {
 }
 
 function removeRow(btn) { btn.closest('tr').remove(); }
+
+// ── Drag-to-reorder ──────────────────────────────────────────────────────
+// Dragging just moves DOM rows; assignPositions() (below) reads the final
+// DOM order at submit time, so no other logic needs to know dragging
+// happened — the same mechanism that makes "insert above" work correctly.
+function makeSortable(containerId, itemSelector) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    let dragEl = null;
+
+    container.addEventListener('dragstart', e => {
+        const item = e.target.closest(itemSelector);
+        if (!item || !container.contains(item)) return;
+        dragEl = item;
+        setTimeout(() => item.classList.add('dragging'), 0);
+    });
+
+    container.addEventListener('dragend', () => {
+        if (dragEl) dragEl.classList.remove('dragging');
+        dragEl = null;
+    });
+
+    container.addEventListener('dragover', e => {
+        if (!dragEl) return;
+        e.preventDefault();
+        const items = [...container.querySelectorAll(itemSelector)].filter(el => el !== dragEl);
+        const after = items.reduce((closest, child) => {
+            const box = child.getBoundingClientRect();
+            const offset = e.clientY - box.top - box.height / 2;
+            if (offset < 0 && offset > closest.offset) return { offset, element: child };
+            return closest;
+        }, { offset: -Infinity, element: null }).element;
+
+        if (after == null) {
+            container.appendChild(dragEl);
+        } else {
+            container.insertBefore(dragEl, after);
+        }
+    });
+}
+makeSortable('paramBody', '.drag-row');
+makeSortable('customBody', '.drag-row');
 
 // Records the true on-screen order of every row (parameter, inline field,
 // inline heading) into hidden inputs right before the form submits, then

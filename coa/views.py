@@ -664,7 +664,8 @@ def clone_from_old(request, old_id):
                         COAResult.objects.create(
                             coa=coa, parameter=param, result=value,
                             reference=reference,
-                            standard_override=standard if standard != param.specification else ''
+                            standard_override=standard if standard != param.specification else '',
+                            position=_param_position(request, param.id, param.order * 1000),
                         )
 
             names      = request.POST.getlist('custom_field_name')
@@ -672,6 +673,7 @@ def clone_from_old(request, old_id):
             results    = request.POST.getlist('custom_field_result')
             references = request.POST.getlist('custom_field_reference')
             headings   = request.POST.getlist('custom_is_heading')
+            positions  = _custom_positions(request, len(names))
             for i, name in enumerate(names):
                 name = name.strip()
                 if name:
@@ -681,7 +683,7 @@ def clone_from_old(request, old_id):
                         specification=specs[i].strip()       if i < len(specs)       else '',
                         result=results[i].strip()             if i < len(results)     else '',
                         reference=references[i].strip()       if i < len(references)  else '',
-                        order=i,
+                        order=positions[i],
                         is_heading=is_heading,
                     )
             return redirect('coa_detail', coa_id=coa.id)

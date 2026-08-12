@@ -58,9 +58,15 @@
         .group-label{background:#f8f9fa;border-left:4px solid var(--gm);padding:8px 14px;font-size:0.8rem;font-weight:700;color:var(--gd);margin:16px 0 10px;border-radius:0 6px 6px 0;text-transform:uppercase;}
         .prow-header{display:grid;grid-template-columns:2fr 1.5fr 1.5fr;margin-bottom:6px;}
         .prow-header span{font-size:0.72rem;font-weight:700;color:#6b7280;text-transform:uppercase;padding:0 8px;}
-        .prow{display:grid;grid-template-columns:2fr 1.5fr 1.5fr;}
+        .prow{display:grid;grid-template-columns:2fr 1.5fr 1.5fr;position:relative;padding-left:20px;}
         .prow>div{padding:7px 8px;border-bottom:1px solid #f0f0f0;display:flex;flex-direction:column;gap:3px;}
         .prow input{width:100%;padding:7px 10px;border:1.5px solid var(--bd);border-radius:6px;font-family:'DM Sans',sans-serif;font-size:0.88rem;outline:none;}
+        .drag-handle{position:absolute;left:0;top:10px;cursor:grab;color:#b8c0c8;font-size:1rem;line-height:1;padding:4px 3px;user-select:none;border-radius:4px;}
+        .drag-handle:hover{color:#4338ca;background:#ede9fe;}
+        .drag-handle:active{cursor:grabbing;}
+        .drag-row.dragging{opacity:0.4;}
+        #customBody tr.drag-row td:first-child{position:relative;padding-left:24px;}
+        #customBody tr.drag-row .drag-handle{left:2px;top:50%;transform:translateY(-50%);}
         .prow input:focus{border-color:var(--gm);background:#fff;}
         /* custom fields */
         .custom-table{width:100%;border-collapse:collapse;}
@@ -222,10 +228,12 @@
                 <div class="prow-header">
                     <span>Parameter</span><span>Standard</span><span>Result</span>
                 </div>
+                <div id="paramsBody">
                 {% for grp in grouped_parameters %}
                     {% if grp.group %}<div class="group-label">{{ grp.group.name }}</div>{% endif %}
                     {% for param in grp.params %}
-                    <div class="prow">
+                    <div class="prow drag-row" data-param-id="{{ param.id }}" draggable="true">
+                        <span class="drag-handle" title="Drag to reorder">⋮⋮</span>
                         <div>
                             <span style="font-size:0.88rem;font-weight:500;">{{ param.name }}</span>
                             {% if param.specification %}<span style="font-size:0.72rem;color:#9ca3af;">Default: {{ param.specification }}</span>{% endif %}
@@ -243,6 +251,7 @@
                     </div>
                     {% endfor %}
                 {% endfor %}
+                </div>
             </div>
         </div>
         {% endif %}
@@ -446,14 +455,105 @@ function addFieldBelow(btn) {
 function addField() {
     const tbody = document.getElementById('customBody');
     const tr = document.createElement('tr');
+    tr.className = 'drag-row';
+    tr.draggable = true;
     tr.innerHTML = `
-        <td><input type="hidden" name="custom_is_heading" value="0"><input type="text" name="custom_field_name" placeholder="e.g. Heavy Metals"></td>
+        <td><span class="drag-handle" title="Drag to reorder">⋮⋮</span><input type="hidden" name="custom_is_heading" value="0"><input type="text" name="custom_field_name" placeholder="e.g. Heavy Metals"></td>
         <td><input type="text" name="custom_field_spec"   placeholder="e.g. Absent"></td>
         <td><input type="text" name="custom_field_result" placeholder="Result"></td>
         <td><button type="button" class="btn-remove" onclick="this.closest('tr').remove()">✕</button></td>`;
     tbody.appendChild(tr);
     tr.querySelector('input[name="custom_field_name"]').focus();
 }
+
+// ── DRAG-TO-REORDER (Category Parameters + Additional Fields) ──
+function makeSortable(containerId, itemSelector) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    let dragEl = null;
+
+    container.addEventListener('dragstart', e => {
+        const item = e.target.closest(itemSelector);
+        if (!item || !container.contains(item)) return;
+        dragEl = item;
+        setTimeout(() => item.classList.add('dragging'), 0);
+    });
+    container.addEventListener('dragend', () => {
+        if (dragEl) dragEl.classList.remove('dragging');
+        dragEl = null;
+    });
+    container.addEventListener('dragover', e => {
+        if (!dragEl) return;
+        e.preventDefault();
+        const items = [...container.querySelectorAll(itemSelector)].filter(el => el !== dragEl);
+        const after = items.reduce((closest, child) => {
+            const box = child.getBoundingClientRect();
+            const offset = e.clientY - box.top - box.height / 2;
+            if (offset < 0 && offset > closest.offset) return { offset, element: child };
+            return closest;
+        }, { offset: -Infinity, element: null }).element;
+        if (after == null) container.appendChild(dragEl);
+        else container.insertBefore(dragEl, after);
+    });
+}
+makeSortable('paramsBody', '.drag-row');
+makeSortable('customBody', '.drag-row');
+
+// Records the true on-screen order of Category Parameter rows and
+// Additional Field rows into hidden inputs right before the form submits —
+// this is what makes dragging actually change what prints, not just how
+// the form looks.
+function assignPositions() {
+    let pos = 0;
+
+    // Old-fields section (Section 2) — no drag here, just needs a position
+    // value on every row so it stays correctly aligned with the other two
+    // sections below (which share the same custom_field_name[] list on submit).
+    const oldFieldsBody = document.getElementById('oldFieldsBody');
+    if (oldFieldsBody) {
+        Array.from(oldFieldsBody.children).forEach(tr => {
+            let posInput = tr.querySelector('input[name="custom_position"]');
+            if (!posInput) {
+                posInput = document.createElement('input');
+                posInput.type = 'hidden';
+                posInput.name = 'custom_position';
+                tr.appendChild(posInput);
+            }
+            posInput.value = pos++;
+        });
+    }
+
+    const paramsBody = document.getElementById('paramsBody');
+    if (paramsBody) {
+        Array.from(paramsBody.children).forEach(el => {
+            if (!el.classList.contains('drag-row')) return; // skip group-label divs
+            const paramId = el.dataset.paramId;
+            if (!paramId) return;
+            let posInput = el.querySelector(`input[name="position_param_${paramId}"]`);
+            if (!posInput) {
+                posInput = document.createElement('input');
+                posInput.type = 'hidden';
+                posInput.name = `position_param_${paramId}`;
+                el.appendChild(posInput);
+            }
+            posInput.value = pos++;
+        });
+    }
+    const customBody = document.getElementById('customBody');
+    if (customBody) {
+        Array.from(customBody.children).forEach(tr => {
+            let posInput = tr.querySelector('input[name="custom_position"]');
+            if (!posInput) {
+                posInput = document.createElement('input');
+                posInput.type = 'hidden';
+                posInput.name = 'custom_position';
+                tr.appendChild(posInput);
+            }
+            posInput.value = pos++;
+        });
+    }
+}
+document.getElementById('cloneForm').addEventListener('submit', assignPositions);
 </script>
 </body>
 </html>
